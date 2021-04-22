@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Imputaion | QSmei-Academic</title>
+    <link>/category/imputaion/</link>
+      <atom:link href="/category/imputaion/index.xml" rel="self" type="application/rss+xml" />
+    <description>Imputaion</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 17 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>Imputaion</title>
+      <link>/category/imputaion/</link>
+    </image>
+    
+    <item>
+      <title>R package:blupADC-使用说明4</title>
+      <link>/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/</link>
+      <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;🤖通常来讲，我们公司拿到的原始芯片数据大都是包含缺失值且未经过质控的。而在实际的数据分析中，我们一般都要求数据是经过质控和填充。为此，&lt;code&gt;blupADC&lt;/code&gt;中提供了&lt;code&gt;genotype_data_QC_Imputation&lt;/code&gt;函数，可以方便我们在R中调用&lt;strong&gt;Plink&lt;/strong&gt;(用于质控)和&lt;strong&gt;Beagle&lt;/strong&gt;(用于填充)软件进行基因型数据的质控和填充。&lt;/p&gt;
+&lt;p&gt;👉&lt;strong&gt;Note:&lt;/strong&gt;我们需要提前下载好Plink(用于质控)和Beagle(用于填充)软件。由于Plink和Beagle在质控填充方面已经做得足够好了，因此我们并不打算用R重新实现相关功能。&lt;/p&gt;
+&lt;p&gt;老规矩，我们还是用一个小例子来看下函数的用法:&lt;/p&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+genotype_data_QC_Imputation(
+              input_data_path=&amp;quot;root/genotype_data&amp;quot;,  #用户输入的基因型文件路径
+              input_data_name=&amp;quot;data_hmp.txt&amp;quot;,        #用户输入的基因型文件名称
+              input_data_type=&amp;quot;Hapmap&amp;quot;,              #用户输入的基因型文件格式
+              method=&amp;quot;QC_Imputation&amp;quot;,                #基因型数据处理方法：质控+填充
+              plink_software_path=&amp;quot;/root/software&amp;quot;,  #plink软件的路径
+              plink_software_name=&amp;quot;plink&amp;quot;,           #plink软件的名称
+              beagle_software_path=&amp;quot;root/software&amp;quot;,  #beagle软件的路径
+              beagle_software_name=&amp;quot;beagle.5.1.jar&amp;quot;, #beagle软件的名称
+              output_data_path=&amp;quot;/root/result&amp;quot;,       #输出基因型文件的路径
+              output_data_name=&amp;quot;YY_data&amp;quot;,            #输出基因型文件的名称
+              output_data_type=&amp;quot;Plink&amp;quot;               #输出基因型文件的格式
+              )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过上述代码，我们即可对本地的Hapmap格式的基因型数据进行质控和填充，并将其以Plink格式并保存到本地。&lt;/p&gt;
+&lt;p&gt;进行质控和填充时，我们必须要事先提供基因型数据，这部分的参数与&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数用法一致。具体大家可参阅之前的介绍:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://localhost:4321/post/blupadc/&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;完成了基因型数据的提供后，我们可以通过以下几个参数来进行质控填充的相关分析：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数1：data_analysis_method&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;指定基因型数据的处理方法，字符串向量，可选方法包括：&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;“QC” :进行质控&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“Imputation” :进行填充&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“QC_Imputation” :先质控，后填充&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数2：plink_software_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Plink软件的路径&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数3：plink_software_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Plink软件的名称&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数4：beagle_software_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Beagle软件的路径&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数5：beagle_software_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Beagle软件的名称&lt;/p&gt;
+&lt;div id=&#34;其他参数&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;其他参数&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数6：qc_snp_rate&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用Plink进行质控时，SNP call rate 的阈值。默认为0.1&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数6：qc_ind_rate&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用Plink进行质控时，IND call rate 的阈值。默认为0.1&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数6：qc_maf&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用Plink进行质控时，Maf 的阈值。默认为0.05&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数6：qc_hwe&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用Plink进行质控时，哈代温伯格平衡的阈值。默认为1e-6&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数6：beagle_ref_data_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用beagle进行填充时，提供的reference data的路径&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数7：beagle_ref_data_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用beagle进行填充时，提供的reference data的名称&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数8：beagle_ped_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用beagle进行填充时，提供的系谱数据的路径&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数9：beagle_ped_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用beagle进行填充时，提供的系谱数据的名称&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

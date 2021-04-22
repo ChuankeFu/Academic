@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Overlap | QSmei-Academic</title>
+    <link>/category/overlap/</link>
+      <atom:link href="/category/overlap/index.xml" rel="self" type="application/rss+xml" />
+    <description>Overlap</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 15 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>Overlap</title>
+      <link>/category/overlap/</link>
+    </image>
+    
+    <item>
+      <title>R package:blupADC-使用说明2</title>
+      <link>/post/2021-04-17-r-package-blup-adc-overlap-genotype/overlap_genotype/</link>
+      <pubDate>Thu, 15 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/post/2021-04-17-r-package-blup-adc-overlap-genotype/overlap_genotype/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;👦大家好,这一节给大家带来的是如何使用&lt;code&gt;blupADC&lt;/code&gt;中的&lt;code&gt;Calculate_genotype_overlap&lt;/code&gt;函数来对基因型数据进行重复性检测。&lt;/p&gt;
+&lt;p&gt;与之前类似，我们还是用一个小例子来简单的看下该函数的用法&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(blupADC)
+data_hmp=data.table::fread(&amp;quot;D:/test_code/BLUP_ADC_code/test_data/data_hmp.txt&amp;quot;,data.table=F)
+overlap_result=Calculate_genotype_overlap(input_data_hmp=data_hmp)
+## 
+## 载入程辑包：&amp;#39;dplyr&amp;#39;
+## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     filter, lag
+## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     intersect, setdiff, setequal, union
+## Start numeric(0,1,2) format conversion......
+## Detecting overlap genotype......
+## 31102
+## 82148
+## Found 2 duplicate genotypes in your chip data
+## Before filter, there are 500 individuals, after filter, there are 496 individuals 
+## Finally, there are total 496 individuals and 30000 snps in your data!&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;关于&lt;code&gt;Calculate_genotype_overlap&lt;/code&gt; 函数中的参数介绍，我们主要介绍以下两个参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数1：selected_snps&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;进行重复性检测时，随机抽样的SNP的数目。numeric 类型。默认为1000。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数2：overlap_threshold&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;判断基因型重复的阈值。numeric 类型。默认为0.95。&lt;/p&gt;
+&lt;p&gt;当个体间的基因型overlap比例超过该阈值时，基因型就会被判定为重复的基因型。&lt;/p&gt;
+&lt;p&gt;该函数中的其他参数均和&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数一致(基因型数据的输入与输出)，具体大家可参阅之前的介绍:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://localhost:4321/post/blupadc/&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

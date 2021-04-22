@@ -1,0 +1,141 @@
+---
+title: 'R package:blupADC- Overview'
+author: qsmei
+date: '2021-04-13'
+slug: overView
+categories:
+  - blupADC
+tags: []
+subtitle: ''
+summary: '对R package:blupADC 的功能进行简单的介绍'
+authors: []
+lastmod: '2021-04-13T22:32:36+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>大家好,本节我们就正式开始<code>blupADC</code>package的学习了。在本节，我们主要是对<code>blupADC</code>的功能做一个简要的概述。之后的章节中，我们将会对几个重要的函数分别进行进一步的讲解。</p>
+<div id="安装" class="section level3">
+<h3>🙊<strong>安装</strong></h3>
+<p>目前，<code>blupADC</code> 已经上传到了<strong>github</strong>上，因此大家可以在<strong>R</strong>里通过如下代码进行安装：</p>
+<p><code>devtools::install_github("qsmei/blupADC")</code></p>
+<p>或者直接在命令行进行安装：</p>
+<p><code>R CMD INSTALL blupADC_1.0.tar.gz</code></p>
+<p>💖下面，我们将就<code>blupADC</code> 中的几个主要的功能进行讲解：</p>
+</div>
+<div id="功能1基因型数据间的格式转换" class="section level3">
+<h3>功能1：基因型数据间的格式转换</h3>
+<pre class="R"><code>library(blupADC)
+sum_data=genotype_data_format_conversion(
+         input_data_plink_ped=data_ped,  #用户输入的 plink-ped格式数据
+         input_data_plink_map=data_map,  #用户输入的 plink-map格式数据
+         output_data_type=c(&quot;Hapmap&quot;,&quot;Blupf90&quot;),#输出的基因型数据格式
+         return_result = TRUE,      #在R中返回结果
+         cpu_cores=1                #调用的cpu个数
+                  )</code></pre>
+</div>
+<div id="功能2重复基因型数据检测" class="section level3">
+<h3>功能2：重复基因型数据检测</h3>
+<pre class="R"><code>library(blupADC)
+overlap_result=Calculate_genotype_overlap(
+                  input_data_hmp=data_hmp,   #用户输入的hapmap格式的数据
+                  overlap_threshold=0.95,    #判断基因型重复的阈值
+                  return_result=TRUE         #在R中返回结果
+                  )</code></pre>
+</div>
+<div id="功能3系谱追溯与重命名" class="section level3">
+<h3>功能3：系谱追溯与重命名</h3>
+<pre class="R"><code>library(blupADC)
+pedigree_result=trace_pedigree(
+                pedigree=data_pedigree,    #用户提供的系谱数据
+                trace_generation=5，       #向上追溯的系谱代数
+                output_pedigree_tree=TRUE  #输出系谱树的结果
+                )                 </code></pre>
+</div>
+<div id="功能4亲缘关系矩阵的构建ag-and-h" class="section level3">
+<h3>功能4：亲缘关系矩阵的构建(A,G and H)</h3>
+<pre class="R"><code>library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
+                kinship_type=c(&quot;G_A&quot;,&quot;G_Domi&quot;),    #构建的亲缘关系矩阵的类型
+                inbred_type=c(&quot;Homozygous&quot;),       #计算的近交系数的类型
+                output_matrix_type=c(&quot;col_three&quot;), #返回的亲缘关系矩阵的格式：3列格式
+                return_result=TRUE)                #在R中返回结果               </code></pre>
+</div>
+<div id="功能5亲缘关系矩阵的构建ag-and-h" class="section level3">
+<h3>功能5：亲缘关系矩阵的构建(A,G and H)</h3>
+<pre class="R"><code>library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
+                kinship_type=c(&quot;G_A&quot;,&quot;G_Domi&quot;),    #构建的亲缘关系矩阵的类型
+                inbred_type=c(&quot;Homozygous&quot;),       #计算的近交系数的类型
+                output_matrix_type=c(&quot;col_three&quot;), #返回的亲缘关系矩阵的格式：3列格式
+                return_result=TRUE)                #在R中返回结果               </code></pre>
+</div>
+<div id="功能6基因型数据的质控与填充" class="section level3">
+<h3>功能6：基因型数据的质控与填充</h3>
+<pre class="R"><code>library(blupADC)
+genotype_data_QC_Imputation(
+            input_data_path=&quot;root/genotype_data&quot;,   #用户输入的本地基因型数据的路径
+            input_data_name=&quot;data_hmp.txt&quot;,         #用户输入的本地基因型数据的名称
+            input_data_type=&quot;Hapmap&quot;,               #用户输入的基因型数据的类型
+            method=&quot;QC_Imputation&quot;,                 #质控填充方法：质控+填充
+            plink_software_path=&quot;/root/software&quot;,   #plink软件的路径
+            plink_software_name=&quot;plink&quot;,            #plink软件的名称
+            beagle_software_path=&quot;root/software&quot;,   #beagle软件的路径
+            beagle_software_name=&quot;beagle.5.1.jar&quot;,  #beagle软件的名称
+            output_data_path=&quot;/root/result&quot;,        #质控填充后，基因型数据保存到本地的路径
+            output_data_name=&quot;YY_data&quot;,             #质控填充后，基因型数据保存到本地的文件名
+            output_data_type=&quot;Plink&quot;                #质控填充后，基因型数据保存到本地的类型
+            )                       </code></pre>
+</div>
+<div id="功能7在r中运行dmu软件完成相应的分析" class="section level3">
+<h3>功能7：在R中运行DMU软件，完成相应的分析</h3>
+<pre class="R"><code>library(blupADC)
+run_DMU(
+        phe_col_names=c(&quot;Id&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;, &quot;Trait1&quot;#,&quot;Trait2&quot;,&quot;Age&quot;),   #表型数据的列名
+        target_trait_name=c(&quot;Trait1&quot;),                               #目标性状名称
+        fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),         #固定效应名称
+        random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),                   #随机效应名称
+        covariate_effect_name=list(c(&quot;Age&quot;)),                        #协变量名称
+        phe_path=&quot;D:/test_code/BLUP_ADC_code/DMU_example&quot;,           #本地表型数据的路径
+        phe_name=&quot;dmu_phe.txt&quot;,                                      #本地表型数据的名称
+        integer_n=4,                                                 #整型变量的个数
+        analysis_model=&quot;PBLUP_A&quot;,                                    #遗传评估的模型
+        dmu_module=&quot;dmuai&quot;,                                          #估计方差组分的DMU模块
+        relationship_path=&quot;D:/test_code/BLUP_ADC_code/DMU_example&quot;,  #亲缘关系文件的本地路径
+        relationship_name=&quot;Dmu_ped.txt&quot;,                             #亲缘关系文件的本地名称
+        output_result_path=&quot;C:/Users/26564/Desktop&quot;,                 #DMU结果保存到本地的路径
+        output_ebv_path=&quot;C:/Users/26564/Desktop&quot;,                    #EBV结果保存到本地的路径
+        output_ebv_name=&quot;test&quot;,                                      #EBV结果保存到本地的文件名
+        DMU_software_path=&quot;D:/QGG-DMUv6-2/R5.2/bin&quot;                  #DMU软件的本地路径
+        )</code></pre>
+</div>
+<div id="功能8在r中运行blupf90软件完成相应的分析" class="section level3">
+<h3>功能8：在R中运行BLUPF90软件，完成相应的分析</h3>
+<pre class="R"><code>library(blupADC)
+run_BLUPF90(        
+            phe_col_names=c(&quot;Id&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;, &quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), #表型数据的列名
+            target_trait_name=c(&quot;Trait1&quot;),                               #目标性状名称
+            fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),         #固定效应名称
+            random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),                   #随机效应名称
+            covariate_effect_name=list(c(&quot;Age&quot;)),                        #协变量效应名称
+            phe_path=&quot;D:/test_code/BLUP_ADC_code/DMU_example&quot;,           #本地表型数据的路径
+            phe_name=&quot;dmu_phe.txt&quot;,                                      #本地表型数据的文件名
+            analysis_model=&quot;PBLUP_A&quot;,                                    #遗传评估的模型 
+            relationship_path=&quot;D:/test_code/BLUP_ADC_code/DMU_example&quot;,  #亲缘关系文件的本地路径
+          relationship_name=&quot;Blupf90_ped.txt&quot;,                         #亲缘关系文件的本地文件名
+            output_result_path=&quot;C:/Users/26564/Desktop/BLUPF90&quot;,         #BLUPF90结果保存到本地的路径 
+            output_ebv_path=&quot;C:/Users/26564/Desktop/BLUPF90&quot;,            #EBV结果保存到本地的路径
+          output_ebv_name=&quot;test&quot;,                                        #EBV结果保存到本地的文件名
+            BLUPf90_software_path=&quot;D:/test_code/BLUPf90_software&quot;        #BLUPF90软件的本地路径
+            )
+            </code></pre>
+</div>

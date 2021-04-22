@@ -1,0 +1,1428 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.1.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Mei Quanshun" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="系谱数据追溯与重命名" />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.9a66e344a68eb664b392d406a3f80726.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="QSmei-Academic" />
+  <meta property="og:url" content="/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/" />
+  <meta property="og:title" content="R package:blupADC-使用说明3 | QSmei-Academic" />
+  <meta property="og:description" content="系谱数据追溯与重命名" /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-04-16T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-04-16T09:32:43&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/"
+  },
+  "headline": "R package:blupADC-使用说明3",
+  
+  "datePublished": "2021-04-16T00:00:00Z",
+  "dateModified": "2021-04-16T09:32:43+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Mei Quanshun"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "QSmei-Academic",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "系谱数据追溯与重命名"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>R package:blupADC-使用说明3 | QSmei-Academic</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="922fb907c81b523391b7337b247484d8" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.226a9011996d125bf3fe4a5f22353a49.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">QSmei-Academic</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">QSmei-Academic</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>About Me</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/GeorgeCushen" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>R package:blupADC-使用说明3</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Apr 16, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/pedigree/">pedigree</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>🦄大家好,这一节主要给大家讲述的是如何使用<code>blupADC</code>中的函数来进行系谱数据处理。<code>blupADC</code>提供的<code>trace_pedigree</code>函数，可以帮助我们非常方便的对系谱数据进行多种处理:包括系谱重命名、系谱追溯及系谱纠错等。</p>
+<p>同样的，我们还是用一个小例子来简单的看下该函数的用法</p>
+<pre class="r"><code>library(blupADC)
+data_pedigree=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/ped.txt&quot;,data.table=F)
+colnames(data_pedigree)=c(&quot;Offspring&quot;,&quot;Sire&quot;,&quot;Dam&quot;,&quot;Birth_Date&quot;)
+#pedigree_result=trace_pedigree(input_pedigree=data_pedigree#,output_pedigree_tree=TRUE)
+pedigree_result=NULL</code></pre>
+<p>我们可以通过<code>str</code>查看函数的输出结果，如下所示:</p>
+<pre class="r"><code>str(pedigree_result)
+##  NULL</code></pre>
+<p>可以很明显的看到,输出结果包括以下几个部分:</p>
+<ul>
+<li><p><strong>ped:</strong> 经过处理后的原始系谱数据，未进行重命名</p></li>
+<li><p><strong>rename_ped:</strong> 经过处理且重命名的系谱数据,第1列为原始系谱ID,第2列为个体在系谱中的代数，第3-5列为重命名后的系谱数据</p></li>
+<li><p><strong>full_generation_matrix:</strong>系谱个体的系谱树矩阵，可以通过设置 full_generation指定系谱树矩阵包含的代数。默认不输出全系谱矩阵(节省时间)</p></li>
+<li><p><strong>error_id_set:</strong>系谱记录错误个体,根据错误的种类可以分为以下4个子集</p></li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><p>error_duplicated_id:相同的个体，父母却不相同</p></li>
+<li><p>error_sex_id:个体同时出现在父亲列和母亲列</p></li>
+<li><p>error_breed_id: 个体和父母的品种不相同(仅针对特殊格式)</p></li>
+<li><p>error_birth_date_id: 个体的出生日期要早于父母的出生日期(需在系谱的第四列提供个体的出生日期)</p></li>
+</ol>
+<p>下面，我们将具体讲解<code>trace_pedigree</code>函数中各种参数的含义:</p>
+<div id="主要参数" class="section level3">
+<h3>💥主要参数</h3>
+<ul>
+<li><strong>参数1：input_pedigree</strong></li>
+</ul>
+<p>用户提供的系谱数据。data.frame或 matrix类型。</p>
+<p>💌用户提供系谱数据需为以下几种格式中的一种，包括：</p>
+<ul>
+<li>3列系谱格式:</li>
+</ul>
+<pre class="r"><code>knitr::kable(head(data_pedigree[,1:3]))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Offspring</th>
+<th align="left">Sire</th>
+<th align="left">Dam</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">YYHZAUT19173108</td>
+<td align="left">YYHZAUT17282102</td>
+<td align="left">YYHZAUT16109011</td>
+</tr>
+<tr class="even">
+<td align="left">YYHZAUT19628606</td>
+<td align="left">YYHZAUT18811301</td>
+<td align="left">YYHZAUT18884508</td>
+</tr>
+<tr class="odd">
+<td align="left">YYHZAUT19423809</td>
+<td align="left">YYHZAUT18336401</td>
+<td align="left">YYHZAUT18623508</td>
+</tr>
+<tr class="even">
+<td align="left">YYHZAUT20898011</td>
+<td align="left">YYHZAUT18718802</td>
+<td align="left">YYHZAUT18859712</td>
+</tr>
+<tr class="odd">
+<td align="left">DDCFJYB20366602</td>
+<td align="left">YYHZAUT19422303</td>
+<td align="left">DDCFJYB19221005</td>
+</tr>
+<tr class="even">
+<td align="left">YYHZAUT20268616</td>
+<td align="left">YYHZAUT19541201</td>
+<td align="left">YYHZAUT18802408</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>4列系谱格式:</li>
+</ul>
+<pre class="r"><code>knitr::kable(head(data_pedigree[,1:4]))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Offspring</th>
+<th align="left">Sire</th>
+<th align="left">Dam</th>
+<th align="right">Birth_Date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">YYHZAUT19173108</td>
+<td align="left">YYHZAUT17282102</td>
+<td align="left">YYHZAUT16109011</td>
+<td align="right">20190208</td>
+</tr>
+<tr class="even">
+<td align="left">YYHZAUT19628606</td>
+<td align="left">YYHZAUT18811301</td>
+<td align="left">YYHZAUT18884508</td>
+<td align="right">20191012</td>
+</tr>
+<tr class="odd">
+<td align="left">YYHZAUT19423809</td>
+<td align="left">YYHZAUT18336401</td>
+<td align="left">YYHZAUT18623508</td>
+<td align="right">20190615</td>
+</tr>
+<tr class="even">
+<td align="left">YYHZAUT20898011</td>
+<td align="left">YYHZAUT18718802</td>
+<td align="left">YYHZAUT18859712</td>
+<td align="right">20200307</td>
+</tr>
+<tr class="odd">
+<td align="left">DDCFJYB20366602</td>
+<td align="left">YYHZAUT19422303</td>
+<td align="left">DDCFJYB19221005</td>
+<td align="right">20200827</td>
+</tr>
+<tr class="even">
+<td align="left">YYHZAUT20268616</td>
+<td align="left">YYHZAUT19541201</td>
+<td align="left">YYHZAUT18802408</td>
+<td align="right">20200827</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>多列系谱格式:</li>
+</ul>
+<pre class="r"><code>test=pedigree_result$pedigree_tree
+knitr::kable(head(test[30000:30005,c(1:3,4,6,8)]))
+## Warning in kable_pipe(x = structure(character(0), .Dim = c(0L, 0L), .Dimnames =
+## list(: The table should have a header (column names)</code></pre>
+<p>||
+||
+||
+||</p>
+<p>需要注意的是，当系谱为多列时，系谱的列名需要标注为特殊形式，如SireSire:父亲的父亲,SirSireSire:父亲的父亲的父亲</p>
+<p>系谱数据中缺失值可以设置为: NA 0。</p>
+<p>同样的，为了便于用户操作，用户还可以直接提供本地系谱数据的路径和名称</p>
+<ul>
+<li><strong>参数2：input_pedigree_path</strong></li>
+</ul>
+<p>本地系谱数据的路径。character类型</p>
+<ul>
+<li><strong>参数3：input_pedigree_name</strong></li>
+</ul>
+<p>本地系谱数据的名称。character类型</p>
+<ul>
+<li><strong>参数4：pedigree_format_conversion</strong></li>
+</ul>
+<p>是否将提供的多列系谱转换到3列。logical类型。如果用户提供的系谱数据包含多列，那么用户必须设置<code>pedigree_format_conversion=TRUE</code></p>
+<ul>
+<li><strong>参数5：output_ped_type</strong></li>
+</ul>
+<p>系谱输出的格式。character vector类型。可选格式包括: BLUPF90, DMU 及 Normal(未重命名)</p>
+<ul>
+<li><strong>参数6：output_ped_path</strong></li>
+</ul>
+<p>系谱输出到本地的路径。character类型。</p>
+<ul>
+<li><strong>参数7：output_ped_name</strong></li>
+</ul>
+<p>系谱输出到本地的名称</p>
+</div>
+<div id="其他参数" class="section level3">
+<h3>💨其他参数</h3>
+<ul>
+<li><strong>参数8：dup_error_check</strong></li>
+</ul>
+<p>检查相同个体的父母却不相同的错误。logic类型。默认为TRUE</p>
+<ul>
+<li><strong>参数9：sex_error_check</strong></li>
+</ul>
+<p>检查个体同时出现在父亲列和母亲列的错误。logic类型。默认为TRUE</p>
+<ul>
+<li><strong>参数10：breed_error_check</strong></li>
+</ul>
+<p>检查个体品种与父母品种不同的错误。logic类型。默认为FALSE。</p>
+<ul>
+<li><strong>参数11：birth_date_error_check</strong></li>
+</ul>
+<p>检查个体出生日期早于父母的错误。logic类型。默认为FALSE</p>
+<ul>
+<li><strong>参数12：trace_id</strong></li>
+</ul>
+<p>追溯系谱记录的个体号。character vector类型。默认为<code>NULL</code>(追溯系谱中所有的个体)</p>
+<ul>
+<li><strong>参数13：trace_offspring</strong></li>
+</ul>
+<p>是否追溯这子代。logical类型。默认为FALSE</p>
+<ul>
+<li><strong>参数14：trace_generation</strong></li>
+</ul>
+<p>追溯的代数。numeric类型。默认为5。</p>
+<ul>
+<li><strong>参数15：trace_birth_date</strong></li>
+</ul>
+<p>追溯出生日期晚于指定日期的个体。character vector类型。</p>
+<ul>
+<li><strong>参数16：output_pedigree_tree</strong></li>
+</ul>
+<p>是否输出系谱树。logical类型。默认为FALSE。</p>
+<ul>
+<li><strong>参数17：pedigree_tree_depth</strong></li>
+</ul>
+<p>系谱树的深度(包含的代数)。numeric类型。默认为3。</p>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/&amp;text=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e3" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/&amp;t=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e3" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e3&amp;body=/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/&amp;title=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e3" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e3%20/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/&amp;title=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e3" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/author/mei-quanshun/avatar_hu5f20744e08524ff7ac6fce3b60ea5d69_3615750_270x270_fill_q75_lanczos_center.JPG" alt="Mei Quanshun">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Mei Quanshun</h5>
+      <h6 class="card-subtitle">PhD student of animal breeding</h6>
+      <p class="card-text">My research interests include genomic selection and maching learing in animal breeding.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/GeorgeCushen" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/gcushen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.b61a8f62b6e5c0cd322c8158c5b5dfb6.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

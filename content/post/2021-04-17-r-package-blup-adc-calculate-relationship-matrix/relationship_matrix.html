@@ -1,0 +1,194 @@
+---
+title: 'R package:blupADC-使用说明5'
+author: qsmei
+date: '2021-04-18'
+slug: relationship_matrix
+categories:
+  - Relationship matrix
+tags: []
+subtitle: ''
+summary: '计算亲缘关系矩阵(A,G and H)'
+authors: []
+lastmod: '2021-04-18T16:36:39+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>🙉在动植物育种中，亲缘关系矩阵的构建是其中的关键步骤。在本章，我们将主要介绍如何利用BLUP_ADC中的cal_kinship函数完成各种亲缘关系矩阵的构建，包括：加性亲缘关系矩阵(系谱，基因组，一步法)及显性亲缘关系矩阵(系谱，基因组，一步法)等。此外，cal_kinship函数还能方便的计算各种类型的近交系数，包括：系谱近交系数，基因组近交系数(Homozygous,Digonal)及一步法近交系数(Digonal)。</p>
+<p>😾首先，我们还是通过一个小例子来看该函数的用法:</p>
+<pre class="r"><code>source(&quot;D:/test_code/BLUP_ADC_code/data_relationship_matrix.txt&quot;)
+source(&quot;D:/test_code/BLUP_ADC_code/data_format_conversion.txt&quot;)
+Rcpp::sourceCpp(&quot;D:/test_code/BLUP_ADC_code/code/common.function.cpp&quot;)
+data_hmp=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/data_hmp.txt&quot;,data.table=F)
+data_result=cal_kinship(input_data_hmp=data_hmp,
+                        kinship_type=c(&quot;G_A&quot;),
+                        inbred_type=c(&quot;Homozygous&quot;),
+                        return_result=TRUE)
+## 
+## 载入程辑包：&#39;dplyr&#39;
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag
+## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union
+## Start numeric(0,1,2) format conversion...... 
+## Constructing genomic additive relationship matrix......
+## Start calculate genomic inbreeding coefficients by homozygous site
+str(data_result)
+## List of 8
+##  $ G_A   :List of 2
+##   ..$ A   : num [1:500, 1:500] 1.0783 -0.0685 -0.0336 -0.0836 0.0455 ...
+##   ..$ Ainv: NULL
+##  $ G_Domi:List of 2
+##   ..$ Domi    : NULL
+##   ..$ Domi_inv: NULL
+##  $ G_Devi:List of 2
+##   ..$ Devi    : NULL
+##   ..$ Devi_inv: NULL
+##  $ P_A   :List of 2
+##   ..$ A   : NULL
+##   ..$ Ainv: NULL
+##  $ P_D   :List of 2
+##   ..$ D   : NULL
+##   ..$ Dinv: NULL
+##  $ H_A   :List of 2
+##   ..$ A   : NULL
+##   ..$ Ainv: NULL
+##  $ H_D   :List of 2
+##   ..$ D   : NULL
+##   ..$ Dinv: NULL
+##  $ Inbred:List of 4
+##   ..$ Homozygous:&#39;data.frame&#39;:   500 obs. of  2 variables:
+##   .. ..$ Id         : Factor w/ 500 levels &quot;Ind1&quot;,&quot;Ind10&quot;,..: 1 112 223 334 445 457 468 479 490 2 ...
+##   .. ..$ Homo_inbred: num [1:500] 0.649 0.629 0.597 0.66 0.657 ...
+##   ..$ G_diag    : NULL
+##   ..$ Pedigree  : NULL
+##   ..$ H_diag    : NULL</code></pre>
+<p>在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与genotype_data_format_conversion函数中的参数用法一致，详细了解大家可参阅？？？。</p>
+<p>完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型，如：</p>
+<ul>
+<li><strong>参数1：kinship_type</strong></li>
+</ul>
+<p>指定构建亲缘关系矩阵的类型，字符向量，可选类型包括：</p>
+<ol style="list-style-type: decimal">
+<li><p>“G_A” :基因组加性亲缘关系矩阵</p></li>
+<li><p>“G_Domi” :基因组显性亲缘关系矩阵(按照0,1,0方式编码)</p></li>
+<li><p>“G_Devi” :基因组显性离差亲缘关系矩阵(按照-2q<sup>2</sup>,2pq,-2p<sup>2</sup>,方式编码)</p></li>
+<li><p>“H_A” :一步法加性亲缘关系矩阵</p></li>
+<li><p>“H_D” :一步法显性亲缘关系矩阵</p></li>
+<li><p>“P_A” :系谱加性亲缘关系矩阵</p></li>
+<li><p>“P_D” :系谱显性亲缘关系矩阵</p></li>
+</ol>
+<p>Note:如果计算系谱及一步法亲缘关系矩阵，必须要提供系谱数据。关于如何提供系谱数据，我们会在后面进行讲解。</p>
+<ul>
+<li><strong>参数2：kinship_inverse</strong></li>
+</ul>
+<p>是否计算亲缘关系矩阵的逆矩阵，逻辑值，默认为FALSE</p>
+<ul>
+<li><strong>参数3：inbred_type</strong></li>
+</ul>
+<p>指定计算的近交系数的类型，字符向量，可选类型包括:</p>
+<ol style="list-style-type: decimal">
+<li><p>“Homozygous” :根据纯合子位点计算</p></li>
+<li><p>“G_Diag” :G矩阵对角线-1</p></li>
+<li><p>“H_diag” :H矩阵对角线-1</p></li>
+<li><p>“Pedigree” :A矩阵对角线-1</p></li>
+</ol>
+<ul>
+<li><strong>参数5：input_pedigree</strong></li>
+</ul>
+<p>用户提供的系谱数据，具体的系谱数据类型可以参阅之前的介绍：？？？</p>
+<ul>
+<li><strong>参数6：pedigree_rename</strong></li>
+</ul>
+<p>是否对系谱数据进行重命名,逻辑值，默认为TRUE(对系谱进行重命名)</p>
+<ul>
+<li><strong>参数7：IND_geno_rename</strong></li>
+</ul>
+<p>根据系谱的重命名结果，将基因型数据中的个体号也进行重命名。逻辑值，默认为FALSE(不进行重命名)</p>
+<ul>
+<li><strong>参数8：rename_to_origin</strong></li>
+</ul>
+<p>将矩阵中重命名的个体号转换回原始的个体号。逻辑值，默认为FALSE(不进行转换)</p>
+<ul>
+<li><strong>参数9：output_matrix_type</strong></li>
+</ul>
+<p>输出矩阵的格式。字符串向量，可选参数为：</p>
+<ol style="list-style-type: decimal">
+<li><p>“col_all” :按照n*n的格式输出亲缘关系矩阵</p></li>
+<li><p>“col_three” : 按照3列矩阵的格式输出亲缘关系矩阵，第1列和第2列为个体号，第3列为亲缘系数。DMU和BLUPf90软件均需提供这种格式的亲缘关系矩阵。形如：</p>
+<table>
+<thead>
+<tr class="header">
+<th>V1</th>
+<th>V2</th>
+<th>V3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1001</td>
+<td>1001</td>
+<td>0.989</td>
+</tr>
+<tr class="even">
+<td>1001</td>
+<td>1002</td>
+<td>0.421</td>
+</tr>
+<tr class="odd">
+<td>1001</td>
+<td>1003</td>
+<td>0.567</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<p>默认参数为 “col_all”</p>
+<ul>
+<li><strong>参数10：output_matrix_path</strong></li>
+</ul>
+<p>亲缘关系矩阵保存到本地的路径, 字符串向量</p>
+<ul>
+<li><strong>参数11：output_matrix_name</strong></li>
+</ul>
+<p>亲缘关系矩阵保存到本地的名称，字符串向量</p>
+<div id="其他参数" class="section level3">
+<h3>其他参数</h3>
+<ul>
+<li><strong>参数11：cpu_cores</strong></li>
+</ul>
+<p>调用的cpu个数，数字格式，默认为1</p>
+<ul>
+<li><strong>参数11：kinship_base</strong></li>
+</ul>
+<p>按照基础群的方式构建基因组亲缘关系矩阵(p=q=0.5)，逻辑值，默认为FALSE</p>
+<ul>
+<li><strong>参数11：kinship_trace</strong></li>
+</ul>
+<p>按照矩阵的迹和的方式对基因组亲缘关系矩阵进行标准化，逻辑值，默认为FALse</p>
+<ul>
+<li><strong>参数4：kinship_metafounder</strong></li>
+</ul>
+<p>是否按照metafounder的方法计算一步法亲缘关系矩阵，逻辑值，默认为FALSE</p>
+<ul>
+<li><strong>参数11：w</strong></li>
+</ul>
+<p>构建一步法亲缘关系矩阵时，调整G矩阵和A矩阵的比例。numeric格式，默认为0.05</p>
+<ul>
+<li><strong>参数11：gene_dropping</strong></li>
+</ul>
+<p>使用 gene dropping 的方法构建系谱显性亲缘关系矩阵。逻辑值，默认值为FALSE</p>
+<ul>
+<li><strong>参数11：gene_dropping_iteration</strong></li>
+</ul>
+<p>gene dropping方法的迭代次数。numeric格式，默认值为1000</p>
+</div>

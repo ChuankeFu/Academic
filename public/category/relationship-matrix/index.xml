@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Relationship matrix | QSmei-Academic</title>
+    <link>/category/relationship-matrix/</link>
+      <atom:link href="/category/relationship-matrix/index.xml" rel="self" type="application/rss+xml" />
+    <description>Relationship matrix</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 18 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>Relationship matrix</title>
+      <link>/category/relationship-matrix/</link>
+    </image>
+    
+    <item>
+      <title>R package:blupADC-使用说明5</title>
+      <link>/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/</link>
+      <pubDate>Sun, 18 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;🙉在动植物育种中，亲缘关系矩阵的构建是其中的关键步骤。在本章，我们将主要介绍如何利用BLUP_ADC中的cal_kinship函数完成各种亲缘关系矩阵的构建，包括：加性亲缘关系矩阵(系谱，基因组，一步法)及显性亲缘关系矩阵(系谱，基因组，一步法)等。此外，cal_kinship函数还能方便的计算各种类型的近交系数，包括：系谱近交系数，基因组近交系数(Homozygous,Digonal)及一步法近交系数(Digonal)。&lt;/p&gt;
+&lt;p&gt;😾首先，我们还是通过一个小例子来看该函数的用法:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;source(&amp;quot;D:/test_code/BLUP_ADC_code/data_relationship_matrix.txt&amp;quot;)
+source(&amp;quot;D:/test_code/BLUP_ADC_code/data_format_conversion.txt&amp;quot;)
+Rcpp::sourceCpp(&amp;quot;D:/test_code/BLUP_ADC_code/code/common.function.cpp&amp;quot;)
+data_hmp=data.table::fread(&amp;quot;D:/test_code/BLUP_ADC_code/test_data/data_hmp.txt&amp;quot;,data.table=F)
+data_result=cal_kinship(input_data_hmp=data_hmp,
+                        kinship_type=c(&amp;quot;G_A&amp;quot;),
+                        inbred_type=c(&amp;quot;Homozygous&amp;quot;),
+                        return_result=TRUE)
+## 
+## 载入程辑包：&amp;#39;dplyr&amp;#39;
+## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     filter, lag
+## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     intersect, setdiff, setequal, union
+## Start numeric(0,1,2) format conversion...... 
+## Constructing genomic additive relationship matrix......
+## Start calculate genomic inbreeding coefficients by homozygous site
+str(data_result)
+## List of 8
+##  $ G_A   :List of 2
+##   ..$ A   : num [1:500, 1:500] 1.0783 -0.0685 -0.0336 -0.0836 0.0455 ...
+##   ..$ Ainv: NULL
+##  $ G_Domi:List of 2
+##   ..$ Domi    : NULL
+##   ..$ Domi_inv: NULL
+##  $ G_Devi:List of 2
+##   ..$ Devi    : NULL
+##   ..$ Devi_inv: NULL
+##  $ P_A   :List of 2
+##   ..$ A   : NULL
+##   ..$ Ainv: NULL
+##  $ P_D   :List of 2
+##   ..$ D   : NULL
+##   ..$ Dinv: NULL
+##  $ H_A   :List of 2
+##   ..$ A   : NULL
+##   ..$ Ainv: NULL
+##  $ H_D   :List of 2
+##   ..$ D   : NULL
+##   ..$ Dinv: NULL
+##  $ Inbred:List of 4
+##   ..$ Homozygous:&amp;#39;data.frame&amp;#39;:   500 obs. of  2 variables:
+##   .. ..$ Id         : Factor w/ 500 levels &amp;quot;Ind1&amp;quot;,&amp;quot;Ind10&amp;quot;,..: 1 112 223 334 445 457 468 479 490 2 ...
+##   .. ..$ Homo_inbred: num [1:500] 0.649 0.629 0.597 0.66 0.657 ...
+##   ..$ G_diag    : NULL
+##   ..$ Pedigree  : NULL
+##   ..$ H_diag    : NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与genotype_data_format_conversion函数中的参数用法一致，详细了解大家可参阅？？？。&lt;/p&gt;
+&lt;p&gt;完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型，如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数1：kinship_type&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;指定构建亲缘关系矩阵的类型，字符向量，可选类型包括：&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;“G_A” :基因组加性亲缘关系矩阵&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“G_Domi” :基因组显性亲缘关系矩阵(按照0,1,0方式编码)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“G_Devi” :基因组显性离差亲缘关系矩阵(按照-2q&lt;sup&gt;2&lt;/sup&gt;,2pq,-2p&lt;sup&gt;2&lt;/sup&gt;,方式编码)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“H_A” :一步法加性亲缘关系矩阵&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“H_D” :一步法显性亲缘关系矩阵&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“P_A” :系谱加性亲缘关系矩阵&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“P_D” :系谱显性亲缘关系矩阵&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Note:如果计算系谱及一步法亲缘关系矩阵，必须要提供系谱数据。关于如何提供系谱数据，我们会在后面进行讲解。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数2：kinship_inverse&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;是否计算亲缘关系矩阵的逆矩阵，逻辑值，默认为FALSE&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数3：inbred_type&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;指定计算的近交系数的类型，字符向量，可选类型包括:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;“Homozygous” :根据纯合子位点计算&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“G_Diag” :G矩阵对角线-1&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“H_diag” :H矩阵对角线-1&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“Pedigree” :A矩阵对角线-1&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数5：input_pedigree&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的系谱数据，具体的系谱数据类型可以参阅之前的介绍：？？？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数6：pedigree_rename&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;是否对系谱数据进行重命名,逻辑值，默认为TRUE(对系谱进行重命名)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数7：IND_geno_rename&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据系谱的重命名结果，将基因型数据中的个体号也进行重命名。逻辑值，默认为FALSE(不进行重命名)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数8：rename_to_origin&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;将矩阵中重命名的个体号转换回原始的个体号。逻辑值，默认为FALSE(不进行转换)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数9：output_matrix_type&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;输出矩阵的格式。字符串向量，可选参数为：&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;“col_all” :按照n*n的格式输出亲缘关系矩阵&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“col_three” : 按照3列矩阵的格式输出亲缘关系矩阵，第1列和第2列为个体号，第3列为亲缘系数。DMU和BLUPf90软件均需提供这种格式的亲缘关系矩阵。形如：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;V1&lt;/th&gt;
+&lt;th&gt;V2&lt;/th&gt;
+&lt;th&gt;V3&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1001&lt;/td&gt;
+&lt;td&gt;1001&lt;/td&gt;
+&lt;td&gt;0.989&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1001&lt;/td&gt;
+&lt;td&gt;1002&lt;/td&gt;
+&lt;td&gt;0.421&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1001&lt;/td&gt;
+&lt;td&gt;1003&lt;/td&gt;
+&lt;td&gt;0.567&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;默认参数为 “col_all”&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数10：output_matrix_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;亲缘关系矩阵保存到本地的路径, 字符串向量&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数11：output_matrix_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;亲缘关系矩阵保存到本地的名称，字符串向量&lt;/p&gt;
+&lt;div id=&#34;其他参数&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;其他参数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数11：cpu_cores&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;调用的cpu个数，数字格式，默认为1&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数11：kinship_base&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;按照基础群的方式构建基因组亲缘关系矩阵(p=q=0.5)，逻辑值，默认为FALSE&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数11：kinship_trace&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;按照矩阵的迹和的方式对基因组亲缘关系矩阵进行标准化，逻辑值，默认为FALse&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数4：kinship_metafounder&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;是否按照metafounder的方法计算一步法亲缘关系矩阵，逻辑值，默认为FALSE&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数11：w&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;构建一步法亲缘关系矩阵时，调整G矩阵和A矩阵的比例。numeric格式，默认为0.05&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数11：gene_dropping&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用 gene dropping 的方法构建系谱显性亲缘关系矩阵。逻辑值，默认值为FALSE&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数11：gene_dropping_iteration&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;gene dropping方法的迭代次数。numeric格式，默认值为1000&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

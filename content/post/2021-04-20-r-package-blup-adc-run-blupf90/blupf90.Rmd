@@ -1,0 +1,99 @@
+---
+title: 'R package:blupADC-使用说明7'
+author: qsmei
+date: '2021-04-21'
+slug: blupf90
+categories:
+  - BLUPf90
+tags: []
+subtitle: ''
+summary: 'R里运行BLUPF90软件并完成相应的分析'
+authors: ["qsmei"]
+lastmod: '2021-04-21T15:47:39+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+在前面的章节，我们已经讲述了如何在**R**中调用**DMU**软件并完成相应的分析。本章，我们将讲述如何通过`BLUP_ADC`中的`run_BLUPF90`函数，在**R**中调用**BLUPF90**软件并完成数据分析。为了方便用户的使用，我们尽可能地将 `run_BLUPF90`函数中的参数 和 `run_DMU`函数中的参数进行了统一。
+
+接下来，我们还是用一个简单的例子看看该函数的用法:
+
+```{r}
+#source("D:/test_code/BLUP_ADC_code/run_blupf90.txt")
+#source("D:/test_code/BLUP_ADC_code/generate_blupf90_renum.txt")
+#run_BLUPF90(		
+#			phe_col_names=c("Id","Sex","Herd_Year_Season","Litter", "Trait1","Trait2","Age"),              #表型数据的列名
+#            target_trait_name=c("Trait1"),                           ##目标性状名称
+#            fixed_effect_name=list(c("Sex","Herd_Year_Season")),  ##固定效应名称
+#            random_effect_name=list(c("Id","Litter")),            ##随机效应名称
+#            covariate_effect_name=list(c("Age")),                 ##协变量名称
+#            phe_path="D:/test_code/BLUP_ADC_code/DMU_example",
+#            phe_name="dmu_phe.txt",
+#            analysis_model="PBLUP_A",
+#			relationship_path="D:/test_code/BLUP_ADC_code/DMU_example", ##系谱或基因型文件的路径
+#			relationship_name="Blupf90_ped.txt",
+#			output_result_path="C:/Users/26564/Desktop/BLUPF90",
+#			output_ebv_path="C:/Users/26564/Desktop/BLUPF90",
+#			output_ebv_name="test",					
+#			BLUPf90_software_path="D:/test_code/BLUPf90_software"
+#			)
+```
+
+通过上面的这个小脚本，我们既能完成BLUPF90的单性状模型的计算。细心的同学可能会发现，大部分的`run_BLUPF90`函数中的参数 都能在 `run_DMU`函数中找到。
+
+接下来，我们尝试用`run_BLUPF90` 进行双性状模型的计算，如下：
+
+```{r}
+#source("D:/test_code/BLUP_ADC_code/run_blupf90.txt")
+#source("D:/test_code/BLUP_ADC_code/generate_blupf90_renum.txt")	
+#run_BLUPF90(		
+#			phe_col_names=c("Id","Sex","Herd_Year_Season","Litter", "Trait1","Trait2","Age"),              #表型数据的列名
+#            target_trait_name=c("Trait1","Trait2"),                           ##目标性状名称
+#            fixed_effect_name=list(c("Sex","Herd_Year_Season"),c("Sex")),  ##固定效应名称
+#            random_effect_name=list(c("Id","Litter"),c("Id")),            ##随机效应名称
+#            covariate_effect_name=list(c("Age"),"Age"),                 ##协变量名称
+#            phe_path="D:/test_code/BLUP_ADC_code/DMU_example",
+#            phe_name="dmu_phe.txt",
+#            analysis_model="PBLUP_A",
+#			relationship_path="D:/test_code/BLUP_ADC_code/DMU_example", ##系谱或基因型文件的路径
+#			relationship_name="Blupf90_ped.txt",
+#			output_result_path="C:/Users/26564/Desktop/BLUPF90",
+#		  output_ebv_path="C:/Users/26564/Desktop/BLUPF90",
+#			output_ebv_name="test",					
+#			BLUPf90_software_path="D:/test_code/BLUPf90_software"
+#			)
+```
+
+同样的，我们只需要在单性状的代码上稍作修改就能完成双性状模型的运算。
+
+接下来，我们将对`run_BLUPF90` 中特有的参数进行讲解，剩余的参数大家可移步 dmu介绍的这一节进行查看，相同参数的用法和含义均是一模一样的。
+
+-   参数1：`blupf90_algorithm`
+
+BLPUF90进行方差组分估计是选用的算法。字符串格式。可选算法包括：
+
+1.  "AI_REML"
+
+2.  "EM_REML"
+
+默认算法为："AI_REML"
+
+-   参数2：`provided_blupf90_prior_file_path`
+
+用户提供的BLUPF90格式的方差组分-PRIOR文件的路径。字符串格式。需要注意的一点是，BLUPF90格式的PRIOR文件和DMU格式的PRIOR文件是不相同的。关于二者的差异，以后有时间会再出一篇文章进行讲解，这里就不再赘述了。
+
+-   参数3：`provided_blupf90_prior_file_name`
+
+用户提供的BLUPF90格式的方差组分-PRIOR文件的名称。
+
+-   参数4：`provided_blupf90_prior_effect_name`
+
+用户提供的BLUPF90格式的方差组分-PRIOR文件中，与方差组分对应的各个随机效应名称。字符串向量。这部分讲解起来可能稍显复杂，为了避免啰嗦，我们将会在后续的章节中再进行详细的讲解。
+
+-   参数5：`BLUPf90_software_path`
+
+BLUPF90软件在本地的路径。字符串格式。
