@@ -26,16 +26,38 @@ projects: []
 <pre class="r"><code>library(blupADC)
 data_pedigree=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/ped.txt&quot;,data.table=F)
 colnames(data_pedigree)=c(&quot;Offspring&quot;,&quot;Sire&quot;,&quot;Dam&quot;,&quot;Birth_Date&quot;)
-#pedigree_result=trace_pedigree(input_pedigree=data_pedigree#,output_pedigree_tree=TRUE)
-pedigree_result=NULL</code></pre>
+pedigree_result=trace_pedigree(input_pedigree=data_pedigree,output_pedigree_tree=TRUE)
+## Peidgree provided has four columns,please make sure the format of pedigree data has four columns: Offspring Sire Dam  Birth_Date 
+## Trace full generation......</code></pre>
 <p>我们可以通过<code>str</code>查看函数的输出结果，如下所示:</p>
 <pre class="r"><code>str(pedigree_result)
-##  NULL</code></pre>
+## List of 5
+##  $ ped             : chr [1:42149, 1:3] &quot;YYHZAUT14003572&quot; &quot;YYHZAUT17786901&quot; &quot;YYHZAUT16532401&quot; &quot;YYHZAUT15162815&quot; ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : NULL
+##   .. ..$ : chr [1:3] &quot;Offspring&quot; &quot;Sire&quot; &quot;Dam&quot;
+##  $ rename_ped      :&#39;data.frame&#39;:    42149 obs. of  6 variables:
+##   ..$ Offspring   : chr [1:42149] &quot;YYHZAUT14003572&quot; &quot;YYHZAUT17786901&quot; &quot;YYHZAUT16532401&quot; &quot;YYHZAUT15162815&quot; ...
+##   ..$ Generation  : num [1:42149] 0 0 0 0 0 0 0 0 0 0 ...
+##   ..$ Offspring_Id: int [1:42149] 1 2 3 4 5 6 7 8 9 10 ...
+##   ..$ Sire_Id     : num [1:42149] 0 0 0 0 0 0 0 0 0 0 ...
+##   ..$ Dam_Id      : num [1:42149] 0 0 0 0 0 0 0 0 0 0 ...
+##   ..$ Order       : int [1:42149] 1 2 3 4 5 6 7 8 9 10 ...
+##  $ pedigree_tree   : chr [1:42149, 1:15] &quot;YYHZAUT14003572&quot; &quot;YYHZAUT17786901&quot; &quot;YYHZAUT16532401&quot; &quot;YYHZAUT15162815&quot; ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : NULL
+##   .. ..$ : chr [1:15] &quot;Offspring&quot; &quot;Sire&quot; &quot;Dam&quot; &quot;SireSire&quot; ...
+##  $ rename_phenotype: NULL
+##  $ error_id_set    :List of 4
+##   ..$ error_duplicated_id: NULL
+##   ..$ error_sex_id       : chr(0) 
+##   ..$ error_breed_id     : NULL
+##   ..$ error_birth_date_id: NULL</code></pre>
 <p>可以很明显的看到,输出结果包括以下几个部分:</p>
 <ul>
 <li><p><strong>ped:</strong> 经过处理后的原始系谱数据，未进行重命名</p></li>
 <li><p><strong>rename_ped:</strong> 经过处理且重命名的系谱数据,第1列为原始系谱ID,第2列为个体在系谱中的代数，第3-5列为重命名后的系谱数据</p></li>
-<li><p><strong>full_generation_matrix:</strong>系谱个体的系谱树矩阵，可以通过设置 full_generation指定系谱树矩阵包含的代数。默认不输出全系谱矩阵(节省时间)</p></li>
+<li><p><strong>pedigree_tree:</strong>系谱个体的系谱树矩阵，可以通过设置 full_generation指定系谱树矩阵包含的代数。默认不输出全系谱矩阵(节省时间)</p></li>
 <li><p><strong>error_id_set:</strong>系谱记录错误个体,根据错误的种类可以分为以下4个子集</p></li>
 </ul>
 <ol style="list-style-type: decimal">
@@ -153,15 +175,79 @@ pedigree_result=NULL</code></pre>
 <li>多列系谱格式:</li>
 </ul>
 <pre class="r"><code>test=pedigree_result$pedigree_tree
-knitr::kable(head(test[30000:30005,c(1:3,4,6,8)]))
-## Warning in kable_pipe(x = structure(character(0), .Dim = c(0L, 0L), .Dimnames =
-## list(: The table should have a header (column names)</code></pre>
-<p>||
-||
-||
-||</p>
+knitr::kable(head(test[30000:30005,c(1:3,4,6,8)]))</code></pre>
+<table style="width:100%;">
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Offspring</th>
+<th align="left">Sire</th>
+<th align="left">Dam</th>
+<th align="left">SireSire</th>
+<th align="left">DamSire</th>
+<th align="left">SireSireSire</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">YYHZAUT19682603</td>
+<td align="left">YYHZAUT18498306</td>
+<td align="left">YYHZAUT18881607</td>
+<td align="left">YYHZAUT17517904</td>
+<td align="left">YYHZAUT17060205</td>
+<td align="left">YYHZAUT15421201</td>
+</tr>
+<tr class="even">
+<td align="left">YYHZAUT19292804</td>
+<td align="left">YYHZAUT17217601</td>
+<td align="left">YYHZAUT18443906</td>
+<td align="left">YYHZAUT16762403</td>
+<td align="left">YYHZAUT16360601</td>
+<td align="left">YYHZAUT15129404</td>
+</tr>
+<tr class="odd">
+<td align="left">YYHZAUT19215806</td>
+<td align="left">YYHZAUT18412205</td>
+<td align="left">YYHZAUT16113613</td>
+<td align="left">YYHZAUT17412001</td>
+<td align="left">YYHZAUT15289901</td>
+<td align="left">YYHZAUT15288601</td>
+</tr>
+<tr class="even">
+<td align="left">YYHZAUT20245109</td>
+<td align="left">YYHZAUT19584301</td>
+<td align="left">YYHZAUT18916603</td>
+<td align="left">YYHZAUT18747603</td>
+<td align="left">YYHZAUT17060205</td>
+<td align="left">YYHZAUT17642901</td>
+</tr>
+<tr class="odd">
+<td align="left">YYHZAUT19528301</td>
+<td align="left">YYHZAUT18537302</td>
+<td align="left">YYHZAUT18643307</td>
+<td align="left">YYHZAUT17603803</td>
+<td align="left">YYHZAUT17656604</td>
+<td align="left">YYHZAUT16766003</td>
+</tr>
+<tr class="even">
+<td align="left">YYHZAUT19588602</td>
+<td align="left">YYHZAUT18691101</td>
+<td align="left">YYHZAUT17250213</td>
+<td align="left">YYHZAUT17739601</td>
+<td align="left">YYHZAUT17411802</td>
+<td align="left">YYHZAUT16126301</td>
+</tr>
+</tbody>
+</table>
 <p>需要注意的是，当系谱为多列时，系谱的列名需要标注为特殊形式，如SireSire:父亲的父亲,SirSireSire:父亲的父亲的父亲</p>
-<p>系谱数据中缺失值可以设置为: NA 0。</p>
+<p>系谱数据中缺失值可以设置为: NA或0。</p>
 <p>同样的，为了便于用户操作，用户还可以直接提供本地系谱数据的路径和名称</p>
 <ul>
 <li><strong>参数2：input_pedigree_path</strong></li>
@@ -176,15 +262,15 @@ knitr::kable(head(test[30000:30005,c(1:3,4,6,8)]))
 </ul>
 <p>是否将提供的多列系谱转换到3列。logical类型。如果用户提供的系谱数据包含多列，那么用户必须设置<code>pedigree_format_conversion=TRUE</code></p>
 <ul>
-<li><strong>参数5：output_ped_type</strong></li>
+<li><strong>参数5：output_pedigree_type</strong></li>
 </ul>
 <p>系谱输出的格式。character vector类型。可选格式包括: BLUPF90, DMU 及 Normal(未重命名)</p>
 <ul>
-<li><strong>参数6：output_ped_path</strong></li>
+<li><strong>参数6：output_pedigree_path</strong></li>
 </ul>
 <p>系谱输出到本地的路径。character类型。</p>
 <ul>
-<li><strong>参数7：output_ped_name</strong></li>
+<li><strong>参数7：output_pedigree_name</strong></li>
 </ul>
 <p>系谱输出到本地的名称</p>
 </div>

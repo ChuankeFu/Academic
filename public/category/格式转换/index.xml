@@ -507,6 +507,22 @@ row.names(data_genumeric)=paste0(&amp;quot;Ind&amp;quot;,1:nrow(data_genumeric))
 &lt;li&gt;&lt;strong&gt;参数15:miss_base_num&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;数字化格式转换中，缺失值转换成的数字。numeric类型。默认为 5&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数16:plink_software_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Plink&lt;/strong&gt;软件的路径。character类型。涉及到VCF格式转换时，需要使用 &lt;strong&gt;Plink&lt;/strong&gt;软件。当&lt;strong&gt;Plink&lt;/strong&gt;软件的路径已加入到环境变量后，此项参数不需要设置。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数17:plink_software_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Plink&lt;/strong&gt;软件的名称。character类型。涉及到VCF格式转换时，需要使用 &lt;strong&gt;Plink&lt;/strong&gt;软件。软件默认名称为：plink。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数18:vcftools_software_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;vcftools&lt;/strong&gt;软件的路径。character类型。涉及到VCF格式转换时，需要使用&lt;strong&gt;vcftools&lt;/strong&gt;软件。当&lt;strong&gt;vcftools&lt;/strong&gt;软件的路径已加入到环境变量后，此项参数不需要设置。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数19:vcftools_software_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;vcftools&lt;/strong&gt;软件的名称。character类型。涉及到VCF格式转换时，需要使用 &lt;strong&gt;vcftools&lt;/strong&gt;软件。软件默认名称为：vcftools。&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>

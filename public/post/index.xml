@@ -588,16 +588,38 @@ genotype_data_QC_Imputation(
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(blupADC)
 data_pedigree=data.table::fread(&amp;quot;D:/test_code/BLUP_ADC_code/test_data/ped.txt&amp;quot;,data.table=F)
 colnames(data_pedigree)=c(&amp;quot;Offspring&amp;quot;,&amp;quot;Sire&amp;quot;,&amp;quot;Dam&amp;quot;,&amp;quot;Birth_Date&amp;quot;)
-#pedigree_result=trace_pedigree(input_pedigree=data_pedigree#,output_pedigree_tree=TRUE)
-pedigree_result=NULL&lt;/code&gt;&lt;/pre&gt;
+pedigree_result=trace_pedigree(input_pedigree=data_pedigree,output_pedigree_tree=TRUE)
+## Peidgree provided has four columns,please make sure the format of pedigree data has four columns: Offspring Sire Dam  Birth_Date 
+## Trace full generation......&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;我们可以通过&lt;code&gt;str&lt;/code&gt;查看函数的输出结果，如下所示:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;str(pedigree_result)
-##  NULL&lt;/code&gt;&lt;/pre&gt;
+## List of 5
+##  $ ped             : chr [1:42149, 1:3] &amp;quot;YYHZAUT14003572&amp;quot; &amp;quot;YYHZAUT17786901&amp;quot; &amp;quot;YYHZAUT16532401&amp;quot; &amp;quot;YYHZAUT15162815&amp;quot; ...
+##   ..- attr(*, &amp;quot;dimnames&amp;quot;)=List of 2
+##   .. ..$ : NULL
+##   .. ..$ : chr [1:3] &amp;quot;Offspring&amp;quot; &amp;quot;Sire&amp;quot; &amp;quot;Dam&amp;quot;
+##  $ rename_ped      :&amp;#39;data.frame&amp;#39;:    42149 obs. of  6 variables:
+##   ..$ Offspring   : chr [1:42149] &amp;quot;YYHZAUT14003572&amp;quot; &amp;quot;YYHZAUT17786901&amp;quot; &amp;quot;YYHZAUT16532401&amp;quot; &amp;quot;YYHZAUT15162815&amp;quot; ...
+##   ..$ Generation  : num [1:42149] 0 0 0 0 0 0 0 0 0 0 ...
+##   ..$ Offspring_Id: int [1:42149] 1 2 3 4 5 6 7 8 9 10 ...
+##   ..$ Sire_Id     : num [1:42149] 0 0 0 0 0 0 0 0 0 0 ...
+##   ..$ Dam_Id      : num [1:42149] 0 0 0 0 0 0 0 0 0 0 ...
+##   ..$ Order       : int [1:42149] 1 2 3 4 5 6 7 8 9 10 ...
+##  $ pedigree_tree   : chr [1:42149, 1:15] &amp;quot;YYHZAUT14003572&amp;quot; &amp;quot;YYHZAUT17786901&amp;quot; &amp;quot;YYHZAUT16532401&amp;quot; &amp;quot;YYHZAUT15162815&amp;quot; ...
+##   ..- attr(*, &amp;quot;dimnames&amp;quot;)=List of 2
+##   .. ..$ : NULL
+##   .. ..$ : chr [1:15] &amp;quot;Offspring&amp;quot; &amp;quot;Sire&amp;quot; &amp;quot;Dam&amp;quot; &amp;quot;SireSire&amp;quot; ...
+##  $ rename_phenotype: NULL
+##  $ error_id_set    :List of 4
+##   ..$ error_duplicated_id: NULL
+##   ..$ error_sex_id       : chr(0) 
+##   ..$ error_breed_id     : NULL
+##   ..$ error_birth_date_id: NULL&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;可以很明显的看到,输出结果包括以下几个部分:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;ped:&lt;/strong&gt; 经过处理后的原始系谱数据，未进行重命名&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;rename_ped:&lt;/strong&gt; 经过处理且重命名的系谱数据,第1列为原始系谱ID,第2列为个体在系谱中的代数，第3-5列为重命名后的系谱数据&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;full_generation_matrix:&lt;/strong&gt;系谱个体的系谱树矩阵，可以通过设置 full_generation指定系谱树矩阵包含的代数。默认不输出全系谱矩阵(节省时间)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;pedigree_tree:&lt;/strong&gt;系谱个体的系谱树矩阵，可以通过设置 full_generation指定系谱树矩阵包含的代数。默认不输出全系谱矩阵(节省时间)&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;error_id_set:&lt;/strong&gt;系谱记录错误个体,根据错误的种类可以分为以下4个子集&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
@@ -715,15 +737,79 @@ pedigree_result=NULL&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;多列系谱格式:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;test=pedigree_result$pedigree_tree
-knitr::kable(head(test[30000:30005,c(1:3,4,6,8)]))
-## Warning in kable_pipe(x = structure(character(0), .Dim = c(0L, 0L), .Dimnames =
-## list(: The table should have a header (column names)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;||
-||
-||
-||&lt;/p&gt;
+knitr::kable(head(test[30000:30005,c(1:3,4,6,8)]))&lt;/code&gt;&lt;/pre&gt;
+&lt;table style=&#34;width:100%;&#34;&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Offspring&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Sire&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Dam&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;SireSire&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;DamSire&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;SireSireSire&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT19682603&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT18498306&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT18881607&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT17517904&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT17060205&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT15421201&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT19292804&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT17217601&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT18443906&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT16762403&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT16360601&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT15129404&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT19215806&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT18412205&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT16113613&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT17412001&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT15289901&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT15288601&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT20245109&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT19584301&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT18916603&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT18747603&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT17060205&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT17642901&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT19528301&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT18537302&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT18643307&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT17603803&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT17656604&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT16766003&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT19588602&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT18691101&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT17250213&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT17739601&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT17411802&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YYHZAUT16126301&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;p&gt;需要注意的是，当系谱为多列时，系谱的列名需要标注为特殊形式，如SireSire:父亲的父亲,SirSireSire:父亲的父亲的父亲&lt;/p&gt;
-&lt;p&gt;系谱数据中缺失值可以设置为: NA 0。&lt;/p&gt;
+&lt;p&gt;系谱数据中缺失值可以设置为: NA或0。&lt;/p&gt;
 &lt;p&gt;同样的，为了便于用户操作，用户还可以直接提供本地系谱数据的路径和名称&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;参数2：input_pedigree_path&lt;/strong&gt;&lt;/li&gt;
@@ -738,15 +824,15 @@ knitr::kable(head(test[30000:30005,c(1:3,4,6,8)]))
 &lt;/ul&gt;
 &lt;p&gt;是否将提供的多列系谱转换到3列。logical类型。如果用户提供的系谱数据包含多列，那么用户必须设置&lt;code&gt;pedigree_format_conversion=TRUE&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数5：output_ped_type&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数5：output_pedigree_type&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;系谱输出的格式。character vector类型。可选格式包括: BLUPF90, DMU 及 Normal(未重命名)&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：output_ped_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数6：output_pedigree_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;系谱输出到本地的路径。character类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数7：output_ped_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数7：output_pedigree_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;系谱输出到本地的名称&lt;/p&gt;
 &lt;/div&gt;
@@ -1336,6 +1422,22 @@ row.names(data_genumeric)=paste0(&amp;quot;Ind&amp;quot;,1:nrow(data_genumeric))
 &lt;li&gt;&lt;strong&gt;参数15:miss_base_num&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;数字化格式转换中，缺失值转换成的数字。numeric类型。默认为 5&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数16:plink_software_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Plink&lt;/strong&gt;软件的路径。character类型。涉及到VCF格式转换时，需要使用 &lt;strong&gt;Plink&lt;/strong&gt;软件。当&lt;strong&gt;Plink&lt;/strong&gt;软件的路径已加入到环境变量后，此项参数不需要设置。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数17:plink_software_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Plink&lt;/strong&gt;软件的名称。character类型。涉及到VCF格式转换时，需要使用 &lt;strong&gt;Plink&lt;/strong&gt;软件。软件默认名称为：plink。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数18:vcftools_software_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;vcftools&lt;/strong&gt;软件的路径。character类型。涉及到VCF格式转换时，需要使用&lt;strong&gt;vcftools&lt;/strong&gt;软件。当&lt;strong&gt;vcftools&lt;/strong&gt;软件的路径已加入到环境变量后，此项参数不需要设置。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数19:vcftools_software_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;vcftools&lt;/strong&gt;软件的名称。character类型。涉及到VCF格式转换时，需要使用 &lt;strong&gt;vcftools&lt;/strong&gt;软件。软件默认名称为：vcftools。&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
@@ -1388,28 +1490,8 @@ pedigree_result=trace_pedigree(
                 output_pedigree_tree=TRUE  #输出系谱树的结果
                 )                 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div id=&#34;功能4亲缘关系矩阵的构建ag-and-h&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能4：亲缘关系矩阵的构建(A,G and H)&lt;/h3&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
-                kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_Domi&amp;quot;),    #构建的亲缘关系矩阵的类型
-                inbred_type=c(&amp;quot;Homozygous&amp;quot;),       #计算的近交系数的类型
-                output_matrix_type=c(&amp;quot;col_three&amp;quot;), #返回的亲缘关系矩阵的格式：3列格式
-                return_result=TRUE)                #在R中返回结果               &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;功能5亲缘关系矩阵的构建ag-and-h&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能5：亲缘关系矩阵的构建(A,G and H)&lt;/h3&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
-                kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_Domi&amp;quot;),    #构建的亲缘关系矩阵的类型
-                inbred_type=c(&amp;quot;Homozygous&amp;quot;),       #计算的近交系数的类型
-                output_matrix_type=c(&amp;quot;col_three&amp;quot;), #返回的亲缘关系矩阵的格式：3列格式
-                return_result=TRUE)                #在R中返回结果               &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;功能6基因型数据的质控与填充&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能6：基因型数据的质控与填充&lt;/h3&gt;
+&lt;div id=&#34;功能4基因型数据的质控与填充&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;功能4：基因型数据的质控与填充&lt;/h3&gt;
 &lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
 genotype_data_QC_Imputation(
             input_data_path=&amp;quot;root/genotype_data&amp;quot;,   #用户输入的本地基因型数据的路径
@@ -1425,8 +1507,18 @@ genotype_data_QC_Imputation(
             output_data_type=&amp;quot;Plink&amp;quot;                #质控填充后，基因型数据保存到本地的类型
             )                       &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div id=&#34;功能7在r中运行dmu软件完成相应的分析&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能7：在R中运行DMU软件，完成相应的分析&lt;/h3&gt;
+&lt;div id=&#34;功能5亲缘关系矩阵的构建ag-and-h&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;功能5：亲缘关系矩阵的构建(A,G and H)&lt;/h3&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
+                kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_Domi&amp;quot;),    #构建的亲缘关系矩阵的类型
+                inbred_type=c(&amp;quot;Homozygous&amp;quot;),       #计算的近交系数的类型
+                output_matrix_type=c(&amp;quot;col_three&amp;quot;), #返回的亲缘关系矩阵的格式：3列格式
+                return_result=TRUE)                #在R中返回结果               &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;功能6在r中运行dmu软件完成相应的分析&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;功能6：在R中运行DMU软件，完成相应的分析&lt;/h3&gt;
 &lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;, &amp;quot;Trait1&amp;quot;#,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),   #表型数据的列名
@@ -1447,8 +1539,8 @@ run_DMU(
         DMU_software_path=&amp;quot;D:/QGG-DMUv6-2/R5.2/bin&amp;quot;                  #DMU软件的本地路径
         )&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div id=&#34;功能8在r中运行blupf90软件完成相应的分析&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能8：在R中运行BLUPF90软件，完成相应的分析&lt;/h3&gt;
+&lt;div id=&#34;功能7在r中运行blupf90软件完成相应的分析&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;功能7：在R中运行BLUPF90软件，完成相应的分析&lt;/h3&gt;
 &lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
 run_BLUPF90(        
             phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;, &amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), #表型数据的列名

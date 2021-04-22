@@ -156,3 +156,19 @@ knitr::kable(head(data_genumeric[,1:6]))
 -   **参数15:miss_base_num**
 
 数字化格式转换中，缺失值转换成的数字。numeric类型。默认为 5
+
+-   **参数16:plink_software_path**
+
+**Plink**软件的路径。character类型。涉及到VCF格式转换时，需要使用 **Plink**软件。当**Plink**软件的路径已加入到环境变量后，此项参数不需要设置。
+
+-   **参数17:plink_software_name**
+
+**Plink**软件的名称。character类型。涉及到VCF格式转换时，需要使用 **Plink**软件。软件默认名称为：plink。
+
+-   **参数18:vcftools_software_path**
+
+**vcftools**软件的路径。character类型。涉及到VCF格式转换时，需要使用**vcftools**软件。当**vcftools**软件的路径已加入到环境变量后，此项参数不需要设置。
+
+-   **参数19:vcftools_software_name**
+
+**vcftools**软件的名称。character类型。涉及到VCF格式转换时，需要使用 **vcftools**软件。软件默认名称为：vcftools。

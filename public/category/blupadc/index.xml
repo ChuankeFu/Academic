@@ -59,28 +59,8 @@ pedigree_result=trace_pedigree(
                 output_pedigree_tree=TRUE  #输出系谱树的结果
                 )                 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div id=&#34;功能4亲缘关系矩阵的构建ag-and-h&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能4：亲缘关系矩阵的构建(A,G and H)&lt;/h3&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
-                kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_Domi&amp;quot;),    #构建的亲缘关系矩阵的类型
-                inbred_type=c(&amp;quot;Homozygous&amp;quot;),       #计算的近交系数的类型
-                output_matrix_type=c(&amp;quot;col_three&amp;quot;), #返回的亲缘关系矩阵的格式：3列格式
-                return_result=TRUE)                #在R中返回结果               &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;功能5亲缘关系矩阵的构建ag-and-h&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能5：亲缘关系矩阵的构建(A,G and H)&lt;/h3&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
-                kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_Domi&amp;quot;),    #构建的亲缘关系矩阵的类型
-                inbred_type=c(&amp;quot;Homozygous&amp;quot;),       #计算的近交系数的类型
-                output_matrix_type=c(&amp;quot;col_three&amp;quot;), #返回的亲缘关系矩阵的格式：3列格式
-                return_result=TRUE)                #在R中返回结果               &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;功能6基因型数据的质控与填充&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能6：基因型数据的质控与填充&lt;/h3&gt;
+&lt;div id=&#34;功能4基因型数据的质控与填充&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;功能4：基因型数据的质控与填充&lt;/h3&gt;
 &lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
 genotype_data_QC_Imputation(
             input_data_path=&amp;quot;root/genotype_data&amp;quot;,   #用户输入的本地基因型数据的路径
@@ -96,8 +76,18 @@ genotype_data_QC_Imputation(
             output_data_type=&amp;quot;Plink&amp;quot;                #质控填充后，基因型数据保存到本地的类型
             )                       &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div id=&#34;功能7在r中运行dmu软件完成相应的分析&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能7：在R中运行DMU软件，完成相应的分析&lt;/h3&gt;
+&lt;div id=&#34;功能5亲缘关系矩阵的构建ag-and-h&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;功能5：亲缘关系矩阵的构建(A,G and H)&lt;/h3&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
+                kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_Domi&amp;quot;),    #构建的亲缘关系矩阵的类型
+                inbred_type=c(&amp;quot;Homozygous&amp;quot;),       #计算的近交系数的类型
+                output_matrix_type=c(&amp;quot;col_three&amp;quot;), #返回的亲缘关系矩阵的格式：3列格式
+                return_result=TRUE)                #在R中返回结果               &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;功能6在r中运行dmu软件完成相应的分析&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;功能6：在R中运行DMU软件，完成相应的分析&lt;/h3&gt;
 &lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;, &amp;quot;Trait1&amp;quot;#,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),   #表型数据的列名
@@ -118,8 +108,8 @@ run_DMU(
         DMU_software_path=&amp;quot;D:/QGG-DMUv6-2/R5.2/bin&amp;quot;                  #DMU软件的本地路径
         )&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div id=&#34;功能8在r中运行blupf90软件完成相应的分析&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能8：在R中运行BLUPF90软件，完成相应的分析&lt;/h3&gt;
+&lt;div id=&#34;功能7在r中运行blupf90软件完成相应的分析&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;功能7：在R中运行BLUPF90软件，完成相应的分析&lt;/h3&gt;
 &lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
 run_BLUPF90(        
             phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;, &amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), #表型数据的列名

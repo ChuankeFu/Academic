@@ -1,5 +1,5 @@
 ---
-bio: My research interests include genomic selection and maching learing in animal breeding.
+bio: My research interests include genomic selection and machine learing in animal breeding.
 design:
   spacing:
     # Customize the section spacing. Order is top, right, bottom, left.
@@ -12,8 +12,8 @@ education:
   - course: BSc in Animal Science
     institution: Huazhong Agricultural University
     year: 2016
-email: ""
-highlight_name: false
+email: "hzau_qsmei@163.com"
+highlight_name: true
 interests:
 - Artificial Intelligence
 - Programing(R and C++)
@@ -48,4 +48,4 @@ title: Mei Quanshun
 
 ---
 
- I am a PhD student of  animal breeding in Huazhong Agricultural University.  My research interests include genomic selection and maching learing in animal breeding.  I'm familiar with the programing with R and Rcpp(C++). 
+ I am a PhD student of  animal breeding in Huazhong Agricultural University.  My research interests include genomic selection and machine learing in animal breeding.  I'm familiar with the programing with R and Rcpp(C++). 

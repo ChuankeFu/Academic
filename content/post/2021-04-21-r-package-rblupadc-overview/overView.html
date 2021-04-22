@@ -59,28 +59,8 @@ pedigree_result=trace_pedigree(
                 output_pedigree_tree=TRUE  #输出系谱树的结果
                 )                 </code></pre>
 </div>
-<div id="功能4亲缘关系矩阵的构建ag-and-h" class="section level3">
-<h3>功能4：亲缘关系矩阵的构建(A,G and H)</h3>
-<pre class="R"><code>library(blupADC)
-kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
-                kinship_type=c(&quot;G_A&quot;,&quot;G_Domi&quot;),    #构建的亲缘关系矩阵的类型
-                inbred_type=c(&quot;Homozygous&quot;),       #计算的近交系数的类型
-                output_matrix_type=c(&quot;col_three&quot;), #返回的亲缘关系矩阵的格式：3列格式
-                return_result=TRUE)                #在R中返回结果               </code></pre>
-</div>
-<div id="功能5亲缘关系矩阵的构建ag-and-h" class="section level3">
-<h3>功能5：亲缘关系矩阵的构建(A,G and H)</h3>
-<pre class="R"><code>library(blupADC)
-kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
-                kinship_type=c(&quot;G_A&quot;,&quot;G_Domi&quot;),    #构建的亲缘关系矩阵的类型
-                inbred_type=c(&quot;Homozygous&quot;),       #计算的近交系数的类型
-                output_matrix_type=c(&quot;col_three&quot;), #返回的亲缘关系矩阵的格式：3列格式
-                return_result=TRUE)                #在R中返回结果               </code></pre>
-</div>
-<div id="功能6基因型数据的质控与填充" class="section level3">
-<h3>功能6：基因型数据的质控与填充</h3>
+<div id="功能4基因型数据的质控与填充" class="section level3">
+<h3>功能4：基因型数据的质控与填充</h3>
 <pre class="R"><code>library(blupADC)
 genotype_data_QC_Imputation(
             input_data_path=&quot;root/genotype_data&quot;,   #用户输入的本地基因型数据的路径
@@ -96,8 +76,18 @@ genotype_data_QC_Imputation(
             output_data_type=&quot;Plink&quot;                #质控填充后，基因型数据保存到本地的类型
             )                       </code></pre>
 </div>
-<div id="功能7在r中运行dmu软件完成相应的分析" class="section level3">
-<h3>功能7：在R中运行DMU软件，完成相应的分析</h3>
+<div id="功能5亲缘关系矩阵的构建ag-and-h" class="section level3">
+<h3>功能5：亲缘关系矩阵的构建(A,G and H)</h3>
+<pre class="R"><code>library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
+                kinship_type=c(&quot;G_A&quot;,&quot;G_Domi&quot;),    #构建的亲缘关系矩阵的类型
+                inbred_type=c(&quot;Homozygous&quot;),       #计算的近交系数的类型
+                output_matrix_type=c(&quot;col_three&quot;), #返回的亲缘关系矩阵的格式：3列格式
+                return_result=TRUE)                #在R中返回结果               </code></pre>
+</div>
+<div id="功能6在r中运行dmu软件完成相应的分析" class="section level3">
+<h3>功能6：在R中运行DMU软件，完成相应的分析</h3>
 <pre class="R"><code>library(blupADC)
 run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;, &quot;Trait1&quot;#,&quot;Trait2&quot;,&quot;Age&quot;),   #表型数据的列名
@@ -118,8 +108,8 @@ run_DMU(
         DMU_software_path=&quot;D:/QGG-DMUv6-2/R5.2/bin&quot;                  #DMU软件的本地路径
         )</code></pre>
 </div>
-<div id="功能8在r中运行blupf90软件完成相应的分析" class="section level3">
-<h3>功能8：在R中运行BLUPF90软件，完成相应的分析</h3>
+<div id="功能7在r中运行blupf90软件完成相应的分析" class="section level3">
+<h3>功能7：在R中运行BLUPF90软件，完成相应的分析</h3>
 <pre class="R"><code>library(blupADC)
 run_BLUPF90(        
             phe_col_names=c(&quot;Id&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;, &quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), #表型数据的列名

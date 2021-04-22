@@ -71,31 +71,7 @@ pedigree_result=trace_pedigree(
                 )                 
 ```
 
-### 功能4：亲缘关系矩阵的构建(A,G and H)
-
-``` {.R}
-library(blupADC)
-kinship_result=cal_kinship(
-				input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
-                kinship_type=c("G_A","G_Domi"),    #构建的亲缘关系矩阵的类型
-                inbred_type=c("Homozygous"),       #计算的近交系数的类型
-				output_matrix_type=c("col_three"), #返回的亲缘关系矩阵的格式：3列格式
-                return_result=TRUE)		           #在R中返回结果	              
-```
-
-### 功能5：亲缘关系矩阵的构建(A,G and H)
-
-``` {.R}
-library(blupADC)
-kinship_result=cal_kinship(
-				input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
-                kinship_type=c("G_A","G_Domi"),    #构建的亲缘关系矩阵的类型
-                inbred_type=c("Homozygous"),       #计算的近交系数的类型
-				output_matrix_type=c("col_three"), #返回的亲缘关系矩阵的格式：3列格式
-                return_result=TRUE)		           #在R中返回结果	              
-```
-
-### 功能6：基因型数据的质控与填充
+### 功能4：基因型数据的质控与填充
 
 ``` {.R}
 library(blupADC)
@@ -114,7 +90,19 @@ genotype_data_QC_Imputation(
 			)                       
 ```
 
-### 功能7：在R中运行DMU软件，完成相应的分析
+### 功能5：亲缘关系矩阵的构建(A,G and H)
+
+``` {.R}
+library(blupADC)
+kinship_result=cal_kinship(
+				input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
+                kinship_type=c("G_A","G_Domi"),    #构建的亲缘关系矩阵的类型
+                inbred_type=c("Homozygous"),       #计算的近交系数的类型
+				output_matrix_type=c("col_three"), #返回的亲缘关系矩阵的格式：3列格式
+                return_result=TRUE)		           #在R中返回结果	              
+```
+
+### 功能6：在R中运行DMU软件，完成相应的分析
 
 ``` {.R}
 library(blupADC)
@@ -138,7 +126,7 @@ run_DMU(
         )
 ```
 
-### 功能8：在R中运行BLUPF90软件，完成相应的分析
+### 功能7：在R中运行BLUPF90软件，完成相应的分析
 
 ``` {.R}
 library(blupADC)
