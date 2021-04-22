@@ -38,7 +38,9 @@ data_result=cal_kinship(input_data_hmp=data_hmp,
 str(data_result)
 ```
 
-在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与genotype_data_format_conversion函数中的参数用法一致，详细了解大家可参阅？？？。
+在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与genotype_data_format_conversion函数中的参数用法一致。具体大家可参阅之前的介绍:
+
+[R package:blupADC- 使用说明1](https://qsmei.netlify.app/post/blupadc/)。
 
 完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型，如：
 
