@@ -26,21 +26,18 @@ knitr::opts_chunk$set(collapse = TRUE)
 
 😾首先，我们还是通过一个小例子来看该函数的用法:
 
-```{r overlap}
-source("D:/test_code/BLUP_ADC_code/data_relationship_matrix.txt")
-source("D:/test_code/BLUP_ADC_code/data_format_conversion.txt")
-Rcpp::sourceCpp("D:/test_code/BLUP_ADC_code/code/common.function.cpp")
+``` {.R}
+library(blupADC)
 data_hmp=data.table::fread("D:/test_code/BLUP_ADC_code/test_data/data_hmp.txt",data.table=F)
-data_result=cal_kinship(input_data_hmp=data_hmp,
-                        kinship_type=c("G_A"),
-                        inbred_type=c("Homozygous"),
-                        return_result=TRUE)
-str(data_result)
+data_result=cal_kinship(
+            input_data_hmp=data_hmp,          #用户输入的基因型数据
+            kinship_type=c("G_A"),            #构建的亲缘关系矩阵类型
+            inbred_type=c("Homozygous"),      #计算的近交系数的类型 
+            return_result=TRUE                #在R中返回结果  
+			)
 ```
 
-在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与genotype_data_format_conversion函数中的参数用法一致。具体大家可参阅之前的介绍:
-
-[R package:blupADC- 使用说明1](https://qsmei.netlify.app/post/blupadc/)。
+在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与genotype_data_format_conversion函数中的参数用法一致。具体大家可参阅之前的介绍: [R package:blupADC- 使用说明1](https://qsmei.netlify.app/post/blupadc/)。
 
 完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型，如：
 

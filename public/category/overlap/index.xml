@@ -52,7 +52,8 @@ overlap_result=Calculate_genotype_overlap(input_data_hmp=data_hmp)
 &lt;p&gt;判断基因型重复的阈值。numeric 类型。默认为0.95。&lt;/p&gt;
 &lt;p&gt;当个体间的基因型overlap比例超过该阈值时，基因型就会被判定为重复的基因型。&lt;/p&gt;
 &lt;p&gt;该函数中的其他参数均和&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数一致(基因型数据的输入与输出)，具体大家可参阅之前的介绍:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://localhost:4321/post/blupadc/&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;具体大家可参阅之前的介绍:
+&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
 </description>
     </item>
     

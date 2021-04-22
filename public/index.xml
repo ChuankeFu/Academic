@@ -465,56 +465,15 @@ The variance of the distribution is $\sigma^{2}$.
 
 &lt;p&gt;🙉在动植物育种中，亲缘关系矩阵的构建是其中的关键步骤。在本章，我们将主要介绍如何利用BLUP_ADC中的cal_kinship函数完成各种亲缘关系矩阵的构建，包括：加性亲缘关系矩阵(系谱，基因组，一步法)及显性亲缘关系矩阵(系谱，基因组，一步法)等。此外，cal_kinship函数还能方便的计算各种类型的近交系数，包括：系谱近交系数，基因组近交系数(Homozygous,Digonal)及一步法近交系数(Digonal)。&lt;/p&gt;
 &lt;p&gt;😾首先，我们还是通过一个小例子来看该函数的用法:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;source(&amp;quot;D:/test_code/BLUP_ADC_code/data_relationship_matrix.txt&amp;quot;)
-source(&amp;quot;D:/test_code/BLUP_ADC_code/data_format_conversion.txt&amp;quot;)
-Rcpp::sourceCpp(&amp;quot;D:/test_code/BLUP_ADC_code/code/common.function.cpp&amp;quot;)
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
 data_hmp=data.table::fread(&amp;quot;D:/test_code/BLUP_ADC_code/test_data/data_hmp.txt&amp;quot;,data.table=F)
-data_result=cal_kinship(input_data_hmp=data_hmp,
-                        kinship_type=c(&amp;quot;G_A&amp;quot;),
-                        inbred_type=c(&amp;quot;Homozygous&amp;quot;),
-                        return_result=TRUE)
-## 
-## 载入程辑包：&amp;#39;dplyr&amp;#39;
-## The following objects are masked from &amp;#39;package:stats&amp;#39;:
-## 
-##     filter, lag
-## The following objects are masked from &amp;#39;package:base&amp;#39;:
-## 
-##     intersect, setdiff, setequal, union
-## Start numeric(0,1,2) format conversion...... 
-## Constructing genomic additive relationship matrix......
-## Start calculate genomic inbreeding coefficients by homozygous site
-str(data_result)
-## List of 8
-##  $ G_A   :List of 2
-##   ..$ A   : num [1:500, 1:500] 1.0783 -0.0685 -0.0336 -0.0836 0.0455 ...
-##   ..$ Ainv: NULL
-##  $ G_Domi:List of 2
-##   ..$ Domi    : NULL
-##   ..$ Domi_inv: NULL
-##  $ G_Devi:List of 2
-##   ..$ Devi    : NULL
-##   ..$ Devi_inv: NULL
-##  $ P_A   :List of 2
-##   ..$ A   : NULL
-##   ..$ Ainv: NULL
-##  $ P_D   :List of 2
-##   ..$ D   : NULL
-##   ..$ Dinv: NULL
-##  $ H_A   :List of 2
-##   ..$ A   : NULL
-##   ..$ Ainv: NULL
-##  $ H_D   :List of 2
-##   ..$ D   : NULL
-##   ..$ Dinv: NULL
-##  $ Inbred:List of 4
-##   ..$ Homozygous:&amp;#39;data.frame&amp;#39;:   500 obs. of  2 variables:
-##   .. ..$ Id         : Factor w/ 500 levels &amp;quot;Ind1&amp;quot;,&amp;quot;Ind10&amp;quot;,..: 1 112 223 334 445 457 468 479 490 2 ...
-##   .. ..$ Homo_inbred: num [1:500] 0.649 0.629 0.597 0.66 0.657 ...
-##   ..$ G_diag    : NULL
-##   ..$ Pedigree  : NULL
-##   ..$ H_diag    : NULL&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与genotype_data_format_conversion函数中的参数用法一致，详细了解大家可参阅？？？。&lt;/p&gt;
+data_result=cal_kinship(
+            input_data_hmp=data_hmp,          #用户输入的基因型数据
+            kinship_type=c(&amp;quot;G_A&amp;quot;),            #构建的亲缘关系矩阵类型
+            inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #计算的近交系数的类型 
+            return_result=TRUE                #在R中返回结果  
+            )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与genotype_data_format_conversion函数中的参数用法一致。具体大家可参阅之前的介绍: &lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型，如：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;参数1：kinship_type&lt;/strong&gt;&lt;/li&gt;
@@ -664,8 +623,8 @@ genotype_data_QC_Imputation(
               output_data_type=&amp;quot;Plink&amp;quot;               #输出基因型文件的格式
               )&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;通过上述代码，我们即可对本地的Hapmap格式的基因型数据进行质控和填充，并将其以Plink格式并保存到本地。&lt;/p&gt;
-&lt;p&gt;进行质控和填充时，我们必须要事先提供基因型数据，这部分的参数与&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数用法一致。具体大家可参阅之前的介绍:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://localhost:4321/post/blupadc/&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;进行质控和填充时，我们必须要事先提供基因型数据，这部分的参数与&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数用法一致。具体大家可参阅之前的介绍:
+&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;完成了基因型数据的提供后，我们可以通过以下几个参数来进行质控填充的相关分析：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;参数1：data_analysis_method&lt;/strong&gt;&lt;/li&gt;
@@ -992,7 +951,8 @@ overlap_result=Calculate_genotype_overlap(input_data_hmp=data_hmp)
 &lt;p&gt;判断基因型重复的阈值。numeric 类型。默认为0.95。&lt;/p&gt;
 &lt;p&gt;当个体间的基因型overlap比例超过该阈值时，基因型就会被判定为重复的基因型。&lt;/p&gt;
 &lt;p&gt;该函数中的其他参数均和&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数一致(基因型数据的输入与输出)，具体大家可参阅之前的介绍:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://localhost:4321/post/blupadc/&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;具体大家可参阅之前的介绍:
+&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
 </description>
     </item>
     

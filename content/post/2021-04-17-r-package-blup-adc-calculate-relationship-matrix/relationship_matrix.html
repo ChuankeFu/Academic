@@ -23,56 +23,15 @@ projects: []
 
 <p>🙉在动植物育种中，亲缘关系矩阵的构建是其中的关键步骤。在本章，我们将主要介绍如何利用BLUP_ADC中的cal_kinship函数完成各种亲缘关系矩阵的构建，包括：加性亲缘关系矩阵(系谱，基因组，一步法)及显性亲缘关系矩阵(系谱，基因组，一步法)等。此外，cal_kinship函数还能方便的计算各种类型的近交系数，包括：系谱近交系数，基因组近交系数(Homozygous,Digonal)及一步法近交系数(Digonal)。</p>
 <p>😾首先，我们还是通过一个小例子来看该函数的用法:</p>
-<pre class="r"><code>source(&quot;D:/test_code/BLUP_ADC_code/data_relationship_matrix.txt&quot;)
-source(&quot;D:/test_code/BLUP_ADC_code/data_format_conversion.txt&quot;)
-Rcpp::sourceCpp(&quot;D:/test_code/BLUP_ADC_code/code/common.function.cpp&quot;)
+<pre class="R"><code>library(blupADC)
 data_hmp=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/data_hmp.txt&quot;,data.table=F)
-data_result=cal_kinship(input_data_hmp=data_hmp,
-                        kinship_type=c(&quot;G_A&quot;),
-                        inbred_type=c(&quot;Homozygous&quot;),
-                        return_result=TRUE)
-## 
-## 载入程辑包：&#39;dplyr&#39;
-## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag
-## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union
-## Start numeric(0,1,2) format conversion...... 
-## Constructing genomic additive relationship matrix......
-## Start calculate genomic inbreeding coefficients by homozygous site
-str(data_result)
-## List of 8
-##  $ G_A   :List of 2
-##   ..$ A   : num [1:500, 1:500] 1.0783 -0.0685 -0.0336 -0.0836 0.0455 ...
-##   ..$ Ainv: NULL
-##  $ G_Domi:List of 2
-##   ..$ Domi    : NULL
-##   ..$ Domi_inv: NULL
-##  $ G_Devi:List of 2
-##   ..$ Devi    : NULL
-##   ..$ Devi_inv: NULL
-##  $ P_A   :List of 2
-##   ..$ A   : NULL
-##   ..$ Ainv: NULL
-##  $ P_D   :List of 2
-##   ..$ D   : NULL
-##   ..$ Dinv: NULL
-##  $ H_A   :List of 2
-##   ..$ A   : NULL
-##   ..$ Ainv: NULL
-##  $ H_D   :List of 2
-##   ..$ D   : NULL
-##   ..$ Dinv: NULL
-##  $ Inbred:List of 4
-##   ..$ Homozygous:&#39;data.frame&#39;:   500 obs. of  2 variables:
-##   .. ..$ Id         : Factor w/ 500 levels &quot;Ind1&quot;,&quot;Ind10&quot;,..: 1 112 223 334 445 457 468 479 490 2 ...
-##   .. ..$ Homo_inbred: num [1:500] 0.649 0.629 0.597 0.66 0.657 ...
-##   ..$ G_diag    : NULL
-##   ..$ Pedigree  : NULL
-##   ..$ H_diag    : NULL</code></pre>
-<p>在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与genotype_data_format_conversion函数中的参数用法一致，详细了解大家可参阅？？？。</p>
+data_result=cal_kinship(
+            input_data_hmp=data_hmp,          #用户输入的基因型数据
+            kinship_type=c(&quot;G_A&quot;),            #构建的亲缘关系矩阵类型
+            inbred_type=c(&quot;Homozygous&quot;),      #计算的近交系数的类型 
+            return_result=TRUE                #在R中返回结果  
+            )</code></pre>
+<p>在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与genotype_data_format_conversion函数中的参数用法一致。具体大家可参阅之前的介绍: <a href="https://qsmei.netlify.app/post/blupadc/">R package:blupADC- 使用说明1</a>。</p>
 <p>完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型，如：</p>
 <ul>
 <li><strong>参数1：kinship_type</strong></li>
