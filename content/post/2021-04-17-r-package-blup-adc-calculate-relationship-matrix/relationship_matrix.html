@@ -21,7 +21,7 @@ projects: []
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-<p>🙉在动植物育种中，亲缘关系矩阵的构建是其中的关键步骤。在本章，我们将主要介绍如何利用BLUP_ADC中的cal_kinship函数完成各种亲缘关系矩阵的构建，包括：加性亲缘关系矩阵(系谱，基因组，一步法)及显性亲缘关系矩阵(系谱，基因组，一步法)等。此外，cal_kinship函数还能方便的计算各种类型的近交系数，包括：系谱近交系数，基因组近交系数(Homozygous,Digonal)及一步法近交系数(Digonal)。</p>
+<p>🙉在动植物育种中，亲缘关系矩阵的构建是其中的关键步骤。在本章，我们将主要介绍如何利用<code>blupADC</code>中的<code>cal_kinship</code>函数完成各种亲缘关系矩阵的构建，包括：<strong>加性亲缘关系矩阵</strong>(系谱，基因组，一步法)及<strong>显性亲缘关系矩阵</strong>(系谱，基因组，一步法)等。此外，cal_kinship函数还能方便的计算各种类型的<strong>近交系数</strong>，包括：系谱近交系数，基因组近交系数(Homozygous,Digonal)及一步法近交系数(Digonal)。</p>
 <p>😾首先，我们还是通过一个小例子来看该函数的用法:</p>
 <pre class="R"><code>library(blupADC)
 data_hmp=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/data_hmp.txt&quot;,data.table=F)
@@ -31,56 +31,56 @@ data_result=cal_kinship(
             inbred_type=c(&quot;Homozygous&quot;),      #计算的近交系数的类型 
             return_result=TRUE                #在R中返回结果  
             )</code></pre>
-<p>在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与genotype_data_format_conversion函数中的参数用法一致。具体大家可参阅之前的介绍: <a href="https://qsmei.netlify.app/post/blupadc/">R package:blupADC- 使用说明1</a>。</p>
-<p>完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型，如：</p>
+<p>在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与<code>genotype_data_format_conversion</code>函数中的参数用法一致。具体大家可参阅之前的介绍: <a href="https://qsmei.netlify.app/post/blupadc/">R package:blupADC- 使用说明1</a>。</p>
+<p>完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型。</p>
+<div id="主要参数" class="section level3">
+<h3>💪主要参数</h3>
 <ul>
-<li><strong>参数1：kinship_type</strong></li>
+<li><p><strong>参数1：kinship_type</strong></p>
+<p>指定构建亲缘关系矩阵的类型，<code>character</code>类型。可选关系矩阵类型：</p>
+<ul>
+<li>“G_A” :基因组加性亲缘关系矩阵"</li>
+<li>“G_Domi” :基因组显性亲缘关系矩阵(按照0,1,0方式编码)</li>
+<li>“G_Devi” :基因组显性离差亲缘关系矩阵(按照-2q<sup>2</sup>,2pq,-2p<sup>2</sup>,方式编码)</li>
+<li>“H_A” :一步法加性亲缘关系矩阵</li>
+<li>“H_D” :一步法显性亲缘关系矩阵</li>
+<li>“P_A” :系谱加性亲缘关系矩阵</li>
+<li>“P_D” :系谱显性亲缘关系矩阵</li>
+</ul></li>
 </ul>
-<p>指定构建亲缘关系矩阵的类型，字符向量，可选类型包括：</p>
-<ol style="list-style-type: decimal">
-<li><p>“G_A” :基因组加性亲缘关系矩阵</p></li>
-<li><p>“G_Domi” :基因组显性亲缘关系矩阵(按照0,1,0方式编码)</p></li>
-<li><p>“G_Devi” :基因组显性离差亲缘关系矩阵(按照-2q<sup>2</sup>,2pq,-2p<sup>2</sup>,方式编码)</p></li>
-<li><p>“H_A” :一步法加性亲缘关系矩阵</p></li>
-<li><p>“H_D” :一步法显性亲缘关系矩阵</p></li>
-<li><p>“P_A” :系谱加性亲缘关系矩阵</p></li>
-<li><p>“P_D” :系谱显性亲缘关系矩阵</p></li>
-</ol>
 <p>Note:如果计算系谱及一步法亲缘关系矩阵，必须要提供系谱数据。关于如何提供系谱数据，我们会在后面进行讲解。</p>
 <ul>
 <li><strong>参数2：kinship_inverse</strong></li>
 </ul>
-<p>是否计算亲缘关系矩阵的逆矩阵，逻辑值，默认为FALSE</p>
+<p>是否计算亲缘关系矩阵的逆矩阵，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
-<li><strong>参数3：inbred_type</strong></li>
-</ul>
-<p>指定计算的近交系数的类型，字符向量，可选类型包括:</p>
-<ol style="list-style-type: decimal">
+<li><p><strong>参数3：inbred_type</strong></p>
+<p>指定计算的近交系数的类型，<code>character</code>类型。可选近交系数类型包括:</p>
+<ul>
 <li><p>“Homozygous” :根据纯合子位点计算</p></li>
 <li><p>“G_Diag” :G矩阵对角线-1</p></li>
 <li><p>“H_diag” :H矩阵对角线-1</p></li>
 <li><p>“Pedigree” :A矩阵对角线-1</p></li>
-</ol>
-<ul>
-<li><strong>参数5：input_pedigree</strong></li>
+</ul></li>
+<li><p><strong>参数4：input_pedigree</strong></p></li>
 </ul>
-<p>用户提供的系谱数据，具体的系谱数据类型可以参阅之前的介绍：？？？</p>
+<p>用户提供的系谱数据，<code>data.frame</code>或 <code>matrix</code>类型。具体的系谱数据格式可以参阅之前的介绍：<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/">R package:blupADC-使用说明3</a>。</p>
 <ul>
-<li><strong>参数6：pedigree_rename</strong></li>
+<li><strong>参数5：pedigree_rename</strong></li>
 </ul>
-<p>是否对系谱数据进行重命名,逻辑值，默认为TRUE(对系谱进行重命名)</p>
+<p>是否对系谱数据进行重命名,<code>logical</code>类型，默认为TRUE(对系谱进行重命名)。</p>
 <ul>
-<li><strong>参数7：IND_geno_rename</strong></li>
+<li><strong>参数6：IND_geno_rename</strong></li>
 </ul>
-<p>根据系谱的重命名结果，将基因型数据中的个体号也进行重命名。逻辑值，默认为FALSE(不进行重命名)</p>
+<p>是否根据系谱的重命名结果对基因型数据中的个体进行重命名，<code>logical</code>类型，默认为FALSE(不进行重命名)。</p>
 <ul>
-<li><strong>参数8：rename_to_origin</strong></li>
+<li><strong>参数7：rename_to_origin</strong></li>
 </ul>
-<p>将矩阵中重命名的个体号转换回原始的个体号。逻辑值，默认为FALSE(不进行转换)</p>
+<p>将亲缘关系矩阵中重命名的个体号转换回原始的个体号，<code>logical</code>类型，默认为FALSE(不进行转换)。</p>
 <ul>
-<li><strong>参数9：output_matrix_type</strong></li>
+<li><strong>参数8：output_matrix_type</strong></li>
 </ul>
-<p>输出矩阵的格式。字符串向量，可选参数为：</p>
+<p>输出亲缘关系矩阵的格式，<code>character</code>类型。可选参数包括：</p>
 <ol style="list-style-type: decimal">
 <li><p>“col_all” :按照n*n的格式输出亲缘关系矩阵</p></li>
 <li><p>“col_three” : 按照3列矩阵的格式输出亲缘关系矩阵，第1列和第2列为个体号，第3列为亲缘系数。DMU和BLUPf90软件均需提供这种格式的亲缘关系矩阵。形如：</p>
@@ -113,41 +113,42 @@ data_result=cal_kinship(
 </ol>
 <p>默认参数为 “col_all”</p>
 <ul>
-<li><strong>参数10：output_matrix_path</strong></li>
+<li><strong>参数9：output_matrix_path</strong></li>
 </ul>
-<p>亲缘关系矩阵保存到本地的路径, 字符串向量</p>
+<p>亲缘关系矩阵保存到本地的路径, <code>character</code>类型。</p>
 <ul>
-<li><strong>参数11：output_matrix_name</strong></li>
+<li><strong>参数10：output_matrix_name</strong></li>
 </ul>
-<p>亲缘关系矩阵保存到本地的名称，字符串向量</p>
+<p>亲缘关系矩阵保存到本地的名称，<code>character</code>类型。</p>
+</div>
 <div id="其他参数" class="section level3">
-<h3>其他参数</h3>
+<h3>🦶其他参数</h3>
 <ul>
 <li><strong>参数11：cpu_cores</strong></li>
 </ul>
-<p>调用的cpu个数，数字格式，默认为1</p>
+<p>调用的cpu个数，<code>numeric</code>类型，默认为1。</p>
 <ul>
-<li><strong>参数11：kinship_base</strong></li>
+<li><strong>参数12：kinship_base</strong></li>
 </ul>
-<p>按照基础群的方式构建基因组亲缘关系矩阵(p=q=0.5)，逻辑值，默认为FALSE</p>
+<p>是否按照基础群的方式构建基因组亲缘关系矩阵(p=q=0.5)，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
-<li><strong>参数11：kinship_trace</strong></li>
+<li><strong>参数13：kinship_trace</strong></li>
 </ul>
-<p>按照矩阵的迹和的方式对基因组亲缘关系矩阵进行标准化，逻辑值，默认为FALse</p>
+<p>是否按照矩阵迹和的方式对基因组亲缘关系矩阵进行标准化，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
-<li><strong>参数4：kinship_metafounder</strong></li>
+<li><strong>参数14：kinship_metafounder</strong></li>
 </ul>
-<p>是否按照metafounder的方法计算一步法亲缘关系矩阵，逻辑值，默认为FALSE</p>
+<p>是否按照metafounder的方法计算一步法亲缘关系矩阵，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
-<li><strong>参数11：w</strong></li>
+<li><strong>参数15：w</strong></li>
 </ul>
-<p>构建一步法亲缘关系矩阵时，调整G矩阵和A矩阵的比例。numeric格式，默认为0.05</p>
+<p>构建一步法亲缘关系矩阵时G矩阵和A矩阵的比例，<code>numeric</code>类型，默认为0.05。</p>
 <ul>
-<li><strong>参数11：gene_dropping</strong></li>
+<li><strong>参数16：gene_dropping</strong></li>
 </ul>
-<p>使用 gene dropping 的方法构建系谱显性亲缘关系矩阵。逻辑值，默认值为FALSE</p>
+<p>是否使用 gene dropping 的方法构建系谱显性亲缘关系矩阵，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
-<li><strong>参数11：gene_dropping_iteration</strong></li>
+<li><strong>参数17：gene_dropping_iteration</strong></li>
 </ul>
-<p>gene dropping方法的迭代次数。numeric格式，默认值为1000</p>
+<p>gene dropping方法的迭代次数，<code>numeric</code>类型，默认为1000。</p>
 </div>

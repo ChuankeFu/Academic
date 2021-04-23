@@ -800,14 +800,10 @@
 <div id="基因型数据格式转化" class="section level2">
 <h2>基因型数据格式转化</h2>
 <p>首先,我们以一个简单的小例子来看看函数的用法</p>
-<pre class="r"><code>library(blupADC)
+<pre class="R"><code>library(blupADC)
 data_ped=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/data.ped&quot;,data.table = F)
 data_map=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/data.map&quot;,data.table = F)
-data_hmp=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/data_hmp.txt&quot;,data.table = F)
-data_blupf90=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/test_data_blupf90.txt&quot;,data.table = F,colClasses=&quot;character&quot;)
-data_genumeric=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/data.genumeric&quot;,data.table = F)
-row.names(data_genumeric)=paste0(&quot;Ind&quot;,1:nrow(data_genumeric))</code></pre>
-<pre class="R"><code>sum_data=genotype_data_format_conversion(
+sum_data=genotype_data_format_conversion(
          input_data_plink_ped=data_ped,  #用户输入的 plink-ped格式数据
          input_data_plink_map=data_map,  #用户输入的 plink-map格式数据
          output_data_type=c(&quot;Hapmap&quot;,&quot;Blupf90&quot;),#输出的基因型数据格式
@@ -820,7 +816,7 @@ row.names(data_genumeric)=paste0(&quot;Ind&quot;,1:nrow(data_genumeric))</code><
 <ul>
 <li><strong>参数1:input_data_plink_ped</strong></li>
 </ul>
-<p>用户提供的 Plink-ped格式的数据。data.frame类型。具体格式如下所示：</p>
+<p>用户提供的 Plink-ped格式的数据，<code>data.frame</code>类型。具体格式如下所示：</p>
 <table>
 <thead>
 <tr class="header">
@@ -914,7 +910,7 @@ row.names(data_genumeric)=paste0(&quot;Ind&quot;,1:nrow(data_genumeric))</code><
 <ul>
 <li><strong>参数2:input_data_plink_map</strong></li>
 </ul>
-<p>用户提供的 Plink-map格式的数据。data.frame类型。具体格式如下所示：</p>
+<p>用户提供的 Plink-map格式的数据，<code>data.frame</code>类型。具体格式如下所示：</p>
 <table>
 <thead>
 <tr class="header">
@@ -966,7 +962,7 @@ row.names(data_genumeric)=paste0(&quot;Ind&quot;,1:nrow(data_genumeric))</code><
 <ul>
 <li><strong>参数3:input_data_hmp</strong></li>
 </ul>
-<p>用户提供的 Hapmap格式的数据。data.frame类型。具体格式如下所示</p>
+<p>用户提供的 Hapmap格式的数据，<code>data.frame</code>类型。具体格式如下所示</p>
 <table style="width:100%;">
 <colgroup>
 <col width="4%" />
@@ -1112,7 +1108,7 @@ row.names(data_genumeric)=paste0(&quot;Ind&quot;,1:nrow(data_genumeric))</code><
 <ul>
 <li><strong>参数4:input_data_blupf90</strong></li>
 </ul>
-<p>用户提供的 BLUPF90格式数据。data.frame类型。具体格式如下所示</p>
+<p>用户提供的 BLUPF90格式数据，<code>data.frame</code>类型。具体格式如下所示</p>
 <table>
 <thead>
 <tr class="header">
@@ -1150,7 +1146,7 @@ row.names(data_genumeric)=paste0(&quot;Ind&quot;,1:nrow(data_genumeric))</code><
 <ul>
 <li><strong>参数5:input_data_genumeric</strong></li>
 </ul>
-<p>用户提供的 Numeric格式的数据。Numeric matrix类型。具体格式如下所示</p>
+<p>用户提供的 Numeric格式的数据，<code>matrix(纯数字)</code>类型。具体格式如下所示</p>
 <table>
 <thead>
 <tr class="header">
@@ -1221,51 +1217,49 @@ row.names(data_genumeric)=paste0(&quot;Ind&quot;,1:nrow(data_genumeric))</code><
 </tbody>
 </table>
 <p><strong>Note:</strong> 行为个体，列为SNP，必须包括列名和行名。</p>
-<p>此外，为了方便用户使用，用户还可以直接通过提供本地数据的路径、名称与数据类型即可完成数据提供这一步骤,而无需将数据读入到R里面。</p>
+<p>此外，为了方便用户使用，用户还可以直接通过提供本地数据的路径、名称与数据类型即可完成数据提供这一步骤,而无需将数据读入到<strong>R</strong>里面。</p>
 <ul>
 <li><strong>参数6:input_data_path</strong></li>
 </ul>
-<p>用户提供的本地数据的文件路径。character类型。</p>
+<p>用户提供的本地数据的文件路径，<code>character</code>类型。</p>
 <ul>
 <li><strong>参数7:input_data_name</strong></li>
 </ul>
-<p>用户提供的本地数据的文件名称。character类型。</p>
-<p><strong>Note:</strong> 如果提供的数据类型为Plink ,那么本地文件名称不需要带后缀，eg. 本地文件名为test1.map test1.ped，我们提供文件名称为： input_data_name=“test1”。除了Plink格式的数据外，其他数据格式必须提供完整的名称(带后缀)</p>
+<p>用户提供的本地数据的文件名称，<code>character</code>类型。</p>
+<p><strong>Note:</strong> 如果提供的数据类型为Plink ,那么本地文件名称不需要带后缀，eg. 本地文件名为test1.map test1.ped，我们提供文件名称为： <code>input_data_name="test1"</code>。除了Plink格式的数据外，其他数据格式必须提供完整的名称(带后缀)。</p>
 <ul>
-<li><strong>参数8:input_data_type</strong></li>
-</ul>
-<p>用户提供的本地数据的格式。character vector类型。可选格式包括：</p>
-<ol style="list-style-type: decimal">
+<li><p><strong>参数8:input_data_type</strong></p>
+<p>用户提供的本地数据的格式，<code>character</code>类型。数据格式包括：</p>
+<ul>
 <li>Hapmap</li>
 <li>Plink</li>
 <li>Blupf90</li>
 <li>Numeric</li>
 <li>VCF(需要提前安装好vcftools软件,并设置好环境变量)</li>
-</ol>
-<ul>
-<li><strong>参数9:return_result</strong></li>
+</ul></li>
+<li><p><strong>参数9:return_result</strong></p></li>
 </ul>
-<p>是否在R中返回输出的结果。logical类型。默认为FLASE。</p>
+<p>是否在R中返回输出的结果，<code>logical</code>类型。默认为FLASE。</p>
 <p>此外，为了便于输出数据的保存，用户可以将数据保存到本地</p>
 <ul>
 <li><strong>参数10:output_data_path</strong></li>
 </ul>
-<p>输出的基因型数据保存到本地的路径。character类型。</p>
+<p>输出的基因型数据保存到本地的路径，<code>character</code>类型。</p>
 <ul>
 <li><strong>参数11:output_data_name</strong></li>
 </ul>
-<p>输出的基因型数据保存到本地的文件名称。character类型。</p>
+<p>输出的基因型数据保存到本地的文件名称，<code>character</code>类型。</p>
 <ul>
-<li><strong>参数12:output_data_type</strong></li>
-</ul>
-<p>输出的基因型数据的格式。character vector类型。可选格式包括：</p>
-<ol style="list-style-type: decimal">
+<li><p><strong>参数12:output_data_type</strong></p>
+<p>用户提供的本地数据的格式，<code>character</code>类型。数据格式包括：</p>
+<ul>
 <li>Hapmap</li>
 <li>Plink</li>
 <li>Blupf90</li>
 <li>Numeric</li>
 <li>VCF(需要提前安装好vcftools软件,并设置好环境变量)</li>
-</ol>
+</ul></li>
+</ul>
 <p>可选择同时输出多种数据格式。e.g.<code>output_data_type=c("Hapmap","Plink","Blupf90","Numeric")</code> 可同时输出以上4种数据类型。</p>
 </div>
 <div id="其他参数" class="section level3">
@@ -1273,31 +1267,31 @@ row.names(data_genumeric)=paste0(&quot;Ind&quot;,1:nrow(data_genumeric))</code><
 <ul>
 <li><strong>参数13:cpu_cores</strong></li>
 </ul>
-<p>函数调用的cpu个数,默认调用1个</p>
+<p>函数调用的cpu个数，<code>numeric</code>类型。默认调用1个</p>
 <ul>
 <li><strong>参数14:miss_base</strong></li>
 </ul>
-<p>缺失值在原基因型数据中所表示的的字符。character类型。默认为“NN”</p>
+<p>缺失值在原基因型数据中所表示的的字符，<code>character</code>类型。默认为“NN”。</p>
 <ul>
 <li><strong>参数15:miss_base_num</strong></li>
 </ul>
-<p>数字化格式转换中，缺失值转换成的数字。numeric类型。默认为 5</p>
+<p>数字化格式转换中缺失值转换成的数字，<code>numeric</code>类型。默认为 5。</p>
 <ul>
 <li><strong>参数16:plink_software_path</strong></li>
 </ul>
-<p><strong>Plink</strong>软件的路径。character类型。涉及到VCF格式转换时，需要使用 <strong>Plink</strong>软件。当<strong>Plink</strong>软件的路径已加入到环境变量后，此项参数不需要设置。</p>
+<p><strong>Plink</strong>软件的路径，<code>character</code>类型。涉及到VCF格式转换时，需要使用 <strong>Plink</strong>软件。当<strong>Plink</strong>软件的路径已加入到环境变量后，此项参数不需要再设置。</p>
 <ul>
 <li><strong>参数17:plink_software_name</strong></li>
 </ul>
-<p><strong>Plink</strong>软件的名称。character类型。涉及到VCF格式转换时，需要使用 <strong>Plink</strong>软件。软件默认名称为：plink。</p>
+<p><strong>Plink</strong>软件的名称，<code>character</code>类型。涉及到VCF格式转换时，需要使用 <strong>Plink</strong>软件。软件默认名称为：plink。</p>
 <ul>
 <li><strong>参数18:vcftools_software_path</strong></li>
 </ul>
-<p><strong>vcftools</strong>软件的路径。character类型。涉及到VCF格式转换时，需要使用<strong>vcftools</strong>软件。当<strong>vcftools</strong>软件的路径已加入到环境变量后，此项参数不需要设置。</p>
+<p><strong>vcftools</strong>软件的路径，<code>character</code>类型。涉及到VCF格式转换时，需要使用<strong>vcftools</strong>软件。当<strong>vcftools</strong>软件的路径已加入到环境变量后，此项参数不需要再设置。</p>
 <ul>
 <li><strong>参数19:vcftools_software_name</strong></li>
 </ul>
-<p><strong>vcftools</strong>软件的名称。character类型。涉及到VCF格式转换时，需要使用 <strong>vcftools</strong>软件。软件默认名称为：vcftools。</p>
+<p><strong>vcftools</strong>软件的名称，<code>character</code>类型。涉及到VCF格式转换时，需要使用 <strong>vcftools</strong>软件。软件默认名称为：vcftools。</p>
 </div>
 </div>
 
@@ -1427,7 +1421,7 @@ row.names(data_genumeric)=paste0(&quot;Ind&quot;,1:nrow(data_genumeric))</code><
     <div class="media-body">
       <h5 class="card-title">Mei Quanshun</h5>
       <h6 class="card-subtitle">PhD student of animal breeding</h6>
-      <p class="card-text">My research interests include genomic selection and machine learing in animal breeding.</p>
+      <p class="card-text">My research interests include genomic selection and machine learning in animal breeding.</p>
       <ul class="network-icon" aria-hidden="true">
   
     

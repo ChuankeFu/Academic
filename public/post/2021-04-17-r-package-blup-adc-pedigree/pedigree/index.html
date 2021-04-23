@@ -797,7 +797,7 @@
 
 
 <p>🦄大家好,这一节主要给大家讲述的是如何使用<code>blupADC</code>中的函数来进行系谱数据处理。<code>blupADC</code>提供的<code>trace_pedigree</code>函数，可以帮助我们非常方便的对系谱数据进行多种处理:包括系谱重命名、系谱追溯及系谱纠错等。</p>
-<p>同样的，我们还是用一个小例子来简单的看下该函数的用法</p>
+<p>💖同样的，我们还是用一个小例子来简单的看下该函数的用法</p>
 <pre class="r"><code>library(blupADC)
 data_pedigree=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/ped.txt&quot;,data.table=F)
 colnames(data_pedigree)=c(&quot;Offspring&quot;,&quot;Sire&quot;,&quot;Dam&quot;,&quot;Birth_Date&quot;)
@@ -830,10 +830,10 @@ pedigree_result=trace_pedigree(input_pedigree=data_pedigree,output_pedigree_tree
 ##   ..$ error_birth_date_id: NULL</code></pre>
 <p>可以很明显的看到,输出结果包括以下几个部分:</p>
 <ul>
-<li><p><strong>ped:</strong> 经过处理后的原始系谱数据，未进行重命名</p></li>
-<li><p><strong>rename_ped:</strong> 经过处理且重命名的系谱数据,第1列为原始系谱ID,第2列为个体在系谱中的代数，第3-5列为重命名后的系谱数据</p></li>
-<li><p><strong>pedigree_tree:</strong>系谱个体的系谱树矩阵，可以通过设置 full_generation指定系谱树矩阵包含的代数。默认不输出全系谱矩阵(节省时间)</p></li>
-<li><p><strong>error_id_set:</strong>系谱记录错误个体,根据错误的种类可以分为以下4个子集</p></li>
+<li><p><strong>ped:</strong> 经过处理后(纠错、追溯等)的原始系谱数据且未进行重命名</p></li>
+<li><p><strong>rename_ped:</strong> 经过处理(纠错、追溯等)且重命名的系谱数据。第1列为原始系谱ID,第2列为个体在系谱中的代数，第3-5列为重命名后的系谱数据</p></li>
+<li><p><strong>pedigree_tree:</strong>个体的系谱树矩阵。可以通过设置 pedigree_tree_depth指定系谱树包含的代数，默认不输出系谱树(节省时间)</p></li>
+<li><p><strong>error_id_set:</strong>系谱记录错误个体数据集。根据错误的种类可以分为以下4个子集</p></li>
 </ul>
 <ol style="list-style-type: decimal">
 <li><p>error_duplicated_id:相同的个体，父母却不相同</p></li>
@@ -847,15 +847,15 @@ pedigree_result=trace_pedigree(input_pedigree=data_pedigree,output_pedigree_tree
 <ul>
 <li><strong>参数1：input_pedigree</strong></li>
 </ul>
-<p>用户提供的系谱数据。data.frame或 matrix类型。</p>
+<p>用户提供的系谱数据，<code>data.frame</code>或 <code>matrix</code>类型。</p>
 <p>💌用户提供系谱数据需为以下几种格式中的一种，包括：</p>
 <ul>
 <li>3列系谱格式:</li>
 </ul>
-<pre class="r"><code>knitr::kable(head(data_pedigree[,1:3]))</code></pre>
 <table>
 <thead>
 <tr class="header">
+<th align="left"></th>
 <th align="left">Offspring</th>
 <th align="left">Sire</th>
 <th align="left">Dam</th>
@@ -863,44 +863,50 @@ pedigree_result=trace_pedigree(input_pedigree=data_pedigree,output_pedigree_tree
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">1</td>
 <td align="left">YYHZAUT19173108</td>
 <td align="left">YYHZAUT17282102</td>
 <td align="left">YYHZAUT16109011</td>
 </tr>
 <tr class="even">
+<td align="left">2</td>
 <td align="left">YYHZAUT19628606</td>
 <td align="left">YYHZAUT18811301</td>
 <td align="left">YYHZAUT18884508</td>
 </tr>
 <tr class="odd">
+<td align="left">3</td>
 <td align="left">YYHZAUT19423809</td>
 <td align="left">YYHZAUT18336401</td>
 <td align="left">YYHZAUT18623508</td>
 </tr>
 <tr class="even">
+<td align="left">4</td>
 <td align="left">YYHZAUT20898011</td>
 <td align="left">YYHZAUT18718802</td>
 <td align="left">YYHZAUT18859712</td>
 </tr>
 <tr class="odd">
-<td align="left">DDCFJYB20366602</td>
-<td align="left">YYHZAUT19422303</td>
-<td align="left">DDCFJYB19221005</td>
-</tr>
-<tr class="even">
+<td align="left">6</td>
 <td align="left">YYHZAUT20268616</td>
 <td align="left">YYHZAUT19541201</td>
 <td align="left">YYHZAUT18802408</td>
+</tr>
+<tr class="even">
+<td align="left">7</td>
+<td align="left">YYHZAUT19653108</td>
+<td align="left">YYHZAUT18747603</td>
+<td align="left">YYHZAUT18898606</td>
 </tr>
 </tbody>
 </table>
 <ul>
 <li>4列系谱格式:</li>
 </ul>
-<pre class="r"><code>knitr::kable(head(data_pedigree[,1:4]))</code></pre>
 <table>
 <thead>
 <tr class="header">
+<th align="left"></th>
 <th align="left">Offspring</th>
 <th align="left">Sire</th>
 <th align="left">Dam</th>
@@ -909,48 +915,52 @@ pedigree_result=trace_pedigree(input_pedigree=data_pedigree,output_pedigree_tree
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">1</td>
 <td align="left">YYHZAUT19173108</td>
 <td align="left">YYHZAUT17282102</td>
 <td align="left">YYHZAUT16109011</td>
 <td align="right">20190208</td>
 </tr>
 <tr class="even">
+<td align="left">2</td>
 <td align="left">YYHZAUT19628606</td>
 <td align="left">YYHZAUT18811301</td>
 <td align="left">YYHZAUT18884508</td>
 <td align="right">20191012</td>
 </tr>
 <tr class="odd">
+<td align="left">3</td>
 <td align="left">YYHZAUT19423809</td>
 <td align="left">YYHZAUT18336401</td>
 <td align="left">YYHZAUT18623508</td>
 <td align="right">20190615</td>
 </tr>
 <tr class="even">
+<td align="left">4</td>
 <td align="left">YYHZAUT20898011</td>
 <td align="left">YYHZAUT18718802</td>
 <td align="left">YYHZAUT18859712</td>
 <td align="right">20200307</td>
 </tr>
 <tr class="odd">
-<td align="left">DDCFJYB20366602</td>
-<td align="left">YYHZAUT19422303</td>
-<td align="left">DDCFJYB19221005</td>
-<td align="right">20200827</td>
-</tr>
-<tr class="even">
+<td align="left">6</td>
 <td align="left">YYHZAUT20268616</td>
 <td align="left">YYHZAUT19541201</td>
 <td align="left">YYHZAUT18802408</td>
 <td align="right">20200827</td>
+</tr>
+<tr class="even">
+<td align="left">7</td>
+<td align="left">YYHZAUT19653108</td>
+<td align="left">YYHZAUT18747603</td>
+<td align="left">YYHZAUT18898606</td>
+<td align="right">20191018</td>
 </tr>
 </tbody>
 </table>
 <ul>
 <li>多列系谱格式:</li>
 </ul>
-<pre class="r"><code>test=pedigree_result$pedigree_tree
-knitr::kable(head(test[30000:30005,c(1:3,4,6,8)]))</code></pre>
 <table style="width:100%;">
 <colgroup>
 <col width="16%" />
@@ -1021,76 +1031,76 @@ knitr::kable(head(test[30000:30005,c(1:3,4,6,8)]))</code></pre>
 </tr>
 </tbody>
 </table>
-<p>需要注意的是，当系谱为多列时，系谱的列名需要标注为特殊形式，如SireSire:父亲的父亲,SirSireSire:父亲的父亲的父亲</p>
-<p>系谱数据中缺失值可以设置为: NA或0。</p>
+<p><strong>Note</strong>:需要注意的是，当系谱为多列时，系谱的列名需要标注为特殊形式,e.g. SireSire:父亲的父亲, SirSireSire:父亲的父亲的父亲</p>
+<p>系谱数据中缺失值可以设置为: <strong>NA或0</strong>。</p>
 <p>同样的，为了便于用户操作，用户还可以直接提供本地系谱数据的路径和名称</p>
 <ul>
 <li><strong>参数2：input_pedigree_path</strong></li>
 </ul>
-<p>本地系谱数据的路径。character类型</p>
+<p>本地系谱数据的路径,<code>character</code>类型。</p>
 <ul>
 <li><strong>参数3：input_pedigree_name</strong></li>
 </ul>
-<p>本地系谱数据的名称。character类型</p>
+<p>本地系谱数据的名称，<code>character</code>类型。</p>
 <ul>
 <li><strong>参数4：pedigree_format_conversion</strong></li>
 </ul>
-<p>是否将提供的多列系谱转换到3列。logical类型。如果用户提供的系谱数据包含多列，那么用户必须设置<code>pedigree_format_conversion=TRUE</code></p>
+<p>是否将提供的多列系谱转换到3列，logical类型。如果用户提供的系谱数据包含多列，那么用户必须设置<code>pedigree_format_conversion=TRUE</code> 。</p>
 <ul>
 <li><strong>参数5：output_pedigree_type</strong></li>
 </ul>
-<p>系谱输出的格式。character vector类型。可选格式包括: BLUPF90, DMU 及 Normal(未重命名)</p>
+<p>系谱输出的格式，<code>character</code>类型。可选格式包括: BLUPF90, DMU 及 Normal(未重命名)。</p>
 <ul>
 <li><strong>参数6：output_pedigree_path</strong></li>
 </ul>
-<p>系谱输出到本地的路径。character类型。</p>
+<p>系谱输出到本地的路径，<code>character</code>类型。</p>
 <ul>
 <li><strong>参数7：output_pedigree_name</strong></li>
 </ul>
-<p>系谱输出到本地的名称</p>
+<p>系谱输出到本地的名称，<code>character</code>类型。</p>
 </div>
 <div id="其他参数" class="section level3">
 <h3>💨其他参数</h3>
 <ul>
 <li><strong>参数8：dup_error_check</strong></li>
 </ul>
-<p>检查相同个体的父母却不相同的错误。logic类型。默认为TRUE</p>
+<p>检查相同个体的父母却不相同的错误，<code>logical</code>类型，默认为TRUE。</p>
 <ul>
 <li><strong>参数9：sex_error_check</strong></li>
 </ul>
-<p>检查个体同时出现在父亲列和母亲列的错误。logic类型。默认为TRUE</p>
+<p>检查个体同时出现在父亲列和母亲列的错误，<code>logical</code>类型，默认为TRUE。</p>
 <ul>
 <li><strong>参数10：breed_error_check</strong></li>
 </ul>
-<p>检查个体品种与父母品种不同的错误。logic类型。默认为FALSE。</p>
+<p>检查个体品种与父母品种不同的错误，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
 <li><strong>参数11：birth_date_error_check</strong></li>
 </ul>
-<p>检查个体出生日期早于父母的错误。logic类型。默认为FALSE</p>
+<p>检查个体出生日期早于父母的错误，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
 <li><strong>参数12：trace_id</strong></li>
 </ul>
-<p>追溯系谱记录的个体号。character vector类型。默认为<code>NULL</code>(追溯系谱中所有的个体)</p>
+<p>追溯系谱记录的个体号，<code>character</code>类型，默认为<code>NULL</code>(追溯系谱中所有的个体)。</p>
 <ul>
 <li><strong>参数13：trace_offspring</strong></li>
 </ul>
-<p>是否追溯这子代。logical类型。默认为FALSE</p>
+<p>是否追溯子代，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
 <li><strong>参数14：trace_generation</strong></li>
 </ul>
-<p>追溯的代数。numeric类型。默认为5。</p>
+<p>追溯的代数，<code>numeric</code>类型，默认为5。</p>
 <ul>
 <li><strong>参数15：trace_birth_date</strong></li>
 </ul>
-<p>追溯出生日期晚于指定日期的个体。character vector类型。</p>
+<p>追溯出生日期晚于指定日期的个体，<code>character</code>类型。</p>
 <ul>
 <li><strong>参数16：output_pedigree_tree</strong></li>
 </ul>
-<p>是否输出系谱树。logical类型。默认为FALSE。</p>
+<p>是否输出系谱树，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
 <li><strong>参数17：pedigree_tree_depth</strong></li>
 </ul>
-<p>系谱树的深度(包含的代数)。numeric类型。默认为3。</p>
+<p>系谱树的深度(系谱代数)，<code>numeric</code>类型，默认为3。</p>
 </div>
 
     </div>
@@ -1219,7 +1229,7 @@ knitr::kable(head(test[30000:30005,c(1:3,4,6,8)]))</code></pre>
     <div class="media-body">
       <h5 class="card-title">Mei Quanshun</h5>
       <h6 class="card-subtitle">PhD student of animal breeding</h6>
-      <p class="card-text">My research interests include genomic selection and machine learing in animal breeding.</p>
+      <p class="card-text">My research interests include genomic selection and machine learning in animal breeding.</p>
       <ul class="network-icon" aria-hidden="true">
   
     

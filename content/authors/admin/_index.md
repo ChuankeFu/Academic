@@ -1,5 +1,5 @@
 ---
-bio: My research interests include genomic selection and machine learing in animal breeding.
+bio: My research interests include genomic selection and machine learning in animal breeding.
 design:
   spacing:
     # Customize the section spacing. Order is top, right, bottom, left.

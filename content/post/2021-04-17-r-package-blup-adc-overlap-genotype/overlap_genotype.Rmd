@@ -26,7 +26,7 @@ knitr::opts_chunk$set(collapse = TRUE)
 
 与之前类似，我们还是用一个小例子来简单的看下该函数的用法
 
-```{r overlap}
+``` {.R}
 library(blupADC)
 data_hmp=data.table::fread("D:/test_code/BLUP_ADC_code/test_data/data_hmp.txt",data.table=F)
 overlap_result=Calculate_genotype_overlap(input_data_hmp=data_hmp)
@@ -36,15 +36,14 @@ overlap_result=Calculate_genotype_overlap(input_data_hmp=data_hmp)
 
 -   **参数1：selected_snps**
 
-进行重复性检测时，随机抽样的SNP的数目。numeric 类型。默认为1000。
+进行重复性检测时随机抽样的SNP的数目，`numeric` 类型，默认为1000。
 
 -   **参数2：overlap_threshold**
 
-判断基因型重复的阈值。numeric 类型。默认为0.95。
+判断基因型重复的阈值，`numeric` 类型，默认为0.95。
 
 当个体间的基因型overlap比例超过该阈值时，基因型就会被判定为重复的基因型。
 
 该函数中的其他参数均和`genotype_data_format_conversion`函数中的参数一致(基因型数据的输入与输出)，具体大家可参阅之前的介绍:
 
-具体大家可参阅之前的介绍:
-[R package:blupADC- 使用说明1](https://qsmei.netlify.app/post/blupadc/)。
+具体大家可参阅之前的介绍: [R package:blupADC- 使用说明1](https://qsmei.netlify.app/post/blupadc/)。

@@ -24,7 +24,7 @@ knitr::opts_chunk$set(collapse = TRUE)
 
 🦄大家好,这一节主要给大家讲述的是如何使用`blupADC`中的函数来进行系谱数据处理。`blupADC`提供的`trace_pedigree`函数，可以帮助我们非常方便的对系谱数据进行多种处理:包括系谱重命名、系谱追溯及系谱纠错等。
 
-同样的，我们还是用一个小例子来简单的看下该函数的用法
+💖同样的，我们还是用一个小例子来简单的看下该函数的用法
 
 ```{r ped}
 library(blupADC)
@@ -41,13 +41,13 @@ str(pedigree_result)
 
 可以很明显的看到,输出结果包括以下几个部分:
 
--   **ped:** 经过处理后的原始系谱数据，未进行重命名
+-   **ped:** 经过处理后(纠错、追溯等)的原始系谱数据且未进行重命名
 
--   **rename_ped:** 经过处理且重命名的系谱数据,第1列为原始系谱ID,第2列为个体在系谱中的代数，第3-5列为重命名后的系谱数据
+-   **rename_ped:** 经过处理(纠错、追溯等)且重命名的系谱数据。第1列为原始系谱ID,第2列为个体在系谱中的代数，第3-5列为重命名后的系谱数据
 
--   **pedigree_tree:**系谱个体的系谱树矩阵，可以通过设置 full_generation指定系谱树矩阵包含的代数。默认不输出全系谱矩阵(节省时间)
+-   **pedigree_tree:**个体的系谱树矩阵。可以通过设置 pedigree_tree_depth指定系谱树包含的代数，默认不输出系谱树(节省时间)
 
--   **error_id_set:**系谱记录错误个体,根据错误的种类可以分为以下4个子集
+-   **error_id_set:**系谱记录错误个体数据集。根据错误的种类可以分为以下4个子集
 
 1.  error_duplicated_id:相同的个体，父母却不相同
 
@@ -63,97 +63,97 @@ str(pedigree_result)
 
 -   **参数1：input_pedigree**
 
-用户提供的系谱数据。data.frame或 matrix类型。
+用户提供的系谱数据，`data.frame`或 `matrix`类型。
 
 💌用户提供系谱数据需为以下几种格式中的一种，包括：
 
--    3列系谱格式:
+-   3列系谱格式:
 
-```{r ped2}
-knitr::kable(head(data_pedigree[,1:3]))
+```{r ped2,echo=FALSE}
+knitr::kable(head(data_pedigree[-5,1:3]))
 ```
 
 -   4列系谱格式:
 
-```{r ped3}
-knitr::kable(head(data_pedigree[,1:4]))
+```{r ped3,echo=FALSE}
+knitr::kable(head(data_pedigree[-5,1:4]))
 ```
 
 -   多列系谱格式:
 
-```{r ped4}
+```{r ped4,echo=FALSE}
 test=pedigree_result$pedigree_tree
 knitr::kable(head(test[30000:30005,c(1:3,4,6,8)]))
 ```
 
-需要注意的是，当系谱为多列时，系谱的列名需要标注为特殊形式，如SireSire:父亲的父亲,SirSireSire:父亲的父亲的父亲
+**Note**:需要注意的是，当系谱为多列时，系谱的列名需要标注为特殊形式,e.g. SireSire:父亲的父亲, SirSireSire:父亲的父亲的父亲
 
-系谱数据中缺失值可以设置为: NA或0。
+系谱数据中缺失值可以设置为: **NA或0**。
 
 同样的，为了便于用户操作，用户还可以直接提供本地系谱数据的路径和名称
 
 -   **参数2：input_pedigree_path**
 
-本地系谱数据的路径。character类型
+本地系谱数据的路径,`character`类型。
 
 -   **参数3：input_pedigree_name**
 
-本地系谱数据的名称。character类型
+本地系谱数据的名称，`character`类型。
 
 -   **参数4：pedigree_format_conversion**
 
-是否将提供的多列系谱转换到3列。logical类型。如果用户提供的系谱数据包含多列，那么用户必须设置`pedigree_format_conversion=TRUE`
+是否将提供的多列系谱转换到3列，logical类型。如果用户提供的系谱数据包含多列，那么用户必须设置`pedigree_format_conversion=TRUE` 。
 
 -   **参数5：output_pedigree_type**
 
-系谱输出的格式。character vector类型。可选格式包括: BLUPF90, DMU 及 Normal(未重命名)
+系谱输出的格式，`character`类型。可选格式包括: BLUPF90, DMU 及 Normal(未重命名)。
 
 -   **参数6：output_pedigree_path**
 
-系谱输出到本地的路径。character类型。
+系谱输出到本地的路径，`character`类型。
 
 -   **参数7：output_pedigree_name**
 
-系谱输出到本地的名称
+系谱输出到本地的名称，`character`类型。
 
 ### 💨其他参数
 
 -   **参数8：dup_error_check**
 
-检查相同个体的父母却不相同的错误。logic类型。默认为TRUE
+检查相同个体的父母却不相同的错误，`logical`类型，默认为TRUE。
 
 -   **参数9：sex_error_check**
 
-检查个体同时出现在父亲列和母亲列的错误。logic类型。默认为TRUE
+检查个体同时出现在父亲列和母亲列的错误，`logical`类型，默认为TRUE。
 
 -   **参数10：breed_error_check**
 
-检查个体品种与父母品种不同的错误。logic类型。默认为FALSE。
+检查个体品种与父母品种不同的错误，`logical`类型，默认为FALSE。
 
 -   **参数11：birth_date_error_check**
 
-检查个体出生日期早于父母的错误。logic类型。默认为FALSE
+检查个体出生日期早于父母的错误，`logical`类型，默认为FALSE。
 
 -   **参数12：trace_id**
 
-追溯系谱记录的个体号。character vector类型。默认为`NULL`(追溯系谱中所有的个体)
+追溯系谱记录的个体号，`character`类型，默认为`NULL`(追溯系谱中所有的个体)。
 
 -   **参数13：trace_offspring**
 
-是否追溯这子代。logical类型。默认为FALSE
+是否追溯子代，`logical`类型，默认为FALSE。
 
 -   **参数14：trace_generation**
 
-追溯的代数。numeric类型。默认为5。
+追溯的代数，`numeric`类型，默认为5。
 
 -   **参数15：trace_birth_date**
 
-追溯出生日期晚于指定日期的个体。character vector类型。
+追溯出生日期晚于指定日期的个体，`character`类型。
 
 -   **参数16：output_pedigree_tree**
 
-是否输出系谱树。logical类型。默认为FALSE。
+是否输出系谱树，`logical`类型，默认为FALSE。
 
 -   **参数17：pedigree_tree_depth**
 
-系谱树的深度(包含的代数)。numeric类型。默认为3。
+系谱树的深度(系谱代数)，`numeric`类型，默认为3。

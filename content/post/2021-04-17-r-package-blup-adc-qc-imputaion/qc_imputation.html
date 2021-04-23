@@ -39,67 +39,67 @@ genotype_data_QC_Imputation(
               output_data_name=&quot;YY_data&quot;,            #输出基因型文件的名称
               output_data_type=&quot;Plink&quot;               #输出基因型文件的格式
               )</code></pre>
-<p>通过上述代码，我们即可对本地的Hapmap格式的基因型数据进行质控和填充，并将其以Plink格式并保存到本地。</p>
-<p>进行质控和填充时，我们必须要事先提供基因型数据，这部分的参数与<code>genotype_data_format_conversion</code>函数中的参数用法一致。具体大家可参阅之前的介绍:
-<a href="https://qsmei.netlify.app/post/blupadc/">R package:blupADC- 使用说明1</a>。</p>
-<p>完成了基因型数据的提供后，我们可以通过以下几个参数来进行质控填充的相关分析：</p>
+<p>通过上述代码，我们即可对本地的<strong>Hapmap</strong>格式的基因型数据进行质控和填充，并将其以<strong>Plink</strong>格式并保存到本地。</p>
+<p>进行质控和填充时，我们必须要事先提供基因型数据，这部分的参数与<code>genotype_data_format_conversion</code>函数中的参数用法一致。具体大家可参阅之前的介绍: <a href="https://qsmei.netlify.app/post/blupadc/">R package:blupADC- 使用说明1</a>。</p>
+<p>完成了基因型数据的提供后，我们可以通过以下参数进行质控填充的相关分析。</p>
+<div id="主要参数" class="section level3">
+<h3>💙主要参数</h3>
 <ul>
-<li><strong>参数1：data_analysis_method</strong></li>
-</ul>
-<p>指定基因型数据的处理方法，字符串向量，可选方法包括：</p>
-<ol style="list-style-type: decimal">
+<li><p><strong>参数1：data_analysis_method</strong></p>
+<p>指定基因型数据的处理方法，<code>character</code>类型。可选方法包括：</p>
+<ul>
 <li><p>“QC” :进行质控</p></li>
 <li><p>“Imputation” :进行填充</p></li>
 <li><p>“QC_Imputation” :先质控，后填充</p></li>
-</ol>
-<ul>
-<li><strong>参数2：plink_software_path</strong></li>
+</ul></li>
+<li><p><strong>参数2：plink_software_path</strong></p></li>
 </ul>
-<p>Plink软件的路径</p>
+<p>Plink软件的路径,<code>character</code>类型。</p>
 <ul>
 <li><strong>参数3：plink_software_name</strong></li>
 </ul>
-<p>Plink软件的名称</p>
+<p>Plink软件的名称,<code>character</code>类型。</p>
 <ul>
 <li><strong>参数4：beagle_software_path</strong></li>
 </ul>
-<p>Beagle软件的路径</p>
+<p>Beagle软件的路径,<code>character</code>类型。</p>
 <ul>
 <li><strong>参数5：beagle_software_name</strong></li>
 </ul>
-<p>Beagle软件的名称</p>
-<div id="其他参数" class="section level4">
-<h4>其他参数</h4>
+<p>Beagle软件的名称,<code>character</code>类型。</p>
+</div>
+<div id="其他参数" class="section level3">
+<h3>💜其他参数</h3>
 <ul>
 <li><strong>参数6：qc_snp_rate</strong></li>
 </ul>
-<p>使用Plink进行质控时，SNP call rate 的阈值。默认为0.1</p>
+<p>使用Plink进行质控时，SNP call rate 的阈值，<code>numeric</code>类型，默认为0.1。</p>
 <ul>
 <li><strong>参数6：qc_ind_rate</strong></li>
 </ul>
-<p>使用Plink进行质控时，IND call rate 的阈值。默认为0.1</p>
+<p>使用Plink进行质控时，IND call rate 的阈值，<code>numeric</code>类型，默认为0.1。</p>
 <ul>
 <li><strong>参数6：qc_maf</strong></li>
 </ul>
-<p>使用Plink进行质控时，Maf 的阈值。默认为0.05</p>
+<p>使用Plink进行质控时，MAF 的阈值，<code>numeric</code>类型，默认为0.05。</p>
 <ul>
 <li><strong>参数6：qc_hwe</strong></li>
 </ul>
-<p>使用Plink进行质控时，哈代温伯格平衡的阈值。默认为1e-6</p>
+<p>使用Plink进行质控时，哈代温伯格平衡的阈值,<code>numeric</code>类型，默认为1e-6。</p>
 <ul>
 <li><strong>参数6：beagle_ref_data_path</strong></li>
 </ul>
-<p>使用beagle进行填充时，提供的reference data的路径</p>
+<p>使用beagle进行填充时，提供的reference data的路径，<code>character</code>类型。</p>
 <ul>
 <li><strong>参数7：beagle_ref_data_name</strong></li>
 </ul>
-<p>使用beagle进行填充时，提供的reference data的名称</p>
+<p>使用beagle进行填充时，提供的reference data的名称，<code>character</code>类型。</p>
 <ul>
 <li><strong>参数8：beagle_ped_path</strong></li>
 </ul>
-<p>使用beagle进行填充时，提供的系谱数据的路径</p>
+<p>使用beagle进行填充时，提供的系谱数据的路径，<code>character</code>类型。</p>
 <ul>
 <li><strong>参数9：beagle_ped_name</strong></li>
 </ul>
-<p>使用beagle进行填充时，提供的系谱数据的名称</p>
+<p>使用beagle进行填充时，提供的系谱数据的名称，<code>character</code>类型。</p>
 </div>

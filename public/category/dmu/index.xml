@@ -21,141 +21,145 @@
 &lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;    knitr::opts_chunk$set(collapse = TRUE)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;🤠在讲述完各种各样的数据预处理方法后，我们正式进入到育种数据的分析层面。在目前的动植物育种领域，主要的育种软件包括但不限于以下两种：&lt;strong&gt;DMU&lt;/strong&gt;和&lt;strong&gt;BLUPf90&lt;/strong&gt;。这两款软件均是于上世纪80-90年代开发的，并且一直处于维护中。截至目前，两款软件的引用次数均已接近千次(实际可能更多), 这也足见这两款软件的认可度。&lt;/p&gt;
 &lt;p&gt;但是，这两款软件均存在一个共同的缺点，就是使用起来较为麻烦(需要提供准备好的参数文件)。笔者当时学习参数文件的配置时，前前后后花费了近一个月的时间，足以见这两款软件的不友好性🥶。&lt;/p&gt;
 &lt;p&gt;为此，我们在R中编写了相应的函数，使得用户可以轻松的完成两款软件参数文件的配置及对应的数据分析。本章我们主要讲述如何通过&lt;code&gt;BLUP_ADC&lt;/code&gt;中的&lt;code&gt;run_DMU&lt;/code&gt;函数，在R中调用&lt;strong&gt;DMU&lt;/strong&gt;软件并完成数据分析。在下一章，我们将会讲述如何在R中调用&lt;strong&gt;BLUPf90&lt;/strong&gt;软件，并完成数相应的据分析。&lt;/p&gt;
 &lt;p&gt;同样的，我们还是用一个简单的例子看看该函数的用法:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#source(&amp;quot;D:/test_code/BLUP_ADC_code/run_dmu.txt&amp;quot;)
-#source(&amp;quot;D:/test_code/BLUP_ADC_code/cal_dmu_corrected_phe.txt&amp;quot;)
-#source(&amp;quot;D:/test_code/BLUP_ADC_code/generate_dmu.DIR.txt&amp;quot;)
-#run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;, &amp;quot;Trait1&amp;quot;#,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),              #表型数据的列名
-#        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                          # #目标性状名称
-#        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),  ##固定效应名称
-#        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),            ##随机效应名称
-#        covariate_effect_name=list(c(&amp;quot;Age&amp;quot;)),                 ##协变量名称
-#        phe_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,
-#        phe_name=&amp;quot;dmu_phe.txt&amp;quot;,
-#        analysis_method=&amp;quot;PBLUP_A&amp;quot;,
-#        integer_n=4,
-#        dmu_module=&amp;quot;dmuai&amp;quot;,
-#        relationship_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;, ##系谱或基因型文件的路径
-#           relationship_name=&amp;quot;Dmu_ped.txt&amp;quot;,
-#        output_result_path=&amp;quot;C:/Users/26564/Desktop&amp;quot;,
-#           output_ebv_path=&amp;quot;C:/Users/26564/Desktop&amp;quot;,
-#           output_ebv_name=&amp;quot;test&amp;quot;,
-#        DMU_software_path=&amp;quot;D:/QGG-DMUv6-2/R5.2/bin&amp;quot;
-#        )
-#&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;此外，我们还可以在上面代码的基础上稍作修改，就能够非常方便的完成多性状模型的运算，如下：&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#source(&amp;quot;D:/test_code/BLUP_ADC_code/run_dmu.txt&amp;quot;)
-#source(&amp;quot;D:/test_code/BLUP_ADC_code/cal_dmu_corrected_phe.txt&amp;quot;)
-#source(&amp;quot;D:/test_code/BLUP_ADC_code/generate_dmu.DIR.txt&amp;quot;)
-#run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;, &amp;quot;Trait1&amp;quot;#,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),              #表型数据的列名
-#        target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,                          # #目标性状名称
-#        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Sex&amp;quot;)),  ##固定效应名称
-#        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;)),            ##随机效应名称
-#        covariate_effect_name=list(c(&amp;quot;Age&amp;quot;),NULL),                 ##协变量名称
-#        phe_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,
-#        phe_name=&amp;quot;dmu_phe.txt&amp;quot;,
-#        analysis_method=&amp;quot;PBLUP_A&amp;quot;,
-#        integer_n=4,
-#        dmu_module=&amp;quot;dmuai&amp;quot;,
-#        relationship_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;, ##系谱或基因型文件的路径
-#           relationship_name=&amp;quot;Dmu_ped.txt&amp;quot;,
-#        output_result_path=&amp;quot;C:/Users/26564/Desktop&amp;quot;,
-#           output_ebv_path=&amp;quot;C:/Users/26564/Desktop&amp;quot;,
-#           output_ebv_name=&amp;quot;test&amp;quot;,
-#        DMU_software_path=&amp;quot;D:/QGG-DMUv6-2/R5.2/bin&amp;quot;
-#        )
-#&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;接下来，我们将对run_DMU函数中的参数一一进行讲解：&lt;/p&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+run_DMU(        
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),  #表型数据的列名
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                               #目标性状名称
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),         #固定效应名称
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),                   #随机效应名称
+        covariate_effect_name=list(c(&amp;quot;Age&amp;quot;)),                        #协变量名称
+        phe_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,           #表型数据路径
+        phe_name=&amp;quot;dmu_phe.txt&amp;quot;,                                      #表型数据名称
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                                    #分析方法
+        relationship_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,  #亲缘关系文件路径
+        relationship_name=&amp;quot;Blupf90_ped.txt&amp;quot;,                         #亲缘关系文件名称
+        integer_n=4,                                                 #整型变量的数目 
+        dmu_module=&amp;quot;dmuai&amp;quot;,                                          #dmu分析时选用的模块  
+        output_result_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,         #DMU结果保存路径
+        output_ebv_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,            #EBV结果保存的路径
+        output_ebv_name=&amp;quot;test&amp;quot;,                                      #EBV结果保存的文件名
+        DMU_software_path=&amp;quot;D:/QGG-DMUv6-2/R5.2/bin&amp;quot;                  #DMU软件的路径
+        )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;细心的同学应该能发现，上面我们完成的分析是单性状模型运算(&lt;strong&gt;只包括了一个目标性状&lt;/strong&gt;)。而在实际育种分析中，多性状模型也是非常常见。在上面代码的基础上稍作修改，我们就能够非常方便的完成多性状模型的运算，如下：&lt;/p&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+run_DMU(        
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),  #表型数据的列名
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;),                              #目标性状名称
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Sex&amp;quot;)),        #固定效应名称
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;)),                   #随机效应名称
+        covariate_effect_name=list(c(&amp;quot;Age&amp;quot;),NULL),                       #协变量名称
+        phe_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,           #表型数据路径
+        phe_name=&amp;quot;dmu_phe.txt&amp;quot;,                                      #表型数据名称
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                                    #分析方法
+        relationship_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,  #亲缘关系文件路径
+        relationship_name=&amp;quot;Blupf90_ped.txt&amp;quot;,                         #亲缘关系文件名称
+        integer_n=4,                                                 #整型变量的数目 
+        dmu_module=&amp;quot;dmuai&amp;quot;,                                          #dmu分析时选用的模块  
+        output_result_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,         #DMU结果保存路径
+        output_ebv_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,            #EBV结果保存的路径
+        output_ebv_name=&amp;quot;test&amp;quot;,                                      #EBV结果保存的文件名
+        DMU_software_path=&amp;quot;D:/QGG-DMUv6-2/R5.2/bin&amp;quot;                  #DMU软件的路径
+        )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接下来，我们将对run_DMU函数中的参数一一进行讲解。&lt;/p&gt;
+&lt;div id=&#34;主要参数&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;🧑‍🚀主要参数&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;参数1：&lt;code&gt;phe_path&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;本地表型数据文件的路径。字符串格式。&lt;/p&gt;
+&lt;p&gt;本地表型数据文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数2：&lt;code&gt;phe_name&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;本地表型数据文件的名称。字符串格式。&lt;/p&gt;
+&lt;p&gt;本地表型数据文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数3：&lt;code&gt;phe_col_names&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;表型数据的列名。字符串向量格式。&lt;/p&gt;
+&lt;p&gt;表型数据的列名，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数4：&lt;code&gt;integer_n&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;表型数据中，整型变量的数目。数字格式。&lt;/p&gt;
+&lt;p&gt;整型变量的数目，&lt;code&gt;numeric&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数5：&lt;code&gt;genetic_effect_name&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;遗传效应的名称(一般为个体号)。字符串格式。&lt;/p&gt;
+&lt;p&gt;遗传效应的名称(一般为个体号)，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数6：&lt;code&gt;target_trait_name&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;目标性状的名称。字符串向量格式。通过添加多个性状的名称，我们即可完成多性状模型的分析，e.g. &lt;code&gt;target_trait_name=c(&#34;Trait1&#34;,&#34;Trait2&#34;)&lt;/code&gt; 即可完成 &lt;code&gt;Trait1&lt;/code&gt; 和 &lt;code&gt;Trait2&lt;/code&gt;的双性状模型&lt;/p&gt;
+&lt;p&gt;目标性状的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;通过添加多个性状的名称，我们即可完成多性状模型的分析，e.g. &lt;code&gt;target_trait_name=c(&#34;Trait1&#34;,&#34;Trait2&#34;)&lt;/code&gt; 即可完成 &lt;code&gt;Trait1&lt;/code&gt; 和 &lt;code&gt;Trait2&lt;/code&gt;的双性状模型&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数7：&lt;code&gt;fixed_effect_name&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;目标性状的固定效应名称。列表格式。针对多性状模型，每个性状的固定效应名称对应列表中的具体位置的元素，e.g. &lt;code&gt;fixed_effect_name=list(c(&#34;Sex&#34;,&#34;Herd_Year_Season&#34;),c(&#34;Sex&#34;))&lt;/code&gt; 其中，&lt;code&gt;c(&#34;Sex&#34;,&#34;Herd_Year_Season&#34;)&lt;/code&gt; 是第一个性状的固定效应名称，&lt;code&gt;c(&#34;Sex&#34;)&lt;/code&gt;是第二个性状的固定效应名称&lt;/p&gt;
+&lt;p&gt;目标性状的固定效应名称，&lt;code&gt;list&lt;/code&gt;类型。在多性状模型中，&lt;code&gt;fixed_effect_name&lt;/code&gt;为每个性状的固定效应名称向量组成的列表结构，性状的顺序需与&lt;code&gt;target_trait_name&lt;/code&gt;一一对应。&lt;/p&gt;
+&lt;p&gt;e.g. 第一个性状的固定效应名称为： &lt;code&gt;c(&#34;Sex&#34;,&#34;Herd_Year_Season&#34;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;第二个性状的固定效应名称为：&lt;code&gt;c(&#34;Sex&#34;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;那么&lt;code&gt;fixed_effect_name=list(c(&#34;Sex&#34;,&#34;Herd_Year_Season&#34;),c(&#34;Sex&#34;))&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数8：&lt;code&gt;random_effect_name&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;目标性状的随机效应名称。列表格式。针对多性状模型，每个性状的随机效应名称对应列表中的具体位置的元素，e.g. &lt;code&gt;fixed_effect_name=list(c(&#34;Id&#34;,&#34;Litter&#34;),c(&#34;Id&#34;))&lt;/code&gt; 。 其中，&lt;code&gt;c(&#34;Id&#34;,&#34;Litter&#34;)&lt;/code&gt; 是第一个性状的随机效应名称，&lt;code&gt;c(&#34;Sex&#34;)&lt;/code&gt; 是第二个性状的随机效应名称&lt;/p&gt;
+&lt;p&gt;目标性状的随机效应名称，&lt;code&gt;list&lt;/code&gt;类型。在多性状模型中，&lt;code&gt;random_effect_name&lt;/code&gt;为每个性状的随机效应名称向量组成的列表结构，性状的顺序需与&lt;code&gt;target_trait_name&lt;/code&gt;一一对应。&lt;/p&gt;
+&lt;p&gt;e.g. 第一个性状的随机效应名称为： &lt;code&gt;c(&#34;Id&#34;,&#34;Litter&#34;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;第二个性状的随机效应名称为：&lt;code&gt;c(&#34;Id&#34;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;那么&lt;code&gt;random_effect_name=list(c(&#34;Id&#34;,&#34;Litter&#34;),c(&#34;Id&#34;))&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数9：&lt;code&gt;covariate_effect_name&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;目标性状的协变量效应名称。列表格式。针对多性状模型，每个性状的协变量效应名称对应列表中的具体位置的元素，e.g. &lt;code&gt;fixed_effect_name=list(c(&#34;Age&#34;),NULL)&lt;/code&gt; 。 其中，&lt;code&gt;c(&#34;Age&#34;)&lt;/code&gt;是第一个性状的协变量效应名称，&lt;code&gt;NULL&lt;/code&gt; 是第二个性状的协变量效应名称(&lt;code&gt;NULL&lt;/code&gt;表示的是该性状无协变量效应)&lt;/p&gt;
+&lt;p&gt;目标性状的协变量效应名称，&lt;code&gt;list&lt;/code&gt;类型。在多性状模型中，&lt;code&gt;random_effect_name&lt;/code&gt;为每个性状的协变量效应名称向量组成的列表结构，性状的顺序需与&lt;code&gt;target_trait_name&lt;/code&gt;一一对应。&lt;/p&gt;
+&lt;p&gt;e.g. 第一个性状的协变量效应名称为： &lt;code&gt;c(&#34;Age&#34;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;第二个性状的协变量效应名称为：&lt;code&gt;NULL&lt;/code&gt; (&lt;strong&gt;意味着无协变量&lt;/strong&gt;)&lt;/p&gt;
+&lt;p&gt;那么&lt;code&gt;covariate_effect_name=list(c(&#34;Age&#34;),NULL)&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数10：&lt;code&gt;analysis_model&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;遗传评估的分析模型。字符串格式。可选包括模型：&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&#34;PBLUP_A&#34;&lt;/code&gt; : 系谱-加性效应模型&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&#34;GBLUP_A&#34;&lt;/code&gt; :基因组-加性效应模型&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&#34;GBLUP_AD&#34;&lt;/code&gt; :基因组-加性-显性效应模型&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&#34;SSBLUP_A&#34;&lt;/code&gt; :一步法加性效应模型&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&#34;User_define&#34;&lt;/code&gt;: 用户自定义模型&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;&lt;p&gt;参数10：&lt;code&gt;analysis_model&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;遗传评估的分析模型，&lt;code&gt;character&lt;/code&gt;类型。可选模型包括：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数11：&lt;code&gt;dmu_module&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;DMU分析时使用的模块。字符串格式。可选模块包括：&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;code&gt;&#34;PBLUP_A&#34;&lt;/code&gt; : 系谱-加性效应模型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#34;GBLUP_A&#34;&lt;/code&gt; :基因组-加性效应模型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#34;GBLUP_AD&#34;&lt;/code&gt; :基因组-加性-显性效应模型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#34;SSBLUP_A&#34;&lt;/code&gt; :一步法加性效应模型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#34;User_define&#34;&lt;/code&gt;: 用户自定义模型&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;参数11：&lt;code&gt;dmu_module&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;DMU分析时使用的模块，&lt;code&gt;character&lt;/code&gt;类型。可选模块包括：&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;&#34;dmuai&#34;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;&#34;dmu4&#34;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;&#34;dmu5&#34;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;参数12：&lt;code&gt;DMU_software_path&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;参数12：&lt;code&gt;DMU_software_path&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;DMU软件在本地的路径。字符串格式。&lt;/p&gt;
+&lt;p&gt;DMU软件在本地的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数13：&lt;code&gt;relationship_path&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;提供的亲缘关系文件的路径。字符串格式&lt;/p&gt;
+&lt;p&gt;提供的亲缘关系文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数14：&lt;code&gt;relationship_name&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;提供的亲缘关系文件的名称。字符串向量格式。针对不同的遗传评估分析模型，我们需要提供不同类型的亲缘关系文件。针对 “PBLUP_A”模型，我们需要提供系谱文件,e.g. &lt;code&gt;relationship_name=&#34;pedigree.txt&#34;&lt;/code&gt; ；针对&lt;code&gt;&#34;GBLUP_A&#34;&lt;/code&gt; 或 &lt;code&gt;&#34;GBLUP_AD&#34;&lt;/code&gt;模型，我们需要提供基因组亲缘关系矩阵的逆矩阵文件, e.g. &lt;code&gt;relationship_name=c(&#34;G_A_inv_matrix.txt&#34;,&#34;G_D_inv_matrix.txt&#34;)&lt;/code&gt;；针对 &lt;code&gt;&#34;SSBLUP_A&#34;&lt;/code&gt;模型, 我们需要同时提供系谱文件及基因组亲缘关系矩阵的文件, e.g. &lt;code&gt;relationship_name=c(&#34;pedigree.txt&#34;,&#34;G_A_matrix.txt&#34;)&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;提供的亲缘关系文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;针对不同的遗传评估分析模型，我们需要提供不同类型的亲缘关系文件。针对 “PBLUP_A”模型，我们需要提供系谱文件,e.g. &lt;code&gt;relationship_name=&#34;pedigree.txt&#34;&lt;/code&gt; ；针对&lt;code&gt;&#34;GBLUP_A&#34;&lt;/code&gt; 或 &lt;code&gt;&#34;GBLUP_AD&#34;&lt;/code&gt;模型，我们需要提供基因组亲缘关系矩阵的逆矩阵文件, e.g. &lt;code&gt;relationship_name=c(&#34;G_A_inv_matrix.txt&#34;,&#34;G_D_inv_matrix.txt&#34;)&lt;/code&gt;；针对 &lt;code&gt;&#34;SSBLUP_A&#34;&lt;/code&gt;模型, 我们需要同时提供系谱文件及基因组亲缘关系矩阵的文件, e.g. &lt;code&gt;relationship_name=c(&#34;pedigree.txt&#34;,&#34;G_A_matrix.txt&#34;)&lt;/code&gt; 。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数15：&lt;code&gt;output_result_path&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;DMU运行结果的保存路径。字符串格式。&lt;/p&gt;
+&lt;p&gt;DMU运行结果的保存路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数16：&lt;code&gt;output_ebv_path&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;输出的育种值、残差及校正表型文件的保存路径。字符串格式。&lt;/p&gt;
+&lt;p&gt;输出的育种值、残差及校正表型文件的保存路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数17：&lt;code&gt;output_ebv_name&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;输出的育种值、残差及校正表型文件的名称。字符串格式。&lt;/p&gt;
+&lt;p&gt;输出的育种值、残差及校正表型文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;div id=&#34;其他参数&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;&lt;strong&gt;其他参数&lt;/strong&gt;&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;参数18：&lt;code&gt;provided_effect_file_path&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;性状效应记录文件的路径。字符串格式。为了方便用户输入固定效应、随机效应及协变量效应，用户可以在本地直接提供相应的文件，格式如下所示：&lt;/p&gt;
+&lt;p&gt;性状效应记录文件的路径，&lt;code&gt;character&lt;/code&gt;类型。为了方便用户输入固定效应、随机效应及协变量效应，用户可以在本地直接提供相应的文件，格式如下所示：&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr class=&#34;header&#34;&gt;
@@ -199,63 +203,64 @@
 &lt;ul&gt;
 &lt;li&gt;参数19：&lt;code&gt;provided_effect_file_name&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;性状效应记录文件的名称。字符串格式。&lt;/p&gt;
+&lt;p&gt;性状效应记录文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数20：&lt;code&gt;provided_DIR_file_path&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户自己提供的DIR文件的路径。字符串格式&lt;/p&gt;
+&lt;p&gt;用户自己提供的DIR文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数21：&lt;code&gt;provided_DIR_file_name&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户自己提供的DIR文件的名称。字符串格式&lt;/p&gt;
+&lt;p&gt;用户自己提供的DIR文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数22：&lt;code&gt;included_permanent_effect&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否进行永久环境效应分析。逻辑值格式。默认为FASLE。&lt;/p&gt;
+&lt;p&gt;是否进行永久环境效应分析，&lt;code&gt;logical&lt;/code&gt;类型，默认为FASLE。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数23：&lt;code&gt;dmu_algorithm_code&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;DMU模块内的算法代码。数字格式。&lt;/p&gt;
+&lt;p&gt;DMU模块内的算法代码，&lt;code&gt;numeric&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数24：&lt;code&gt;provided_prior_file_path&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的方差组分-PRIOR文件的路径。字符串格式。&lt;/p&gt;
+&lt;p&gt;用户提供的方差组分-PRIOR文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数25：&lt;code&gt;provided_prior_file_name&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的方差组分-PRIOR文件的名称。字符串格式。&lt;/p&gt;
+&lt;p&gt;用户提供的方差组分-PRIOR文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数26：&lt;code&gt;missing_value&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;表型数据的缺失值。数字格式。默认为 -9999。&lt;/p&gt;
+&lt;p&gt;表型数据的缺失值，&lt;code&gt;numeric&lt;/code&gt;类型，默认为 -9999。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数27：&lt;code&gt;iteration_criteria&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;方差组分迭代收敛的标准。数字格式。默认为 1.0e-7。&lt;/p&gt;
+&lt;p&gt;方差组分迭代收敛的标准，&lt;code&gt;numeric&lt;/code&gt;类型，默认为 1.0e-7。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数28：&lt;code&gt;genetic_effect_number&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;SOL文件中，遗传效应所代表的数字。数字格式。默认为4。&lt;/p&gt;
+&lt;p&gt;SOL文件中，遗传效应所代表的数字，&lt;code&gt;numeric&lt;/code&gt;类型，默认为4。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数29：&lt;code&gt;residual_cov_trait&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;残差协方差约束为0的性状。列表格式。e.g. 将Trait1和Trait2的残差协方差约束为0，&lt;code&gt;residual_cov_trait=list(c(&#34;Trait1&#34;,&#34;Trait2&#34;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;残差协方差约束为0的性状，&lt;code&gt;list&lt;/code&gt;类型。e.g. 将Trait1和Trait2的残差协方差约束为0，&lt;code&gt;residual_cov_trait=list(c(&#34;Trait1&#34;,&#34;Trait2&#34;))&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数30：&lt;code&gt;selected_id&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;只输出这部分个体的育种值、残差及校正表型。字符串向量格式。&lt;/p&gt;
+&lt;p&gt;只输出这部分个体的育种值、残差及校正表型，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数31：&lt;code&gt;cal_debv&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否计算DEBV。逻辑值。默认为FALSE。&lt;/p&gt;
+&lt;p&gt;是否计算DEBV，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数32：&lt;code&gt;debv_pedigree_path&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;计算DEBV时，提供的系谱文件的路径。字符串向量格式。&lt;/p&gt;
+&lt;p&gt;计算DEBV时，提供的系谱文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;参数33：&lt;code&gt;debv_pedigree_name&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;计算DEBV时，提供的系谱文件的名称。字符串向量格式。&lt;/p&gt;
+&lt;p&gt;计算DEBV时，提供的系谱文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>
