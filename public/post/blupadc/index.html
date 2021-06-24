@@ -30,8 +30,10 @@
   
     
   
-  <meta name="description" content="基因型数据格式转换" />
+  <meta name="description" content="Convert genotype data format" />
 
+  
+    <link rel="alternate" hreflang="zh" href="/zh/post/blupadc/" />
   
   <link rel="alternate" hreflang="en-us" href="/post/blupadc/" />
 
@@ -291,8 +293,8 @@
   
   <meta property="og:site_name" content="QSmei-Academic" />
   <meta property="og:url" content="/post/blupadc/" />
-  <meta property="og:title" content="R package:blupADC- 使用说明1 | QSmei-Academic" />
-  <meta property="og:description" content="基因型数据格式转换" /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+  <meta property="og:title" content="R package:blupADC-Feature 1 | QSmei-Academic" />
+  <meta property="og:description" content="Convert genotype data format" /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
@@ -327,7 +329,7 @@
     "@type": "WebPage",
     "@id": "/post/blupadc/"
   },
-  "headline": "R package:blupADC- 使用说明1",
+  "headline": "R package:blupADC-Feature 1",
   
   "datePublished": "2021-04-14T00:00:00Z",
   "dateModified": "2021-04-14T14:59:41+08:00",
@@ -345,7 +347,7 @@
       "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "基因型数据格式转换"
+  "description": "Convert genotype data format"
 }
 </script>
 
@@ -361,11 +363,11 @@
 
 
 
-  <title>R package:blupADC- 使用说明1 | QSmei-Academic</title>
+  <title>R package:blupADC-Feature 1 | QSmei-Academic</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="be9f142a87fc7a7af445f745a992860f" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="4f210288e0cceb39efe6e82f500aca66" >
 
   
   
@@ -697,6 +699,22 @@
 
       
       
+      <li class="nav-item dropdown i18n-dropdown">
+        <a href="#" class="nav-link " data-toggle="dropdown"
+           aria-haspopup="true" aria-label="Languages">
+          <i class="fas fa-globe mr-1" aria-hidden="true"></i></a>
+        <div class="dropdown-menu">
+          <div class="dropdown-item dropdown-item-active">
+            <span>English</span>
+          </div>
+          
+          <a class="dropdown-item" href="/zh/post/blupadc/">
+            <span>中文 (简体)</span>
+          </a>
+          
+        </div>
+      </li>
+      
 
     </ul>
 
@@ -728,7 +746,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>R package:blupADC- 使用说明1</h1>
+  <h1>R package:blupADC-Feature 1</h1>
 
   
 
@@ -758,7 +776,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    2 min read
+    4 min read
   </span>
   
 
@@ -773,7 +791,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/category/%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/">格式转换</a></span>
+    <i class="fas fa-folder mr-1"></i><a href="/category/data-format/">Data format</a></span>
   
 
 </div>
@@ -793,182 +811,176 @@
 
     <div class="article-style">
       
-<script src="/post/blupadc/index.en_files/header-attrs/header-attrs.js"></script>
+<script src="/post/blupadc/index_files/header-attrs/header-attrs.js"></script>
 
-
-<p>🙀大家好,通过前一章节的学习，相信大家已经对<code>blupADC</code> 有了一个初步的了解了。从本节开始，我们将对<code>blupADC</code>中的几个重要的函数一一进行讲解。这一节主要给大家讲述的是如何使用<code>blupADC</code>中<code>genotype_data_format_conversion</code>函数来进行多种基因型格式数据的转换。</p>
-<div id="基因型数据格式转化" class="section level2">
-<h2>基因型数据格式转化</h2>
-<p>首先,我们以一个简单的小例子来看看函数的用法</p>
-<pre class="R"><code>library(blupADC)
-data_ped=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/data.ped&quot;,data.table = F)
-data_map=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/data.map&quot;,data.table = F)
-sum_data=genotype_data_format_conversion(
-         input_data_plink_ped=data_ped,  #用户输入的 plink-ped格式数据
-         input_data_plink_map=data_map,  #用户输入的 plink-map格式数据
-         output_data_type=c(&quot;Hapmap&quot;,&quot;Blupf90&quot;),#输出的基因型数据格式
-         return_result = TRUE,      #在R中返回结果
-         cpu_cores=1                #调用的cpu个数
-                  )</code></pre>
-<p>下面，我们将对<code>genotype_data_format_conversion</code> 中的参数一一进行讲解</p>
-<div id="主要参数" class="section level3">
-<h3>🤡主要参数</h3>
+<div id="TOC">
 <ul>
-<li><strong>参数1:input_data_plink_ped</strong></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#example">Example</a></li>
+<li><a href="#parameter">Parameter</a>
+<ul>
+<li><a href="#primary">🤡Primary</a></li>
+<li><a href="#secondary">💨Secondary</a></li>
+</ul></li>
 </ul>
-<p>用户提供的 Plink-ped格式的数据，<code>data.frame</code>类型。具体格式如下所示：</p>
+</div>
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p><code>genotype_data_format_conversion</code> is the basic function of package:<code>blupADC</code>. By applying <code>genotype_data_format_conversion</code> , we can convert multiple genotype data formats in an easy way, including Hapmap, Plink, Blupf90, Numeric and VCF.</p>
+<p><strong>👉 Note: For analyzing VCF format data, <code>blupADC</code> has encapsulated software Plink <code>version-1.9</code> and VCFtools <code>version-0.1.17</code>. If you want change this version, you could set the related parameters in the part of Advanced parameter.</strong></p>
+</div>
+<div id="example" class="section level2">
+<h2>Example</h2>
+<pre class="r"><code>library(blupADC)
+sum_data=genotype_data_format_conversion(
+         input_data_hmp=data_hmp,  #provided hapmap data object 
+         output_data_type=c(&quot;Plink&quot;,&quot;Blupf90&quot;,&quot;Numeric&quot;),# output data format
+         return_result = TRUE,      # return result 
+         cpu_cores=1                # number of cpu 
+         )</code></pre>
+<pre><code>## Start numeric(0,1,2) format conversion...... 
+## Complete Blupf90  format conversion 
+## Complete Plink Data Format Conversion</code></pre>
+</div>
+<div id="parameter" class="section level2">
+<h2>Parameter</h2>
+<div id="primary" class="section level3">
+<h3>🤡Primary</h3>
+<ul>
+<li><strong>1: input_data_plink_ped</strong></li>
+</ul>
+<p>User-provided ped format genotype data ，<code>data.frame</code> class。</p>
 <table>
-<thead>
-<tr class="header">
-<th align="left">V1</th>
-<th align="left">V2</th>
-<th align="right">V3</th>
-<th align="right">V4</th>
-<th align="right">V5</th>
-<th align="right">V6</th>
-<th align="left">V7</th>
-<th align="left">V8</th>
-<th align="left">V9</th>
-<th align="left">V10</th>
-</tr>
-</thead>
 <tbody>
 <tr class="odd">
-<td align="left">Ind1</td>
-<td align="left">Ind1</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="left">3098</td>
+<td align="left">3098</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
 <td align="left">C</td>
 <td align="left">C</td>
-<td align="left">T</td>
-<td align="left">T</td>
+<td align="left">G</td>
+<td align="left">G</td>
 </tr>
 <tr class="even">
-<td align="left">Ind2</td>
-<td align="left">Ind2</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="left">3498</td>
+<td align="left">3498</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">A</td>
+<td align="left">C</td>
+<td align="left">T</td>
+<td align="left">G</td>
+</tr>
+<tr class="odd">
+<td align="left">3297</td>
+<td align="left">3297</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">A</td>
+<td align="left">C</td>
+<td align="left">T</td>
+<td align="left">G</td>
+</tr>
+<tr class="even">
+<td align="left">2452</td>
+<td align="left">2452</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
 <td align="left">C</td>
 <td align="left">C</td>
 <td align="left">G</td>
 <td align="left">G</td>
 </tr>
 <tr class="odd">
-<td align="left">Ind3</td>
-<td align="left">Ind3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="left">4255</td>
+<td align="left">4255</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
 <td align="left">A</td>
 <td align="left">C</td>
 <td align="left">G</td>
 <td align="left">G</td>
 </tr>
 <tr class="even">
-<td align="left">Ind4</td>
-<td align="left">Ind4</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="left">2946</td>
+<td align="left">2946</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
 <td align="left">C</td>
 <td align="left">C</td>
-<td align="left">G</td>
 <td align="left">T</td>
-</tr>
-<tr class="odd">
-<td align="left">Ind5</td>
-<td align="left">Ind5</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">C</td>
-<td align="left">C</td>
-<td align="left">G</td>
-<td align="left">T</td>
-</tr>
-<tr class="even">
-<td align="left">Ind6</td>
-<td align="left">Ind6</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">A</td>
-<td align="left">A</td>
-<td align="left">G</td>
 <td align="left">G</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li><strong>参数2:input_data_plink_map</strong></li>
+<li><strong>2:input_data_plink_map</strong></li>
 </ul>
-<p>用户提供的 Plink-map格式的数据，<code>data.frame</code>类型。具体格式如下所示：</p>
+<p>User-provided map format genotype data ，<code>data.frame</code> class。</p>
 <table>
-<thead>
-<tr class="header">
-<th align="right">V1</th>
-<th align="left">V2</th>
-<th align="right">V3</th>
-<th align="right">V4</th>
-</tr>
-</thead>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">SNP1842</td>
-<td align="right">0.22</td>
+<td align="left">SNP1</td>
+<td align="right">0.224488</td>
 <td align="right">224488</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
-<td align="left">SNP2977</td>
-<td align="right">0.29</td>
+<td align="left">SNP2</td>
+<td align="right">0.293696</td>
 <td align="right">293696</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">SNP3321</td>
-<td align="right">0.33</td>
+<td align="left">SNP3</td>
+<td align="right">0.333333</td>
 <td align="right">333333</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
-<td align="left">SNP3941</td>
-<td align="right">0.72</td>
-<td align="right">722623</td>
+<td align="left">SNP4</td>
+<td align="right">0.464830</td>
+<td align="right">464830</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">SNP4138</td>
-<td align="right">0.84</td>
-<td align="right">838596</td>
+<td align="left">SNP5</td>
+<td align="right">0.722623</td>
+<td align="right">722623</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
-<td align="left">SNP4303</td>
-<td align="right">0.93</td>
-<td align="right">934682</td>
+<td align="left">SNP6</td>
+<td align="right">0.838596</td>
+<td align="right">838596</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li><strong>参数3:input_data_hmp</strong></li>
+<li><strong>3:input_data_hmp</strong></li>
 </ul>
-<p>用户提供的 Hapmap格式的数据，<code>data.frame</code>类型。具体格式如下所示</p>
+<p>User-provided hapmap format genotype data ，<code>data.frame</code> class。</p>
 <table style="width:100%;">
 <colgroup>
 <col width="4%" />
 <col width="7%" />
 <col width="5%" />
-<col width="9%" />
+<col width="6%" />
 <col width="6%" />
 <col width="8%" />
 <col width="6%" />
@@ -994,10 +1006,10 @@ sum_data=genotype_data_format_conversion(
 <th align="left">assayLSID</th>
 <th align="left">panelLSID</th>
 <th align="left">QCcode</th>
-<th align="left">Ind1</th>
-<th align="left">Ind2</th>
-<th align="left">Ind3</th>
-<th align="left">Ind4</th>
+<th align="left">3098</th>
+<th align="left">3498</th>
+<th align="left">3297</th>
+<th align="left">2452</th>
 </tr>
 </thead>
 <tbody>
@@ -1005,7 +1017,7 @@ sum_data=genotype_data_format_conversion(
 <td align="left">SNP1</td>
 <td align="left">NA</td>
 <td align="right">1</td>
-<td align="right">100050454</td>
+<td align="right">224488</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
@@ -1013,16 +1025,67 @@ sum_data=genotype_data_format_conversion(
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
-<td align="left">TT</td>
 <td align="left">CC</td>
-<td align="left">CT</td>
+<td align="left">AC</td>
+<td align="left">AC</td>
 <td align="left">CC</td>
 </tr>
 <tr class="even">
 <td align="left">SNP2</td>
 <td align="left">NA</td>
 <td align="right">1</td>
-<td align="right">100142509</td>
+<td align="right">293696</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">GG</td>
+<td align="left">TG</td>
+<td align="left">TG</td>
+<td align="left">GG</td>
+</tr>
+<tr class="odd">
+<td align="left">SNP3</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">333333</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">GG</td>
+<td align="left">TT</td>
+<td align="left">TT</td>
+<td align="left">GG</td>
+</tr>
+<tr class="even">
+<td align="left">SNP4</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">464830</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">CC</td>
+<td align="left">CC</td>
+<td align="left">CC</td>
+<td align="left">CC</td>
+</tr>
+<tr class="odd">
+<td align="left">SNP5</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">722623</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
@@ -1031,66 +1094,15 @@ sum_data=genotype_data_format_conversion(
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">AA</td>
-<td align="left">CC</td>
-<td align="left">CC</td>
-<td align="left">CC</td>
-</tr>
-<tr class="odd">
-<td align="left">SNP3</td>
-<td align="left">NA</td>
-<td align="right">1</td>
-<td align="right">100223426</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">TT</td>
-<td align="left">TT</td>
-<td align="left">TT</td>
-<td align="left">TT</td>
-</tr>
-<tr class="even">
-<td align="left">SNP4</td>
-<td align="left">NA</td>
-<td align="right">1</td>
-<td align="right">100297114</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">CC</td>
-<td align="left">CT</td>
-<td align="left">CT</td>
-<td align="left">CT</td>
-</tr>
-<tr class="odd">
-<td align="left">SNP5</td>
-<td align="left">NA</td>
-<td align="right">1</td>
-<td align="right">100398783</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">CC</td>
-<td align="left">CT</td>
-<td align="left">CT</td>
-<td align="left">CT</td>
+<td align="left">GG</td>
+<td align="left">GG</td>
+<td align="left">AA</td>
 </tr>
 <tr class="even">
 <td align="left">SNP6</td>
 <td align="left">NA</td>
 <td align="right">1</td>
-<td align="right">100420304</td>
+<td align="right">838596</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
@@ -1098,200 +1110,195 @@ sum_data=genotype_data_format_conversion(
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
+<td align="left">CC</td>
+<td align="left">TC</td>
 <td align="left">TT</td>
-<td align="left">GT</td>
-<td align="left">GT</td>
-<td align="left">GT</td>
+<td align="left">CC</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li><strong>参数4:input_data_blupf90</strong></li>
+<li><strong>4:input_data_blupf90</strong></li>
 </ul>
-<p>用户提供的 BLUPF90格式数据，<code>data.frame</code>类型。具体格式如下所示</p>
+<p>User-provided BLUPF90 format genotype data ，<code>data.frame</code> class。</p>
 <table>
-<thead>
-<tr class="header">
-<th align="left">V1</th>
-<th align="left">V2</th>
-</tr>
-</thead>
 <tbody>
 <tr class="odd">
-<td align="left">Ind1</td>
-<td align="left">2221100000200</td>
+<td align="left">3098</td>
+<td align="left">200000</td>
 </tr>
 <tr class="even">
-<td align="left">Ind12</td>
-<td align="left">2000022222022</td>
+<td align="left">3498</td>
+<td align="left">112021</td>
 </tr>
 <tr class="odd">
-<td align="left">Ind13</td>
-<td align="left">1011111111111</td>
+<td align="left">3297</td>
+<td align="left">112022</td>
 </tr>
 <tr class="even">
-<td align="left">Ind111</td>
-<td align="left">2120022211022</td>
+<td align="left">2452</td>
+<td align="left">200000</td>
 </tr>
 <tr class="odd">
-<td align="left">Ind125</td>
-<td align="left">2111011111111</td>
+<td align="left">4255</td>
+<td align="left">102011</td>
 </tr>
 <tr class="even">
-<td align="left">Ind1161</td>
-<td align="left">0022200000200</td>
+<td align="left">2946</td>
+<td align="left">212000</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li><strong>参数5:input_data_genumeric</strong></li>
+<li><strong>5:input_data_genumeric</strong></li>
 </ul>
-<p>用户提供的 Numeric格式的数据，<code>matrix(纯数字)</code>类型。具体格式如下所示</p>
+<p>User-provided Numeric format genotype data ，<code>matrix(numeric)</code> class。</p>
 <table>
 <thead>
 <tr class="header">
 <th align="left"></th>
-<th align="right">SNP1842</th>
-<th align="right">SNP2977</th>
-<th align="right">SNP3321</th>
-<th align="right">SNP3941</th>
-<th align="right">SNP4138</th>
-<th align="right">SNP4303</th>
+<th align="right">SNP1</th>
+<th align="right">SNP2</th>
+<th align="right">SNP3</th>
+<th align="right">SNP4</th>
+<th align="right">SNP5</th>
+<th align="right">SNP6</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Ind1</td>
+<td align="left">3098</td>
 <td align="right">2</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">1</td>
 <td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">Ind2</td>
-<td align="right">2</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Ind3</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="left">Ind4</td>
-<td align="right">2</td>
+<td align="left">3498</td>
+<td align="right">1</td>
 <td align="right">1</td>
 <td align="right">2</td>
 <td align="right">0</td>
-<td align="right">0</td>
 <td align="right">2</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
-<td align="left">Ind5</td>
+<td align="left">3297</td>
+<td align="right">1</td>
+<td align="right">1</td>
 <td align="right">2</td>
-<td align="right">1</td>
-<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">2452</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">4255</td>
 <td align="right">1</td>
 <td align="right">0</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">1</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="left">Ind6</td>
+<td align="left">2946</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">2</td>
 <td align="right">0</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Note:</strong> 行为个体，列为SNP，必须包括列名和行名。</p>
-<p>此外，为了方便用户使用，用户还可以直接通过提供本地数据的路径、名称与数据类型即可完成数据提供这一步骤,而无需将数据读入到<strong>R</strong>里面。</p>
+<p><strong>Note:</strong> rownames stand for individuals，colnames stands for SNPs. <code>input_data_genumeric</code> should contain both rownames and colnames.</p>
+<p>In addition, for convenience, users can provide the file name, file path, and file type of genotype data directly without reading them in R enviroument by themself .</p>
 <ul>
-<li><strong>参数6:input_data_path</strong></li>
-</ul>
-<p>用户提供的本地数据的文件路径，<code>character</code>类型。</p>
-<ul>
-<li><strong>参数7:input_data_name</strong></li>
-</ul>
-<p>用户提供的本地数据的文件名称，<code>character</code>类型。</p>
-<p><strong>Note:</strong> 如果提供的数据类型为Plink ,那么本地文件名称不需要带后缀，eg. 本地文件名为test1.map test1.ped，我们提供文件名称为： <code>input_data_name="test1"</code>。除了Plink格式的数据外，其他数据格式必须提供完整的名称(带后缀)。</p>
-<ul>
-<li><p><strong>参数8:input_data_type</strong></p>
-<p>用户提供的本地数据的格式，<code>character</code>类型。数据格式包括：</p>
+<li><p><strong>6:input_data_type</strong></p>
+<p>User-provided file type of genotype data ，<code>character</code> class.</p>
 <ul>
 <li>Hapmap</li>
 <li>Plink</li>
 <li>Blupf90</li>
 <li>Numeric</li>
-<li>VCF(需要提前安装好vcftools软件,并设置好环境变量)</li>
+<li>VCF</li>
 </ul></li>
-<li><p><strong>参数9:return_result</strong></p></li>
+<li><p><strong>7:input_data_path</strong></p></li>
 </ul>
-<p>是否在R中返回输出的结果，<code>logical</code>类型。默认为FLASE。</p>
-<p>此外，为了便于输出数据的保存，用户可以将数据保存到本地</p>
+<p>User-provided file path of genotype data ，<code>character</code> class.</p>
 <ul>
-<li><strong>参数10:output_data_path</strong></li>
+<li><strong>8:input_data_name</strong></li>
 </ul>
-<p>输出的基因型数据保存到本地的路径，<code>character</code>类型。</p>
+<p>User-provided file name of genotype data ，<code>character</code> class.</p>
+<p><strong>Note:</strong> if input_data_type is Plink or VCF, user don’t need to include suffix in the file name of genotype data.</p>
+<p>eg. for Plink type data, files name are test1.map and test1.ped，we should set<code>input_data_name="test1"</code>。</p>
 <ul>
-<li><strong>参数11:output_data_name</strong></li>
+<li><strong>9:return_result</strong></li>
 </ul>
-<p>输出的基因型数据保存到本地的文件名称，<code>character</code>类型。</p>
+<p>If return result, <code>logical</code> class. Default is FALSE.</p>
+<p>Additionally, for convenience, users can save output genotype data into local computer .</p>
 <ul>
-<li><p><strong>参数12:output_data_type</strong></p>
-<p>用户提供的本地数据的格式，<code>character</code>类型。数据格式包括：</p>
+<li><strong>10:output_data_path</strong></li>
+</ul>
+<p>File path of output genotype data, <code>character</code> class.</p>
+<ul>
+<li><strong>11:output_data_name</strong></li>
+</ul>
+<p>File name of output genotype data, <code>character</code> class.</p>
+<ul>
+<li><p><strong>12:output_data_type</strong></p>
+<p>File type of output genotype data, <code>character</code> class.</p>
 <ul>
 <li>Hapmap</li>
 <li>Plink</li>
 <li>Blupf90</li>
 <li>Numeric</li>
-<li>VCF(需要提前安装好vcftools软件,并设置好环境变量)</li>
+<li>VCF</li>
 </ul></li>
 </ul>
-<p>可选择同时输出多种数据格式。e.g.<code>output_data_type=c("Hapmap","Plink","Blupf90","Numeric")</code> 可同时输出以上4种数据类型。</p>
+<p><strong>Note</strong>: users can output multiple formats of genotype data simultaneously. e.g.<code>output_data_type=c("Hapmap","Plink","Blupf90","Numeric")</code>, outout 4 types of genotype data simultaneously 。</p>
 </div>
-<div id="其他参数" class="section level3">
-<h3>💨其他参数</h3>
+<div id="secondary" class="section level3">
+<h3>💨Secondary</h3>
 <ul>
-<li><strong>参数13:cpu_cores</strong></li>
+<li><strong>13:cpu_cores</strong></li>
 </ul>
-<p>函数调用的cpu个数，<code>numeric</code>类型。默认调用1个</p>
+<p>Number of cpu in calculating, <code>numeric</code>calss. Default is 1.</p>
 <ul>
-<li><strong>参数14:miss_base</strong></li>
+<li><strong>14:miss_base</strong></li>
 </ul>
-<p>缺失值在原基因型数据中所表示的的字符，<code>character</code>类型。默认为“NN”。</p>
+<p>Missing genotype character, <code>character</code>calss. Default is “NN”.</p>
 <ul>
-<li><strong>参数15:miss_base_num</strong></li>
+<li><strong>15:miss_base_num</strong></li>
 </ul>
-<p>数字化格式转换中缺失值转换成的数字，<code>numeric</code>类型。默认为 5。</p>
+<p>Missing genotype number after numeric conversion, <code>numeric</code>calss. Default is 5.</p>
 <ul>
-<li><strong>参数16:plink_software_path</strong></li>
+<li><strong>16:plink_software_path</strong></li>
 </ul>
-<p><strong>Plink</strong>软件的路径，<code>character</code>类型。涉及到VCF格式转换时，需要使用 <strong>Plink</strong>软件。当<strong>Plink</strong>软件的路径已加入到环境变量后，此项参数不需要再设置。</p>
+<p>Path of plink software in user computer. <code>character</code>calss.</p>
 <ul>
-<li><strong>参数17:plink_software_name</strong></li>
+<li><strong>17:plink_software_name</strong></li>
 </ul>
-<p><strong>Plink</strong>软件的名称，<code>character</code>类型。涉及到VCF格式转换时，需要使用 <strong>Plink</strong>软件。软件默认名称为：plink。</p>
+<p>Name of plink software in user computer. <code>character</code>calss.</p>
 <ul>
-<li><strong>参数18:vcftools_software_path</strong></li>
+<li><strong>18:vcftools_software_path</strong></li>
 </ul>
-<p><strong>vcftools</strong>软件的路径，<code>character</code>类型。涉及到VCF格式转换时，需要使用<strong>vcftools</strong>软件。当<strong>vcftools</strong>软件的路径已加入到环境变量后，此项参数不需要再设置。</p>
+<p>Path of vcftools software in user computer. <code>character</code>calss.</p>
 <ul>
-<li><strong>参数19:vcftools_software_name</strong></li>
+<li><strong>19:vcftools_software_name</strong></li>
 </ul>
-<p><strong>vcftools</strong>软件的名称，<code>character</code>类型。涉及到VCF格式转换时，需要使用 <strong>vcftools</strong>软件。软件默认名称为：vcftools。</p>
+<p>Name of vcftools software in user computer. <code>character</code>calss.</p>
 </div>
 </div>
 
@@ -1317,7 +1324,7 @@ sum_data=genotype_data_format_conversion(
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/blupadc/&amp;text=R%20package:blupADC-%20%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e1" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/blupadc/&amp;text=R%20package:blupADC-Feature%201" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1330,7 +1337,7 @@ sum_data=genotype_data_format_conversion(
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/blupadc/&amp;t=R%20package:blupADC-%20%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e1" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/blupadc/&amp;t=R%20package:blupADC-Feature%201" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1343,7 +1350,7 @@ sum_data=genotype_data_format_conversion(
       
       
       <li>
-        <a href="mailto:?subject=R%20package:blupADC-%20%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e1&amp;body=/post/blupadc/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=R%20package:blupADC-Feature%201&amp;body=/post/blupadc/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1356,7 +1363,7 @@ sum_data=genotype_data_format_conversion(
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/blupadc/&amp;title=R%20package:blupADC-%20%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e1" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/blupadc/&amp;title=R%20package:blupADC-Feature%201" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1369,7 +1376,7 @@ sum_data=genotype_data_format_conversion(
       
       
       <li>
-        <a href="whatsapp://send?text=R%20package:blupADC-%20%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e1%20/post/blupadc/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=R%20package:blupADC-Feature%201%20/post/blupadc/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1382,7 +1389,7 @@ sum_data=genotype_data_format_conversion(
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/post/blupadc/&amp;title=R%20package:blupADC-%20%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e1" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/post/blupadc/&amp;title=R%20package:blupADC-Feature%201" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1420,7 +1427,7 @@ sum_data=genotype_data_format_conversion(
 
     <div class="media-body">
       <h5 class="card-title">Mei Quanshun</h5>
-      <h6 class="card-subtitle">PhD student of animal breeding</h6>
+      <h6 class="card-subtitle">PhD student in animal breeding</h6>
       <p class="card-text">My research interests include genomic selection and machine learning in animal breeding.</p>
       <ul class="network-icon" aria-hidden="true">
   

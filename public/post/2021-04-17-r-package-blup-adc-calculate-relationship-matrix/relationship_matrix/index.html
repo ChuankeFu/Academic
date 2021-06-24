@@ -30,8 +30,10 @@
   
     
   
-  <meta name="description" content="计算亲缘关系矩阵(A,G and H)" />
+  <meta name="description" content="Construct kinship matrix(A,G and H)" />
 
+  
+    <link rel="alternate" hreflang="zh" href="/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" />
   
   <link rel="alternate" hreflang="en-us" href="/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" />
 
@@ -60,6 +62,9 @@
   
 
   
+  
+    
+    <script src="/js/mathjax-config.js"></script>
   
 
   
@@ -207,9 +212,9 @@
 
       
       
-        
-      
 
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
       
     
       
@@ -291,8 +296,8 @@
   
   <meta property="og:site_name" content="QSmei-Academic" />
   <meta property="og:url" content="/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" />
-  <meta property="og:title" content="R package:blupADC-使用说明5 | QSmei-Academic" />
-  <meta property="og:description" content="计算亲缘关系矩阵(A,G and H)" /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+  <meta property="og:title" content="R package:blupADC-Feature 5 | QSmei-Academic" />
+  <meta property="og:description" content="Construct kinship matrix(A,G and H)" /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
@@ -327,7 +332,7 @@
     "@type": "WebPage",
     "@id": "/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/"
   },
-  "headline": "R package:blupADC-使用说明5",
+  "headline": "R package:blupADC-Feature 5",
   
   "datePublished": "2021-04-18T00:00:00Z",
   "dateModified": "2021-04-18T16:36:39+08:00",
@@ -345,7 +350,7 @@
       "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "计算亲缘关系矩阵(A,G and H)"
+  "description": "Construct kinship matrix(A,G and H)"
 }
 </script>
 
@@ -361,11 +366,11 @@
 
 
 
-  <title>R package:blupADC-使用说明5 | QSmei-Academic</title>
+  <title>R package:blupADC-Feature 5 | QSmei-Academic</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="2b262ddbb9cd308cdbc924556f74a15f" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="81df46d12548152ebc7ca4065a156d87" >
 
   
   
@@ -697,6 +702,22 @@
 
       
       
+      <li class="nav-item dropdown i18n-dropdown">
+        <a href="#" class="nav-link " data-toggle="dropdown"
+           aria-haspopup="true" aria-label="Languages">
+          <i class="fas fa-globe mr-1" aria-hidden="true"></i></a>
+        <div class="dropdown-menu">
+          <div class="dropdown-item dropdown-item-active">
+            <span>English</span>
+          </div>
+          
+          <a class="dropdown-item" href="/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/">
+            <span>中文 (简体)</span>
+          </a>
+          
+        </div>
+      </li>
+      
 
     </ul>
 
@@ -728,7 +749,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>R package:blupADC-使用说明5</h1>
+  <h1>R package:blupADC-Feature 5</h1>
 
   
 
@@ -758,7 +779,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    4 min read
   </span>
   
 
@@ -792,141 +813,209 @@
   <div class="article-container">
 
     <div class="article-style">
-      
-<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+      <details class="toc-inpage d-print-none  " open>
+  <summary class="font-weight-bold">Table of Contents</summary>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#example">Example</a>
+      <ul>
+        <li><a href="#-pedigree-kinship-matrix">😾 Pedigree kinship matrix</a></li>
+        <li><a href="#-genomic-kinship-matrix">🤡 Genomic kinship matrix</a></li>
+        <li><a href="#single-step-kinship-matrix">💨Single-step kinship matrix</a></li>
+      </ul>
+    </li>
+    <li><a href="#parameter">Parameter</a>
+      <ul>
+        <li><a href="#basic">💪Basic</a></li>
+        <li><a href="#advanced">🦶Advanced</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</details>
 
-
-<p>🙉在动植物育种中，亲缘关系矩阵的构建是其中的关键步骤。在本章，我们将主要介绍如何利用<code>blupADC</code>中的<code>cal_kinship</code>函数完成各种亲缘关系矩阵的构建，包括：<strong>加性亲缘关系矩阵</strong>(系谱，基因组，一步法)及<strong>显性亲缘关系矩阵</strong>(系谱，基因组，一步法)等。此外，cal_kinship函数还能方便的计算各种类型的<strong>近交系数</strong>，包括：系谱近交系数，基因组近交系数(Homozygous,Digonal)及一步法近交系数(Digonal)。</p>
-<p>😾首先，我们还是通过一个小例子来看该函数的用法:</p>
-<pre class="R"><code>library(blupADC)
-data_hmp=data.table::fread(&quot;D:/test_code/BLUP_ADC_code/test_data/data_hmp.txt&quot;,data.table=F)
-data_result=cal_kinship(
-            input_data_hmp=data_hmp,          #用户输入的基因型数据
-            kinship_type=c(&quot;G_A&quot;),            #构建的亲缘关系矩阵类型
-            inbred_type=c(&quot;Homozygous&quot;),      #计算的近交系数的类型 
-            return_result=TRUE                #在R中返回结果  
-            )</code></pre>
-<p>在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与<code>genotype_data_format_conversion</code>函数中的参数用法一致。具体大家可参阅之前的介绍: <a href="https://qsmei.netlify.app/post/blupadc/">R package:blupADC- 使用说明1</a>。</p>
-<p>完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型。</p>
-<div id="主要参数" class="section level3">
-<h3>💪主要参数</h3>
+<h2 id="overview">Overview</h2>
+<p>🙉 In the application of animal and plant breeding, the key step is the construction of kinship matrix.  Package: <code>blupADC</code> provides <code>cal_kinship </code>function which can construct various type of kinship matrix directly,  including  <strong>additive kinship matrix</strong>(pedigree, genomic and single-step), and <strong>dominance kinship matrix</strong>(pedigree, genomic and single-step), and <strong>the inverse matrix</strong> of these kinship matrix.</p>
+<p>In the construction of single-step kinship matrix, users can select metafounder algorithm. In terms of the construction of dominance kinship matrix, users can select difference coding manners for genomic dominance kinship matrix, gene dropping algorithm for pedigree dominance kinship matrix.  In addition, <code>cal_kinship </code> can calculate several types of <strong>inbreeding coefficients</strong>(pedigree, genomic, and sigle-step) .</p>
+<h2 id="example">Example</h2>
+<h3 id="-pedigree-kinship-matrix">😾 Pedigree kinship matrix</h3>
+<pre><code class="language-{.R}">library(blupADC)
+kinship_result=cal_kinship(
+                input_pedigree=origin_pedigree,          #provided hapmap data object
+                kinship_type=c(&quot;P_A&quot;),      #type of  kinship matrix
+                inbred_type=c(&quot;Pedigree&quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
+</code></pre>
+<p><strong>Note</strong>: In the construction of pedigree and single-step relationship matrix, people need to provide genotype data.</p>
+<h3 id="-genomic-kinship-matrix">🤡 Genomic kinship matrix</h3>
+<pre><code class="language-{.R}">library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=data_hmp,          #provided hapmap data object
+                kinship_type=c(&quot;G_A&quot;,&quot;G_D&quot;),      #type of  kinship matrix
+                dominance_type=c(&quot;genotypic&quot;),    #type of dominance effect
+                inbred_type=c(&quot;Homozygous&quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
+</code></pre>
+<p><strong>Note</strong>: In the construction of genomic and single-step relationship matrix, people need to provide genotype data. These parameters are the same as in <code>genotype_data_format_conversion</code> function(see details).</p>
+<h3 id="single-step-kinship-matrix">💨Single-step kinship matrix</h3>
+<pre><code class="language-{.R}">library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=data_hmp,          #provided hapmap data object
+                input_pedigree=origin_pedigree,
+                kinship_type=c(&quot;H_A&quot;),      #type of  kinship matrix
+                inbred_type=c(&quot;H_diag&quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
+</code></pre>
+<h2 id="parameter">Parameter</h2>
+<h3 id="basic">💪Basic</h3>
 <ul>
-<li><p><strong>参数1：kinship_type</strong></p>
-<p>指定构建亲缘关系矩阵的类型，<code>character</code>类型。可选关系矩阵类型：</p>
+<li>
+<p><strong>1：kinship_type</strong></p>
+<p>Type of kinship matrix, <code>character</code> class. User can select multiple types simultaneously, including:</p>
 <ul>
-<li>“G_A” :基因组加性亲缘关系矩阵"</li>
-<li>“G_Domi” :基因组显性亲缘关系矩阵(按照0,1,0方式编码)</li>
-<li>“G_Devi” :基因组显性离差亲缘关系矩阵(按照-2q<sup>2</sup>,2pq,-2p<sup>2</sup>,方式编码)</li>
-<li>“H_A” :一步法加性亲缘关系矩阵</li>
-<li>“H_D” :一步法显性亲缘关系矩阵</li>
-<li>“P_A” :系谱加性亲缘关系矩阵</li>
-<li>“P_D” :系谱显性亲缘关系矩阵</li>
-</ul></li>
+<li>&ldquo;G_A&rdquo; : genomic additive kinship matrix</li>
+<li>&ldquo;G_Ainv&rdquo; :inverse of genomic additive kinship matrix</li>
+<li>&ldquo;G_D&rdquo; :genomic dominance kinship matrix</li>
+<li>&ldquo;G_Dinv&rdquo; :inverse of genomic dominance kinship matrix</li>
+<li>&ldquo;P_A&rdquo; :pedigree additive kinship matrix</li>
+<li>&ldquo;P_Ainv&rdquo; :inverse of pedigree additive kinship matrix</li>
+<li>&ldquo;P_D&rdquo; : pedigree dominance kinship matrix</li>
+<li>&ldquo;P_Dinv&rdquo; :inverse of pedigree dominance kinship matrix</li>
+<li>&ldquo;H_A&rdquo; :single-step additive kinship matrix</li>
+<li>&ldquo;H_Ainv&rdquo; :inverse of single-step additive kinship matrix</li>
+<li>&ldquo;H_D&rdquo; :single-step dominance kinship matrix</li>
+<li>&ldquo;H_Dinv&rdquo; :inverse of single-step dominance kinship matrix</li>
 </ul>
-<p>Note:如果计算系谱及一步法亲缘关系矩阵，必须要提供系谱数据。关于如何提供系谱数据，我们会在后面进行讲解。</p>
-<ul>
-<li><strong>参数2：kinship_inverse</strong></li>
+</li>
 </ul>
-<p>是否计算亲缘关系矩阵的逆矩阵，<code>logical</code>类型，默认为FALSE。</p>
+<p><strong>Note</strong>: In the construction of pedigree and single-step kinship matrix, user need to provide pedigree data. In the construction of genomic and single-step kinship matrix, user need to provide genotype data.</p>
 <ul>
-<li><p><strong>参数3：inbred_type</strong></p>
-<p>指定计算的近交系数的类型，<code>character</code>类型。可选近交系数类型包括:</p>
+<li>
+<p><strong>2：dominance_type</strong></p>
+<p>Type of dominance effect in the construction of dominance kinship matrix , <code>character</code> class.</p>
 <ul>
-<li><p>“Homozygous” :根据纯合子位点计算</p></li>
-<li><p>“G_Diag” :G矩阵对角线-1</p></li>
-<li><p>“H_diag” :H矩阵对角线-1</p></li>
-<li><p>“Pedigree” :A矩阵对角线-1</p></li>
-</ul></li>
-<li><p><strong>参数4：input_pedigree</strong></p></li>
+<li>&ldquo;genotypic&rdquo; : coded by  $0-2pq$,$1-2pq$, and $0-2pq$  for $AA$,  $Aa$, and  $aa$, respectively.</li>
+<li>&ldquo;classical&rdquo; :     coded by $-2q^2$, $2pq$ , and $-2p^2$ for $AA$,  $Aa$, and  $aa$, respectively.</li>
 </ul>
-<p>用户提供的系谱数据，<code>data.frame</code>或 <code>matrix</code>类型。具体的系谱数据格式可以参阅之前的介绍：<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/">R package:blupADC-使用说明3</a>。</p>
-<ul>
-<li><strong>参数5：pedigree_rename</strong></li>
+</li>
 </ul>
-<p>是否对系谱数据进行重命名,<code>logical</code>类型，默认为TRUE(对系谱进行重命名)。</p>
+<blockquote>
+<p>More details about these two types dominance effects could be seen in this reference ：<a href="https://www.genetics.org/content/195/4/1223.short" target="_blank" rel="noopener">On the Additive and Dominant Variance and Covariance of Individuals Within the Genomic Selection Scope</a></p>
+</blockquote>
 <ul>
-<li><strong>参数6：IND_geno_rename</strong></li>
-</ul>
-<p>是否根据系谱的重命名结果对基因型数据中的个体进行重命名，<code>logical</code>类型，默认为FALSE(不进行重命名)。</p>
+<li>
+<p><strong>3：inbred_type</strong></p>
+<p>Type of inbreeding coefficients,  <code>character</code> class.</p>
 <ul>
-<li><strong>参数7：rename_to_origin</strong></li>
+<li>
+<p>&ldquo;Homozygous&rdquo; : proportion of homozygous sites</p>
+</li>
+<li>
+<p>&ldquo;G_Diag&rdquo; : diagonal of genomic additive kinship matrix minus 1</p>
+</li>
+<li>
+<p>&ldquo;H_diag&rdquo; :diagonal of single-step additive kinship matrix minus 1</p>
+</li>
+<li>
+<p>&ldquo;Pedigree&rdquo; :diagonal of pedigree additive kinship matrix minus 1</p>
+</li>
 </ul>
-<p>将亲缘关系矩阵中重命名的个体号转换回原始的个体号，<code>logical</code>类型，默认为FALSE(不进行转换)。</p>
+</li>
+<li>
+<p><strong>4：input_pedigree</strong></p>
+</li>
+</ul>
+<p>User-provided pedigree data ，<code>data.frame</code> or <code>matrix</code> class. (see more details about the format of pedigree data)</p>
 <ul>
-<li><strong>参数8：output_matrix_type</strong></li>
+<li><strong>5：pedigree_rename</strong></li>
 </ul>
-<p>输出亲缘关系矩阵的格式，<code>character</code>类型。可选参数包括：</p>
-<ol style="list-style-type: decimal">
-<li><p>“col_all” :按照n*n的格式输出亲缘关系矩阵</p></li>
-<li><p>“col_three” : 按照3列矩阵的格式输出亲缘关系矩阵，第1列和第2列为个体号，第3列为亲缘系数。DMU和BLUPf90软件均需提供这种格式的亲缘关系矩阵。形如：</p>
+<p>If  pedigree need to be renamed,  <code>logical</code> class. Default is TRUE.</p>
+<ul>
+<li>**6：IND_geno_rename **</li>
+</ul>
+<p>If genotype individuals need to be renamed according to the  renamed pedigree,  <code>logical</code> class. Default is FALSE.</p>
+<ul>
+<li><strong>7：rename_to_origin</strong></li>
+</ul>
+<p>If renamed individuals should keep original name,  <code>logical</code> class. Default is FALSE.</p>
+<ul>
+<li>
+<p><strong>8：output_matrix_type</strong></p>
+<p>Type of output kinship matrix type,   <code>character</code> class. Default is &ldquo;col_three&rdquo;.</p>
+<ul>
+<li>&ldquo;<code>col_all</code>&rdquo; : n*n format</li>
+<li>&ldquo;<code>col_three</code>&rdquo; : 3 columns format. The first and the second column is the name of individuals, the third column is the value of kinship 。</li>
+</ul>
+</li>
+</ul>
 <table>
 <thead>
-<tr class="header">
-<th>V1</th>
-<th>V2</th>
-<th>V3</th>
+<tr>
+<th style="text-align:right"></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>1001</td>
+<tr>
+<td style="text-align:right">1001</td>
 <td>1001</td>
 <td>0.989</td>
 </tr>
-<tr class="even">
-<td>1001</td>
+<tr>
+<td style="text-align:right">1001</td>
 <td>1002</td>
 <td>0.421</td>
 </tr>
-<tr class="odd">
-<td>1001</td>
+<tr>
+<td style="text-align:right">1001</td>
 <td>1003</td>
 <td>0.567</td>
 </tr>
 </tbody>
-</table></li>
-</ol>
-<p>默认参数为 “col_all”</p>
+</table>
 <ul>
-<li><strong>参数9：output_matrix_path</strong></li>
+<li><strong>9：output_matrix_path</strong></li>
 </ul>
-<p>亲缘关系矩阵保存到本地的路径, <code>character</code>类型。</p>
+<p>File path of output kinship matrix,   <code>character</code> class.</p>
 <ul>
-<li><strong>参数10：output_matrix_name</strong></li>
+<li><strong>10：output_matrix_name</strong></li>
 </ul>
-<p>亲缘关系矩阵保存到本地的名称，<code>character</code>类型。</p>
-</div>
-<div id="其他参数" class="section level3">
-<h3>🦶其他参数</h3>
+<p>File name of output kinship matrix,   <code>character</code> class.</p>
+<h3 id="advanced">🦶Advanced</h3>
 <ul>
-<li><strong>参数11：cpu_cores</strong></li>
+<li><strong>11：cpu_cores</strong></li>
 </ul>
-<p>调用的cpu个数，<code>numeric</code>类型，默认为1。</p>
+<p>Number of cpu in calculating,  <code>numeric</code>calss. Default is 1.</p>
 <ul>
-<li><strong>参数12：kinship_base</strong></li>
+<li><strong>12：kinship_base</strong></li>
 </ul>
-<p>是否按照基础群的方式构建基因组亲缘关系矩阵(p=q=0.5)，<code>logical</code>类型，默认为FALSE。</p>
+<p>If take $p=q=0.5$  in the construction of kinship matrix,  <code>logical</code> class. Default is FALSE.</p>
 <ul>
-<li><strong>参数13：kinship_trace</strong></li>
+<li><strong>13：kinship_trace</strong></li>
 </ul>
-<p>是否按照矩阵迹和的方式对基因组亲缘关系矩阵进行标准化，<code>logical</code>类型，默认为FALSE。</p>
+<p>If take the trace of kinship matrix to scale kinship matrix,  <code>logical</code> class. Default is FALSE.</p>
 <ul>
-<li><strong>参数14：kinship_metafounder</strong></li>
+<li><strong>14：kinship_metafounder</strong></li>
 </ul>
-<p>是否按照metafounder的方法计算一步法亲缘关系矩阵，<code>logical</code>类型，默认为FALSE。</p>
+<p>If take the metafounder algorithm to construct single-step kinship matrix,  <code>logical</code> class. Default is FALSE.</p>
 <ul>
-<li><strong>参数15：w</strong></li>
+<li><strong>15：SSBLUP_omega</strong></li>
 </ul>
-<p>构建一步法亲缘关系矩阵时G矩阵和A矩阵的比例，<code>numeric</code>类型，默认为0.05。</p>
+<p>The value of omega in the construction of single-step additive kinship matrix,  <code>numeric</code>calss. Default is 0.05.</p>
 <ul>
-<li><strong>参数16：gene_dropping</strong></li>
+<li><strong>16：gene_dropping</strong></li>
 </ul>
-<p>是否使用 gene dropping 的方法构建系谱显性亲缘关系矩阵，<code>logical</code>类型，默认为FALSE。</p>
+<p>If take the gene dropping algorithm to construct pedigree dominance kinship matrix,  <code>logical</code> class. Default is FALSE.</p>
 <ul>
-<li><strong>参数17：gene_dropping_iteration</strong></li>
+<li><strong>17：gene_dropping_iteration</strong></li>
 </ul>
-<p>gene dropping方法的迭代次数，<code>numeric</code>类型，默认为1000。</p>
-</div>
+<p>The number of iteration for gene dropping algorithm ,  <code>numeric</code>calss. Default is 1000.</p>
+<ul>
+<li><strong>18：memory_save</strong></li>
+</ul>
+<p>If take memory saved way to construct  kinship matrix,  <code>logical</code> class. Default is FALSE. (This way need consume more storage space)</p>
 
     </div>
 
@@ -950,7 +1039,7 @@ data_result=cal_kinship(
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&amp;text=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e5" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&amp;text=R%20package:blupADC-Feature%205" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -963,7 +1052,7 @@ data_result=cal_kinship(
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&amp;t=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e5" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&amp;t=R%20package:blupADC-Feature%205" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -976,7 +1065,7 @@ data_result=cal_kinship(
       
       
       <li>
-        <a href="mailto:?subject=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e5&amp;body=/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=R%20package:blupADC-Feature%205&amp;body=/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -989,7 +1078,7 @@ data_result=cal_kinship(
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&amp;title=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e5" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&amp;title=R%20package:blupADC-Feature%205" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1002,7 +1091,7 @@ data_result=cal_kinship(
       
       
       <li>
-        <a href="whatsapp://send?text=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e5%20/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=R%20package:blupADC-Feature%205%20/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1015,7 +1104,7 @@ data_result=cal_kinship(
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&amp;title=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e5" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&amp;title=R%20package:blupADC-Feature%205" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1053,7 +1142,7 @@ data_result=cal_kinship(
 
     <div class="media-body">
       <h5 class="card-title">Mei Quanshun</h5>
-      <h6 class="card-subtitle">PhD student of animal breeding</h6>
+      <h6 class="card-subtitle">PhD student in animal breeding</h6>
       <p class="card-text">My research interests include genomic selection and machine learning in animal breeding.</p>
       <ul class="network-icon" aria-hidden="true">
   

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>qsmei | QSmei-Academic</title>
+    <link>/en/author/qsmei/</link>
+      <atom:link href="/en/author/qsmei/index.xml" rel="self" type="application/rss+xml" />
+    <description>qsmei</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 21 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>qsmei</title>
+      <link>/en/author/qsmei/</link>
+    </image>
+    
+    <item>
+      <title>R package:blupADC-使用说明7</title>
+      <link>/en/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/</link>
+      <pubDate>Wed, 21 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/en/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;👻在前面的章节，我们已经讲述了如何在&lt;strong&gt;R&lt;/strong&gt;中调用&lt;strong&gt;DMU&lt;/strong&gt;软件并完成相应的分析。本章，我们将讲述如何通过&lt;code&gt;BLUP_ADC&lt;/code&gt;中的&lt;code&gt;run_BLUPF90&lt;/code&gt;函数，在&lt;strong&gt;R&lt;/strong&gt;中调用&lt;strong&gt;BLUPF90&lt;/strong&gt;软件并完成数据分析。为了方便用户的使用，我们已经尽可能地将 &lt;code&gt;run_BLUPF90&lt;/code&gt;函数中的参数 和 &lt;code&gt;run_DMU&lt;/code&gt;函数中的参数进行了统一。&lt;/p&gt;
+&lt;p&gt;接下来，我们还是用一个简单的例子看看该函数的用法:&lt;/p&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+run_BLUPF90(        
+            phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),  #表型数据的列名
+            target_trait_name=c(&amp;quot;Trait1&amp;quot;),                               #目标性状名称
+            fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),         #固定效应名称
+            random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),                   #随机效应名称
+            covariate_effect_name=list(c(&amp;quot;Age&amp;quot;)),                        #协变量名称
+            phe_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,           #表型数据路径
+            phe_name=&amp;quot;dmu_phe.txt&amp;quot;,                                      #表型数据名称
+            analysis_model=&amp;quot;PBLUP_A&amp;quot;,                                    #分析方法
+            relationship_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,  #亲缘关系文件路径
+            relationship_name=&amp;quot;Blupf90_ped.txt&amp;quot;,                         #亲缘关系文件名称
+            output_result_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,         #BLUPF90结果保存路径
+            output_ebv_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,            #EBV结果保存的路径
+            output_ebv_name=&amp;quot;test&amp;quot;,                                      #EBV结果保存的文件名
+            BLUPf90_software_path=&amp;quot;D:/test_code/BLUPf90_software&amp;quot;        #BLUPF90软件的路径
+            )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过上面的这个小脚本，我们即能完成&lt;strong&gt;BLUPF90&lt;/strong&gt;的单性状模型的计算。与上一节的介绍的&lt;code&gt;run_DMU&lt;/code&gt;函数类似，如果我们想完成双性状模型的计算，只需要在上面的脚本的基础上稍作修改就能实现目的。具体代码如下：&lt;/p&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+run_BLUPF90(        
+            phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),  #表型数据的列名
+            target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;),                              #目标性状名称
+            fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Sex&amp;quot;)),        #固定效应名称
+            random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;)),                   #随机效应名称
+            covariate_effect_name=list(c(&amp;quot;Age&amp;quot;),NULL),                       #协变量名称
+            phe_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,           #表型数据路径
+            phe_name=&amp;quot;dmu_phe.txt&amp;quot;,                                      #表型数据名称
+            analysis_model=&amp;quot;PBLUP_A&amp;quot;,                                    #分析方法
+            relationship_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,  #亲缘关系文件路径
+            relationship_name=&amp;quot;Blupf90_ped.txt&amp;quot;,                         #亲缘关系文件名称
+            output_result_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,         #BLUPF90结果保存路径
+            output_ebv_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,            #EBV结果保存的路径
+            output_ebv_name=&amp;quot;test&amp;quot;,                                      #EBV结果保存的文件名
+            BLUPf90_software_path=&amp;quot;D:/test_code/BLUPf90_software&amp;quot;        #BLUPF90软件的路径
+            )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接下来，我们将对&lt;code&gt;run_BLUPF90&lt;/code&gt; 中特有的参数进行讲解，剩余的参数大家可移步 &lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/&#34;&gt;R package:blupADC-使用说明6&lt;/a&gt; 进行查看，相同参数的用法和含义均是一模一样的。&lt;/p&gt;
+&lt;div id=&#34;特有参数&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;💫特有参数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;参数1：&lt;code&gt;blupf90_algorithm&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;BLPUF90进行方差组分估计时选用的算法，&lt;code&gt;character&lt;/code&gt;类型。可选算法包括：&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;“AI_REML”&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“EM_REML”&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;默认算法为：“AI_REML”&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;参数2：&lt;code&gt;provided_blupf90_prior_file_path&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的BLUPF90格式的方差组分-PRIOR文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;:需要注意的一点是，&lt;strong&gt;BLUPF90&lt;/strong&gt;格式的PRIOR文件和&lt;strong&gt;DMU&lt;/strong&gt;格式的PRIOR文件是不相同的。关于二者的差异，以后有时间会再出一篇文章进行讲解，这里就不再赘述了。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;参数3：&lt;code&gt;provided_blupf90_prior_file_name&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的BLUPF90格式的方差组分-PRIOR文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;参数4：&lt;code&gt;provided_blupf90_prior_effect_name&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的PRIOR文件中，与方差组分对应的各个随机效应名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;参数5：&lt;code&gt;BLUPf90_software_path&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;BLUPF90软件在本地的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

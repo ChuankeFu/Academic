@@ -1,0 +1,137 @@
+---
+title: 'R package:blupADC-使用说明7'
+author: qsmei
+date: '2021-04-21'
+slug: blupf90
+categories:
+  - BLUPf90
+tags: []
+subtitle: ''
+summary: 'R里运行BLUPF90软件并完成相应的分析'
+authors: ["qsmei"]
+lastmod: '2021-04-21T15:47:39+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+type: book
+toc: ture 
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+
+</div>
+
+<p>👻在前面的章节，我们已经讲述了如何在<strong>R</strong>中调用<strong>DMU</strong>软件并完成相应的分析。本章，我们将讲述如何通过<code>BLUP_ADC</code>中的<code>run_BLUPF90</code>函数，在<strong>R</strong>中调用<strong>BLUPF90</strong>软件并完成数据分析。为了方便用户的使用，我们已经尽可能地将 <code>run_BLUPF90</code>函数中的参数 和 <code>run_DMU</code>函数中的参数进行了统一。</p>
+<p>接下来，我们还是用一个简单的例子看看该函数的用法:</p>
+<pre class="R"><code>library(blupADC)
+run_BLUPF90(        
+            phe_col_names=c(&quot;Id&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),  #表型数据的列名
+            target_trait_name=c(&quot;Trait1&quot;),                               #目标性状名称
+            fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),         #固定效应名称
+            random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),                   #随机效应名称
+            covariate_effect_name=list(c(&quot;Age&quot;)),                        #协变量名称
+            phe_path=&quot;D:/test_code/BLUP_ADC_code/DMU_example&quot;,           #表型数据路径
+            phe_name=&quot;dmu_phe.txt&quot;,                                      #表型数据名称
+            analysis_model=&quot;PBLUP_A&quot;,                                    #分析方法
+            relationship_path=&quot;D:/test_code/BLUP_ADC_code/DMU_example&quot;,  #亲缘关系文件路径
+            relationship_name=&quot;Blupf90_ped.txt&quot;,                         #亲缘关系文件名称
+            output_result_path=&quot;C:/Users/26564/Desktop/BLUPF90&quot;,         #BLUPF90结果保存路径
+            output_ebv_path=&quot;C:/Users/26564/Desktop/BLUPF90&quot;,            #EBV结果保存的路径
+            output_ebv_name=&quot;test&quot;,                                      #EBV结果保存的文件名
+            BLUPf90_software_path=&quot;D:/test_code/BLUPf90_software&quot;        #BLUPF90软件的路径
+            )</code></pre>
+<p>通过上面的这个小脚本，我们即能完成<strong>BLUPF90</strong>的单性状模型的计算。与上一节的介绍的<code>run_DMU</code>函数类似，如果我们想完成双性状模型的计算，只需要在上面的脚本的基础上稍作修改就能实现目的。具体代码如下：</p>
+<pre class="R"><code>library(blupADC)
+run_BLUPF90(        
+            phe_col_names=c(&quot;Id&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),  #表型数据的列名
+            target_trait_name=c(&quot;Trait1&quot;,&quot;Trait2&quot;),                              #目标性状名称
+            fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;),c(&quot;Sex&quot;)),        #固定效应名称
+            random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;),c(&quot;Id&quot;)),                   #随机效应名称
+            covariate_effect_name=list(c(&quot;Age&quot;),NULL),                       #协变量名称
+            phe_path=&quot;D:/test_code/BLUP_ADC_code/DMU_example&quot;,           #表型数据路径
+            phe_name=&quot;dmu_phe.txt&quot;,                                      #表型数据名称
+            analysis_model=&quot;PBLUP_A&quot;,                                    #分析方法
+            relationship_path=&quot;D:/test_code/BLUP_ADC_code/DMU_example&quot;,  #亲缘关系文件路径
+            relationship_name=&quot;Blupf90_ped.txt&quot;,                         #亲缘关系文件名称
+            output_result_path=&quot;C:/Users/26564/Desktop/BLUPF90&quot;,         #BLUPF90结果保存路径
+            output_ebv_path=&quot;C:/Users/26564/Desktop/BLUPF90&quot;,            #EBV结果保存的路径
+            output_ebv_name=&quot;test&quot;,                                      #EBV结果保存的文件名
+            BLUPf90_software_path=&quot;D:/test_code/BLUPf90_software&quot;        #BLUPF90软件的路径
+            )</code></pre>
+<div id="gblup" class="section level3">
+<h3>GBLUP</h3>
+<pre class="R"><code>library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+  
+run_BLUPF90(
+        phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;), # colnames of phenotype 
+        target_trait_name=c(&quot;Trait1&quot;),                           #trait name 
+        fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
+        random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
+        analysis_model=&quot;GBLUP_A&quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=c(&quot;blupf90_genumeric&quot;),            #name of relationship file 
+        output_result_path=&quot;/root&quot;,                  # output path 
+        BLUPF90_software_path=&quot;/root/software/BLUPF90&quot;  # path of BLUPF90 software 
+        )   
+</code></pre>
+<p>接</p>
+<p>SSBLUP</p>
+<pre class="R"><code>library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+  
+run_BLUPF90(
+        phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;), # colnames of phenotype 
+        target_trait_name=c(&quot;Trait1&quot;),                           #trait name 
+        fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
+        random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
+        analysis_model=&quot;SSBLUP_A&quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=c(&quot;pedigree.txt&quot;,&quot;blupf90_genumeric&quot;),            #name of relationship file 
+        output_result_path=&quot;/root&quot;,                  # output path 
+        BLUPF90_software_path=&quot;/root/software/BLUPF90&quot;  # path of BLUPF90 software 
+        )   
+</code></pre>
+<p>接</p>
+<p>接下来，我们将对<code>run_BLUPF90</code> 中特有的参数进行讲解，剩余的参数大家可移步 <a href="https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/">R package:blupADC-使用说明6</a> 进行查看，相同参数的用法和含义均是一模一样的。</p>
+</div>
+<div id="特有参数" class="section level3">
+<h3>💫特有参数</h3>
+<ul>
+<li>参数1：<code>blupf90_algorithm</code></li>
+</ul>
+<p>BLPUF90进行方差组分估计时选用的算法，<code>character</code>类型。可选算法包括：</p>
+<ol style="list-style-type: decimal">
+<li><p>“AI_REML”</p></li>
+<li><p>“EM_REML”</p></li>
+</ol>
+<p>默认算法为：“AI_REML”</p>
+<ul>
+<li>参数2：<code>provided_blupf90_prior_file_path</code></li>
+</ul>
+<p>用户提供的BLUPF90格式的方差组分-PRIOR文件的路径，<code>character</code>类型。</p>
+<p><strong>Note</strong>:需要注意的一点是，<strong>BLUPF90</strong>格式的PRIOR文件和<strong>DMU</strong>格式的PRIOR文件是不相同的。关于二者的差异，以后有时间会再出一篇文章进行讲解，这里就不再赘述了。</p>
+<ul>
+<li>参数3：<code>provided_blupf90_prior_file_name</code></li>
+</ul>
+<p>用户提供的BLUPF90格式的方差组分-PRIOR文件的名称，<code>character</code>类型。</p>
+<ul>
+<li>参数4：<code>provided_blupf90_prior_effect_name</code></li>
+</ul>
+<p>用户提供的PRIOR文件中，与方差组分对应的各个随机效应名称，<code>character</code>类型。</p>
+<ul>
+<li>参数5：<code>BLUPf90_software_path</code></li>
+</ul>
+<p>BLUPF90软件在本地的路径，<code>character</code>类型。</p>
+</div>

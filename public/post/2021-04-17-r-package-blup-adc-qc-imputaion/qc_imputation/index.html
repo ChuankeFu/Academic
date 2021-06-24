@@ -30,8 +30,10 @@
   
     
   
-  <meta name="description" content="基因型数据的质控与填充" />
+  <meta name="description" content="data qc and imputation" />
 
+  
+    <link rel="alternate" hreflang="zh" href="/zh/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/" />
   
   <link rel="alternate" hreflang="en-us" href="/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/" />
 
@@ -291,8 +293,8 @@
   
   <meta property="og:site_name" content="QSmei-Academic" />
   <meta property="og:url" content="/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/" />
-  <meta property="og:title" content="R package:blupADC-使用说明4 | QSmei-Academic" />
-  <meta property="og:description" content="基因型数据的质控与填充" /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+  <meta property="og:title" content="R package:blupADC-Feature 4 | QSmei-Academic" />
+  <meta property="og:description" content="data qc and imputation" /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
     <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
   
     
@@ -327,7 +329,7 @@
     "@type": "WebPage",
     "@id": "/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/"
   },
-  "headline": "R package:blupADC-使用说明4",
+  "headline": "R package:blupADC-Feature 4",
   
   "datePublished": "2021-04-17T00:00:00Z",
   "dateModified": "2021-04-17T21:07:25+08:00",
@@ -345,7 +347,7 @@
       "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "基因型数据的质控与填充"
+  "description": "data qc and imputation"
 }
 </script>
 
@@ -361,11 +363,11 @@
 
 
 
-  <title>R package:blupADC-使用说明4 | QSmei-Academic</title>
+  <title>R package:blupADC-Feature 4 | QSmei-Academic</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="9befc2250e2b6b42cbbd8cdea72a97f1" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="ae8fda72fc4d29189bf38157286b9d46" >
 
   
   
@@ -697,6 +699,22 @@
 
       
       
+      <li class="nav-item dropdown i18n-dropdown">
+        <a href="#" class="nav-link " data-toggle="dropdown"
+           aria-haspopup="true" aria-label="Languages">
+          <i class="fas fa-globe mr-1" aria-hidden="true"></i></a>
+        <div class="dropdown-menu">
+          <div class="dropdown-item dropdown-item-active">
+            <span>English</span>
+          </div>
+          
+          <a class="dropdown-item" href="/zh/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/">
+            <span>中文 (简体)</span>
+          </a>
+          
+        </div>
+      </li>
+      
 
     </ul>
 
@@ -728,7 +746,7 @@
   
   
 <div class="article-container pt-3">
-  <h1>R package:blupADC-使用说明4</h1>
+  <h1>R package:blupADC-Feature 4</h1>
 
   
 
@@ -758,7 +776,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 min read
   </span>
   
 
@@ -792,91 +810,101 @@
   <div class="article-container">
 
     <div class="article-style">
-      
-<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+      <details class="toc-inpage d-print-none  " open>
+  <summary class="font-weight-bold">Table of Contents</summary>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#example">Example</a></li>
+    <li><a href="#parameter">Parameter</a>
+      <ul>
+        <li><a href="#basic">💙Basic</a></li>
+        <li><a href="#advanced">💜Advanced</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</details>
 
-
-<p>🤖通常来讲，我们公司拿到的原始芯片数据大都是包含缺失值且未经过质控的。而在实际的数据分析中，我们一般都要求数据是经过质控和填充。为此，<code>blupADC</code>中提供了<code>genotype_data_QC_Imputation</code>函数，可以方便我们在R中调用<strong>Plink</strong>(用于质控)和<strong>Beagle</strong>(用于填充)软件进行基因型数据的质控和填充。</p>
-<p>👉<strong>Note:</strong>我们需要提前下载好Plink(用于质控)和Beagle(用于填充)软件。由于Plink和Beagle在质控填充方面已经做得足够好了，因此我们并不打算用R重新实现相关功能。</p>
-<p>老规矩，我们还是用一个小例子来看下函数的用法:</p>
-<pre class="R"><code>library(blupADC)
+<h2 id="overview">Overview</h2>
+<p>🤖 Generally, most genotype data need to perform quality control and imputation.  For convenience,  package <code>blupADC</code> provides <code>genotype_data_QC_Imputation</code> function to perform quality control and imputation by interfacing with  software <strong>Plink</strong> and software <strong>Beagle</strong> in an easy way (we only need to provide the software path and software name).</p>
+<p><strong>👉 Note:  For convenience,  <code>blupADC</code> has encapsulated software Plink(for quality control)  <code>version-1.9</code> and software Beagle(for imputation) <code>version-5.2</code>. If you want change this version, you could set the related parameters in the part of Advanced parameter.</strong></p>
+<h2 id="example">Example</h2>
+<pre><code class="language-{.R}">library(blupADC)
 genotype_data_QC_Imputation(
-              input_data_path=&quot;root/genotype_data&quot;,  #用户输入的基因型文件路径
-              input_data_name=&quot;data_hmp.txt&quot;,        #用户输入的基因型文件名称
-              input_data_type=&quot;Hapmap&quot;,              #用户输入的基因型文件格式
-              method=&quot;QC_Imputation&quot;,                #基因型数据处理方法：质控+填充
-              plink_software_path=&quot;/root/software&quot;,  #plink软件的路径
-              plink_software_name=&quot;plink&quot;,           #plink软件的名称
-              beagle_software_path=&quot;root/software&quot;,  #beagle软件的路径
-              beagle_software_name=&quot;beagle.5.1.jar&quot;, #beagle软件的名称
-              output_data_path=&quot;/root/result&quot;,       #输出基因型文件的路径
-              output_data_name=&quot;YY_data&quot;,            #输出基因型文件的名称
-              output_data_type=&quot;Plink&quot;               #输出基因型文件的格式
-              )</code></pre>
-<p>通过上述代码，我们即可对本地的<strong>Hapmap</strong>格式的基因型数据进行质控和填充，并将其以<strong>Plink</strong>格式并保存到本地。</p>
-<p>进行质控和填充时，我们必须要事先提供基因型数据，这部分的参数与<code>genotype_data_format_conversion</code>函数中的参数用法一致。具体大家可参阅之前的介绍: <a href="https://qsmei.netlify.app/post/blupadc/">R package:blupADC- 使用说明1</a>。</p>
-<p>完成了基因型数据的提供后，我们可以通过以下参数进行质控填充的相关分析。</p>
-<div id="主要参数" class="section level3">
-<h3>💙主要参数</h3>
+            input_data_hmp=data_hmp,    #provided hapmap data object
+            data_analysis_method=&quot;QC_Imputation&quot;,   #analysis method type,QC + imputatoin
+            output_data_path=&quot;/root/result&quot;,        #output data path
+            output_data_name=&quot;YY_data&quot;,             #output data name
+            output_data_type=&quot;Plink&quot;                #output data format 
+            )                       
+</code></pre>
+<p>In the process of quality control and imputation，we should provide genotype data，these parameters are the as in<code>genotype_data_format_conversion</code>function(see more details).</p>
+<h2 id="parameter">Parameter</h2>
+<h3 id="basic">💙Basic</h3>
 <ul>
-<li><p><strong>参数1：data_analysis_method</strong></p>
-<p>指定基因型数据的处理方法，<code>character</code>类型。可选方法包括：</p>
+<li>
+<p><strong>1：data_analysis_method</strong></p>
+<p>Method of analyzing data, <code>character</code> class.</p>
 <ul>
-<li><p>“QC” :进行质控</p></li>
-<li><p>“Imputation” :进行填充</p></li>
-<li><p>“QC_Imputation” :先质控，后填充</p></li>
-</ul></li>
-<li><p><strong>参数2：plink_software_path</strong></p></li>
+<li><code>&quot;QC&quot;</code> : only perform quality control</li>
+<li><code>&quot;Imputation&quot;</code> : only perform imputation</li>
 </ul>
-<p>Plink软件的路径,<code>character</code>类型。</p>
-<ul>
-<li><strong>参数3：plink_software_name</strong></li>
+</li>
+<li>
+<p><code>&quot;QC_Imputation&quot;</code> : first perform quality control, and then  perform imputation</p>
+</li>
+<li>
+<p><strong>2：qc_snp_rate</strong></p>
+</li>
 </ul>
-<p>Plink软件的名称,<code>character</code>类型。</p>
-<ul>
-<li><strong>参数4：beagle_software_path</strong></li>
-</ul>
-<p>Beagle软件的路径,<code>character</code>类型。</p>
-<ul>
-<li><strong>参数5：beagle_software_name</strong></li>
-</ul>
-<p>Beagle软件的名称,<code>character</code>类型。</p>
-</div>
-<div id="其他参数" class="section level3">
-<h3>💜其他参数</h3>
-<ul>
-<li><strong>参数6：qc_snp_rate</strong></li>
-</ul>
+<p>Threshold of SNPs call rate in quality control, <code>numeric</code> class. Default is 0.1</p>
 <p>使用Plink进行质控时，SNP call rate 的阈值，<code>numeric</code>类型，默认为0.1。</p>
 <ul>
-<li><strong>参数6：qc_ind_rate</strong></li>
+<li><strong>3：qc_ind_rate</strong></li>
 </ul>
-<p>使用Plink进行质控时，IND call rate 的阈值，<code>numeric</code>类型，默认为0.1。</p>
+<p>Threshold of individuals call rate in quality control, <code>numeric</code> class. Default is 0.1</p>
 <ul>
-<li><strong>参数6：qc_maf</strong></li>
+<li>**4：qc_maf **</li>
 </ul>
-<p>使用Plink进行质控时，MAF 的阈值，<code>numeric</code>类型，默认为0.05。</p>
+<p>Threshold of minor allele frequency(MAF)  in quality control, <code>numeric</code> class. Default is 0.05</p>
 <ul>
-<li><strong>参数6：qc_hwe</strong></li>
+<li>**5：qc_hwe **</li>
 </ul>
-<p>使用Plink进行质控时，哈代温伯格平衡的阈值,<code>numeric</code>类型，默认为1e-6。</p>
+<p>Threshold of hardy weinberg equilibrium(HWE)  in quality control, <code>numeric</code> class. Default is 1e-7</p>
+<h3 id="advanced">💜Advanced</h3>
 <ul>
-<li><strong>参数6：beagle_ref_data_path</strong></li>
+<li><strong>6：plink_software_path</strong></li>
 </ul>
-<p>使用beagle进行填充时，提供的reference data的路径，<code>character</code>类型。</p>
+<p>Path of software <strong>Plink</strong>  , <code>character</code> class.</p>
 <ul>
-<li><strong>参数7：beagle_ref_data_name</strong></li>
+<li><strong>7：plink_software_name</strong></li>
 </ul>
-<p>使用beagle进行填充时，提供的reference data的名称，<code>character</code>类型。</p>
+<p>Name of  software  <strong>Plink</strong> , <code>character</code> class.</p>
 <ul>
-<li><strong>参数8：beagle_ped_path</strong></li>
+<li><strong>8：beagle_software_path</strong></li>
 </ul>
-<p>使用beagle进行填充时，提供的系谱数据的路径，<code>character</code>类型。</p>
+<p>Path of software <strong>Beagle</strong> , <code>character</code> class.</p>
 <ul>
-<li><strong>参数9：beagle_ped_name</strong></li>
+<li><strong>9：beagle_software_name</strong></li>
 </ul>
-<p>使用beagle进行填充时，提供的系谱数据的名称，<code>character</code>类型。</p>
-</div>
+<p>Name of software <strong>Beagle</strong> , <code>character</code> class.</p>
+<ul>
+<li><strong>10：beagle_ref_data_path</strong></li>
+</ul>
+<p>File path of reference data in imputation, <code>character</code> class.</p>
+<ul>
+<li><strong>11：beagle_ref_data_name</strong></li>
+</ul>
+<p>File name of reference data in imputation, <code>character</code> class.</p>
+<ul>
+<li><strong>12：beagle_ped_path</strong></li>
+</ul>
+<p>File path of pedigree data in imputation, <code>character</code> class.</p>
+<ul>
+<li><strong>13：beagle_ped_name</strong></li>
+</ul>
+<p>File name of pedigree data in imputation, <code>character</code> class.</p>
 
     </div>
 
@@ -900,7 +928,7 @@ genotype_data_QC_Imputation(
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/&amp;text=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e4" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/&amp;text=R%20package:blupADC-Feature%204" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -913,7 +941,7 @@ genotype_data_QC_Imputation(
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/&amp;t=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e4" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/&amp;t=R%20package:blupADC-Feature%204" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -926,7 +954,7 @@ genotype_data_QC_Imputation(
       
       
       <li>
-        <a href="mailto:?subject=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e4&amp;body=/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=R%20package:blupADC-Feature%204&amp;body=/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -939,7 +967,7 @@ genotype_data_QC_Imputation(
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/&amp;title=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e4" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/&amp;title=R%20package:blupADC-Feature%204" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -952,7 +980,7 @@ genotype_data_QC_Imputation(
       
       
       <li>
-        <a href="whatsapp://send?text=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e4%20/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=R%20package:blupADC-Feature%204%20/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -965,7 +993,7 @@ genotype_data_QC_Imputation(
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/&amp;title=R%20package:blupADC-%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e4" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/&amp;title=R%20package:blupADC-Feature%204" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1003,7 +1031,7 @@ genotype_data_QC_Imputation(
 
     <div class="media-body">
       <h5 class="card-title">Mei Quanshun</h5>
-      <h6 class="card-subtitle">PhD student of animal breeding</h6>
+      <h6 class="card-subtitle">PhD student in animal breeding</h6>
       <p class="card-text">My research interests include genomic selection and machine learning in animal breeding.</p>
       <ul class="network-icon" aria-hidden="true">
   

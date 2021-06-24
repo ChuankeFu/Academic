@@ -13,7 +13,7 @@
     </image>
     
     <item>
-      <title>blupADC 在线版- 使用说明1</title>
+      <title>blupADC online-version-1</title>
       <link>/post/2021-04-22-blupadc-online-dmu/online_dmu/</link>
       <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
       <guid>/post/2021-04-22-blupadc-online-dmu/online_dmu/</guid>
@@ -150,235 +150,380 @@
     </item>
     
     <item>
-      <title>R package:blupADC-使用说明7</title>
+      <title>R package:blupADC-Feature 7</title>
       <link>/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/</link>
       <pubDate>Wed, 21 Apr 2021 00:00:00 +0000</pubDate>
       <guid>/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/</guid>
-      <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#oveview&#34;&gt;Oveview&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#example&#34;&gt;Example&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#single-trait-model---pedigree-blup&#34;&gt;&lt;strong&gt;Single trait model - Pedigree BLUP&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#single-trait-model---gblup&#34;&gt;&lt;strong&gt;Single trait model - GBLUP&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#single-trait-model---single-step-blup&#34;&gt;&lt;strong&gt;Single trait model - Single-step BLUP&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#multiple-traits-model---pedigree-blup&#34;&gt;&lt;strong&gt;Multiple traits model - Pedigree BLUP&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
 
+&lt;h2 id=&#34;oveview&#34;&gt;Oveview&lt;/h2&gt;
+&lt;p&gt;👻In the previous section, we have given detailed description about the interface with &lt;strong&gt;DMU&lt;/strong&gt;  throught &lt;code&gt;run_DMU&lt;/code&gt; function.  In this chapter, we will introduce the usage of &lt;code&gt;run_BLUPF90&lt;/code&gt;  function.&lt;/p&gt;
+&lt;p&gt;Note: the usage of  &lt;code&gt;run_BLUPF90&lt;/code&gt;  and  &lt;code&gt;run_DMU&lt;/code&gt;  is similar. Thus, we recommend to have a look at the  usage of &lt;code&gt;run_DMU&lt;/code&gt; function.&lt;/p&gt;
+&lt;p&gt;👉 &lt;strong&gt;Note:&lt;/strong&gt;  &lt;strong&gt;Package &lt;code&gt;blupADC&lt;/code&gt; has encapsulated  the basic module of BLUPF90 (&lt;code&gt;renumf90&lt;/code&gt;, &lt;code&gt;remlf90&lt;/code&gt;, &lt;code&gt;airemlf90&lt;/code&gt;, and &lt;code&gt;blupf90&lt;/code&gt;), if you want to use more modules, please download from websit&lt;/strong&gt; (&lt;a href=&#34;http://nce.ads.uga.edu/html/projects/programs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BLUPF90 download website&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For commercial use of BLUPF90,  user must contact the author of BLUPF90 !!!&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;h3 id=&#34;single-trait-model---pedigree-blup&#34;&gt;&lt;strong&gt;Single trait model - Pedigree BLUP&lt;/strong&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+  
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;,                  # output path 
+        BLUPF90_software_path=&amp;quot;/root/software/BLUPF90&amp;quot;  # path of BLUPF90 software 
+        )   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;single-trait-model---gblup&#34;&gt;&lt;strong&gt;Single trait model - GBLUP&lt;/strong&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+  
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        analysis_model=&amp;quot;GBLUP_A&amp;quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;blupf90_genumeric&amp;quot;,            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;,                  # output path 
+        BLUPF90_software_path=&amp;quot;/root/software/BLUPF90&amp;quot;  # path of BLUPF90 software 
+        )   
 
-&lt;p&gt;👻在前面的章节，我们已经讲述了如何在&lt;strong&gt;R&lt;/strong&gt;中调用&lt;strong&gt;DMU&lt;/strong&gt;软件并完成相应的分析。本章，我们将讲述如何通过&lt;code&gt;BLUP_ADC&lt;/code&gt;中的&lt;code&gt;run_BLUPF90&lt;/code&gt;函数，在&lt;strong&gt;R&lt;/strong&gt;中调用&lt;strong&gt;BLUPF90&lt;/strong&gt;软件并完成数据分析。为了方便用户的使用，我们已经尽可能地将 &lt;code&gt;run_BLUPF90&lt;/code&gt;函数中的参数 和 &lt;code&gt;run_DMU&lt;/code&gt;函数中的参数进行了统一。&lt;/p&gt;
-&lt;p&gt;接下来，我们还是用一个简单的例子看看该函数的用法:&lt;/p&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-run_BLUPF90(        
-            phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),  #表型数据的列名
-            target_trait_name=c(&amp;quot;Trait1&amp;quot;),                               #目标性状名称
-            fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),         #固定效应名称
-            random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),                   #随机效应名称
-            covariate_effect_name=list(c(&amp;quot;Age&amp;quot;)),                        #协变量名称
-            phe_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,           #表型数据路径
-            phe_name=&amp;quot;dmu_phe.txt&amp;quot;,                                      #表型数据名称
-            analysis_model=&amp;quot;PBLUP_A&amp;quot;,                                    #分析方法
-            relationship_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,  #亲缘关系文件路径
-            relationship_name=&amp;quot;Blupf90_ped.txt&amp;quot;,                         #亲缘关系文件名称
-            output_result_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,         #BLUPF90结果保存路径
-            output_ebv_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,            #EBV结果保存的路径
-            output_ebv_name=&amp;quot;test&amp;quot;,                                      #EBV结果保存的文件名
-            BLUPf90_software_path=&amp;quot;D:/test_code/BLUPf90_software&amp;quot;        #BLUPF90软件的路径
-            )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;通过上面的这个小脚本，我们即能完成&lt;strong&gt;BLUPF90&lt;/strong&gt;的单性状模型的计算。与上一节的介绍的&lt;code&gt;run_DMU&lt;/code&gt;函数类似，如果我们想完成双性状模型的计算，只需要在上面的脚本的基础上稍作修改就能实现目的。具体代码如下：&lt;/p&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-run_BLUPF90(        
-            phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),  #表型数据的列名
-            target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;),                              #目标性状名称
-            fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Sex&amp;quot;)),        #固定效应名称
-            random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;)),                   #随机效应名称
-            covariate_effect_name=list(c(&amp;quot;Age&amp;quot;),NULL),                       #协变量名称
-            phe_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,           #表型数据路径
-            phe_name=&amp;quot;dmu_phe.txt&amp;quot;,                                      #表型数据名称
-            analysis_model=&amp;quot;PBLUP_A&amp;quot;,                                    #分析方法
-            relationship_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,  #亲缘关系文件路径
-            relationship_name=&amp;quot;Blupf90_ped.txt&amp;quot;,                         #亲缘关系文件名称
-            output_result_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,         #BLUPF90结果保存路径
-            output_ebv_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,            #EBV结果保存的路径
-            output_ebv_name=&amp;quot;test&amp;quot;,                                      #EBV结果保存的文件名
-            BLUPf90_software_path=&amp;quot;D:/test_code/BLUPf90_software&amp;quot;        #BLUPF90软件的路径
-            )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;接下来，我们将对&lt;code&gt;run_BLUPF90&lt;/code&gt; 中特有的参数进行讲解，剩余的参数大家可移步 &lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/&#34;&gt;R package:blupADC-使用说明6&lt;/a&gt; 进行查看，相同参数的用法和含义均是一模一样的。&lt;/p&gt;
-&lt;div id=&#34;特有参数&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;💫特有参数&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;single-trait-model---single-step-blup&#34;&gt;&lt;strong&gt;Single trait model - Single-step BLUP&lt;/strong&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+  
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        analysis_model=&amp;quot;SSBLUP_A&amp;quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=c(&amp;quot;pedigree.txt&amp;quot;,&amp;quot;blupf90_genumeric&amp;quot;),            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;,                  # output path 
+        BLUPF90_software_path=&amp;quot;/root/software/BLUPF90&amp;quot;  # path of BLUPF90 software 
+        )   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Similar to &lt;code&gt;run_DMU&lt;/code&gt; function, through modifying the two parameters: &lt;code&gt;analysis_model&lt;/code&gt; and &lt;code&gt;relationship_name&lt;/code&gt; , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: blupf90_genumeric is generated through &lt;code&gt;cal_kinship&lt;/code&gt; function，see more tails(XXXX) about &lt;code&gt;cal_kinship&lt;/code&gt; function).&lt;/p&gt;
+&lt;h3 id=&#34;multiple-traits-model---pedigree-blup&#34;&gt;&lt;strong&gt;Multiple traits model - Pedigree BLUP&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;The following code is about the usage of multiple traits model through BLUPF90:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+  
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;)),               #random effect name
+        covariate_effect_name=list(NULL,&amp;quot;Age&amp;quot;),                          #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=c(&amp;quot;pedigree.txt&amp;quot;),            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;,                  # output path 
+        BLUPF90_software_path=&amp;quot;/root/software/BLUPF90&amp;quot;  # path of BLUPF90 software 
+        )   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
+&lt;p&gt;Many parameters in  &lt;code&gt;run_BLUPF90&lt;/code&gt; are the as &lt;code&gt;run_DMU&lt;/code&gt; function(see details).&lt;/p&gt;
+&lt;p&gt;💫Thus, we will introduce  specific parameters in&lt;code&gt;run_BLUPF90&lt;/code&gt; function.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数1：&lt;code&gt;blupf90_algorithm&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;BLPUF90进行方差组分估计时选用的算法，&lt;code&gt;character&lt;/code&gt;类型。可选算法包括：&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;“AI_REML”&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;“EM_REML”&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;默认算法为：“AI_REML”&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;1：BLUPF90_algorithm&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Algorithm of estimating variance components,  &lt;code&gt;character&lt;/code&gt; class. Default is &amp;ldquo;EM_REML&amp;rdquo;.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数2：&lt;code&gt;provided_blupf90_prior_file_path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;AI_REML&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;EM_REML&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;BLUP&amp;quot;&lt;/code&gt; : no need to estimate variance components,  solve mixed linear model directly.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的BLUPF90格式的方差组分-PRIOR文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;:需要注意的一点是，&lt;strong&gt;BLUPF90&lt;/strong&gt;格式的PRIOR文件和&lt;strong&gt;DMU&lt;/strong&gt;格式的PRIOR文件是不相同的。关于二者的差异，以后有时间会再出一篇文章进行讲解，这里就不再赘述了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;2：provided_blupf90_prior_file_path&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;File path of user-provided prior file,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: The format of BLUPF90 prior file is different to the DMU prior file. In the next section, i will give a detailed introduction.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数3：&lt;code&gt;provided_blupf90_prior_file_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3：provided_blupf90_prior_file_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的BLUPF90格式的方差组分-PRIOR文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;File name of user-provided prior file,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数4：&lt;code&gt;provided_blupf90_prior_effect_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;4：provided_blupf90_prior_effect_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的PRIOR文件中，与方差组分对应的各个随机效应名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;Effect name of user-provided prior file,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数5：&lt;code&gt;BLUPf90_software_path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;5：BLUPf90_software_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;BLUPF90软件在本地的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;/div&gt;
+&lt;p&gt;Path of software BLUPF90 , &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>R package:blupADC-使用说明6</title>
+      <title>R package:blupADC-Feature 6</title>
       <link>/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/</link>
       <pubDate>Tue, 20 Apr 2021 00:00:00 +0000</pubDate>
       <guid>/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/</guid>
-      <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#example&#34;&gt;Example&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#single-trait-model---pedigree-blup&#34;&gt;&lt;strong&gt;Single trait model - Pedigree BLUP&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#single-trait-model---gblup&#34;&gt;&lt;strong&gt;Single trait model - GBLUP&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#single-trait-model---single-step-blup&#34;&gt;&lt;strong&gt;Single trait model - Single-step BLUP&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#multiple-traits-model---pedigree-blup&#34;&gt;&lt;strong&gt;Multiple traits model - Pedigree BLUP&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#basic&#34;&gt;🤡Basic&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#advanced&#34;&gt;👺Advanced&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
 
-
-&lt;p&gt;🤠在讲述完各种各样的数据预处理方法后，我们正式进入到育种数据的分析层面。在目前的动植物育种领域，主要的育种软件包括但不限于以下两种：&lt;strong&gt;DMU&lt;/strong&gt;和&lt;strong&gt;BLUPf90&lt;/strong&gt;。这两款软件均是于上世纪80-90年代开发的，并且一直处于维护中。截至目前，两款软件的引用次数均已接近千次(实际可能更多), 这也足见这两款软件的认可度。&lt;/p&gt;
-&lt;p&gt;但是，这两款软件均存在一个共同的缺点，就是使用起来较为麻烦(需要提供准备好的参数文件)。笔者当时学习参数文件的配置时，前前后后花费了近一个月的时间，足以见这两款软件的不友好性🥶。&lt;/p&gt;
-&lt;p&gt;为此，我们在R中编写了相应的函数，使得用户可以轻松的完成两款软件参数文件的配置及对应的数据分析。本章我们主要讲述如何通过&lt;code&gt;BLUP_ADC&lt;/code&gt;中的&lt;code&gt;run_DMU&lt;/code&gt;函数，在R中调用&lt;strong&gt;DMU&lt;/strong&gt;软件并完成数据分析。在下一章，我们将会讲述如何在R中调用&lt;strong&gt;BLUPf90&lt;/strong&gt;软件，并完成数相应的据分析。&lt;/p&gt;
-&lt;p&gt;同样的，我们还是用一个简单的例子看看该函数的用法:&lt;/p&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-run_DMU(        
-        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),  #表型数据的列名
-        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                               #目标性状名称
-        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),         #固定效应名称
-        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),                   #随机效应名称
-        covariate_effect_name=list(c(&amp;quot;Age&amp;quot;)),                        #协变量名称
-        phe_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,           #表型数据路径
-        phe_name=&amp;quot;dmu_phe.txt&amp;quot;,                                      #表型数据名称
-        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                                    #分析方法
-        relationship_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,  #亲缘关系文件路径
-        relationship_name=&amp;quot;Blupf90_ped.txt&amp;quot;,                         #亲缘关系文件名称
-        integer_n=4,                                                 #整型变量的数目 
-        dmu_module=&amp;quot;dmuai&amp;quot;,                                          #dmu分析时选用的模块  
-        output_result_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,         #DMU结果保存路径
-        output_ebv_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,            #EBV结果保存的路径
-        output_ebv_name=&amp;quot;test&amp;quot;,                                      #EBV结果保存的文件名
-        DMU_software_path=&amp;quot;D:/QGG-DMUv6-2/R5.2/bin&amp;quot;                  #DMU软件的路径
-        )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;细心的同学应该能发现，上面我们完成的分析是单性状模型运算(&lt;strong&gt;只包括了一个目标性状&lt;/strong&gt;)。而在实际育种分析中，多性状模型也是非常常见。在上面代码的基础上稍作修改，我们就能够非常方便的完成多性状模型的运算，如下：&lt;/p&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-run_DMU(        
-        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),  #表型数据的列名
-        target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;),                              #目标性状名称
-        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Sex&amp;quot;)),        #固定效应名称
-        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;)),                   #随机效应名称
-        covariate_effect_name=list(c(&amp;quot;Age&amp;quot;),NULL),                       #协变量名称
-        phe_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,           #表型数据路径
-        phe_name=&amp;quot;dmu_phe.txt&amp;quot;,                                      #表型数据名称
-        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                                    #分析方法
-        relationship_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,  #亲缘关系文件路径
-        relationship_name=&amp;quot;Blupf90_ped.txt&amp;quot;,                         #亲缘关系文件名称
-        integer_n=4,                                                 #整型变量的数目 
-        dmu_module=&amp;quot;dmuai&amp;quot;,                                          #dmu分析时选用的模块  
-        output_result_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,         #DMU结果保存路径
-        output_ebv_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,            #EBV结果保存的路径
-        output_ebv_name=&amp;quot;test&amp;quot;,                                      #EBV结果保存的文件名
-        DMU_software_path=&amp;quot;D:/QGG-DMUv6-2/R5.2/bin&amp;quot;                  #DMU软件的路径
-        )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;接下来，我们将对run_DMU函数中的参数一一进行讲解。&lt;/p&gt;
-&lt;div id=&#34;主要参数&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;🧑‍🚀主要参数&lt;/h3&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;🤠 In the previous section, we have given detailed description about data preparation.  In the following section, we will introduce genetic evaluation software in animal and plant breeding.  Nowadays, in the filed of animal and plant breeding,  two of the most famous breeding software are &lt;strong&gt;DMU&lt;/strong&gt; and &lt;strong&gt;BLUPF90&lt;/strong&gt; ( cited over than one thousand).&lt;/p&gt;
+&lt;p&gt;Although these two softwares have many advantages, these two softwares have one common pitfall: it is a little difficult to use for freshman(need to prepare parameter file). Thus, in order to overcome this pitfall,  package &lt;code&gt;blupADC&lt;/code&gt;  provides  &lt;code&gt;run_DMU&lt;/code&gt; and &lt;code&gt;run_BLUPF90&lt;/code&gt; for interfacing &lt;strong&gt;DMU&lt;/strong&gt; and &lt;strong&gt;BLUPF90&lt;/strong&gt; in an easy way.&lt;/p&gt;
+&lt;p&gt;In this section, we will give detail descriptions about &lt;code&gt;run_DMU&lt;/code&gt; function.&lt;/p&gt;
+&lt;p&gt;👉 &lt;strong&gt;Note:&lt;/strong&gt;  &lt;strong&gt;Package &lt;code&gt;blupADC&lt;/code&gt; has encapsulated  the basic module of DMU(&lt;code&gt;dmu1&lt;/code&gt;,&lt;code&gt;dmuai&lt;/code&gt;, and &lt;code&gt;dmu5&lt;/code&gt;),more modules could be download from website&lt;/strong&gt;(&lt;a href=&#34;https://dmu.ghpc.au.dk/dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU download website&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For commercial use of DMU,  user must contact the author of DMU !!!&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;h3 id=&#34;single-trait-model---pedigree-blup&#34;&gt;&lt;strong&gt;Single trait model - Pedigree BLUP&lt;/strong&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+  
+run_DMU(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;single-trait-model---gblup&#34;&gt;&lt;strong&gt;Single trait model - GBLUP&lt;/strong&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+run_DMU(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&amp;quot;GBLUP_A&amp;quot;,                    #model of genetic evaluation
+        dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;G_Ainv_col_three.txt&amp;quot;,            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;single-trait-model---single-step-blup&#34;&gt;&lt;strong&gt;Single trait model - Single-step BLUP&lt;/strong&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+run_DMU(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;), # colnames of phenotype 
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&amp;quot;SSBLUP_A&amp;quot;,                    #model of genetic evaluation
+        dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=c(&amp;quot;pedigree.txt&amp;quot;,&amp;quot;G_A_col_three.txt&amp;quot;),            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Through modifying the two parameters: &lt;code&gt;analysis_model&lt;/code&gt; and &lt;code&gt;relationship_name&lt;/code&gt; , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: we can get G_Ainv_col_three.txt  and G_A_col_three.txt   through &lt;code&gt;cal_kinship&lt;/code&gt; function，see more tails(XXXX) about &lt;code&gt;cal_kinship&lt;/code&gt; function).&lt;/p&gt;
+&lt;p&gt;The above example is single-trait model, while in actual breeding, multiple traits model is also common.  Similarity, we only need to modify several parameters to  perform multiple traits model:&lt;/p&gt;
+&lt;h3 id=&#34;multiple-traits-model---pedigree-blup&#34;&gt;&lt;strong&gt;Multiple traits model - Pedigree BLUP&lt;/strong&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+  
+run_DMU(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;)),               #random effect name
+        covariate_effect_name=list(NULL,&amp;quot;Age&amp;quot;),                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
+&lt;h3 id=&#34;basic&#34;&gt;🤡Basic&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;参数1：&lt;code&gt;phe_path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;1：phe_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;本地表型数据文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;File path of phenotype data ，&lt;code&gt;character&lt;/code&gt; class。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数2：&lt;code&gt;phe_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;2：phe_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;本地表型数据文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;File name of phenotype data，&lt;code&gt;character&lt;/code&gt; class。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: User-provided phenotype don&amp;rsquo;t have colnames (the same as the requirement of DMU)&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数3：&lt;code&gt;phe_col_names&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3：phe_col_names&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;表型数据的列名，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;Column names of  phenotype data，&lt;code&gt;character&lt;/code&gt; class。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数4：&lt;code&gt;integer_n&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;4：integer_n&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;整型变量的数目，&lt;code&gt;numeric&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;Number of integer variable, &lt;code&gt;numeric&lt;/code&gt; class。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数5：&lt;code&gt;genetic_effect_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;5：genetic_effect_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;遗传效应的名称(一般为个体号)，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;Genetic effect name(usually is the id name), &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数6：&lt;code&gt;target_trait_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;6：target_trait_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;目标性状的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;p&gt;通过添加多个性状的名称，我们即可完成多性状模型的分析，e.g. &lt;code&gt;target_trait_name=c(&#34;Trait1&#34;,&#34;Trait2&#34;)&lt;/code&gt; 即可完成 &lt;code&gt;Trait1&lt;/code&gt; 和 &lt;code&gt;Trait2&lt;/code&gt;的双性状模型&lt;/p&gt;
+&lt;p&gt;Target trait name,  &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;For multiple traits model, we should set target_trait_name as character vector, e.g. &lt;code&gt;target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;)&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数7：&lt;code&gt;fixed_effect_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;7：fixed_effect_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;目标性状的固定效应名称，&lt;code&gt;list&lt;/code&gt;类型。在多性状模型中，&lt;code&gt;fixed_effect_name&lt;/code&gt;为每个性状的固定效应名称向量组成的列表结构，性状的顺序需与&lt;code&gt;target_trait_name&lt;/code&gt;一一对应。&lt;/p&gt;
-&lt;p&gt;e.g. 第一个性状的固定效应名称为： &lt;code&gt;c(&#34;Sex&#34;,&#34;Herd_Year_Season&#34;)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;第二个性状的固定效应名称为：&lt;code&gt;c(&#34;Sex&#34;)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;那么&lt;code&gt;fixed_effect_name=list(c(&#34;Sex&#34;,&#34;Herd_Year_Season&#34;),c(&#34;Sex&#34;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Fixed effects name, &lt;code&gt;list&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;For multiple traits model,  the order of  fixed effects name should corresponding to the target trait name.&lt;/p&gt;
+&lt;p&gt;eg.  &lt;code&gt;target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Herd_Year_Season&amp;quot;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;which means the fixed effects name of trait1 is : &lt;code&gt;c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)&lt;/code&gt;,  the fixed effect name of trait2 is : &lt;code&gt;c(&amp;quot;Herd_Year_Season&amp;quot;) &lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数8：&lt;code&gt;random_effect_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;8：random_effect_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;目标性状的随机效应名称，&lt;code&gt;list&lt;/code&gt;类型。在多性状模型中，&lt;code&gt;random_effect_name&lt;/code&gt;为每个性状的随机效应名称向量组成的列表结构，性状的顺序需与&lt;code&gt;target_trait_name&lt;/code&gt;一一对应。&lt;/p&gt;
-&lt;p&gt;e.g. 第一个性状的随机效应名称为： &lt;code&gt;c(&#34;Id&#34;,&#34;Litter&#34;)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;第二个性状的随机效应名称为：&lt;code&gt;c(&#34;Id&#34;)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;那么&lt;code&gt;random_effect_name=list(c(&#34;Id&#34;,&#34;Litter&#34;),c(&#34;Id&#34;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Random effects name, &lt;code&gt;list&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;For multiple traits model,  the order of  random effects name should corresponding to the target trait name.&lt;/p&gt;
+&lt;p&gt;eg.  &lt;code&gt;target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;which means the random effects name of trait1 is : &lt;code&gt;c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)&lt;/code&gt;,  the random effects name of trait2 is : &lt;code&gt;c(&amp;quot;Id&amp;quot;)&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数9：&lt;code&gt;covariate_effect_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;9：covariate_effect_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;目标性状的协变量效应名称，&lt;code&gt;list&lt;/code&gt;类型。在多性状模型中，&lt;code&gt;random_effect_name&lt;/code&gt;为每个性状的协变量效应名称向量组成的列表结构，性状的顺序需与&lt;code&gt;target_trait_name&lt;/code&gt;一一对应。&lt;/p&gt;
-&lt;p&gt;e.g. 第一个性状的协变量效应名称为： &lt;code&gt;c(&#34;Age&#34;)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;第二个性状的协变量效应名称为：&lt;code&gt;NULL&lt;/code&gt; (&lt;strong&gt;意味着无协变量&lt;/strong&gt;)&lt;/p&gt;
-&lt;p&gt;那么&lt;code&gt;covariate_effect_name=list(c(&#34;Age&#34;),NULL)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Covariate effects name, &lt;code&gt;list&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;For multiple traits model,  the order of  covariate effects name should corresponding to the target trait name.&lt;/p&gt;
+&lt;p&gt;eg.  &lt;code&gt;target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;covariate_effect_name=list(NULL,&amp;quot;Age&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;which means the covariate effects name of trait1 is : &lt;code&gt;NULL&lt;/code&gt; (NULL means no this effect),  the covariate effects name of trait2 is : &lt;code&gt;Age&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;参数10：&lt;code&gt;analysis_model&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;遗传评估的分析模型，&lt;code&gt;character&lt;/code&gt;类型。可选模型包括：&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;10：analysis_model&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Model of genetic evaluation, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;&#34;PBLUP_A&#34;&lt;/code&gt; : 系谱-加性效应模型&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&#34;GBLUP_A&#34;&lt;/code&gt; :基因组-加性效应模型&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&#34;GBLUP_AD&#34;&lt;/code&gt; :基因组-加性-显性效应模型&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&#34;SSBLUP_A&#34;&lt;/code&gt; :一步法加性效应模型&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&#34;User_define&#34;&lt;/code&gt;: 用户自定义模型&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;参数11：&lt;code&gt;dmu_module&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;DMU分析时使用的模块，&lt;code&gt;character&lt;/code&gt;类型。可选模块包括：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&#34;dmuai&#34;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&#34;dmu4&#34;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&#34;dmu5&#34;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;参数12：&lt;code&gt;DMU_software_path&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;PBLUP_A&amp;quot;&lt;/code&gt; : Pedigree BLUP- additive model&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;GBLUP_A&amp;quot;&lt;/code&gt; :GBLUP- additive model&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;GBLUP_AD&amp;quot;&lt;/code&gt; :GBLUP- additive and dominance model&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;SSBLUP_A&amp;quot;&lt;/code&gt; :SSBLUP- additive model&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;User_define&amp;quot;&lt;/code&gt;: User define model&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;DMU软件在本地的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;**11：dmu_module **&lt;/p&gt;
+&lt;p&gt;Module of estimating variance components,  &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数13：&lt;code&gt;relationship_path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;quot;dmuai&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;quot;dmu4&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;quot;dmu5&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;提供的亲缘关系文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;12：DMU_software_path&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Path of DMU software,  &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数14：&lt;code&gt;relationship_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;13：relationship_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;提供的亲缘关系文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;p&gt;针对不同的遗传评估分析模型，我们需要提供不同类型的亲缘关系文件。针对 “PBLUP_A”模型，我们需要提供系谱文件,e.g. &lt;code&gt;relationship_name=&#34;pedigree.txt&#34;&lt;/code&gt; ；针对&lt;code&gt;&#34;GBLUP_A&#34;&lt;/code&gt; 或 &lt;code&gt;&#34;GBLUP_AD&#34;&lt;/code&gt;模型，我们需要提供基因组亲缘关系矩阵的逆矩阵文件, e.g. &lt;code&gt;relationship_name=c(&#34;G_A_inv_matrix.txt&#34;,&#34;G_D_inv_matrix.txt&#34;)&lt;/code&gt;；针对 &lt;code&gt;&#34;SSBLUP_A&#34;&lt;/code&gt;模型, 我们需要同时提供系谱文件及基因组亲缘关系矩阵的文件, e.g. &lt;code&gt;relationship_name=c(&#34;pedigree.txt&#34;,&#34;G_A_matrix.txt&#34;)&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;File path of relationship data,  &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数15：&lt;code&gt;output_result_path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;14：relationship_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;DMU运行结果的保存路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;File name of relationship data,  &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;For difference genetic evaluation model , we should provide different relationship file.&lt;/p&gt;
+&lt;p&gt;E.g. for  &amp;ldquo;PBLUP_A&amp;rdquo; model, we need to provide pedigree file,  then we should set &lt;code&gt;relationship_name=&amp;quot;pedigree.txt&amp;quot;&lt;/code&gt;   ;&lt;/p&gt;
+&lt;p&gt;for  &amp;ldquo;GBLUP_A&amp;rdquo; model, we need to provide inverse of additive relationship matrix file(3 columns  format),  then we should set &lt;code&gt;relationship_name=&amp;quot;G_Ainv_col_three.txt&amp;quot;&lt;/code&gt;   ;&lt;/p&gt;
+&lt;p&gt;for  &amp;ldquo;SSBLUP_A&amp;rdquo; model, we need to provide pedigree and  additive relationship matrix file(3 columns  format),  then we should set &lt;code&gt;relationship_name=c(&amp;quot;pedigree.txt&amp;quot;,&amp;quot;G_A_col_three.txt&amp;quot;)&lt;/code&gt;   ;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数16：&lt;code&gt;output_ebv_path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;15：output_result_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;输出的育种值、残差及校正表型文件的保存路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;Path of output DMU result,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数17：&lt;code&gt;output_ebv_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;16：output_ebv_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;输出的育种值、残差及校正表型文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;div id=&#34;其他参数&#34; class=&#34;section level4&#34;&gt;
-&lt;h4&gt;&lt;strong&gt;其他参数&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;File path of output EBV,   &lt;code&gt;character&lt;/code&gt; class. Default is equal to  output_result_path&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数18：&lt;code&gt;provided_effect_file_path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;17：output_ebv_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;性状效应记录文件的路径，&lt;code&gt;character&lt;/code&gt;类型。为了方便用户输入固定效应、随机效应及协变量效应，用户可以在本地直接提供相应的文件，格式如下所示：&lt;/p&gt;
+&lt;p&gt;File name of output EBV,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;h3 id=&#34;advanced&#34;&gt;👺Advanced&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;18：provided_effect_file_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;File path of trait&amp;rsquo;s  effect data,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;File of trait&amp;rsquo;s effect including fixed effects name, random effects name, and covariate effects name.  Once user provide this file,  user don&amp;rsquo;t need to set  these three parameters: &lt;code&gt;fixed_effect_name &lt;/code&gt;  &lt;code&gt;random_effect_name &lt;/code&gt;  &lt;code&gt;covariate_effect_name &lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The format of this effect file is as following:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
+&lt;tr&gt;
 &lt;th&gt;V1&lt;/th&gt;
 &lt;th&gt;V2&lt;/th&gt;
 &lt;th&gt;V3&lt;/th&gt;
@@ -391,19 +536,8 @@ run_DMU(
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
+&lt;tr&gt;
 &lt;td&gt;Trait1&lt;/td&gt;
-&lt;td&gt;*&lt;/td&gt;
-&lt;td&gt;Sex&lt;/td&gt;
-&lt;td&gt;*&lt;/td&gt;
-&lt;td&gt;Id&lt;/td&gt;
-&lt;td&gt;*&lt;/td&gt;
-&lt;td&gt;Age&lt;/td&gt;
-&lt;td&gt;*&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;Trait2&lt;/td&gt;
 &lt;td&gt;*&lt;/td&gt;
 &lt;td&gt;Sex&lt;/td&gt;
 &lt;td&gt;Herd_Year_Season&lt;/td&gt;
@@ -413,839 +547,917 @@ run_DMU(
 &lt;td&gt;*&lt;/td&gt;
 &lt;td&gt;*&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Trait2&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;td&gt;Sex&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;td&gt;Id&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;td&gt;Age&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;每类效应都用*&lt;em&gt;隔开，每一列的间隔均为制表符间隔。每个性状所在的行均有4个，第1-2个*之间的效应代表的是固定效应，第2-3个*&lt;/em&gt; &lt;em&gt;之间的效应代表的是随机效应，第3-4个*&lt;/em&gt; &lt;em&gt;之间的效应代表的是协变量效应。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The first column is the name of target trait.  Each column stands for one effect name.  In order to recognize three types of effect, we  set  *   to distinct each type.&lt;/p&gt;
+&lt;p&gt;Effects name between the first   *  and the second  *  stand for fixed effects name;&lt;/p&gt;
+&lt;p&gt;effects name between the second   *  and the third  *  stand for random effects name;&lt;/p&gt;
+&lt;p&gt;effects name between the third   *  and the fourth  *  stand for covariate effects name.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数19：&lt;code&gt;provided_effect_file_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;19：provided_effect_file_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;性状效应记录文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;File name of trait&amp;rsquo;s  effect data,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数20：&lt;code&gt;provided_DIR_file_path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;20：provided_DIR_file_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户自己提供的DIR文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;File path of user-provided DIR data,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数21：&lt;code&gt;provided_DIR_file_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;21：provided_DIR_file_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户自己提供的DIR文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;File name of user-provided DIR data,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数22：&lt;code&gt;included_permanent_effect&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;22：included_permanent_effect&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否进行永久环境效应分析，&lt;code&gt;logical&lt;/code&gt;类型，默认为FASLE。&lt;/p&gt;
+&lt;p&gt;If perform permanent-environment analysis,    &lt;code&gt;logical&lt;/code&gt; class.   Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数23：&lt;code&gt;dmu_algorithm_code&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;23：dmu_algorithm_code&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;DMU模块内的算法代码，&lt;code&gt;numeric&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;Number of dmu-module algorithm,  &lt;code&gt;numeric&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数24：&lt;code&gt;provided_prior_file_path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;24：provided_prior_file_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的方差组分-PRIOR文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;File path of user-provided prior file,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数25：&lt;code&gt;provided_prior_file_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;25：provided_prior_file_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的方差组分-PRIOR文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;File name of user-provided prior file,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数26：&lt;code&gt;missing_value&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;26：missing_value&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;表型数据的缺失值，&lt;code&gt;numeric&lt;/code&gt;类型，默认为 -9999。&lt;/p&gt;
+&lt;p&gt;Missing value in phenotype file,  &lt;code&gt;numeric&lt;/code&gt; class. Default is -9999.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数27：&lt;code&gt;iteration_criteria&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;27：iteration_criteria&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;方差组分迭代收敛的标准，&lt;code&gt;numeric&lt;/code&gt;类型，默认为 1.0e-7。&lt;/p&gt;
+&lt;p&gt;Value of iteration convergence,  &lt;code&gt;numeric&lt;/code&gt; class. Default is 1.0e-7.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数28：&lt;code&gt;genetic_effect_number&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;28：genetic_effect_number&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;SOL文件中，遗传效应所代表的数字，&lt;code&gt;numeric&lt;/code&gt;类型，默认为4。&lt;/p&gt;
+&lt;p&gt;Number of genetic effect in SOL file,  &lt;code&gt;numeric&lt;/code&gt; class. Default is 4.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数29：&lt;code&gt;residual_cov_trait&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;29：residual_cov_trait&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;残差协方差约束为0的性状，&lt;code&gt;list&lt;/code&gt;类型。e.g. 将Trait1和Trait2的残差协方差约束为0，&lt;code&gt;residual_cov_trait=list(c(&#34;Trait1&#34;,&#34;Trait2&#34;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Traits combination of assuming residual-covariance equals to 0. e.g &lt;code&gt;residual_cov_trait=list(c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;))&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数30：&lt;code&gt;selected_id&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;30：selected_id&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;只输出这部分个体的育种值、残差及校正表型，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;Individuals set of output EBV,  &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数31：&lt;code&gt;cal_debv&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;31：cal_debv&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否计算DEBV，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
+&lt;p&gt;If calculate desegregated-EBV(DEBV),   &lt;code&gt;logical&lt;/code&gt; class.   Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数32：&lt;code&gt;debv_pedigree_path&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;32：debv_pedigree_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;计算DEBV时，提供的系谱文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;File path of pedigree data for calculating DEBV,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;参数33：&lt;code&gt;debv_pedigree_name&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;33：debv_pedigree_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;计算DEBV时，提供的系谱文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;File name of pedigree data for calculating DEBV,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>R package:blupADC-使用说明5</title>
+      <title>R package:blupADC-Feature 5</title>
       <link>/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/</link>
       <pubDate>Sun, 18 Apr 2021 00:00:00 +0000</pubDate>
       <guid>/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/</guid>
-      <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#example&#34;&gt;Example&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#-pedigree-kinship-matrix&#34;&gt;😾 Pedigree kinship matrix&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#-genomic-kinship-matrix&#34;&gt;🤡 Genomic kinship matrix&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#single-step-kinship-matrix&#34;&gt;💨Single-step kinship matrix&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#basic&#34;&gt;💪Basic&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#advanced&#34;&gt;🦶Advanced&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
 
-
-&lt;p&gt;🙉在动植物育种中，亲缘关系矩阵的构建是其中的关键步骤。在本章，我们将主要介绍如何利用&lt;code&gt;blupADC&lt;/code&gt;中的&lt;code&gt;cal_kinship&lt;/code&gt;函数完成各种亲缘关系矩阵的构建，包括：&lt;strong&gt;加性亲缘关系矩阵&lt;/strong&gt;(系谱，基因组，一步法)及&lt;strong&gt;显性亲缘关系矩阵&lt;/strong&gt;(系谱，基因组，一步法)等。此外，cal_kinship函数还能方便的计算各种类型的&lt;strong&gt;近交系数&lt;/strong&gt;，包括：系谱近交系数，基因组近交系数(Homozygous,Digonal)及一步法近交系数(Digonal)。&lt;/p&gt;
-&lt;p&gt;😾首先，我们还是通过一个小例子来看该函数的用法:&lt;/p&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-data_hmp=data.table::fread(&amp;quot;D:/test_code/BLUP_ADC_code/test_data/data_hmp.txt&amp;quot;,data.table=F)
-data_result=cal_kinship(
-            input_data_hmp=data_hmp,          #用户输入的基因型数据
-            kinship_type=c(&amp;quot;G_A&amp;quot;),            #构建的亲缘关系矩阵类型
-            inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #计算的近交系数的类型 
-            return_result=TRUE                #在R中返回结果  
-            )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数用法一致。具体大家可参阅之前的介绍: &lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型。&lt;/p&gt;
-&lt;div id=&#34;主要参数&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;💪主要参数&lt;/h3&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;🙉 In the application of animal and plant breeding, the key step is the construction of kinship matrix.  Package: &lt;code&gt;blupADC&lt;/code&gt; provides &lt;code&gt;cal_kinship &lt;/code&gt;function which can construct various type of kinship matrix directly,  including  &lt;strong&gt;additive kinship matrix&lt;/strong&gt;(pedigree, genomic and single-step), and &lt;strong&gt;dominance kinship matrix&lt;/strong&gt;(pedigree, genomic and single-step), and &lt;strong&gt;the inverse matrix&lt;/strong&gt; of these kinship matrix.&lt;/p&gt;
+&lt;p&gt;In the construction of single-step kinship matrix, users can select metafounder algorithm. In terms of the construction of dominance kinship matrix, users can select difference coding manners for genomic dominance kinship matrix, gene dropping algorithm for pedigree dominance kinship matrix.  In addition, &lt;code&gt;cal_kinship &lt;/code&gt; can calculate several types of &lt;strong&gt;inbreeding coefficients&lt;/strong&gt;(pedigree, genomic, and sigle-step) .&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;h3 id=&#34;-pedigree-kinship-matrix&#34;&gt;😾 Pedigree kinship matrix&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+kinship_result=cal_kinship(
+                input_pedigree=origin_pedigree,          #provided hapmap data object
+                kinship_type=c(&amp;quot;P_A&amp;quot;),      #type of  kinship matrix
+                inbred_type=c(&amp;quot;Pedigree&amp;quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: In the construction of pedigree and single-step relationship matrix, people need to provide genotype data.&lt;/p&gt;
+&lt;h3 id=&#34;-genomic-kinship-matrix&#34;&gt;🤡 Genomic kinship matrix&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=data_hmp,          #provided hapmap data object
+                kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_D&amp;quot;),      #type of  kinship matrix
+                dominance_type=c(&amp;quot;genotypic&amp;quot;),    #type of dominance effect
+                inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: In the construction of genomic and single-step relationship matrix, people need to provide genotype data. These parameters are the same as in &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function(see details).&lt;/p&gt;
+&lt;h3 id=&#34;single-step-kinship-matrix&#34;&gt;💨Single-step kinship matrix&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=data_hmp,          #provided hapmap data object
+                input_pedigree=origin_pedigree,
+                kinship_type=c(&amp;quot;H_A&amp;quot;),      #type of  kinship matrix
+                inbred_type=c(&amp;quot;H_diag&amp;quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
+&lt;h3 id=&#34;basic&#34;&gt;💪Basic&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;参数1：kinship_type&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;指定构建亲缘关系矩阵的类型，&lt;code&gt;character&lt;/code&gt;类型。可选关系矩阵类型：&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;1：kinship_type&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Type of kinship matrix, &lt;code&gt;character&lt;/code&gt; class. User can select multiple types simultaneously, including:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;“G_A” :基因组加性亲缘关系矩阵&#34;&lt;/li&gt;
-&lt;li&gt;“G_Domi” :基因组显性亲缘关系矩阵(按照0,1,0方式编码)&lt;/li&gt;
-&lt;li&gt;“G_Devi” :基因组显性离差亲缘关系矩阵(按照-2q&lt;sup&gt;2&lt;/sup&gt;,2pq,-2p&lt;sup&gt;2&lt;/sup&gt;,方式编码)&lt;/li&gt;
-&lt;li&gt;“H_A” :一步法加性亲缘关系矩阵&lt;/li&gt;
-&lt;li&gt;“H_D” :一步法显性亲缘关系矩阵&lt;/li&gt;
-&lt;li&gt;“P_A” :系谱加性亲缘关系矩阵&lt;/li&gt;
-&lt;li&gt;“P_D” :系谱显性亲缘关系矩阵&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;G_A&amp;rdquo; : genomic additive kinship matrix&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;G_Ainv&amp;rdquo; :inverse of genomic additive kinship matrix&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;G_D&amp;rdquo; :genomic dominance kinship matrix&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;G_Dinv&amp;rdquo; :inverse of genomic dominance kinship matrix&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;P_A&amp;rdquo; :pedigree additive kinship matrix&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;P_Ainv&amp;rdquo; :inverse of pedigree additive kinship matrix&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;P_D&amp;rdquo; : pedigree dominance kinship matrix&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;P_Dinv&amp;rdquo; :inverse of pedigree dominance kinship matrix&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;H_A&amp;rdquo; :single-step additive kinship matrix&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;H_Ainv&amp;rdquo; :inverse of single-step additive kinship matrix&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;H_D&amp;rdquo; :single-step dominance kinship matrix&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;H_Dinv&amp;rdquo; :inverse of single-step dominance kinship matrix&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Note:如果计算系谱及一步法亲缘关系矩阵，必须要提供系谱数据。关于如何提供系谱数据，我们会在后面进行讲解。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数2：kinship_inverse&lt;/strong&gt;&lt;/li&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否计算亲缘关系矩阵的逆矩阵，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: In the construction of pedigree and single-step kinship matrix, user need to provide pedigree data. In the construction of genomic and single-step kinship matrix, user need to provide genotype data.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;参数3：inbred_type&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;指定计算的近交系数的类型，&lt;code&gt;character&lt;/code&gt;类型。可选近交系数类型包括:&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;2：dominance_type&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Type of dominance effect in the construction of dominance kinship matrix , &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;“Homozygous” :根据纯合子位点计算&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;“G_Diag” :G矩阵对角线-1&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;“H_diag” :H矩阵对角线-1&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;“Pedigree” :A矩阵对角线-1&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;参数4：input_pedigree&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;genotypic&amp;rdquo; : coded by  $0-2pq$,$1-2pq$, and $0-2pq$  for $AA$,  $Aa$, and  $aa$, respectively.&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;classical&amp;rdquo; :     coded by $-2q^2$, $2pq$ , and $-2p^2$ for $AA$,  $Aa$, and  $aa$, respectively.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的系谱数据，&lt;code&gt;data.frame&lt;/code&gt;或 &lt;code&gt;matrix&lt;/code&gt;类型。具体的系谱数据格式可以参阅之前的介绍：&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/&#34;&gt;R package:blupADC-使用说明3&lt;/a&gt;。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数5：pedigree_rename&lt;/strong&gt;&lt;/li&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否对系谱数据进行重命名,&lt;code&gt;logical&lt;/code&gt;类型，默认为TRUE(对系谱进行重命名)。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;More details about these two types dominance effects could be seen in this reference ：&lt;a href=&#34;https://www.genetics.org/content/195/4/1223.short&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;On the Additive and Dominant Variance and Covariance of Individuals Within the Genomic Selection Scope&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：IND_geno_rename&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;是否根据系谱的重命名结果对基因型数据中的个体进行重命名，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE(不进行重命名)。&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;3：inbred_type&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Type of inbreeding coefficients,  &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数7：rename_to_origin&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;Homozygous&amp;rdquo; : proportion of homozygous sites&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;G_Diag&amp;rdquo; : diagonal of genomic additive kinship matrix minus 1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;H_diag&amp;rdquo; :diagonal of single-step additive kinship matrix minus 1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;Pedigree&amp;rdquo; :diagonal of pedigree additive kinship matrix minus 1&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;将亲缘关系矩阵中重命名的个体号转换回原始的个体号，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE(不进行转换)。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;4：input_pedigree&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;User-provided pedigree data ，&lt;code&gt;data.frame&lt;/code&gt; or &lt;code&gt;matrix&lt;/code&gt; class. (see more details about the format of pedigree data)&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数8：output_matrix_type&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;5：pedigree_rename&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;输出亲缘关系矩阵的格式，&lt;code&gt;character&lt;/code&gt;类型。可选参数包括：&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;“col_all” :按照n*n的格式输出亲缘关系矩阵&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;“col_three” : 按照3列矩阵的格式输出亲缘关系矩阵，第1列和第2列为个体号，第3列为亲缘系数。DMU和BLUPf90软件均需提供这种格式的亲缘关系矩阵。形如：&lt;/p&gt;
+&lt;p&gt;If  pedigree need to be renamed,  &lt;code&gt;logical&lt;/code&gt; class. Default is TRUE.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;**6：IND_geno_rename **&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If genotype individuals need to be renamed according to the  renamed pedigree,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;7：rename_to_origin&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If renamed individuals should keep original name,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;8：output_matrix_type&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Type of output kinship matrix type,   &lt;code&gt;character&lt;/code&gt; class. Default is &amp;ldquo;col_three&amp;rdquo;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;&lt;code&gt;col_all&lt;/code&gt;&amp;rdquo; : n*n format&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;&lt;code&gt;col_three&lt;/code&gt;&amp;rdquo; : 3 columns format. The first and the second column is the name of individuals, the third column is the value of kinship 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;table&gt;
 &lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th&gt;V1&lt;/th&gt;
-&lt;th&gt;V2&lt;/th&gt;
-&lt;th&gt;V3&lt;/th&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;1001&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1001&lt;/td&gt;
 &lt;td&gt;1001&lt;/td&gt;
 &lt;td&gt;0.989&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td&gt;1001&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1001&lt;/td&gt;
 &lt;td&gt;1002&lt;/td&gt;
 &lt;td&gt;0.421&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td&gt;1001&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;1001&lt;/td&gt;
 &lt;td&gt;1003&lt;/td&gt;
 &lt;td&gt;0.567&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;默认参数为 “col_all”&lt;/p&gt;
+&lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数9：output_matrix_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;9：output_matrix_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;亲缘关系矩阵保存到本地的路径, &lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;File path of output kinship matrix,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数10：output_matrix_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;10：output_matrix_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;亲缘关系矩阵保存到本地的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;其他参数&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;🦶其他参数&lt;/h3&gt;
+&lt;p&gt;File name of output kinship matrix,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;h3 id=&#34;advanced&#34;&gt;🦶Advanced&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数11：cpu_cores&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;11：cpu_cores&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;调用的cpu个数，&lt;code&gt;numeric&lt;/code&gt;类型，默认为1。&lt;/p&gt;
+&lt;p&gt;Number of cpu in calculating,  &lt;code&gt;numeric&lt;/code&gt;calss. Default is 1.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数12：kinship_base&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;12：kinship_base&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否按照基础群的方式构建基因组亲缘关系矩阵(p=q=0.5)，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
+&lt;p&gt;If take $p=q=0.5$  in the construction of kinship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数13：kinship_trace&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;13：kinship_trace&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否按照矩阵迹和的方式对基因组亲缘关系矩阵进行标准化，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
+&lt;p&gt;If take the trace of kinship matrix to scale kinship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数14：kinship_metafounder&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;14：kinship_metafounder&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否按照metafounder的方法计算一步法亲缘关系矩阵，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
+&lt;p&gt;If take the metafounder algorithm to construct single-step kinship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数15：w&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;15：SSBLUP_omega&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;构建一步法亲缘关系矩阵时G矩阵和A矩阵的比例，&lt;code&gt;numeric&lt;/code&gt;类型，默认为0.05。&lt;/p&gt;
+&lt;p&gt;The value of omega in the construction of single-step additive kinship matrix,  &lt;code&gt;numeric&lt;/code&gt;calss. Default is 0.05.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数16：gene_dropping&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;16：gene_dropping&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否使用 gene dropping 的方法构建系谱显性亲缘关系矩阵，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
+&lt;p&gt;If take the gene dropping algorithm to construct pedigree dominance kinship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数17：gene_dropping_iteration&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;17：gene_dropping_iteration&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;gene dropping方法的迭代次数，&lt;code&gt;numeric&lt;/code&gt;类型，默认为1000。&lt;/p&gt;
-&lt;/div&gt;
+&lt;p&gt;The number of iteration for gene dropping algorithm ,  &lt;code&gt;numeric&lt;/code&gt;calss. Default is 1000.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;18：memory_save&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If take memory saved way to construct  kinship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE. (This way need consume more storage space)&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>R package:blupADC-使用说明4</title>
+      <title>R package:blupADC-Feature 4</title>
       <link>/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/</link>
       <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
       <guid>/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/</guid>
-      <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#example&#34;&gt;Example&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#basic&#34;&gt;💙Basic&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#advanced&#34;&gt;💜Advanced&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
 
-
-&lt;p&gt;🤖通常来讲，我们公司拿到的原始芯片数据大都是包含缺失值且未经过质控的。而在实际的数据分析中，我们一般都要求数据是经过质控和填充。为此，&lt;code&gt;blupADC&lt;/code&gt;中提供了&lt;code&gt;genotype_data_QC_Imputation&lt;/code&gt;函数，可以方便我们在R中调用&lt;strong&gt;Plink&lt;/strong&gt;(用于质控)和&lt;strong&gt;Beagle&lt;/strong&gt;(用于填充)软件进行基因型数据的质控和填充。&lt;/p&gt;
-&lt;p&gt;👉&lt;strong&gt;Note:&lt;/strong&gt;我们需要提前下载好Plink(用于质控)和Beagle(用于填充)软件。由于Plink和Beagle在质控填充方面已经做得足够好了，因此我们并不打算用R重新实现相关功能。&lt;/p&gt;
-&lt;p&gt;老规矩，我们还是用一个小例子来看下函数的用法:&lt;/p&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;🤖 Generally, most genotype data need to perform quality control and imputation.  For convenience,  package &lt;code&gt;blupADC&lt;/code&gt; provides &lt;code&gt;genotype_data_QC_Imputation&lt;/code&gt; function to perform quality control and imputation by interfacing with  software &lt;strong&gt;Plink&lt;/strong&gt; and software &lt;strong&gt;Beagle&lt;/strong&gt; in an easy way (we only need to provide the software path and software name).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;👉 Note:  For convenience,  &lt;code&gt;blupADC&lt;/code&gt; has encapsulated software Plink(for quality control)  &lt;code&gt;version-1.9&lt;/code&gt; and software Beagle(for imputation) &lt;code&gt;version-5.2&lt;/code&gt;. If you want change this version, you could set the related parameters in the part of Advanced parameter.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
 genotype_data_QC_Imputation(
-              input_data_path=&amp;quot;root/genotype_data&amp;quot;,  #用户输入的基因型文件路径
-              input_data_name=&amp;quot;data_hmp.txt&amp;quot;,        #用户输入的基因型文件名称
-              input_data_type=&amp;quot;Hapmap&amp;quot;,              #用户输入的基因型文件格式
-              method=&amp;quot;QC_Imputation&amp;quot;,                #基因型数据处理方法：质控+填充
-              plink_software_path=&amp;quot;/root/software&amp;quot;,  #plink软件的路径
-              plink_software_name=&amp;quot;plink&amp;quot;,           #plink软件的名称
-              beagle_software_path=&amp;quot;root/software&amp;quot;,  #beagle软件的路径
-              beagle_software_name=&amp;quot;beagle.5.1.jar&amp;quot;, #beagle软件的名称
-              output_data_path=&amp;quot;/root/result&amp;quot;,       #输出基因型文件的路径
-              output_data_name=&amp;quot;YY_data&amp;quot;,            #输出基因型文件的名称
-              output_data_type=&amp;quot;Plink&amp;quot;               #输出基因型文件的格式
-              )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;通过上述代码，我们即可对本地的&lt;strong&gt;Hapmap&lt;/strong&gt;格式的基因型数据进行质控和填充，并将其以&lt;strong&gt;Plink&lt;/strong&gt;格式并保存到本地。&lt;/p&gt;
-&lt;p&gt;进行质控和填充时，我们必须要事先提供基因型数据，这部分的参数与&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数用法一致。具体大家可参阅之前的介绍: &lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;完成了基因型数据的提供后，我们可以通过以下参数进行质控填充的相关分析。&lt;/p&gt;
-&lt;div id=&#34;主要参数&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;💙主要参数&lt;/h3&gt;
+            input_data_hmp=data_hmp,    #provided hapmap data object
+            data_analysis_method=&amp;quot;QC_Imputation&amp;quot;,   #analysis method type,QC + imputatoin
+            output_data_path=&amp;quot;/root/result&amp;quot;,        #output data path
+            output_data_name=&amp;quot;YY_data&amp;quot;,             #output data name
+            output_data_type=&amp;quot;Plink&amp;quot;                #output data format 
+            )                       
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the process of quality control and imputation，we should provide genotype data，these parameters are the as in&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;function(see more details).&lt;/p&gt;
+&lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
+&lt;h3 id=&#34;basic&#34;&gt;💙Basic&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;参数1：data_analysis_method&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;指定基因型数据的处理方法，&lt;code&gt;character&lt;/code&gt;类型。可选方法包括：&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;1：data_analysis_method&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Method of analyzing data, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;“QC” :进行质控&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;“Imputation” :进行填充&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;“QC_Imputation” :先质控，后填充&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;参数2：plink_software_path&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;QC&amp;quot;&lt;/code&gt; : only perform quality control&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;Imputation&amp;quot;&lt;/code&gt; : only perform imputation&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Plink软件的路径,&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数3：plink_software_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;quot;QC_Imputation&amp;quot;&lt;/code&gt; : first perform quality control, and then  perform imputation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;2：qc_snp_rate&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Plink软件的名称,&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数4：beagle_software_path&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Beagle软件的路径,&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数5：beagle_software_name&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Beagle软件的名称,&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;其他参数&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;💜其他参数&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：qc_snp_rate&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Threshold of SNPs call rate in quality control, &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.1&lt;/p&gt;
 &lt;p&gt;使用Plink进行质控时，SNP call rate 的阈值，&lt;code&gt;numeric&lt;/code&gt;类型，默认为0.1。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：qc_ind_rate&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3：qc_ind_rate&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用Plink进行质控时，IND call rate 的阈值，&lt;code&gt;numeric&lt;/code&gt;类型，默认为0.1。&lt;/p&gt;
+&lt;p&gt;Threshold of individuals call rate in quality control, &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.1&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：qc_maf&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;**4：qc_maf **&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用Plink进行质控时，MAF 的阈值，&lt;code&gt;numeric&lt;/code&gt;类型，默认为0.05。&lt;/p&gt;
+&lt;p&gt;Threshold of minor allele frequency(MAF)  in quality control, &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.05&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：qc_hwe&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;**5：qc_hwe **&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用Plink进行质控时，哈代温伯格平衡的阈值,&lt;code&gt;numeric&lt;/code&gt;类型，默认为1e-6。&lt;/p&gt;
+&lt;p&gt;Threshold of hardy weinberg equilibrium(HWE)  in quality control, &lt;code&gt;numeric&lt;/code&gt; class. Default is 1e-7&lt;/p&gt;
+&lt;h3 id=&#34;advanced&#34;&gt;💜Advanced&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：beagle_ref_data_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;6：plink_software_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用beagle进行填充时，提供的reference data的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;Path of software &lt;strong&gt;Plink&lt;/strong&gt;  , &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数7：beagle_ref_data_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;7：plink_software_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用beagle进行填充时，提供的reference data的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;Name of  software  &lt;strong&gt;Plink&lt;/strong&gt; , &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数8：beagle_ped_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;8：beagle_software_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用beagle进行填充时，提供的系谱数据的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;Path of software &lt;strong&gt;Beagle&lt;/strong&gt; , &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数9：beagle_ped_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;9：beagle_software_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用beagle进行填充时，提供的系谱数据的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;/div&gt;
+&lt;p&gt;Name of software &lt;strong&gt;Beagle&lt;/strong&gt; , &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;10：beagle_ref_data_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;File path of reference data in imputation, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;11：beagle_ref_data_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;File name of reference data in imputation, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;12：beagle_ped_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;File path of pedigree data in imputation, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;13：beagle_ped_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;File name of pedigree data in imputation, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>R package:blupADC-使用说明3</title>
+      <title>R package:blupADC-Feature 3</title>
       <link>/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/</link>
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
       <guid>/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/</guid>
-      <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#example&#34;&gt;Example&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#basic&#34;&gt;💥Basic&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#advanced&#34;&gt;💨Advanced&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
 
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;🦄 Pedigree is the important information in animal breeding.  By applying &lt;code&gt;trace_pedigree&lt;/code&gt; function in package:&lt;code&gt;blupADC&lt;/code&gt;, user can  trace, rename, and correct pedigree errors in an easy way.&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;p&gt;💖&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
+pedigree_result=trace_pedigree(
+                input_pedigree=origin_pedigree,   #provided pedigree data object
+                output_pedigree_tree=TRUE  # output pedigree tree
+                )                 
 
-&lt;p&gt;🦄大家好,这一节主要给大家讲述的是如何使用&lt;code&gt;blupADC&lt;/code&gt;中的函数来进行系谱数据处理。&lt;code&gt;blupADC&lt;/code&gt;提供的&lt;code&gt;trace_pedigree&lt;/code&gt;函数，可以帮助我们非常方便的对系谱数据进行多种处理:包括系谱重命名、系谱追溯及系谱纠错等。&lt;/p&gt;
-&lt;p&gt;💖同样的，我们还是用一个小例子来简单的看下该函数的用法&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(blupADC)
-data_pedigree=data.table::fread(&amp;quot;D:/test_code/BLUP_ADC_code/test_data/ped.txt&amp;quot;,data.table=F)
-colnames(data_pedigree)=c(&amp;quot;Offspring&amp;quot;,&amp;quot;Sire&amp;quot;,&amp;quot;Dam&amp;quot;,&amp;quot;Birth_Date&amp;quot;)
-pedigree_result=trace_pedigree(input_pedigree=data_pedigree,output_pedigree_tree=TRUE)
-## Peidgree provided has four columns,please make sure the format of pedigree data has four columns: Offspring Sire Dam  Birth_Date 
-## Trace full generation......&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;我们可以通过&lt;code&gt;str&lt;/code&gt;查看函数的输出结果，如下所示:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;str(pedigree_result)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;By typing &lt;code&gt;str(pedigree_result)&lt;/code&gt;, we can get the output result of this function:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;str(pedigree_result)
 ## List of 5
-##  $ ped             : chr [1:42149, 1:3] &amp;quot;YYHZAUT14003572&amp;quot; &amp;quot;YYHZAUT17786901&amp;quot; &amp;quot;YYHZAUT16532401&amp;quot; &amp;quot;YYHZAUT15162815&amp;quot; ...
+##  $ ped          : chr [1:15945, 1:3] &amp;quot;DD19348310&amp;quot; &amp;quot;DD19386807&amp;quot; &amp;quot;DD19119705&amp;quot; &amp;quot;DD16007415&amp;quot; ...
 ##   ..- attr(*, &amp;quot;dimnames&amp;quot;)=List of 2
 ##   .. ..$ : NULL
 ##   .. ..$ : chr [1:3] &amp;quot;Offspring&amp;quot; &amp;quot;Sire&amp;quot; &amp;quot;Dam&amp;quot;
-##  $ rename_ped      :&amp;#39;data.frame&amp;#39;:    42149 obs. of  6 variables:
-##   ..$ Offspring   : chr [1:42149] &amp;quot;YYHZAUT14003572&amp;quot; &amp;quot;YYHZAUT17786901&amp;quot; &amp;quot;YYHZAUT16532401&amp;quot; &amp;quot;YYHZAUT15162815&amp;quot; ...
-##   ..$ Generation  : num [1:42149] 0 0 0 0 0 0 0 0 0 0 ...
-##   ..$ Offspring_Id: int [1:42149] 1 2 3 4 5 6 7 8 9 10 ...
-##   ..$ Sire_Id     : num [1:42149] 0 0 0 0 0 0 0 0 0 0 ...
-##   ..$ Dam_Id      : num [1:42149] 0 0 0 0 0 0 0 0 0 0 ...
-##   ..$ Order       : int [1:42149] 1 2 3 4 5 6 7 8 9 10 ...
-##  $ pedigree_tree   : chr [1:42149, 1:15] &amp;quot;YYHZAUT14003572&amp;quot; &amp;quot;YYHZAUT17786901&amp;quot; &amp;quot;YYHZAUT16532401&amp;quot; &amp;quot;YYHZAUT15162815&amp;quot; ...
+##  $ rename_ped   :&#39;data.frame&#39;:	15945 obs. of  6 variables:
+##   ..$ Offspring   : chr [1:15945] &amp;quot;DD19348310&amp;quot; &amp;quot;DD19386807&amp;quot; &amp;quot;DD19119705&amp;quot; &amp;quot;DD16007415&amp;quot; ...
+##   ..$ Generation  : num [1:15945] 0 0 0 0 0 0 0 0 0 0 ...
+##   ..$ Offspring_Id: int [1:15945] 1 2 3 4 5 6 7 8 9 10 ...
+##   ..$ Sire_Id     : num [1:15945] 0 0 0 0 0 0 0 0 0 0 ...
+##   ..$ Dam_Id      : num [1:15945] 0 0 0 0 0 0 0 0 0 0 ...
+##   ..$ Order       : int [1:15945] 1 2 3 4 5 6 7 8 9 10 ...
+##  $ pedigree_tree: chr [1:15945, 1:15] &amp;quot;DD19348310&amp;quot; &amp;quot;DD19386807&amp;quot; &amp;quot;DD19119705&amp;quot; &amp;quot;DD16007415&amp;quot; ...
 ##   ..- attr(*, &amp;quot;dimnames&amp;quot;)=List of 2
 ##   .. ..$ : NULL
 ##   .. ..$ : chr [1:15] &amp;quot;Offspring&amp;quot; &amp;quot;Sire&amp;quot; &amp;quot;Dam&amp;quot; &amp;quot;SireSire&amp;quot; ...
-##  $ rename_phenotype: NULL
-##  $ error_id_set    :List of 4
-##   ..$ error_duplicated_id: NULL
-##   ..$ error_sex_id       : chr(0) 
-##   ..$ error_breed_id     : NULL
-##   ..$ error_birth_date_id: NULL&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;可以很明显的看到,输出结果包括以下几个部分:&lt;/p&gt;
+##  $ error_id_set :List of 4
+##   ..$ error_duplicated_id: chr [1:24] &amp;quot;DD19119705&amp;quot; &amp;quot;DD20488904&amp;quot; &amp;quot;DD20153801&amp;quot; &amp;quot;DD20376912&amp;quot; ...
+##   ..$ error_sex_id: chr &amp;quot;DD13006182&amp;quot;
+##   ..$ error_breed_id: NULL
+##   ..$ error_birth_date_id: NULL
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This output result including several parts:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;ped:&lt;/strong&gt; 经过处理后(纠错、追溯等)的原始系谱数据且未进行重命名&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;rename_ped:&lt;/strong&gt; 经过处理(纠错、追溯等)且重命名的系谱数据。第1列为原始系谱ID,第2列为个体在系谱中的代数，第3-5列为重命名后的系谱数据&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;pedigree_tree:&lt;/strong&gt;个体的系谱树矩阵。可以通过设置 pedigree_tree_depth指定系谱树包含的代数，默认不输出系谱树(节省时间)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;error_id_set:&lt;/strong&gt;系谱记录错误个体数据集。根据错误的种类可以分为以下4个子集&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ped:&lt;/strong&gt; pedigree without rename&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;rename_ped:&lt;/strong&gt; renamed pedigree。The first column is original id, the second column is generation, columns 3-5 stands for the renamed pedigree.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pedigree_tree:&lt;/strong&gt; pedigree tree。Pedigree tree contains ancestry records information for each individual. For saving time, software don&amp;rsquo;t output pedigree tree in default.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;error_id_set:&lt;/strong&gt; dataset of   pedigree errors 。According to the type of pedigree errors, these datasets can be divided four parts:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;error_duplicated_id&lt;/code&gt;:  same individual but has different records of sire and dam&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;error_sex_id&lt;/code&gt;: the same individual both appears in the column of sire and dam&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;error_breed_id&lt;/code&gt;: the breed of parents and offspring is different (only for specify format of original id)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;error_birth_date_id&lt;/code&gt;:  offspring born before its parents (need to provide birth data information in the fourth column of pedigree)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;error_duplicated_id:相同的个体，父母却不相同&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;error_sex_id:个体同时出现在父亲列和母亲列&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;error_breed_id: 个体和父母的品种不相同(仅针对特殊格式)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;error_birth_date_id: 个体的出生日期要早于父母的出生日期(需在系谱的第四列提供个体的出生日期)&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;下面，我们将具体讲解&lt;code&gt;trace_pedigree&lt;/code&gt;函数中各种参数的含义:&lt;/p&gt;
-&lt;div id=&#34;主要参数&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;💥主要参数&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数1：input_pedigree&lt;/strong&gt;&lt;/li&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的系谱数据，&lt;code&gt;data.frame&lt;/code&gt;或 &lt;code&gt;matrix&lt;/code&gt;类型。&lt;/p&gt;
-&lt;p&gt;💌用户提供系谱数据需为以下几种格式中的一种，包括：&lt;/p&gt;
+&lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
+&lt;h3 id=&#34;basic&#34;&gt;💥Basic&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;3列系谱格式:&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;1：input_pedigree&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Offspring&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Sire&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Dam&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19173108&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT17282102&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT16109011&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19628606&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18811301&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18884508&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19423809&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18336401&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18623508&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT20898011&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18718802&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18859712&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;6&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT20268616&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19541201&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18802408&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;7&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19653108&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18747603&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18898606&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+&lt;p&gt;User-provided pedigree data, &lt;code&gt;data.frame &lt;/code&gt; or   &lt;code&gt;matrix&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;💌The format of provided pedigree data should be one of the following format:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;4列系谱格式:&lt;/li&gt;
+&lt;li&gt;3 columns format:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;table&gt;
 &lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Offspring&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Sire&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Dam&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Birth_Date&lt;/th&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Offspring&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Sire&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Dam&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19173108&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT17282102&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT16109011&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;20190208&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19575312&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD18768902&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD16376015&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19628606&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18811301&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18884508&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;20191012&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19513112&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD18768902&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD17111017&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19423809&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18336401&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18623508&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;20190615&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20348012&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19132207&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19234510&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT20898011&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18718802&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18859712&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;20200307&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20361110&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19331001&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19293112&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;6&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT20268616&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19541201&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18802408&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;20200827&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20471212&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19331001&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19320808&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;7&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19653108&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18747603&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18898606&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;20191018&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20564818&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19331001&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19311009&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;多列系谱格式:&lt;/li&gt;
+&lt;li&gt;4 columns format:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;table style=&#34;width:100%;&#34;&gt;
-&lt;colgroup&gt;
-&lt;col width=&#34;16%&#34; /&gt;
-&lt;col width=&#34;16%&#34; /&gt;
-&lt;col width=&#34;16%&#34; /&gt;
-&lt;col width=&#34;16%&#34; /&gt;
-&lt;col width=&#34;16%&#34; /&gt;
-&lt;col width=&#34;16%&#34; /&gt;
-&lt;/colgroup&gt;
+&lt;table&gt;
 &lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;Offspring&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Sire&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Dam&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;SireSire&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;DamSire&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;SireSireSire&lt;/th&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Offspring&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Sire&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Dam&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;Birth_Date&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19682603&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18498306&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18881607&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT17517904&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT17060205&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT15421201&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19575312&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD18768902&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD16376015&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20200101&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19292804&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT17217601&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18443906&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT16762403&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT16360601&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT15129404&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19513112&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD18768902&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD17111017&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20200102&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19215806&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18412205&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT16113613&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT17412001&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT15289901&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT15288601&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20348012&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19132207&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19234510&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20200103&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT20245109&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19584301&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18916603&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18747603&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT17060205&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT17642901&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20361110&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19331001&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19293112&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20200104&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19528301&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18537302&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18643307&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT17603803&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT17656604&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT16766003&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20471212&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19331001&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19320808&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20200105&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT19588602&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT18691101&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT17250213&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT17739601&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT17411802&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YYHZAUT16126301&lt;/td&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20564818&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19331001&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19311009&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;20200106&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;:需要注意的是，当系谱为多列时，系谱的列名需要标注为特殊形式,e.g. SireSire:父亲的父亲, SirSireSire:父亲的父亲的父亲&lt;/p&gt;
-&lt;p&gt;系谱数据中缺失值可以设置为: &lt;strong&gt;NA或0&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;同样的，为了便于用户操作，用户还可以直接提供本地系谱数据的路径和名称&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数2：input_pedigree_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Multiple columns format:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;本地系谱数据的路径,&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Offspring&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Sire&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Dam&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;SireSire&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;DamSire&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;SireSireSire&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20231905&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19581002&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD18750810&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD16785512&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD15507717&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD14008512&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20458701&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19564302&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD18925809&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD15349017&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD15245411&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD16771212&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20324707&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19232903&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD18571012&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD16794714&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD16744412&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD16714516&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19288609&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD18713408&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD18552609&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD15180015&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD15479214&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD15243711&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD16222012&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD15145005&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD15378812&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD14110014&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD15501518&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD15206217&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD17684713&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD16672107&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD15122311&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD15505715&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD15347415&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD16383111&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: When the format of provided pedigree data is multiple columns ，the colnames of pedigree data should be the specify format , e.g. &lt;code&gt;SireSire&lt;/code&gt; stands for the father of offspring&amp;rsquo;s father, &lt;code&gt;SirSireSire&lt;/code&gt; stands for the father of  &lt;code&gt;SireSire&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Missing record in pedigree could be set as  &lt;strong&gt;NA&lt;/strong&gt; or &lt;strong&gt;0&lt;/strong&gt; .&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数3：input_pedigree_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;2：input_pedigree_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;本地系谱数据的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;File path of pedigree data, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数4：pedigree_format_conversion&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3：input_pedigree_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否将提供的多列系谱转换到3列，logical类型。如果用户提供的系谱数据包含多列，那么用户必须设置&lt;code&gt;pedigree_format_conversion=TRUE&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;File name of pedigree data, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数5：output_pedigree_type&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;4：pedigree_format_conversion&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;系谱输出的格式，&lt;code&gt;character&lt;/code&gt;类型。可选格式包括: BLUPF90, DMU 及 Normal(未重命名)。&lt;/p&gt;
+&lt;p&gt;If convert multiple columns pedigree into standard 3 columns pedigree, &lt;code&gt;logical&lt;/code&gt; class.  If the format of provided pedigree data is multiple columns, user need to set &lt;code&gt;pedigree_format_conversion=TRUE&lt;/code&gt; .&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：output_pedigree_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;5：output_pedigree_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;系谱输出到本地的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;File path of output pedigree data, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数7：output_pedigree_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;6：output_pedigree_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;系谱输出到本地的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;其他参数&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;💨其他参数&lt;/h3&gt;
+&lt;p&gt;File path of output pedigree name, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;h3 id=&#34;advanced&#34;&gt;💨Advanced&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数8：dup_error_check&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;7：dup_error_check&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;检查相同个体的父母却不相同的错误，&lt;code&gt;logical&lt;/code&gt;类型，默认为TRUE。&lt;/p&gt;
+&lt;p&gt;If check the pedigree error of error_duplicated，&lt;code&gt;logical&lt;/code&gt;class. Default is TRUE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数9：sex_error_check&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;8：sex_error_check&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;检查个体同时出现在父亲列和母亲列的错误，&lt;code&gt;logical&lt;/code&gt;类型，默认为TRUE。&lt;/p&gt;
+&lt;p&gt;If check the pedigree error of error_sex，&lt;code&gt;logical&lt;/code&gt;class. Default is TRUE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数10：breed_error_check&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;9：breed_error_check&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;检查个体品种与父母品种不同的错误，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
+&lt;p&gt;If check the pedigree error of error_breed_，&lt;code&gt;logical&lt;/code&gt;class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数11：birth_date_error_check&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;10：birth_date_error_check&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;检查个体出生日期早于父母的错误，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
+&lt;p&gt;If check the pedigree error of error_birth_date，&lt;code&gt;logical&lt;/code&gt;class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数12：trace_id&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;11：trace_id&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;追溯系谱记录的个体号，&lt;code&gt;character&lt;/code&gt;类型，默认为&lt;code&gt;NULL&lt;/code&gt;(追溯系谱中所有的个体)。&lt;/p&gt;
+&lt;p&gt;Individuals set in tracing pedigree, &lt;code&gt;character&lt;/code&gt; class. Default is &lt;code&gt;NULL&lt;/code&gt; (tracing all individuals in pedigree)&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数13：trace_offspring&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;12：trace_generation&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否追溯子代，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
+&lt;p&gt;Generation of tracing pedigree，&lt;code&gt;numeric&lt;/code&gt; class. Default is 5.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数14：trace_generation&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;13：trace_birth_date&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;追溯的代数，&lt;code&gt;numeric&lt;/code&gt;类型，默认为5。&lt;/p&gt;
+&lt;p&gt;Birth date threshold of individuals in tracing pedigree, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;Only individuals with birth date larger than  this threshold would be included in tracing pedigree.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数15：trace_birth_date&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;14：output_pedigree_tree&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;追溯出生日期晚于指定日期的个体，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;If  output pedigree tree，&lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数16：output_pedigree_tree&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;15：pedigree_tree_depth&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否输出系谱树，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数17：pedigree_tree_depth&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;系谱树的深度(系谱代数)，&lt;code&gt;numeric&lt;/code&gt;类型，默认为3。&lt;/p&gt;
-&lt;/div&gt;
+&lt;p&gt;Depth of pedigree tree，&lt;code&gt;numeric &lt;/code&gt;class. Default is 3.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>R package:blupADC-使用说明2</title>
-      <link>/post/2021-04-17-r-package-blup-adc-overlap-genotype/overlap_genotype/</link>
+      <title>R package:blupADC-Feature 2</title>
+      <link>/post/2021-04-17-r-package-blup-adc-overlap-genotype/blupadc/</link>
       <pubDate>Thu, 15 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/post/2021-04-17-r-package-blup-adc-overlap-genotype/overlap_genotype/</guid>
-      <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+      <guid>/post/2021-04-17-r-package-blup-adc-overlap-genotype/blupadc/</guid>
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#example&#34;&gt;Example&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
 
-
-&lt;p&gt;👦大家好,这一节给大家带来的是如何使用&lt;code&gt;blupADC&lt;/code&gt;中的&lt;code&gt;Calculate_genotype_overlap&lt;/code&gt;函数来对基因型数据进行重复性检测。&lt;/p&gt;
-&lt;p&gt;与之前类似，我们还是用一个小例子来简单的看下该函数的用法&lt;/p&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-data_hmp=data.table::fread(&amp;quot;D:/test_code/BLUP_ADC_code/test_data/data_hmp.txt&amp;quot;,data.table=F)
-overlap_result=Calculate_genotype_overlap(input_data_hmp=data_hmp)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;关于&lt;code&gt;Calculate_genotype_overlap&lt;/code&gt; 函数中的参数介绍，我们主要介绍以下两个参数：&lt;/p&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;👦  Duplicated genotype is usually a problem in data analysis. In package:&lt;code&gt;blupADC&lt;/code&gt;, user can detect the overlap genotype data  by applying &lt;code&gt;genotype_data_overlap&lt;/code&gt; function.&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+overlap_result=genotype_data_overlap(
+                  input_data_hmp=data_hmp,   #provided hapmap data object
+                  overlap_threshold=0.95,    # threshold of duplicate 
+                  return_result=TRUE         #return result 
+                  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
+&lt;p&gt;Many parameters in  &lt;code&gt;genotype_data_overlap&lt;/code&gt; are the as &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function(see details).&lt;/p&gt;
+&lt;p&gt;Thus, we will introduce  specific parameters in  &lt;code&gt;genotype_data_overlap&lt;/code&gt;  function.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数1：selected_snps&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;1：selected_snps&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;进行重复性检测时随机抽样的SNP的数目，&lt;code&gt;numeric&lt;/code&gt; 类型，默认为1000。&lt;/p&gt;
+&lt;p&gt;Number of SNPs in detecting overlap,&lt;code&gt;numeric&lt;/code&gt; calss. Default is 1000.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数2：overlap_threshold&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;2：overlap_threshold&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;判断基因型重复的阈值，&lt;code&gt;numeric&lt;/code&gt; 类型，默认为0.95。&lt;/p&gt;
-&lt;p&gt;当个体间的基因型overlap比例超过该阈值时，基因型就会被判定为重复的基因型。&lt;/p&gt;
-&lt;p&gt;该函数中的其他参数均和&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数一致(基因型数据的输入与输出)，具体大家可参阅之前的介绍:&lt;/p&gt;
-&lt;p&gt;具体大家可参阅之前的介绍: &lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;Threshold of duplicate genotype, &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.95.&lt;/p&gt;
+&lt;p&gt;When the proportion of genotype data between two individuals is larger than this threshold, these two individuals will be regarded as the same individual.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>R package:blupADC- 使用说明1</title>
+      <title>R package:blupADC-Feature 1</title>
       <link>/post/blupadc/</link>
       <pubDate>Wed, 14 Apr 2021 00:00:00 +0000</pubDate>
       <guid>/post/blupadc/</guid>
       <description>
-&lt;script src=&#34;/post/blupadc/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/post/blupadc/index_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
-
-&lt;p&gt;🙀大家好,通过前一章节的学习，相信大家已经对&lt;code&gt;blupADC&lt;/code&gt; 有了一个初步的了解了。从本节开始，我们将对&lt;code&gt;blupADC&lt;/code&gt;中的几个重要的函数一一进行讲解。这一节主要给大家讲述的是如何使用&lt;code&gt;blupADC&lt;/code&gt;中&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数来进行多种基因型格式数据的转换。&lt;/p&gt;
-&lt;div id=&#34;基因型数据格式转化&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;基因型数据格式转化&lt;/h2&gt;
-&lt;p&gt;首先,我们以一个简单的小例子来看看函数的用法&lt;/p&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-data_ped=data.table::fread(&amp;quot;D:/test_code/BLUP_ADC_code/test_data/data.ped&amp;quot;,data.table = F)
-data_map=data.table::fread(&amp;quot;D:/test_code/BLUP_ADC_code/test_data/data.map&amp;quot;,data.table = F)
-sum_data=genotype_data_format_conversion(
-         input_data_plink_ped=data_ped,  #用户输入的 plink-ped格式数据
-         input_data_plink_map=data_map,  #用户输入的 plink-map格式数据
-         output_data_type=c(&amp;quot;Hapmap&amp;quot;,&amp;quot;Blupf90&amp;quot;),#输出的基因型数据格式
-         return_result = TRUE,      #在R中返回结果
-         cpu_cores=1                #调用的cpu个数
-                  )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;下面，我们将对&lt;code&gt;genotype_data_format_conversion&lt;/code&gt; 中的参数一一进行讲解&lt;/p&gt;
-&lt;div id=&#34;主要参数&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;🤡主要参数&lt;/h3&gt;
+&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数1:input_data_plink_ped&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#example&#34;&gt;Example&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#primary&#34;&gt;🤡Primary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#secondary&#34;&gt;💨Secondary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的 Plink-ped格式的数据，&lt;code&gt;data.frame&lt;/code&gt;类型。具体格式如下所示：&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;genotype_data_format_conversion&lt;/code&gt; is the basic function of package:&lt;code&gt;blupADC&lt;/code&gt;. By applying &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; , we can convert multiple genotype data formats in an easy way, including Hapmap, Plink, Blupf90, Numeric and VCF.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;👉 Note: For analyzing VCF format data, &lt;code&gt;blupADC&lt;/code&gt; has encapsulated software Plink &lt;code&gt;version-1.9&lt;/code&gt; and VCFtools &lt;code&gt;version-0.1.17&lt;/code&gt;. If you want change this version, you could set the related parameters in the part of Advanced parameter.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(blupADC)
+sum_data=genotype_data_format_conversion(
+         input_data_hmp=data_hmp,  #provided hapmap data object 
+         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;Blupf90&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
+         return_result = TRUE,      # return result 
+         cpu_cores=1                # number of cpu 
+         )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Start numeric(0,1,2) format conversion...... 
+## Complete Blupf90  format conversion 
+## Complete Plink Data Format Conversion&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;parameter&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Parameter&lt;/h2&gt;
+&lt;div id=&#34;primary&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;🤡Primary&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;1: input_data_plink_ped&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;User-provided ped format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class。&lt;/p&gt;
 &lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;V1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;V2&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;V3&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;V4&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;V5&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;V6&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;V7&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;V8&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;V9&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;V10&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Ind1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Ind2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Ind3&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Ind4&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind5&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Ind5&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind6&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Ind6&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数2:input_data_plink_map&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;2:input_data_plink_map&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的 Plink-map格式的数据，&lt;code&gt;data.frame&lt;/code&gt;类型。具体格式如下所示：&lt;/p&gt;
+&lt;p&gt;User-provided map format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class。&lt;/p&gt;
 &lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;right&#34;&gt;V1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;V2&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;V3&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;V4&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP1842&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.22&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.224488&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;224488&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP2977&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.29&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.293696&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;293696&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP3321&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.33&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.333333&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;333333&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP3941&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.72&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;722623&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.464830&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;464830&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP4138&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.84&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;838596&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.722623&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;722623&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP4303&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.93&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;934682&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.838596&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;838596&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数3:input_data_hmp&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3:input_data_hmp&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的 Hapmap格式的数据，&lt;code&gt;data.frame&lt;/code&gt;类型。具体格式如下所示&lt;/p&gt;
+&lt;p&gt;User-provided hapmap format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class。&lt;/p&gt;
 &lt;table style=&#34;width:100%;&#34;&gt;
 &lt;colgroup&gt;
 &lt;col width=&#34;4%&#34; /&gt;
 &lt;col width=&#34;7%&#34; /&gt;
 &lt;col width=&#34;5%&#34; /&gt;
-&lt;col width=&#34;9%&#34; /&gt;
+&lt;col width=&#34;6%&#34; /&gt;
 &lt;col width=&#34;6%&#34; /&gt;
 &lt;col width=&#34;8%&#34; /&gt;
 &lt;col width=&#34;6%&#34; /&gt;
@@ -1271,10 +1483,10 @@ sum_data=genotype_data_format_conversion(
 &lt;th align=&#34;left&#34;&gt;assayLSID&lt;/th&gt;
 &lt;th align=&#34;left&#34;&gt;panelLSID&lt;/th&gt;
 &lt;th align=&#34;left&#34;&gt;QCcode&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Ind1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Ind2&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Ind3&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Ind4&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;3098&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;3498&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;3297&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;2452&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
@@ -1282,7 +1494,7 @@ sum_data=genotype_data_format_conversion(
 &lt;td align=&#34;left&#34;&gt;SNP1&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;100050454&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;224488&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
@@ -1290,16 +1502,67 @@ sum_data=genotype_data_format_conversion(
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;TT&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CT&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;AC&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;AC&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td align=&#34;left&#34;&gt;SNP2&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;100142509&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;293696&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;GG&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;TG&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;TG&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;GG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;SNP3&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;333333&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;GG&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;TT&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;TT&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;GG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;SNP4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;464830&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;SNP5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;722623&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
@@ -1308,66 +1571,15 @@ sum_data=genotype_data_format_conversion(
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;AA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;SNP3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;100223426&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;TT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;TT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;TT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;TT&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;SNP4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;100297114&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CT&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;SNP5&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;100398783&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CT&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;GG&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;GG&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;AA&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td align=&#34;left&#34;&gt;SNP6&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;100420304&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;838596&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
@@ -1375,200 +1587,195 @@ sum_data=genotype_data_format_conversion(
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;TC&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;TT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;GT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;GT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;GT&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数4:input_data_blupf90&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;4:input_data_blupf90&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的 BLUPF90格式数据，&lt;code&gt;data.frame&lt;/code&gt;类型。具体格式如下所示&lt;/p&gt;
+&lt;p&gt;User-provided BLUPF90 format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class。&lt;/p&gt;
 &lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;V1&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;V2&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2221100000200&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;200000&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind12&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2000022222022&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;112021&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind13&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;1011111111111&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;112022&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind111&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2120022211022&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;200000&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind125&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2111011111111&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;102011&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind1161&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0022200000200&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;212000&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数5:input_data_genumeric&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;5:input_data_genumeric&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的 Numeric格式的数据，&lt;code&gt;matrix(纯数字)&lt;/code&gt;类型。具体格式如下所示&lt;/p&gt;
+&lt;p&gt;User-provided Numeric format genotype data ，&lt;code&gt;matrix(numeric)&lt;/code&gt; class。&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr class=&#34;header&#34;&gt;
 &lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SNP1842&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SNP2977&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SNP3321&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SNP3941&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SNP4138&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SNP4303&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;SNP1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;SNP2&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;SNP3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;SNP4&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;SNP5&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;SNP6&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind3&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind4&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;Ind6&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; 行为个体，列为SNP，必须包括列名和行名。&lt;/p&gt;
-&lt;p&gt;此外，为了方便用户使用，用户还可以直接通过提供本地数据的路径、名称与数据类型即可完成数据提供这一步骤,而无需将数据读入到&lt;strong&gt;R&lt;/strong&gt;里面。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; rownames stand for individuals，colnames stands for SNPs. &lt;code&gt;input_data_genumeric&lt;/code&gt; should contain both rownames and colnames.&lt;/p&gt;
+&lt;p&gt;In addition, for convenience, users can provide the file name, file path, and file type of genotype data directly without reading them in R enviroument by themself .&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6:input_data_path&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;用户提供的本地数据的文件路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数7:input_data_name&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;用户提供的本地数据的文件名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; 如果提供的数据类型为Plink ,那么本地文件名称不需要带后缀，eg. 本地文件名为test1.map test1.ped，我们提供文件名称为： &lt;code&gt;input_data_name=&#34;test1&#34;&lt;/code&gt;。除了Plink格式的数据外，其他数据格式必须提供完整的名称(带后缀)。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;参数8:input_data_type&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;用户提供的本地数据的格式，&lt;code&gt;character&lt;/code&gt;类型。数据格式包括：&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;6:input_data_type&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;User-provided file type of genotype data ，&lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Hapmap&lt;/li&gt;
 &lt;li&gt;Plink&lt;/li&gt;
 &lt;li&gt;Blupf90&lt;/li&gt;
 &lt;li&gt;Numeric&lt;/li&gt;
-&lt;li&gt;VCF(需要提前安装好vcftools软件,并设置好环境变量)&lt;/li&gt;
+&lt;li&gt;VCF&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;参数9:return_result&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;7:input_data_path&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;是否在R中返回输出的结果，&lt;code&gt;logical&lt;/code&gt;类型。默认为FLASE。&lt;/p&gt;
-&lt;p&gt;此外，为了便于输出数据的保存，用户可以将数据保存到本地&lt;/p&gt;
+&lt;p&gt;User-provided file path of genotype data ，&lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数10:output_data_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;8:input_data_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;输出的基因型数据保存到本地的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;User-provided file name of genotype data ，&lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; if input_data_type is Plink or VCF, user don’t need to include suffix in the file name of genotype data.&lt;/p&gt;
+&lt;p&gt;eg. for Plink type data, files name are test1.map and test1.ped，we should set&lt;code&gt;input_data_name=&#34;test1&#34;&lt;/code&gt;。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数11:output_data_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;9:return_result&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;输出的基因型数据保存到本地的文件名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;If return result, &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
+&lt;p&gt;Additionally, for convenience, users can save output genotype data into local computer .&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;参数12:output_data_type&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;用户提供的本地数据的格式，&lt;code&gt;character&lt;/code&gt;类型。数据格式包括：&lt;/p&gt;
+&lt;li&gt;&lt;strong&gt;10:output_data_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;File path of output genotype data, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;11:output_data_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;File name of output genotype data, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;12:output_data_type&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;File type of output genotype data, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Hapmap&lt;/li&gt;
 &lt;li&gt;Plink&lt;/li&gt;
 &lt;li&gt;Blupf90&lt;/li&gt;
 &lt;li&gt;Numeric&lt;/li&gt;
-&lt;li&gt;VCF(需要提前安装好vcftools软件,并设置好环境变量)&lt;/li&gt;
+&lt;li&gt;VCF&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;可选择同时输出多种数据格式。e.g.&lt;code&gt;output_data_type=c(&#34;Hapmap&#34;,&#34;Plink&#34;,&#34;Blupf90&#34;,&#34;Numeric&#34;)&lt;/code&gt; 可同时输出以上4种数据类型。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: users can output multiple formats of genotype data simultaneously. e.g.&lt;code&gt;output_data_type=c(&#34;Hapmap&#34;,&#34;Plink&#34;,&#34;Blupf90&#34;,&#34;Numeric&#34;)&lt;/code&gt;, outout 4 types of genotype data simultaneously 。&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;其他参数&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;💨其他参数&lt;/h3&gt;
+&lt;div id=&#34;secondary&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;💨Secondary&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数13:cpu_cores&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;13:cpu_cores&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;函数调用的cpu个数，&lt;code&gt;numeric&lt;/code&gt;类型。默认调用1个&lt;/p&gt;
+&lt;p&gt;Number of cpu in calculating, &lt;code&gt;numeric&lt;/code&gt;calss. Default is 1.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数14:miss_base&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;14:miss_base&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;缺失值在原基因型数据中所表示的的字符，&lt;code&gt;character&lt;/code&gt;类型。默认为“NN”。&lt;/p&gt;
+&lt;p&gt;Missing genotype character, &lt;code&gt;character&lt;/code&gt;calss. Default is “NN”.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数15:miss_base_num&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;15:miss_base_num&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;数字化格式转换中缺失值转换成的数字，&lt;code&gt;numeric&lt;/code&gt;类型。默认为 5。&lt;/p&gt;
+&lt;p&gt;Missing genotype number after numeric conversion, &lt;code&gt;numeric&lt;/code&gt;calss. Default is 5.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数16:plink_software_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;16:plink_software_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Plink&lt;/strong&gt;软件的路径，&lt;code&gt;character&lt;/code&gt;类型。涉及到VCF格式转换时，需要使用 &lt;strong&gt;Plink&lt;/strong&gt;软件。当&lt;strong&gt;Plink&lt;/strong&gt;软件的路径已加入到环境变量后，此项参数不需要再设置。&lt;/p&gt;
+&lt;p&gt;Path of plink software in user computer. &lt;code&gt;character&lt;/code&gt;calss.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数17:plink_software_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;17:plink_software_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Plink&lt;/strong&gt;软件的名称，&lt;code&gt;character&lt;/code&gt;类型。涉及到VCF格式转换时，需要使用 &lt;strong&gt;Plink&lt;/strong&gt;软件。软件默认名称为：plink。&lt;/p&gt;
+&lt;p&gt;Name of plink software in user computer. &lt;code&gt;character&lt;/code&gt;calss.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数18:vcftools_software_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;18:vcftools_software_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;vcftools&lt;/strong&gt;软件的路径，&lt;code&gt;character&lt;/code&gt;类型。涉及到VCF格式转换时，需要使用&lt;strong&gt;vcftools&lt;/strong&gt;软件。当&lt;strong&gt;vcftools&lt;/strong&gt;软件的路径已加入到环境变量后，此项参数不需要再设置。&lt;/p&gt;
+&lt;p&gt;Path of vcftools software in user computer. &lt;code&gt;character&lt;/code&gt;calss.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数19:vcftools_software_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;19:vcftools_software_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;vcftools&lt;/strong&gt;软件的名称，&lt;code&gt;character&lt;/code&gt;类型。涉及到VCF格式转换时，需要使用 &lt;strong&gt;vcftools&lt;/strong&gt;软件。软件默认名称为：vcftools。&lt;/p&gt;
+&lt;p&gt;Name of vcftools software in user computer. &lt;code&gt;character&lt;/code&gt;calss.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
@@ -1579,118 +1786,159 @@ sum_data=genotype_data_format_conversion(
       <link>/post/2021-04-21-r-package-rblupadc-overview/overview/</link>
       <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
       <guid>/post/2021-04-21-r-package-rblupadc-overview/overview/</guid>
-      <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-
-
-&lt;p&gt;大家好,本节我们就正式开始&lt;code&gt;blupADC&lt;/code&gt;package的学习了。在本节，我们主要是对&lt;code&gt;blupADC&lt;/code&gt;的功能做一个简要的概述。之后的章节中，我们将会对几个重要的函数分别进行进一步的讲解。&lt;/p&gt;
-&lt;div id=&#34;安装&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;🙊&lt;strong&gt;安装&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;目前，&lt;code&gt;blupADC&lt;/code&gt; 已经上传到了&lt;strong&gt;github&lt;/strong&gt;上，因此大家可以在&lt;strong&gt;R&lt;/strong&gt;里通过如下代码进行安装：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;devtools::install_github(&#34;qsmei/blupADC&#34;)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;或者直接在命令行进行安装：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;R CMD INSTALL blupADC_1.0.tar.gz&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;💖下面，我们将就&lt;code&gt;blupADC&lt;/code&gt; 中的几个主要的功能进行讲解：&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;功能1基因型数据间的格式转换&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能1：基因型数据间的格式转换&lt;/h3&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+      <description>&lt;p&gt;&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;OVERVIEW&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#getting-started&#34;&gt;GETTING STARTED&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#installation&#34;&gt;🙊Installation&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#features&#34;&gt;🙊Features&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#usage&#34;&gt;Usage&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
+&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210617165506.png&#34; alt=&#34;logo-blupADC&#34;  height=&#34;250&#34; align=&#34;right&#34; style=&#34;zoom:25%;&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;overview&#34;&gt;OVERVIEW&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding.  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (&lt;code&gt;Rcpp&lt;/code&gt; and &lt;code&gt;RcppArmadillo &lt;/code&gt;) , and it also support  parallel calculation by applying &lt;code&gt;openMP&lt;/code&gt; programming.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(&lt;strong&gt;trace pedigree, rename pedigree, and correct pedigree errors&lt;/strong&gt;), genotype data format conversion(supports &lt;strong&gt;Hapmap, Plink, Blupf90, Numeric, and VCF&lt;/strong&gt; format), genotype data quality control and imputation, construction of kinship matrix(&lt;strong&gt;pedigree, genomic  and single-step&lt;/strong&gt;),and genetic evaluation( by interfacing with two famous breeding softwares, &lt;strong&gt;DMU&lt;/strong&gt; and &lt;strong&gt;BLUPF90&lt;/strong&gt;  in an easy way).  Through package &lt;code&gt;blupADC&lt;/code&gt;,  the work of breeding would be more efficiency.&lt;/p&gt;
+&lt;p&gt;Finally, we kindly provided an easier way of applying &lt;code&gt;blupADC&lt;/code&gt;, which is a free  website(&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-22-blupadc-online-dmu/online_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).  Most functions of  package&lt;code&gt;blupADC&lt;/code&gt;  can be found in this website. Thus, for user who have little code experience, we recommend  to use this website(&lt;strong&gt;only need to click and type, that&amp;rsquo;s enough&lt;/strong&gt;).  But the pitfall of this website is that it can&amp;rsquo;t handle big data.&lt;/p&gt;
+&lt;p&gt;😊 Good Luck Charlie !&lt;/p&gt;
+&lt;h2 id=&#34;getting-started&#34;&gt;GETTING STARTED&lt;/h2&gt;
+&lt;h3 id=&#34;installation&#34;&gt;🙊Installation&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; links to R packages &lt;code&gt;Rcpp&lt;/code&gt;, &lt;code&gt;RcppArmadillo&lt;/code&gt; and &lt;code&gt;data.table&lt;/code&gt;. These dependencies should be installed before installing &lt;code&gt;blupADC&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;install.packages(c(&amp;quot;Rcpp&amp;quot;, &amp;quot;RcppArmadillo&amp;quot;,&amp;quot;data.table&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;👉 Note: In the analysis of DMU  and BLUPF90 , we need to download software DMU  (&lt;a href=&#34;https://dmu.ghpc.au.dk/dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU download website&lt;/a&gt;)  and BLUPF90 previously (&lt;a href=&#34;http://nce.ads.uga.edu/html/projects/programs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BLUPF90 download website&lt;/a&gt;). For convenience, we have encapsulated  the basic module of DMU and BLUPF90 in package &lt;code&gt;blupADC&lt;/code&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For commercial use of DMU and BLUPF90,  user must contact the author of DMU and BLUPF90 !!!&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;install-blupadc-on-linux&#34;&gt;Install blupADC on Linux&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;# with encapsulation  
+packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1_linux.tar.gz&amp;quot;
+install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For Chinese users, we recommend to use the following code(&lt;strong&gt;installation would be  faster&lt;/strong&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;# with encapsulation  
+packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1_linux.tar.gz&amp;quot;
+install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;install-blupadc-on-windows&#34;&gt;Install blupADC on Windows&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;# in R environment
+packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1.zip&amp;quot;
+install.packages(packageurl,repos=NULL)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For Chinese users, we recommend to use the following code(&lt;strong&gt;installation would be  faster&lt;/strong&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;# in R environment
+packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/743906/download/blupADC_1.0.1.zip&amp;quot;
+install.packages(packageurl,repos=NULL)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After installed successfully, the &lt;code&gt;blupADC&lt;/code&gt; package can be loaded by typing&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;features&#34;&gt;🙊Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Feature 1. Convert genotype data format&lt;/li&gt;
+&lt;li&gt;Feature 2. Detect duplicated genotype data&lt;/li&gt;
+&lt;li&gt;Feature 3. Trace, rename and correct pedigree&lt;/li&gt;
+&lt;li&gt;Feature 4. Quality control and imputation&lt;/li&gt;
+&lt;li&gt;Feature 5. Construct kinship matrix&lt;/li&gt;
+&lt;li&gt;Feature 6. Interaface with DMU&lt;/li&gt;
+&lt;li&gt;Feature 7. Interaface with BLUPF90&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;For convenience, all documents support two-language(English and Chinese).&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; provides several datasets object, including &lt;code&gt;data_hmp&lt;/code&gt;, &lt;code&gt;origin_pedigree&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In addition, &lt;code&gt;blupADC&lt;/code&gt; provides several files which are saved in &lt;code&gt;~/blupADC/extdata&lt;/code&gt;. We can get the path of these files by typing&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;) # path of provided files
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;feature-1-convert-genotype-data-format-see-more-detailshttpsqsmeinetlifyapppostblupadc&#34;&gt;Feature 1. Convert genotype data format (&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 sum_data=genotype_data_format_conversion(
-         input_data_plink_ped=data_ped,  #用户输入的 plink-ped格式数据
-         input_data_plink_map=data_map,  #用户输入的 plink-map格式数据
-         output_data_type=c(&amp;quot;Hapmap&amp;quot;,&amp;quot;Blupf90&amp;quot;),#输出的基因型数据格式
-         return_result = TRUE,      #在R中返回结果
-         cpu_cores=1                #调用的cpu个数
-                  )&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;功能2重复基因型数据检测&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能2：重复基因型数据检测&lt;/h3&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-overlap_result=Calculate_genotype_overlap(
-                  input_data_hmp=data_hmp,   #用户输入的hapmap格式的数据
-                  overlap_threshold=0.95,    #判断基因型重复的阈值
-                  return_result=TRUE         #在R中返回结果
-                  )&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;功能3系谱追溯与重命名&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能3：系谱追溯与重命名&lt;/h3&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+         input_data_hmp=data_hmp,  #provided hapmap data object 
+         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;Blupf90&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
+         return_result = TRUE,      # return result 
+         cpu_cores=1                # number of cpu 
+                  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;feature-2-detect-duplicated-genotype-data-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-overlap-genotypeoverlap_genotype&#34;&gt;Feature 2. Detect duplicated genotype data (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-overlap-genotype/overlap_genotype/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+overlap_result=genotype_data_overlap(
+                  input_data_hmp=data_hmp,   #provided hapmap data object
+                  overlap_threshold=0.95,    # threshold of duplicate 
+                  return_result=TRUE         #return result 
+                  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;feature-3-trace-rename-and-correct-pedigree-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-pedigreepedigree&#34;&gt;Feature 3. Trace, rename and correct pedigree (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 pedigree_result=trace_pedigree(
-                pedigree=data_pedigree,    #用户提供的系谱数据
-                trace_generation=5，       #向上追溯的系谱代数
-                output_pedigree_tree=TRUE  #输出系谱树的结果
-                )                 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;功能4基因型数据的质控与填充&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能4：基因型数据的质控与填充&lt;/h3&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+                input_pedigree=origin_pedigree,   #provided pedigree data object
+                trace_generation=3,       # trace generation
+                output_pedigree_tree=TRUE  # output pedigree tree
+                )                 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;feature-4-quality-control-and-imputation-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-qc-imputaionqc_imputation&#34;&gt;Feature 4. Quality control and imputation (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 genotype_data_QC_Imputation(
-            input_data_path=&amp;quot;root/genotype_data&amp;quot;,   #用户输入的本地基因型数据的路径
-            input_data_name=&amp;quot;data_hmp.txt&amp;quot;,         #用户输入的本地基因型数据的名称
-            input_data_type=&amp;quot;Hapmap&amp;quot;,               #用户输入的基因型数据的类型
-            method=&amp;quot;QC_Imputation&amp;quot;,                 #质控填充方法：质控+填充
-            plink_software_path=&amp;quot;/root/software&amp;quot;,   #plink软件的路径
-            plink_software_name=&amp;quot;plink&amp;quot;,            #plink软件的名称
-            beagle_software_path=&amp;quot;root/software&amp;quot;,   #beagle软件的路径
-            beagle_software_name=&amp;quot;beagle.5.1.jar&amp;quot;,  #beagle软件的名称
-            output_data_path=&amp;quot;/root/result&amp;quot;,        #质控填充后，基因型数据保存到本地的路径
-            output_data_name=&amp;quot;YY_data&amp;quot;,             #质控填充后，基因型数据保存到本地的文件名
-            output_data_type=&amp;quot;Plink&amp;quot;                #质控填充后，基因型数据保存到本地的类型
-            )                       &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;功能5亲缘关系矩阵的构建ag-and-h&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能5：亲缘关系矩阵的构建(A,G and H)&lt;/h3&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+            input_data_hmp=data_hmp,    #provided hapmap data object
+            data_analysis_method=&amp;quot;QC_Imputation&amp;quot;,   #analysis method type,QC + imputatoin
+            output_data_path=&amp;quot;/root/result&amp;quot;,        #output data path
+            output_data_name=&amp;quot;YY_data&amp;quot;,             #output data name
+            output_data_type=&amp;quot;Plink&amp;quot;                #output data format 
+            )                       
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;feature-5-construct-kinship-matrix-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-calculate-relationship-matrixrelationship_matrix&#34;&gt;Feature 5. Construct kinship matrix (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,           #用户输入的hapmap格式的数据
-                kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_Domi&amp;quot;),    #构建的亲缘关系矩阵的类型
-                inbred_type=c(&amp;quot;Homozygous&amp;quot;),       #计算的近交系数的类型
-                output_matrix_type=c(&amp;quot;col_three&amp;quot;), #返回的亲缘关系矩阵的格式：3列格式
-                return_result=TRUE)                #在R中返回结果               &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;功能6在r中运行dmu软件完成相应的分析&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能6：在R中运行DMU软件，完成相应的分析&lt;/h3&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+                input_data_hmp=data_hmp,          #provided hapmap data object
+                kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_D&amp;quot;),      #type of  kinship matrix
+                dominance_type=c(&amp;quot;genotypic&amp;quot;),    #type of dominance effect
+                inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;feature-6-interface-with-dmu-see-more-detailshttpsqsmeinetlifyapppost2021-04-20-r-package-blup-adc-run-dmurun_dmu&#34;&gt;Feature 6. Interface with DMU (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+  
 run_DMU(
-        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;, &amp;quot;Trait1&amp;quot;#,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),   #表型数据的列名
-        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                               #目标性状名称
-        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),         #固定效应名称
-        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),                   #随机效应名称
-        covariate_effect_name=list(c(&amp;quot;Age&amp;quot;)),                        #协变量名称
-        phe_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,           #本地表型数据的路径
-        phe_name=&amp;quot;dmu_phe.txt&amp;quot;,                                      #本地表型数据的名称
-        integer_n=4,                                                 #整型变量的个数
-        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                                    #遗传评估的模型
-        dmu_module=&amp;quot;dmuai&amp;quot;,                                          #估计方差组分的DMU模块
-        relationship_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,  #亲缘关系文件的本地路径
-        relationship_name=&amp;quot;Dmu_ped.txt&amp;quot;,                             #亲缘关系文件的本地名称
-        output_result_path=&amp;quot;C:/Users/26564/Desktop&amp;quot;,                 #DMU结果保存到本地的路径
-        output_ebv_path=&amp;quot;C:/Users/26564/Desktop&amp;quot;,                    #EBV结果保存到本地的路径
-        output_ebv_name=&amp;quot;test&amp;quot;,                                      #EBV结果保存到本地的文件名
-        DMU_software_path=&amp;quot;D:/QGG-DMUv6-2/R5.2/bin&amp;quot;                  #DMU软件的本地路径
-        )&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;功能7在r中运行blupf90软件完成相应的分析&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;功能7：在R中运行BLUPF90软件，完成相应的分析&lt;/h3&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-run_BLUPF90(        
-            phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;, &amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), #表型数据的列名
-            target_trait_name=c(&amp;quot;Trait1&amp;quot;),                               #目标性状名称
-            fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),         #固定效应名称
-            random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),                   #随机效应名称
-            covariate_effect_name=list(c(&amp;quot;Age&amp;quot;)),                        #协变量效应名称
-            phe_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,           #本地表型数据的路径
-            phe_name=&amp;quot;dmu_phe.txt&amp;quot;,                                      #本地表型数据的文件名
-            analysis_model=&amp;quot;PBLUP_A&amp;quot;,                                    #遗传评估的模型 
-            relationship_path=&amp;quot;D:/test_code/BLUP_ADC_code/DMU_example&amp;quot;,  #亲缘关系文件的本地路径
-          relationship_name=&amp;quot;Blupf90_ped.txt&amp;quot;,                         #亲缘关系文件的本地文件名
-            output_result_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,         #BLUPF90结果保存到本地的路径 
-            output_ebv_path=&amp;quot;C:/Users/26564/Desktop/BLUPF90&amp;quot;,            #EBV结果保存到本地的路径
-          output_ebv_name=&amp;quot;test&amp;quot;,                                        #EBV结果保存到本地的文件名
-            BLUPf90_software_path=&amp;quot;D:/test_code/BLUPf90_software&amp;quot;        #BLUPF90软件的本地路径
-            )
-            &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;), # colnames of phenotype 
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;feature-7-interface-with-blupf90-see-more-detailshttpsqsmeinetlifyapppost2021-04-20-r-package-blup-adc-run-blupf90blupf90&#34;&gt;Feature 7. Interface with BLUPF90 (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+  
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;), # colnames of phenotype 
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        )   
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

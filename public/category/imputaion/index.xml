@@ -13,95 +13,105 @@
     </image>
     
     <item>
-      <title>R package:blupADC-使用说明4</title>
+      <title>R package:blupADC-Feature 4</title>
       <link>/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/</link>
       <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
       <guid>/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/</guid>
-      <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#example&#34;&gt;Example&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#basic&#34;&gt;💙Basic&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#advanced&#34;&gt;💜Advanced&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
 
-
-&lt;p&gt;🤖通常来讲，我们公司拿到的原始芯片数据大都是包含缺失值且未经过质控的。而在实际的数据分析中，我们一般都要求数据是经过质控和填充。为此，&lt;code&gt;blupADC&lt;/code&gt;中提供了&lt;code&gt;genotype_data_QC_Imputation&lt;/code&gt;函数，可以方便我们在R中调用&lt;strong&gt;Plink&lt;/strong&gt;(用于质控)和&lt;strong&gt;Beagle&lt;/strong&gt;(用于填充)软件进行基因型数据的质控和填充。&lt;/p&gt;
-&lt;p&gt;👉&lt;strong&gt;Note:&lt;/strong&gt;我们需要提前下载好Plink(用于质控)和Beagle(用于填充)软件。由于Plink和Beagle在质控填充方面已经做得足够好了，因此我们并不打算用R重新实现相关功能。&lt;/p&gt;
-&lt;p&gt;老规矩，我们还是用一个小例子来看下函数的用法:&lt;/p&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;🤖 Generally, most genotype data need to perform quality control and imputation.  For convenience,  package &lt;code&gt;blupADC&lt;/code&gt; provides &lt;code&gt;genotype_data_QC_Imputation&lt;/code&gt; function to perform quality control and imputation by interfacing with  software &lt;strong&gt;Plink&lt;/strong&gt; and software &lt;strong&gt;Beagle&lt;/strong&gt; in an easy way (we only need to provide the software path and software name).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;👉 Note:  For convenience,  &lt;code&gt;blupADC&lt;/code&gt; has encapsulated software Plink(for quality control)  &lt;code&gt;version-1.9&lt;/code&gt; and software Beagle(for imputation) &lt;code&gt;version-5.2&lt;/code&gt;. If you want change this version, you could set the related parameters in the part of Advanced parameter.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
 genotype_data_QC_Imputation(
-              input_data_path=&amp;quot;root/genotype_data&amp;quot;,  #用户输入的基因型文件路径
-              input_data_name=&amp;quot;data_hmp.txt&amp;quot;,        #用户输入的基因型文件名称
-              input_data_type=&amp;quot;Hapmap&amp;quot;,              #用户输入的基因型文件格式
-              method=&amp;quot;QC_Imputation&amp;quot;,                #基因型数据处理方法：质控+填充
-              plink_software_path=&amp;quot;/root/software&amp;quot;,  #plink软件的路径
-              plink_software_name=&amp;quot;plink&amp;quot;,           #plink软件的名称
-              beagle_software_path=&amp;quot;root/software&amp;quot;,  #beagle软件的路径
-              beagle_software_name=&amp;quot;beagle.5.1.jar&amp;quot;, #beagle软件的名称
-              output_data_path=&amp;quot;/root/result&amp;quot;,       #输出基因型文件的路径
-              output_data_name=&amp;quot;YY_data&amp;quot;,            #输出基因型文件的名称
-              output_data_type=&amp;quot;Plink&amp;quot;               #输出基因型文件的格式
-              )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;通过上述代码，我们即可对本地的&lt;strong&gt;Hapmap&lt;/strong&gt;格式的基因型数据进行质控和填充，并将其以&lt;strong&gt;Plink&lt;/strong&gt;格式并保存到本地。&lt;/p&gt;
-&lt;p&gt;进行质控和填充时，我们必须要事先提供基因型数据，这部分的参数与&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数用法一致。具体大家可参阅之前的介绍: &lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;完成了基因型数据的提供后，我们可以通过以下参数进行质控填充的相关分析。&lt;/p&gt;
-&lt;div id=&#34;主要参数&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;💙主要参数&lt;/h3&gt;
+            input_data_hmp=data_hmp,    #provided hapmap data object
+            data_analysis_method=&amp;quot;QC_Imputation&amp;quot;,   #analysis method type,QC + imputatoin
+            output_data_path=&amp;quot;/root/result&amp;quot;,        #output data path
+            output_data_name=&amp;quot;YY_data&amp;quot;,             #output data name
+            output_data_type=&amp;quot;Plink&amp;quot;                #output data format 
+            )                       
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the process of quality control and imputation，we should provide genotype data，these parameters are the as in&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;function(see more details).&lt;/p&gt;
+&lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
+&lt;h3 id=&#34;basic&#34;&gt;💙Basic&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;参数1：data_analysis_method&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;指定基因型数据的处理方法，&lt;code&gt;character&lt;/code&gt;类型。可选方法包括：&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;1：data_analysis_method&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Method of analyzing data, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;“QC” :进行质控&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;“Imputation” :进行填充&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;“QC_Imputation” :先质控，后填充&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;参数2：plink_software_path&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;QC&amp;quot;&lt;/code&gt; : only perform quality control&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;Imputation&amp;quot;&lt;/code&gt; : only perform imputation&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Plink软件的路径,&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数3：plink_software_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;quot;QC_Imputation&amp;quot;&lt;/code&gt; : first perform quality control, and then  perform imputation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;2：qc_snp_rate&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Plink软件的名称,&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数4：beagle_software_path&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Beagle软件的路径,&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数5：beagle_software_name&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Beagle软件的名称,&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;其他参数&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;💜其他参数&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：qc_snp_rate&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Threshold of SNPs call rate in quality control, &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.1&lt;/p&gt;
 &lt;p&gt;使用Plink进行质控时，SNP call rate 的阈值，&lt;code&gt;numeric&lt;/code&gt;类型，默认为0.1。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：qc_ind_rate&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;3：qc_ind_rate&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用Plink进行质控时，IND call rate 的阈值，&lt;code&gt;numeric&lt;/code&gt;类型，默认为0.1。&lt;/p&gt;
+&lt;p&gt;Threshold of individuals call rate in quality control, &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.1&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：qc_maf&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;**4：qc_maf **&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用Plink进行质控时，MAF 的阈值，&lt;code&gt;numeric&lt;/code&gt;类型，默认为0.05。&lt;/p&gt;
+&lt;p&gt;Threshold of minor allele frequency(MAF)  in quality control, &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.05&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：qc_hwe&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;**5：qc_hwe **&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用Plink进行质控时，哈代温伯格平衡的阈值,&lt;code&gt;numeric&lt;/code&gt;类型，默认为1e-6。&lt;/p&gt;
+&lt;p&gt;Threshold of hardy weinberg equilibrium(HWE)  in quality control, &lt;code&gt;numeric&lt;/code&gt; class. Default is 1e-7&lt;/p&gt;
+&lt;h3 id=&#34;advanced&#34;&gt;💜Advanced&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：beagle_ref_data_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;6：plink_software_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用beagle进行填充时，提供的reference data的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;Path of software &lt;strong&gt;Plink&lt;/strong&gt;  , &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数7：beagle_ref_data_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;7：plink_software_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用beagle进行填充时，提供的reference data的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;Name of  software  &lt;strong&gt;Plink&lt;/strong&gt; , &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数8：beagle_ped_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;8：beagle_software_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用beagle进行填充时，提供的系谱数据的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;Path of software &lt;strong&gt;Beagle&lt;/strong&gt; , &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数9：beagle_ped_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;9：beagle_software_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;使用beagle进行填充时，提供的系谱数据的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;/div&gt;
+&lt;p&gt;Name of software &lt;strong&gt;Beagle&lt;/strong&gt; , &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;10：beagle_ref_data_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;File path of reference data in imputation, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;11：beagle_ref_data_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;File name of reference data in imputation, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;12：beagle_ped_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;File path of pedigree data in imputation, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;13：beagle_ped_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;File name of pedigree data in imputation, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 </description>
     </item>
     

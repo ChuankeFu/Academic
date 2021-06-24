@@ -1,0 +1,1719 @@
+<!DOCTYPE html><html lang="zh" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.1.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="梅全顺" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="基因型数据格式转换" />
+
+  
+    <link rel="alternate" hreflang="en" href="/post/blupadc/" />
+  
+  <link rel="alternate" hreflang="zh" href="/zh/post/blupadc/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.9a66e344a68eb664b392d406a3f80726.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/zh/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/zh/post/blupadc/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="梅全顺-学术" />
+  <meta property="og:url" content="/zh/post/blupadc/" />
+  <meta property="og:title" content="R package:blupADC- 功能1 | 梅全顺-学术" />
+  <meta property="og:description" content="基因型数据格式转换" /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="zh" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-04-14T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-04-14T14:59:41&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/zh/post/blupadc/"
+  },
+  "headline": "R package:blupADC- 功能1",
+  
+  "datePublished": "2021-04-14T00:00:00Z",
+  "dateModified": "2021-04-14T14:59:41+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "梅全顺"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "梅全顺-学术",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "基因型数据格式转换"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>R package:blupADC- 功能1 | 梅全顺-学术</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="4f210288e0cceb39efe6e82f500aca66" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.226a9011996d125bf3fe4a5f22353a49.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="搜索...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/zh/">梅全顺-学术</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/zh/">梅全顺-学术</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/zh/#posts"><span>技术文章</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/zh/#projects"><span>项目</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/zh/#talks"><span>汇报</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/zh/#publications"><span>学术文章</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/zh/#about"><span>关于我</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/GeorgeCushen" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>浅色</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>深色</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>自动</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown i18n-dropdown">
+        <a href="#" class="nav-link " data-toggle="dropdown"
+           aria-haspopup="true" aria-label="语言">
+          <i class="fas fa-globe mr-1" aria-hidden="true"></i></a>
+        <div class="dropdown-menu">
+          <div class="dropdown-item dropdown-item-active">
+            <span>中文 (简体)</span>
+          </div>
+          
+          <a class="dropdown-item" href="/post/blupadc/">
+            <span>English</span>
+          </a>
+          
+        </div>
+      </li>
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>R package:blupADC- 功能1</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          最近更新于
+      
+    
+    Apr 14, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 分钟阅读时长
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/zh/category/%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2/">格式转换</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/zh/post/blupadc/index_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#示例">示例</a>
+<ul>
+<li><a href="#基础参数">🤡基础参数</a></li>
+<li><a href="#进阶参数">💨进阶参数</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="简介" class="section level2">
+<h2>简介</h2>
+<p>🙀大家好,通过前一章节的学习，相信大家已经对<code>blupADC</code> 有了一个初步的了解了。从本节开始，我们将对<code>blupADC</code>中的几个重要的函数一一进行讲解。这一节主要给大家讲述的是如何使用<code>blupADC</code>中<code>genotype_data_format_conversion</code>函数来进行多种基因型格式数据的转换。</p>
+</div>
+<div id="示例" class="section level2">
+<h2>示例</h2>
+<p>首先,我们以一个简单的小例子来看看函数的用法</p>
+<pre class="r"><code>library(blupADC)
+sum_data=genotype_data_format_conversion(
+         input_data_hmp=data_hmp,  #provided hapmap data object 
+         output_data_type=c(&quot;Plink&quot;,&quot;Blupf90&quot;,&quot;Numeric&quot;),# output data format
+         return_result = TRUE,      # return result 
+         cpu_cores=1                # number of cpu 
+         )</code></pre>
+<pre><code>## Start numeric(0,1,2) format conversion...... 
+## Complete Blupf90  format conversion 
+## Complete Plink Data Format Conversion</code></pre>
+<p>下面，我们将对<code>genotype_data_format_conversion</code> 中的参数一一进行讲解</p>
+<div id="基础参数" class="section level3">
+<h3>🤡基础参数</h3>
+<ul>
+<li><strong>参数1:input_data_plink_ped</strong></li>
+</ul>
+<p>用户提供的 Plink-ped格式的数据，<code>data.frame</code>类型。具体格式如下所示：</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">3098</td>
+<td align="left">3098</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">C</td>
+<td align="left">C</td>
+<td align="left">G</td>
+<td align="left">G</td>
+</tr>
+<tr class="even">
+<td align="left">3498</td>
+<td align="left">3498</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">A</td>
+<td align="left">C</td>
+<td align="left">T</td>
+<td align="left">G</td>
+</tr>
+<tr class="odd">
+<td align="left">3297</td>
+<td align="left">3297</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">A</td>
+<td align="left">C</td>
+<td align="left">T</td>
+<td align="left">G</td>
+</tr>
+<tr class="even">
+<td align="left">2452</td>
+<td align="left">2452</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">C</td>
+<td align="left">C</td>
+<td align="left">G</td>
+<td align="left">G</td>
+</tr>
+<tr class="odd">
+<td align="left">4255</td>
+<td align="left">4255</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">A</td>
+<td align="left">C</td>
+<td align="left">G</td>
+<td align="left">G</td>
+</tr>
+<tr class="even">
+<td align="left">2946</td>
+<td align="left">2946</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">C</td>
+<td align="left">C</td>
+<td align="left">T</td>
+<td align="left">G</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>参数2:input_data_plink_map</strong></li>
+</ul>
+<p>用户提供的 Plink-map格式的数据，<code>data.frame</code>类型。具体格式如下所示：</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">SNP1</td>
+<td align="right">0.224488</td>
+<td align="right">224488</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">SNP2</td>
+<td align="right">0.293696</td>
+<td align="right">293696</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">SNP3</td>
+<td align="right">0.333333</td>
+<td align="right">333333</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">SNP4</td>
+<td align="right">0.464830</td>
+<td align="right">464830</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">SNP5</td>
+<td align="right">0.722623</td>
+<td align="right">722623</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">SNP6</td>
+<td align="right">0.838596</td>
+<td align="right">838596</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>参数3:input_data_hmp</strong></li>
+</ul>
+<p>用户提供的 Hapmap格式的数据，<code>data.frame</code>类型。具体格式如下所示</p>
+<table style="width:100%;">
+<colgroup>
+<col width="4%" />
+<col width="7%" />
+<col width="5%" />
+<col width="6%" />
+<col width="6%" />
+<col width="8%" />
+<col width="6%" />
+<col width="8%" />
+<col width="9%" />
+<col width="9%" />
+<col width="6%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">rs#</th>
+<th align="left">alleles</th>
+<th align="right">chrom</th>
+<th align="right">pos</th>
+<th align="left">strand</th>
+<th align="left">assembly</th>
+<th align="left">center</th>
+<th align="left">protLSID</th>
+<th align="left">assayLSID</th>
+<th align="left">panelLSID</th>
+<th align="left">QCcode</th>
+<th align="left">3098</th>
+<th align="left">3498</th>
+<th align="left">3297</th>
+<th align="left">2452</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">SNP1</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">224488</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">CC</td>
+<td align="left">AC</td>
+<td align="left">AC</td>
+<td align="left">CC</td>
+</tr>
+<tr class="even">
+<td align="left">SNP2</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">293696</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">GG</td>
+<td align="left">TG</td>
+<td align="left">TG</td>
+<td align="left">GG</td>
+</tr>
+<tr class="odd">
+<td align="left">SNP3</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">333333</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">GG</td>
+<td align="left">TT</td>
+<td align="left">TT</td>
+<td align="left">GG</td>
+</tr>
+<tr class="even">
+<td align="left">SNP4</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">464830</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">CC</td>
+<td align="left">CC</td>
+<td align="left">CC</td>
+<td align="left">CC</td>
+</tr>
+<tr class="odd">
+<td align="left">SNP5</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">722623</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">AA</td>
+<td align="left">GG</td>
+<td align="left">GG</td>
+<td align="left">AA</td>
+</tr>
+<tr class="even">
+<td align="left">SNP6</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">838596</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">CC</td>
+<td align="left">TC</td>
+<td align="left">TT</td>
+<td align="left">CC</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>参数4:input_data_blupf90</strong></li>
+</ul>
+<p>用户提供的 BLUPF90格式数据，<code>data.frame</code>类型。具体格式如下所示</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">3098</td>
+<td align="left">200000</td>
+</tr>
+<tr class="even">
+<td align="left">3498</td>
+<td align="left">112021</td>
+</tr>
+<tr class="odd">
+<td align="left">3297</td>
+<td align="left">112022</td>
+</tr>
+<tr class="even">
+<td align="left">2452</td>
+<td align="left">200000</td>
+</tr>
+<tr class="odd">
+<td align="left">4255</td>
+<td align="left">102011</td>
+</tr>
+<tr class="even">
+<td align="left">2946</td>
+<td align="left">212000</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>参数5:input_data_genumeric</strong></li>
+</ul>
+<p>用户提供的 Numeric格式的数据，<code>matrix(纯数字)</code>类型。具体格式如下所示</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">SNP1</th>
+<th align="right">SNP2</th>
+<th align="right">SNP3</th>
+<th align="right">SNP4</th>
+<th align="right">SNP5</th>
+<th align="right">SNP6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">3098</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">3498</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">3297</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">2452</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">4255</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">2946</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> 行为个体，列为SNP，必须包括列名和行名。</p>
+<p>此外，为了方便用户使用，用户还可以直接通过提供本地数据的路径、名称与数据类型即可完成数据提供这一步骤,而无需将数据读入到<strong>R</strong>里面。</p>
+<ul>
+<li><strong>参数6:input_data_path</strong></li>
+</ul>
+<p>用户提供的本地数据的文件路径，<code>character</code>类型。</p>
+<ul>
+<li><strong>参数7:input_data_name</strong></li>
+</ul>
+<p>用户提供的本地数据的文件名称，<code>character</code>类型。</p>
+<p><strong>Note:</strong> 如果提供的数据类型为Plink ,那么本地文件名称不需要带后缀，eg. 本地文件名为test1.map test1.ped，我们提供文件名称为： <code>input_data_name="test1"</code>。除了Plink格式的数据外，其他数据格式必须提供完整的名称(带后缀)。</p>
+<ul>
+<li><p><strong>参数8:input_data_type</strong></p>
+<p>用户提供的本地数据的格式，<code>character</code>类型。数据格式包括：</p>
+<ul>
+<li><code>Hapmap</code></li>
+<li><code>Plink</code></li>
+<li><code>Blupf90</code></li>
+<li><code>Numeric</code></li>
+<li><code>VCF</code></li>
+</ul></li>
+<li><p><strong>参数9:return_result</strong></p></li>
+</ul>
+<p>是否在R中返回输出的结果，<code>logical</code>类型。默认为FLASE。</p>
+<p>此外，为了便于输出数据的保存，用户可以将数据保存到本地</p>
+<ul>
+<li><strong>参数10:output_data_path</strong></li>
+</ul>
+<p>输出的基因型数据保存到本地的路径，<code>character</code>类型。</p>
+<ul>
+<li><strong>参数11:output_data_name</strong></li>
+</ul>
+<p>输出的基因型数据保存到本地的文件名称，<code>character</code>类型。</p>
+<ul>
+<li><p><strong>参数12:output_data_type</strong></p>
+<p>用户提供的本地数据的格式，<code>character</code>类型。数据格式包括：</p>
+<ul>
+<li><code>Hapmap</code></li>
+<li><code>Plink</code></li>
+<li><code>Blupf90</code></li>
+<li><code>Numeric</code></li>
+<li><code>VCF</code></li>
+</ul></li>
+</ul>
+<p>可选择同时输出多种数据格式。e.g.<code>output_data_type=c("Hapmap","Plink","Blupf90","Numeric")</code> 可同时输出以上4种数据类型。</p>
+</div>
+<div id="进阶参数" class="section level3">
+<h3>💨进阶参数</h3>
+<ul>
+<li><strong>参数13:cpu_cores</strong></li>
+</ul>
+<p>函数调用的cpu个数，<code>numeric</code>类型。默认调用1个</p>
+<ul>
+<li><strong>参数14:miss_base</strong></li>
+</ul>
+<p>缺失值在原基因型数据中所表示的的字符，<code>character</code>类型。默认为“NN”。</p>
+<ul>
+<li><strong>参数15:miss_base_num</strong></li>
+</ul>
+<p>数字化格式转换中缺失值转换成的数字，<code>numeric</code>类型。默认为 5。</p>
+<ul>
+<li><strong>参数16:plink_software_path</strong></li>
+</ul>
+<p><strong>Plink</strong>软件的路径，<code>character</code>类型。涉及到VCF格式转换时，需要使用 <strong>Plink</strong>软件。当<strong>Plink</strong>软件的路径已加入到环境变量后，此项参数不需要再设置。</p>
+<ul>
+<li><strong>参数17:plink_software_name</strong></li>
+</ul>
+<p><strong>Plink</strong>软件的名称，<code>character</code>类型。涉及到VCF格式转换时，需要使用 <strong>Plink</strong>软件。软件默认名称为：plink。</p>
+<ul>
+<li><strong>参数18:vcftools_software_path</strong></li>
+</ul>
+<p><strong>vcftools</strong>软件的路径，<code>character</code>类型。涉及到VCF格式转换时，需要使用<strong>vcftools</strong>软件。当<strong>vcftools</strong>软件的路径已加入到环境变量后，此项参数不需要再设置。</p>
+<ul>
+<li><strong>参数19:vcftools_software_name</strong></li>
+</ul>
+<p><strong>vcftools</strong>软件的名称，<code>character</code>类型。涉及到VCF格式转换时，需要使用 <strong>vcftools</strong>软件。软件默认名称为：vcftools。</p>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/zh/post/blupadc/&amp;text=R%20package:blupADC-%20%e5%8a%9f%e8%83%bd1" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/zh/post/blupadc/&amp;t=R%20package:blupADC-%20%e5%8a%9f%e8%83%bd1" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=R%20package:blupADC-%20%e5%8a%9f%e8%83%bd1&amp;body=/zh/post/blupadc/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/zh/post/blupadc/&amp;title=R%20package:blupADC-%20%e5%8a%9f%e8%83%bd1" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=R%20package:blupADC-%20%e5%8a%9f%e8%83%bd1%20/zh/post/blupadc/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/zh/post/blupadc/&amp;title=R%20package:blupADC-%20%e5%8a%9f%e8%83%bd1" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/zh/author/%E6%A2%85%E5%85%A8%E9%A1%BA/avatar_hu5f20744e08524ff7ac6fce3b60ea5d69_3615750_270x270_fill_q75_lanczos_center.JPG" alt="梅全顺">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">梅全顺</h5>
+      <h6 class="card-subtitle">动物遗传育种-博士</h6>
+      <p class="card-text">My research interests include genomic selection and machine learning in animal breeding.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/zh/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/GeorgeCushen" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/gcushen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      由<a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>支持发布——免费<a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">开源</a>网站，为创作者赋能。
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/zh/js/wowchemy.min.36a40d4118e0aa7ca81cc52060cf1c07.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

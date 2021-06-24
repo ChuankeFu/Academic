@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Detect overlap | QSmei-Academic</title>
+    <link>/category/detect-overlap/</link>
+      <atom:link href="/category/detect-overlap/index.xml" rel="self" type="application/rss+xml" />
+    <description>Detect overlap</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 15 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>Detect overlap</title>
+      <link>/category/detect-overlap/</link>
+    </image>
+    
+    <item>
+      <title>R package:blupADC-Feature 2</title>
+      <link>/post/2021-04-17-r-package-blup-adc-overlap-genotype/blupadc/</link>
+      <pubDate>Thu, 15 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/post/2021-04-17-r-package-blup-adc-overlap-genotype/blupadc/</guid>
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#example&#34;&gt;Example&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
+
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;👦  Duplicated genotype is usually a problem in data analysis. In package:&lt;code&gt;blupADC&lt;/code&gt;, user can detect the overlap genotype data  by applying &lt;code&gt;genotype_data_overlap&lt;/code&gt; function.&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+overlap_result=genotype_data_overlap(
+                  input_data_hmp=data_hmp,   #provided hapmap data object
+                  overlap_threshold=0.95,    # threshold of duplicate 
+                  return_result=TRUE         #return result 
+                  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
+&lt;p&gt;Many parameters in  &lt;code&gt;genotype_data_overlap&lt;/code&gt; are the as &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function(see details).&lt;/p&gt;
+&lt;p&gt;Thus, we will introduce  specific parameters in  &lt;code&gt;genotype_data_overlap&lt;/code&gt;  function.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;1：selected_snps&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Number of SNPs in detecting overlap,&lt;code&gt;numeric&lt;/code&gt; calss. Default is 1000.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;2：overlap_threshold&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Threshold of duplicate genotype, &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.95.&lt;/p&gt;
+&lt;p&gt;When the proportion of genotype data between two individuals is larger than this threshold, these two individuals will be regarded as the same individual.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

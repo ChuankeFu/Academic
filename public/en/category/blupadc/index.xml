@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blupADC | QSmei-Academic</title>
+    <link>/en/category/blupadc/</link>
+      <atom:link href="/en/category/blupadc/index.xml" rel="self" type="application/rss+xml" />
+    <description>blupADC</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 13 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>blupADC</title>
+      <link>/en/category/blupadc/</link>
+    </image>
+    
+    <item>
+      <title>R package:blupADC-Overview</title>
+      <link>/en/post/2021-04-21-r-package-rblupadc-overview/overview/</link>
+      <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/en/post/2021-04-21-r-package-rblupadc-overview/overview/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210617165506.png&#34; alt=&#34;logo-blupADC&#34; style=&#34;zoom: 20%;&#34;/&gt;&lt;/p&gt;
+&lt;div id=&#34;blupadc&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;blupADC&lt;/h1&gt;
+&lt;div id=&#34;contents&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Contents&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;#overview&#34;&gt;OVERVIEW&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;#getting-started&#34;&gt;GETTING STARTED&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#installation&#34;&gt;Installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#features&#34;&gt;Features&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;#usage&#34;&gt;USAGE&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;div id=&#34;overview&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;OVERVIEW&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; is an useful tool for handling genomic data and pedigree data in animal and plant breeding, including data format conversion, pedigree rename, kinship matrix construction and so on. In addition, &lt;code&gt;blupADC&lt;/code&gt; provided several functions to interface with famous breeding softwares, &lt;strong&gt;DMU&lt;/strong&gt; and &lt;strong&gt;BLUPF90&lt;/strong&gt;. With the help of &lt;code&gt;blupADC&lt;/code&gt; ,all of these parameter files can be automatically generated, and users can easily use these softwares.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;getting-started&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;GETTING STARTED&lt;/h2&gt;
+&lt;div id=&#34;installation&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;🙊Installation&lt;/h3&gt;
+&lt;div id=&#34;install-blupadc-on-linux-or-macos&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Install blupADC on Linux or macOS&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;install.packages(&amp;quot;blupADC_1.0.1_linux.tar.gz&amp;quot;, repos = NULL)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;install-blupadc-on-windows&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Install blupADC on Windows&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;install.packages(&amp;quot;blupADC_1.0.1.zip&amp;quot;, repos = NULL)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After installed successfully, the &lt;code&gt;blupADC&lt;/code&gt; package can be loaded by typing&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(blupADC)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;features&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;❤️Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Feature 1. Convert genotype data format&lt;/li&gt;
+&lt;li&gt;Feature 2. Detect duplicated genotype data&lt;/li&gt;
+&lt;li&gt;Feature 3. Trace, rename and correct pedigree&lt;/li&gt;
+&lt;li&gt;Feature 4. Quality control and imputation&lt;/li&gt;
+&lt;li&gt;Feature 5. Construct kinship matrix&lt;/li&gt;
+&lt;li&gt;Feature 6. Interaface with DMU&lt;/li&gt;
+&lt;li&gt;Feature 7. Interaface with BLUPF90&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;usage&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; provides several datasets object, including &lt;code&gt;data_hmp&lt;/code&gt;, &lt;code&gt;origin_pedigree&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In addition, &lt;code&gt;blupADC&lt;/code&gt; provides several files which are saved in &lt;code&gt;~/blupADC/extdata&lt;/code&gt;. We can get the path of these files by typing&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;paste0(system.file(package=&amp;quot;blupADC&amp;quot;) ,&amp;quot;/extdata&amp;quot;)  #  path of provided files&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;feature-1.-convert-genotype-data-format-see-more-details&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Feature 1. Convert genotype data format (&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+sum_data=genotype_data_format_conversion(
+         input_data_hmp=data_hmp,  #provided hapmap data object 
+         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;Blupf90&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
+         return_result = TRUE,      # return result 
+         cpu_cores=1                # number of cpu 
+                  )&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;feature-2.-detect-duplicated-genotype-data-see-more-details&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Feature 2. Detect duplicated genotype data (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-overlap-genotype/overlap_genotype/&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+overlap_result=genotype_data_overlap(
+                  input_data_hmp=data_hmp,   #provided hapmap data object
+                  overlap_threshold=0.95,    # threshold of duplicate 
+                  return_result=TRUE         #return result 
+                  )&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;feature-3.-trace-rename-and-correct-pedigree-see-more-details&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Feature 3. Trace, rename and correct pedigree (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+pedigree_result=trace_pedigree(
+                input_pedigree=origin_pedigree,   #provided pedigree data object
+                trace_generation=3,       # trace generation
+                output_pedigree_tree=TRUE  # output pedigree tree
+                )                 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;feature-4.-quality-control-and-imputation-see-more-details&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Feature 4. Quality control and imputation (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+genotype_data_QC_Imputation(
+            input_data_hmp=data_hmp,    #provided hapmap data object
+            data_analysis_method=&amp;quot;QC_Imputation&amp;quot;,   #analysis method type,QC + imputatoin
+            plink_software_path=&amp;quot;/root/software/plink&amp;quot;,   # software path of plink 
+            plink_software_name=&amp;quot;plink&amp;quot;,            # software name of plink 
+            beagle_software_path=&amp;quot;/root/software/beagle&amp;quot;,   # software path of beagle 
+            beagle_software_name=&amp;quot;beagle.5.1.jar&amp;quot;,  # software name of beagle 
+            output_data_path=&amp;quot;/root/result&amp;quot;,        #output data path
+            output_data_name=&amp;quot;YY_data&amp;quot;,             #output data name
+            output_data_type=&amp;quot;Plink&amp;quot;                #output data format 
+            )                       &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;feature-5.-construct-kinship-matrix-see-more-details&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Feature 5. Construct kinship matrix (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=data_hmp,          #provided hapmap data object
+                kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_D&amp;quot;),      #type of  kinship matrix
+                dominance_type=c(&amp;quot;genotypic&amp;quot;),    #type of dominance effect
+                inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;feature-6.-interface-with-dmu-see-more-details&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Feature 6. Interface with DMU (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+data_path=paste0(system.file(package=&amp;quot;blupADC&amp;quot;) ,&amp;quot;/extdata&amp;quot;)  #  path of provided files 
+  
+run_DMU(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;), # colnames of phenotype 
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;,                  # output path 
+        DMU_software_path=&amp;quot;/root/software/DMU/bin&amp;quot;  # path of DMU software 
+        )&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;feature-7.-interface-with-blupf90-see-more-details&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Feature 7. Interface with BLUPF90 (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+data_path=paste0(system.file(package=&amp;quot;blupADC&amp;quot;) ,&amp;quot;/extdata&amp;quot;)  #  path of provided files 
+  
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;), # colnames of phenotype 
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;,                  # output path 
+        BLUPF90_software_path=&amp;quot;/root/software/BLUPF90&amp;quot;  # path of BLUPF90 software 
+        )   &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;/h1&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

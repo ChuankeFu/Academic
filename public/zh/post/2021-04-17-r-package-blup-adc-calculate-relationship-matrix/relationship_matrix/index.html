@@ -1,0 +1,1417 @@
+<!DOCTYPE html><html lang="zh" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.1.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="梅全顺" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="计算亲缘关系矩阵(A,G and H)" />
+
+  
+    <link rel="alternate" hreflang="en" href="/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" />
+  
+  <link rel="alternate" hreflang="zh" href="/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.9a66e344a68eb664b392d406a3f80726.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/zh/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="梅全顺-学术" />
+  <meta property="og:url" content="/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" />
+  <meta property="og:title" content="R package:blupADC-功能5 | 梅全顺-学术" />
+  <meta property="og:description" content="计算亲缘关系矩阵(A,G and H)" /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="zh" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-04-18T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-04-18T16:36:39&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/"
+  },
+  "headline": "R package:blupADC-功能5",
+  
+  "datePublished": "2021-04-18T00:00:00Z",
+  "dateModified": "2021-04-18T16:36:39+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "梅全顺"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "梅全顺-学术",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "计算亲缘关系矩阵(A,G and H)"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>R package:blupADC-功能5 | 梅全顺-学术</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="81df46d12548152ebc7ca4065a156d87" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.226a9011996d125bf3fe4a5f22353a49.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="搜索...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/zh/">梅全顺-学术</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/zh/">梅全顺-学术</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/zh/#posts"><span>技术文章</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/zh/#projects"><span>项目</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/zh/#talks"><span>汇报</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/zh/#publications"><span>学术文章</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/zh/#about"><span>关于我</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/GeorgeCushen" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>浅色</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>深色</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>自动</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown i18n-dropdown">
+        <a href="#" class="nav-link " data-toggle="dropdown"
+           aria-haspopup="true" aria-label="语言">
+          <i class="fas fa-globe mr-1" aria-hidden="true"></i></a>
+        <div class="dropdown-menu">
+          <div class="dropdown-item dropdown-item-active">
+            <span>中文 (简体)</span>
+          </div>
+          
+          <a class="dropdown-item" href="/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/">
+            <span>English</span>
+          </a>
+          
+        </div>
+      </li>
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>R package:blupADC-功能5</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          最近更新于
+      
+    
+    Apr 18, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 分钟阅读时长
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/zh/category/relationship-matrix/">Relationship matrix</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <details class="toc-inpage d-print-none  " open>
+  <summary class="font-weight-bold">目录</summary>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#简述">简述</a></li>
+    <li><a href="#示例">示例</a></li>
+    <li><a href="#参数详解">参数详解</a>
+      <ul>
+        <li><a href="#基础参数">💪基础参数</a></li>
+        <li><a href="#进阶参数">🦶进阶参数</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</details>
+
+<h2 id="简述">简述</h2>
+<p>🙉在动植物育种中，亲缘关系矩阵的构建是其中的关键步骤。在本章，我们将主要介绍如何利用<code>blupADC</code>中的<code>cal_kinship</code>函数完成各种亲缘关系矩阵的构建，包括：<strong>加性亲缘关系矩阵</strong>(系谱，基因组，一步法)及<strong>显性亲缘关系矩阵</strong>(系谱，基因组，一步法)等。此外，cal_kinship函数还能方便的计算各种类型的<strong>近交系数</strong>，包括：系谱近交系数，基因组近交系数(Homozygous,Digonal)及一步法近交系数(Digonal)。</p>
+<h2 id="示例">示例</h2>
+<p>😾首先，我们还是通过一个小例子来看该函数的用法:</p>
+<pre><code class="language-{.R}">library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=data_hmp,          #provided hapmap data object
+                kinship_type=c(&quot;G_A&quot;,&quot;G_D&quot;),      #type of  kinship matrix
+                dominance_type=c(&quot;genotypic&quot;),    #type of dominance effect
+                inbred_type=c(&quot;Homozygous&quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
+</code></pre>
+<p>在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与<code>genotype_data_format_conversion</code>函数中的参数用法一致。具体大家可参阅之前的介绍: <a href="https://qsmei.netlify.app/post/blupadc/" target="_blank" rel="noopener">R package:blupADC- 使用说明1</a>。</p>
+<p>完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型。</p>
+<h2 id="参数详解">参数详解</h2>
+<h3 id="基础参数">💪基础参数</h3>
+<ul>
+<li>
+<p><strong>参数1：kinship_type</strong></p>
+<p>指定构建亲缘关系矩阵的类型，<code>character</code>类型。可选关系矩阵类型：</p>
+<ul>
+<li>&ldquo;G_A&rdquo; :基因组加性亲缘关系矩阵&quot;</li>
+<li>&ldquo;G_Ainv&rdquo; :基因组加性亲缘关系逆矩阵&quot;</li>
+<li>&ldquo;G_D&rdquo; :基因组显性亲缘关系矩阵</li>
+<li>&ldquo;G_Dinv&rdquo; :基因组显性亲缘关系逆矩阵&quot;</li>
+<li>&ldquo;P_A&rdquo; :系谱加性亲缘关系矩阵</li>
+<li>&ldquo;P_Ainv&rdquo; :系谱加性亲缘关系逆矩阵</li>
+<li>&ldquo;P_D&rdquo; :系谱显性亲缘关系矩阵</li>
+<li>&ldquo;P_Dinv&rdquo; :系谱显性亲缘关系逆矩阵</li>
+<li>&ldquo;H_A&rdquo; :一步法加性亲缘关系矩阵</li>
+<li>&ldquo;H_Ainv&rdquo; :一步法加性亲缘关系逆矩阵</li>
+<li>&ldquo;H_D&rdquo; :一步法显性亲缘关系矩阵</li>
+<li>&ldquo;H_Dinv&rdquo; :一步法显性亲缘关系逆矩阵</li>
+</ul>
+</li>
+</ul>
+<p><strong>Note</strong>:如果计算系谱及一步法亲缘关系矩阵，必须要提供系谱数据。关于如何提供系谱数据，我们会在后面进行讲解。</p>
+<ul>
+<li>
+<p><strong>参数2：dominance_type</strong></p>
+<p>指定计算的显性亲缘关系矩阵的类型，<code>character</code>类型，可选类型包括:</p>
+<ul>
+<li>&ldquo;genotypic&rdquo; : 按照($0-2pq$,$1-2pq$,$0-2pq$)方式编码方式构建显性亲缘关系矩阵</li>
+<li>&ldquo;classical&rdquo; :    按照($-2q^2$,$2pq$,$-2p^2$)方式编码方式构建显性亲缘关系矩阵</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>关于二者的区别，具体可阅读该文献：<a href="https://www.genetics.org/content/195/4/1223.short" target="_blank" rel="noopener">On the Additive and Dominant Variance and Covariance of Individuals Within the Genomic Selection Scope</a></p>
+</blockquote>
+<ul>
+<li>
+<p><strong>参数3：inbred_type</strong></p>
+<p>指定计算的近交系数的类型，<code>character</code>类型。可选近交系数类型包括:</p>
+<ul>
+<li>
+<p>&ldquo;Homozygous&rdquo; :根据纯合子位点计算</p>
+</li>
+<li>
+<p>&ldquo;G_Diag&rdquo; :G矩阵对角线-1</p>
+</li>
+<li>
+<p>&ldquo;H_diag&rdquo; :H矩阵对角线-1</p>
+</li>
+<li>
+<p>&ldquo;Pedigree&rdquo; :A矩阵对角线-1</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>参数4：input_pedigree</strong></p>
+</li>
+</ul>
+<p>用户提供的系谱数据，<code>data.frame</code>或 <code>matrix</code>类型。具体的系谱数据格式可以参阅之前的介绍：<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/" target="_blank" rel="noopener">R package:blupADC-使用说明3</a>。</p>
+<ul>
+<li><strong>参数5：pedigree_rename</strong></li>
+</ul>
+<p>是否对系谱数据进行重命名,<code>logical</code>类型，默认为TRUE(对系谱进行重命名)。</p>
+<ul>
+<li><strong>参数6：IND_geno_rename</strong></li>
+</ul>
+<p>是否根据系谱的重命名结果对基因型数据中的个体进行重命名，<code>logical</code>类型，默认为FALSE(不进行重命名)。</p>
+<ul>
+<li><strong>参数7：rename_to_origin</strong></li>
+</ul>
+<p>将亲缘关系矩阵中重命名的个体号转换回原始的个体号，<code>logical</code>类型，默认为FALSE(不进行转换)。</p>
+<ul>
+<li><strong>参数8：output_matrix_type</strong></li>
+</ul>
+<p>输出亲缘关系矩阵的格式，<code>character</code>类型。可选参数包括：</p>
+<ol>
+<li>
+<p>&ldquo;col_all&rdquo; :按照n*n的格式输出亲缘关系矩阵</p>
+</li>
+<li>
+<p>&ldquo;col_three&rdquo; : 按照3列矩阵的格式输出亲缘关系矩阵，第1列和第2列为个体号，第3列为亲缘系数。DMU和BLUPf90软件均需提供这种格式的亲缘关系矩阵。形如：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1001</td>
+<td>1001</td>
+<td>0.989</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>1002</td>
+<td>0.421</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>1003</td>
+<td>0.567</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<p>默认参数为 &ldquo;col_three&rdquo;</p>
+<ul>
+<li><strong>参数9：output_matrix_path</strong></li>
+</ul>
+<p>亲缘关系矩阵保存到本地的路径, <code>character</code>类型。</p>
+<ul>
+<li><strong>参数10：output_matrix_name</strong></li>
+</ul>
+<p>亲缘关系矩阵保存到本地的名称，<code>character</code>类型。</p>
+<h3 id="进阶参数">🦶进阶参数</h3>
+<ul>
+<li><strong>参数11：cpu_cores</strong></li>
+</ul>
+<p>调用的cpu个数，<code>numeric</code>类型，默认为1。</p>
+<ul>
+<li><strong>参数12：kinship_base</strong></li>
+</ul>
+<p>是否按照基础群的方式构建基因组亲缘关系矩阵(p=q=0.5)，<code>logical</code>类型，默认为FALSE。</p>
+<ul>
+<li><strong>参数13：kinship_trace</strong></li>
+</ul>
+<p>是否按照矩阵迹和的方式对基因组亲缘关系矩阵进行标准化，<code>logical</code>类型，默认为FALSE。</p>
+<ul>
+<li><strong>参数14：kinship_metafounder</strong></li>
+</ul>
+<p>是否按照metafounder的方法计算一步法亲缘关系矩阵，<code>logical</code>类型，默认为FALSE。</p>
+<ul>
+<li><strong>参数15：SSBLUP_omega</strong></li>
+</ul>
+<p>构建一步法亲缘关系矩阵时G矩阵和A矩阵的比例，<code>numeric</code>类型，默认为0.05。</p>
+<ul>
+<li><strong>参数16：gene_dropping</strong></li>
+</ul>
+<p>是否使用 gene dropping 的方法构建系谱显性亲缘关系矩阵，<code>logical</code>类型，默认为FALSE。</p>
+<ul>
+<li><strong>参数17：gene_dropping_iteration</strong></li>
+</ul>
+<p>gene dropping方法的迭代次数，<code>numeric</code>类型，默认为1000。</p>
+<ul>
+<li><strong>参数18：memory_save</strong></li>
+</ul>
+<p>是否使用省内存的方式进行上述所有的计算，<code>logical</code>类型，默认为FALSE。该方法非常节省内存，但是会极大的占据本地存储空间。</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&amp;text=R%20package:blupADC-%e5%8a%9f%e8%83%bd5" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&amp;t=R%20package:blupADC-%e5%8a%9f%e8%83%bd5" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=R%20package:blupADC-%e5%8a%9f%e8%83%bd5&amp;body=/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&amp;title=R%20package:blupADC-%e5%8a%9f%e8%83%bd5" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=R%20package:blupADC-%e5%8a%9f%e8%83%bd5%20/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&amp;title=R%20package:blupADC-%e5%8a%9f%e8%83%bd5" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/zh/author/%E6%A2%85%E5%85%A8%E9%A1%BA/avatar_hu5f20744e08524ff7ac6fce3b60ea5d69_3615750_270x270_fill_q75_lanczos_center.JPG" alt="梅全顺">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">梅全顺</h5>
+      <h6 class="card-subtitle">动物遗传育种-博士</h6>
+      <p class="card-text">My research interests include genomic selection and machine learning in animal breeding.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/zh/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/GeorgeCushen" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/gcushen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      由<a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>支持发布——免费<a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">开源</a>网站，为创作者赋能。
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/zh/js/wowchemy.min.36a40d4118e0aa7ca81cc52060cf1c07.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

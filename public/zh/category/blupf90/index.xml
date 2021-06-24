@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BLUPf90 | 梅全顺-学术</title>
+    <link>/zh/category/blupf90/</link>
+      <atom:link href="/zh/category/blupf90/index.xml" rel="self" type="application/rss+xml" />
+    <description>BLUPf90</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Wed, 21 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>BLUPf90</title>
+      <link>/zh/category/blupf90/</link>
+    </image>
+    
+    <item>
+      <title>R package:blupADC-功能7</title>
+      <link>/zh/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/</link>
+      <pubDate>Wed, 21 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/zh/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/</guid>
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;目录&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#简述&#34;&gt;简述&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#示例&#34;&gt;示例&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#单性状模型-系谱&#34;&gt;&lt;strong&gt;单性状模型-系谱&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#单性状模型-gblup&#34;&gt;&lt;strong&gt;单性状模型-GBLUP&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#单性状模型-single-step一步法&#34;&gt;&lt;strong&gt;单性状模型-Single-step(一步法)&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#多性状模型-系谱&#34;&gt;&lt;strong&gt;多性状模型-系谱&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#参数详解&#34;&gt;参数详解&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#特有参数&#34;&gt;💫特有参数&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
+
+&lt;h2 id=&#34;简述&#34;&gt;简述&lt;/h2&gt;
+&lt;p&gt;👻在前面的章节，我们已经讲述了如何在&lt;strong&gt;R&lt;/strong&gt;中调用&lt;strong&gt;DMU&lt;/strong&gt;软件并完成相应的分析。本章，我们将讲述如何通过&lt;code&gt;BLUP_ADC&lt;/code&gt;中的&lt;code&gt;run_BLUPF90&lt;/code&gt;函数，在&lt;strong&gt;R&lt;/strong&gt;中调用&lt;strong&gt;BLUPF90&lt;/strong&gt;软件并完成数据分析。为了方便用户的使用，我们已经尽可能地将 &lt;code&gt;run_BLUPF90&lt;/code&gt;函数中的参数 和 &lt;code&gt;run_DMU&lt;/code&gt;函数中的参数进行了统一。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;👉 Note:  为了方便用户使用， &lt;code&gt;blupADC&lt;/code&gt; 已经封装了BLUPF90中的几个基本模块(&lt;code&gt;renumf90&lt;/code&gt;, &lt;code&gt;remlf90&lt;/code&gt;, &lt;code&gt;airemlf90&lt;/code&gt;, 和 &lt;code&gt;blupf90&lt;/code&gt;), 更多的模块可以从BLUPF90官网进行下载(&lt;a href=&#34;http://nce.ads.uga.edu/html/projects/programs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BLUPF90下载网站&lt;/a&gt;).&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果您想将BLUPF90用作商业用途，请务必联系 BLUPF90的作者！！！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;接下来，我们还是用几个简单的例子看看该函数的用法:&lt;/p&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
+&lt;h3 id=&#34;单性状模型-系谱&#34;&gt;&lt;strong&gt;单性状模型-系谱&lt;/strong&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)   #  示例文件的路径
+  
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # 表型数据的列名(ps.表型文件无列名)
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #性状名称
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #随机效应名称
+        covariate_effect_name=NULL,                              #协变量效应名称
+        phe_path=data_path,                          #表型文件路径
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #表型文件名
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #遗传评估模型
+        relationship_path=data_path,                 #亲缘关系文件路径
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #亲缘关系文件名
+        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;单性状模型-gblup&#34;&gt;&lt;strong&gt;单性状模型-GBLUP&lt;/strong&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)   #  示例文件的路径
+  
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # 表型数据的列名(ps.表型文件无列名)
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #性状名称
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #随机效应名称
+        covariate_effect_name=NULL,                              #协变量效应名称
+        phe_path=data_path,                          #表型文件路径
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #表型文件名
+        analysis_model=&amp;quot;GBLUP_A&amp;quot;,                    #遗传评估模型
+        relationship_path=data_path,                 #亲缘关系文件路径
+        relationship_name=&amp;quot;blupf90_genumeric&amp;quot;,       #亲缘关系文件名
+        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;单性状模型-single-step一步法&#34;&gt;&lt;strong&gt;单性状模型-Single-step(一步法)&lt;/strong&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)   #  示例文件的路径
+  
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # 表型数据的列名(ps.表型文件无列名)
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #性状名称
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #随机效应名称
+        covariate_effect_name=NULL,                              #协变量效应名称
+        phe_path=data_path,                          #表型文件路径
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #表型文件名
+        analysis_model=&amp;quot;SSBLUP_A&amp;quot;,                   #遗传评估模型
+        relationship_path=data_path,                 #亲缘关系文件路径
+        relationship_name=c(&amp;quot;pedigree.txt&amp;quot;,&amp;quot;blupf90_genumeric&amp;quot;),       #亲缘关系文件名
+        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
+        )  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;同样的，与DMU使用类似，我们仅需改变 &lt;code&gt;analysis_model&lt;/code&gt; 及 &lt;code&gt;relationship_name&lt;/code&gt; 这两个参数即可完成 系谱、GBLUP及SSBLUP的分析(PS: blupf90_genumeric 文件 均可通过 &lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数得到，具体可见：XXXX)。&lt;/p&gt;
+&lt;h3 id=&#34;多性状模型-系谱&#34;&gt;&lt;strong&gt;多性状模型-系谱&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;上面我们介绍的都是单性状模型(&lt;strong&gt;只包括了一个目标性状&lt;/strong&gt;)。与上一节的介绍的&lt;code&gt;run_DMU&lt;/code&gt;函数类似，如果我们想完成双性状模型的计算，只需要在上面的脚本的基础上稍作修改就能实现目的，具体代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)   #  示例文件的路径
+  
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # 表型数据的列名(ps.表型文件无列名)
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;),                  #性状名称
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;)),               #随机效应名称
+        covariate_effect_name=list(NULL,&amp;quot;Age&amp;quot;),                              #协变量效应名称
+        phe_path=data_path,                          #表型文件路径
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #表型文件名
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #遗传评估模型
+        relationship_path=data_path,                 #亲缘关系文件路径
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #亲缘关系文件名
+        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
+        ) 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;参数详解&#34;&gt;参数详解&lt;/h2&gt;
+&lt;p&gt;接下来，我们将对&lt;code&gt;run_BLUPF90&lt;/code&gt; 中特有的参数进行讲解，剩余的参数大家可移步 &lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;R package:blupADC-使用说明6&lt;/a&gt; 进行查看，相同参数的用法和含义均是一模一样的。&lt;/p&gt;
+&lt;h3 id=&#34;特有参数&#34;&gt;💫特有参数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;参数1：blupf90_algorithm&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;BLPUF90进行方差组分估计时选用的算法，&lt;code&gt;character&lt;/code&gt;类型。可选算法包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;AI_REML&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;EM_REML&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;BLUP&amp;quot;&lt;/code&gt; : 无需估计方差组分，根据提供的先验直接求解混合线性模型方程组。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;默认算法为：&amp;ldquo;AI_REML&amp;rdquo;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数2：provided_blupf90_prior_file_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的BLUPF90格式的方差组分-PRIOR文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;:需要注意的一点是，&lt;strong&gt;BLUPF90&lt;/strong&gt;格式的PRIOR文件和&lt;strong&gt;DMU&lt;/strong&gt;格式的PRIOR文件是不相同的。关于二者的差异，以后有时间会再出一篇文章进行讲解，这里就不再赘述了。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数3：provided_blupf90_prior_file_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的BLUPF90格式的方差组分-PRIOR文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数4：provided_blupf90_prior_effect_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的PRIOR文件中，与方差组分对应的各个随机效应名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数5：BLUPf90_software_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;BLUPF90软件在本地的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

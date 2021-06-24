@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Imputaion | 梅全顺-学术</title>
+    <link>/zh/category/imputaion/</link>
+      <atom:link href="/zh/category/imputaion/index.xml" rel="self" type="application/rss+xml" />
+    <description>Imputaion</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Sat, 17 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>Imputaion</title>
+      <link>/zh/category/imputaion/</link>
+    </image>
+    
+    <item>
+      <title>R package:blupADC-功能4</title>
+      <link>/zh/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/</link>
+      <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/zh/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/</guid>
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;目录&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#简介&#34;&gt;简介&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#示例&#34;&gt;示例&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#参数详解&#34;&gt;参数详解&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#基础参数&#34;&gt;💙基础参数&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#进阶参数&#34;&gt;💜进阶参数&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
+
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;🤖通常来讲，我们公司拿到的原始芯片数据大都是包含缺失值且未经过质控的。而在实际的数据分析中，我们一般都要求数据是经过质控和填充。为此，&lt;code&gt;blupADC&lt;/code&gt;中提供了&lt;code&gt;genotype_data_QC_Imputation&lt;/code&gt;函数，可以方便我们在R中调用&lt;strong&gt;Plink&lt;/strong&gt;(用于质控)和&lt;strong&gt;Beagle&lt;/strong&gt;(用于填充)软件进行基因型数据的质控和填充。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;👉 Note:  为了方便用户使用,  &lt;code&gt;blupADC&lt;/code&gt; 已经事先封装好了 Plink(用于质控)  &lt;code&gt;version-1.9&lt;/code&gt; 和  Beagle(用于填充) &lt;code&gt;version-5.2&lt;/code&gt; 软件，用户无需再重新下载. 如果用户想自行指定软件的版本，可以通过更改相关的参数(在进阶参数部分里).&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;老规矩，我们还是用一个小例子来看下函数的用法:&lt;/p&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+genotype_data_QC_Imputation(
+            input_data_hmp=data_hmp,    #provided hapmap data object
+            data_analysis_method=&amp;quot;QC_Imputation&amp;quot;,   #analysis method type,QC + imputatoin
+            output_data_path=&amp;quot;/root/result&amp;quot;,        #output data path
+            output_data_name=&amp;quot;YY_data&amp;quot;,             #output data name
+            output_data_type=&amp;quot;Plink&amp;quot;                #output data format 
+            )                       
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过上述代码，我们即可对本地的&lt;strong&gt;Hapmap&lt;/strong&gt;格式的基因型数据进行质控和填充，并将其以&lt;strong&gt;Plink&lt;/strong&gt;格式并保存到本地。&lt;/p&gt;
+&lt;p&gt;进行质控和填充时，我们必须要事先提供基因型数据，这部分的参数与&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数用法一致。具体大家可参阅之前的介绍: &lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;R package:blupADC- 使用说明1&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;完成了基因型数据的提供后，我们可以通过以下参数进行质控填充的相关分析。&lt;/p&gt;
+&lt;h2 id=&#34;参数详解&#34;&gt;参数详解&lt;/h2&gt;
+&lt;h3 id=&#34;基础参数&#34;&gt;💙基础参数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;参数1：data_analysis_method&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;指定基因型数据的处理方法，&lt;code&gt;character&lt;/code&gt;类型。可选方法包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;QC&amp;rdquo; :进行质控&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;Imputation&amp;rdquo; :进行填充&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;QC_Imputation&amp;rdquo; :先质控，后填充&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;参数2：qc_snp_rate&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用Plink进行质控时，SNP call rate 的阈值，&lt;code&gt;numeric&lt;/code&gt;类型，默认为0.1。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数3：qc_ind_rate&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用Plink进行质控时，IND call rate 的阈值，&lt;code&gt;numeric&lt;/code&gt;类型，默认为0.1。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数4：qc_maf&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用Plink进行质控时，MAF 的阈值，&lt;code&gt;numeric&lt;/code&gt;类型，默认为0.05。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数5：qc_hwe&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用Plink进行质控时，哈代温伯格平衡的阈值,&lt;code&gt;numeric&lt;/code&gt;类型，默认为1e-6。&lt;/p&gt;
+&lt;h3 id=&#34;进阶参数&#34;&gt;💜进阶参数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数6：plink_software_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Plink软件的路径,&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数7：plink_software_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Plink软件的名称,&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数8：beagle_software_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Beagle软件的路径,&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数9：beagle_software_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Beagle软件的名称,&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数10：beagle_ref_data_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用beagle进行填充时，提供的reference data的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数11：beagle_ref_data_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用beagle进行填充时，提供的reference data的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数12：beagle_ped_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用beagle进行填充时，提供的系谱数据的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数13：beagle_ped_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用beagle进行填充时，提供的系谱数据的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
