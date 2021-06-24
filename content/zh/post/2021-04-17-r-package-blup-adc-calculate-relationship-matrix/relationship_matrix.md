@@ -42,7 +42,7 @@ kinship_result=cal_kinship(
                 return_result=TRUE)               #return result              
 ```
 
-在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与`genotype_data_format_conversion`函数中的参数用法一致。具体大家可参阅之前的介绍: [R package:blupADC- 使用说明1](https://qsmei.netlify.app/post/blupadc/)。
+在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与`genotype_data_format_conversion`函数中的参数用法一致。具体大家可参阅之前的介绍:[基因型数据间的格式转换](https://qsmei.netlify.app/zh/post/blupadc/)。
 
 完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型。
 
@@ -94,7 +94,7 @@ kinship_result=cal_kinship(
 
 -   **参数4：input_pedigree**
 
-用户提供的系谱数据，`data.frame`或 `matrix`类型。具体的系谱数据格式可以参阅之前的介绍：[R package:blupADC-使用说明3](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/)。
+用户提供的系谱数据，`data.frame`或 `matrix`类型。具体的系谱数据格式可以参阅之前的介绍：[系谱追溯、重命名及纠错 ](https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/)。
 
 -   **参数5：pedigree_rename**
 

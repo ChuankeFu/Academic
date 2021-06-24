@@ -57,7 +57,7 @@ kinship_result=cal_kinship(
                 return_result=TRUE)               #return result              
 ```
 
-**Note**: In the construction of genomic and single-step relationship matrix, people need to provide genotype data. These parameters are the same as in `genotype_data_format_conversion` function(see details).
+**Note**: In the construction of genomic and single-step relationship matrix, people need to provide genotype data. These parameters are the same as in `genotype_data_format_conversion` function(([see more details](https://qsmei.netlify.app/post/blupadc/)).
 
 ###  💨Single-step kinship matrix
 
@@ -119,7 +119,7 @@ kinship_result=cal_kinship(
 
 -   **4：input_pedigree**
 
-User-provided pedigree data ，`data.frame` or `matrix` class. (see more details about the format of pedigree data) 
+User-provided pedigree data ，`data.frame` or `matrix` class. ([see more details](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/) about the format of pedigree data) 
 
 -   **5：pedigree_rename**  
 

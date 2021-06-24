@@ -48,7 +48,6 @@ install.packages(c("Rcpp", "RcppArmadillo","data.table"))
 #### 在 Linux 上 安装 blupADC
 
 ```R
-# with encapsulation  
 packageurl <- "https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1_linux.tar.gz"
 install.packages(packageurl,repos=NULL,method="libcurl")
 ```
@@ -56,15 +55,13 @@ install.packages(packageurl,repos=NULL,method="libcurl")
 对于中国用户来说，我们推荐使用如下代码进行安装（**安装速度更快**）：
 
 ```R
-# with encapsulation  
-packageurl <- "https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1_linux.tar.gz"
+packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/751023/download/blupADC_1.0.1_linux.tar.gz"
 install.packages(packageurl,repos=NULL,method="libcurl")
 ```
 
 #### 在 Windows 上 安装 blupADC
 
 ```R
-# in R environment
 packageurl <- "https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1.zip"
 install.packages(packageurl,repos=NULL)
 ```
@@ -72,12 +69,11 @@ install.packages(packageurl,repos=NULL)
 对于中国用户来说，我们推荐使用如下代码进行安装（**安装速度更快**）：
 
 ```R
-# in R environment
-packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/743906/download/blupADC_1.0.1.zip"
+packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/751003/download/blupADC_1.0.1.zip"
 install.packages(packageurl,repos=NULL)
 ```
 
-After installed successfully, the `blupADC` package can be loaded by typing
+安装成功后，我们输入如下代码即可加载R包:
 
 ``` {.r}
 library(blupADC)
@@ -95,7 +91,7 @@ library(blupADC)
 
 ## 使用
 
-**为了方便用户使用，所有的文档均支持双语模式(中英文)。**
+**为了方便用户使用，所有的文档均支持双语模式(中英文说明书)。**
 
 `blupADC` 内置了几个数据集对象, 包括 `data_hmp` 及`origin_pedigree`.
 
@@ -105,7 +101,7 @@ library(blupADC)
 system.file("extdata", package = "blupADC") # path of provided files
 ```
 
-#### 功能 1. 基因型数据间的格式转换 ([了解更多](https://qsmei.netlify.app/post/blupadc/))
+#### 功能 1. 基因型数据间的格式转换 ([了解更多](https://qsmei.netlify.app/zh/post/blupadc/))
 
 ``` R
 library(blupADC)
@@ -117,7 +113,7 @@ sum_data=genotype_data_format_conversion(
                   )
 ```
 
-#### 功能 2.基因型数据的重复性检测 ([了解更多](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-overlap-genotype/overlap_genotype/))
+#### 功能 2.基因型数据的重复性检测 ([了解更多](https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-overlap-genotype/overlap_genotype/))
 
 ``` R
 library(blupADC)
@@ -128,7 +124,7 @@ overlap_result=genotype_data_overlap(
                   )
 ```
 
-#### 功能 3. 系谱追溯、重命名及纠错 ([了解更多](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/))
+#### 功能 3. 系谱追溯、重命名及纠错 ([了解更多](https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/))
 
 ``` R
 library(blupADC)
@@ -138,7 +134,7 @@ pedigree_result=trace_pedigree(
                 )                 
 ```
 
-#### 功能 4. 基因型数据的质控与填充 ([了解更多](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/))
+#### 功能 4. 基因型数据的质控与填充 ([了解更多](https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/))
 
 ``` R
 library(blupADC)
@@ -151,7 +147,7 @@ genotype_data_QC_Imputation(
             )                       
 ```
 
-#### 功能 5. 亲缘关系矩阵的构建 ([了解更多](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/))
+#### 功能 5. 亲缘关系矩阵的构建 ([了解更多](https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/))
 
 ``` R
 library(blupADC)
@@ -163,7 +159,7 @@ kinship_result=cal_kinship(
                 return_result=TRUE)               #在R中返回结果        
 ```
 
-#### 功能 6. DMU软件的交互使用 ([了解更多](https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/))
+#### 功能 6. DMU软件的交互使用 ([了解更多](https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/))
 
 ``` R
 library(blupADC)
@@ -186,7 +182,7 @@ run_DMU(
         )
 ```
 
-#### 功能 7. BLUPF90软件的交互使用 ([了解更多](https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/))
+#### 功能 7. BLUPF90软件的交互使用 ([了解更多](https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/))
 
 ``` R
 library(blupADC)

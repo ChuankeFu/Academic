@@ -105,7 +105,7 @@ run_DMU(
         output_result_path=&amp;quot;/root&amp;quot;                   # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Through modifying the two parameters: &lt;code&gt;analysis_model&lt;/code&gt; and &lt;code&gt;relationship_name&lt;/code&gt; , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: we can get G_Ainv_col_three.txt  and G_A_col_three.txt   through &lt;code&gt;cal_kinship&lt;/code&gt; function，see more tails(XXXX) about &lt;code&gt;cal_kinship&lt;/code&gt; function).&lt;/p&gt;
+&lt;p&gt;Through modifying the two parameters: &lt;code&gt;analysis_model&lt;/code&gt; and &lt;code&gt;relationship_name&lt;/code&gt; , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: we can get G_Ainv_col_three.txt  and G_A_col_three.txt   through &lt;code&gt;cal_kinship&lt;/code&gt; function，&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;  about &lt;code&gt;cal_kinship&lt;/code&gt; function).&lt;/p&gt;
 &lt;p&gt;The above example is single-trait model, while in actual breeding, multiple traits model is also common.  Similarity, we only need to modify several parameters to  perform multiple traits model:&lt;/p&gt;
 &lt;h3 id=&#34;multiple-traits-model---pedigree-blup&#34;&gt;&lt;strong&gt;Multiple traits model - Pedigree BLUP&lt;/strong&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)

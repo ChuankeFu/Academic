@@ -52,4 +52,4 @@ overlap_result=genotype_data_overlap(
 
 该函数中的其他参数均和`genotype_data_format_conversion`函数中的参数一致(基因型数据的输入与输出)，具体大家可参阅之前的介绍:
 
-具体大家可参阅之前的介绍: [R package:blupADC- 使用说明1](https://qsmei.netlify.app/post/blupadc/)。
+具体大家可参阅之前的介绍: [基因型数据间的格式转换](https://qsmei.netlify.app/zh/post/blupadc/)。

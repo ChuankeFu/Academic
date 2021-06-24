@@ -892,7 +892,7 @@ run_BLUPF90(
         BLUPF90_software_path=&quot;/root/software/BLUPF90&quot;  # path of BLUPF90 software 
         )   
 </code></pre>
-<p>Similar to <code>run_DMU</code> function, through modifying the two parameters: <code>analysis_model</code> and <code>relationship_name</code> , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: blupf90_genumeric is generated through <code>cal_kinship</code> function，see more tails(XXXX) about <code>cal_kinship</code> function).</p>
+<p>Similar to <code>run_DMU</code> function, through modifying the two parameters: <code>analysis_model</code> and <code>relationship_name</code> , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: blupf90_genumeric is generated through <code>cal_kinship</code> function，<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" target="_blank" rel="noopener">see more details</a> about <code>cal_kinship</code> function).</p>
 <h3 id="multiple-traits-model---pedigree-blup"><strong>Multiple traits model - Pedigree BLUP</strong></h3>
 <p>The following code is about the usage of multiple traits model through BLUPF90:</p>
 <pre><code class="language-{.R}">library(blupADC)
@@ -914,7 +914,7 @@ run_BLUPF90(
         )   
 </code></pre>
 <h2 id="parameter">Parameter</h2>
-<p>Many parameters in  <code>run_BLUPF90</code> are the as <code>run_DMU</code> function(see details).</p>
+<p>Many parameters in  <code>run_BLUPF90</code> are the as <code>run_DMU</code> function(<a href="https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/" target="_blank" rel="noopener">see more details</a>).</p>
 <p>💫Thus, we will introduce  specific parameters in<code>run_BLUPF90</code> function.</p>
 <ul>
 <li>

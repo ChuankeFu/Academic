@@ -45,7 +45,7 @@ genotype_data_QC_Imputation(
 
 通过上述代码，我们即可对本地的**Hapmap**格式的基因型数据进行质控和填充，并将其以**Plink**格式并保存到本地。
 
-进行质控和填充时，我们必须要事先提供基因型数据，这部分的参数与`genotype_data_format_conversion`函数中的参数用法一致。具体大家可参阅之前的介绍: [R package:blupADC- 使用说明1](https://qsmei.netlify.app/post/blupadc/)。
+进行质控和填充时，我们必须要事先提供基因型数据，这部分的参数与`genotype_data_format_conversion`函数中的参数用法一致。具体大家可参阅之前的介绍: [基因型数据间的格式转换](https://qsmei.netlify.app/zh/post/blupadc/)。
 
 完成了基因型数据的提供后，我们可以通过以下参数进行质控填充的相关分析。
 

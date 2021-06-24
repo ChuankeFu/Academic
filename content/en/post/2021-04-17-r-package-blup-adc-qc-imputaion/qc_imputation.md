@@ -41,7 +41,7 @@ genotype_data_QC_Imputation(
             )                       
 ```
 
-In the process of quality control and imputation，we should provide genotype data，these parameters are the as in`genotype_data_format_conversion`function(see more details).
+In the process of quality control and imputation，we should provide genotype data，these parameters are the as in`genotype_data_format_conversion`function(([see more details](https://qsmei.netlify.app/post/blupadc/)).
 
 ## Parameter
 

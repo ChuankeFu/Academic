@@ -37,7 +37,7 @@ overlap_result=genotype_data_overlap(
 
 ## Parameter 
 
-Many parameters in  `genotype_data_overlap` are the as `genotype_data_format_conversion` function(see details). 
+Many parameters in  `genotype_data_overlap` are the as `genotype_data_format_conversion` function(([see more details](https://qsmei.netlify.app/post/blupadc/)). 
 
 Thus, we will introduce  specific parameters in  `genotype_data_overlap`  function.
 

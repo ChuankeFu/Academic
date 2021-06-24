@@ -23,7 +23,7 @@ toc: true
 
 ## OVERVIEW
 
-`blupADC` is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding.  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (`Rcpp` and `RcppArmadillo `) , and it also support  parallel calculation by applying `openMP` programming.
+`blupADC` is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding(**traditional blup and genomic selection**).  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (`Rcpp` and `RcppArmadillo `) , and it also support  parallel calculation by applying `openMP` programming.
 
 `blupADC` provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(**trace pedigree, rename pedigree, and correct pedigree errors**), genotype data format conversion(supports **Hapmap, Plink, Blupf90, Numeric, and VCF** format), genotype data quality control and imputation, construction of kinship matrix(**pedigree, genomic  and single-step**),and genetic evaluation( by interfacing with two famous breeding softwares, **DMU** and **BLUPF90**  in an easy way).  Through package `blupADC`,  the work of breeding would be more efficiency. 
 
@@ -48,7 +48,6 @@ install.packages(c("Rcpp", "RcppArmadillo","data.table"))
 #### Install blupADC on Linux 
 
 ```R
-# with encapsulation  
 packageurl <- "https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1_linux.tar.gz"
 install.packages(packageurl,repos=NULL,method="libcurl")
 ```
@@ -56,15 +55,13 @@ install.packages(packageurl,repos=NULL,method="libcurl")
 For Chinese users, we recommend to use the following code(**installation would be  faster**):
 
 ```R
-# with encapsulation  
-packageurl <- "https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1_linux.tar.gz"
+packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/751023/download/blupADC_1.0.1_linux.tar.gz"
 install.packages(packageurl,repos=NULL,method="libcurl")
 ```
 
 #### Install blupADC on Windows
 
 ```R
-# in R environment
 packageurl <- "https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1.zip"
 install.packages(packageurl,repos=NULL)
 ```
@@ -72,8 +69,7 @@ install.packages(packageurl,repos=NULL)
 For Chinese users, we recommend to use the following code(**installation would be  faster**):
 
 ```R
-# in R environment
-packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/743906/download/blupADC_1.0.1.zip"
+packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/751003/download/blupADC_1.0.1.zip"
 install.packages(packageurl,repos=NULL)
 ```
 
@@ -95,7 +91,7 @@ library(blupADC)
 
 ## Usage
 
-**For convenience, all documents support two-language(English and Chinese).**
+**For convenience, all documents support two-language([English](https://qsmei.netlify.app/post/2021-04-21-r-package-rblupadc-overview/overview/) and [Chinese](https://qsmei.netlify.app/zh/post/2021-04-21-r-package-rblupadc-overview/overview/)).** 
 
 `blupADC` provides several datasets object, including `data_hmp`, `origin_pedigree`.
 
@@ -117,7 +113,7 @@ sum_data=genotype_data_format_conversion(
                   )
 ```
 
-#### Feature 2. Detect duplicated genotype data ([see more details](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-overlap-genotype/overlap_genotype/))
+#### Feature 2. Detect duplicated genotype data ([see more details](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-overlap-genotype/blupadc/))
 
 ``` R
 library(blupADC)
@@ -171,7 +167,7 @@ library(blupADC)
 data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
   
 run_DMU(
-        phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2"), # colnames of phenotype 
+        phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
         target_trait_name=c("Trait1"),                           #trait name 
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
@@ -194,7 +190,7 @@ library(blupADC)
 data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
   
 run_BLUPF90(
-        phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2"), # colnames of phenotype 
+        phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
         target_trait_name=c("Trait1"),                           #trait name 
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
@@ -207,3 +203,5 @@ run_BLUPF90(
         output_result_path="/root"                   # output path 
         )   
 ```
+
+1

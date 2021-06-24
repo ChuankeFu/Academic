@@ -39,7 +39,7 @@ overlap_result=genotype_data_overlap(
                   )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
-&lt;p&gt;Many parameters in  &lt;code&gt;genotype_data_overlap&lt;/code&gt; are the as &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function(see details).&lt;/p&gt;
+&lt;p&gt;Many parameters in  &lt;code&gt;genotype_data_overlap&lt;/code&gt; are the as &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function((&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Thus, we will introduce  specific parameters in  &lt;code&gt;genotype_data_overlap&lt;/code&gt;  function.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;1：selected_snps&lt;/strong&gt;&lt;/li&gt;

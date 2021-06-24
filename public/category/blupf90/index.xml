@@ -99,7 +99,7 @@ run_BLUPF90(
         BLUPF90_software_path=&amp;quot;/root/software/BLUPF90&amp;quot;  # path of BLUPF90 software 
         )   
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Similar to &lt;code&gt;run_DMU&lt;/code&gt; function, through modifying the two parameters: &lt;code&gt;analysis_model&lt;/code&gt; and &lt;code&gt;relationship_name&lt;/code&gt; , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: blupf90_genumeric is generated through &lt;code&gt;cal_kinship&lt;/code&gt; function，see more tails(XXXX) about &lt;code&gt;cal_kinship&lt;/code&gt; function).&lt;/p&gt;
+&lt;p&gt;Similar to &lt;code&gt;run_DMU&lt;/code&gt; function, through modifying the two parameters: &lt;code&gt;analysis_model&lt;/code&gt; and &lt;code&gt;relationship_name&lt;/code&gt; , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: blupf90_genumeric is generated through &lt;code&gt;cal_kinship&lt;/code&gt; function，&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt; about &lt;code&gt;cal_kinship&lt;/code&gt; function).&lt;/p&gt;
 &lt;h3 id=&#34;multiple-traits-model---pedigree-blup&#34;&gt;&lt;strong&gt;Multiple traits model - Pedigree BLUP&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;The following code is about the usage of multiple traits model through BLUPF90:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
@@ -121,7 +121,7 @@ run_BLUPF90(
         )   
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
-&lt;p&gt;Many parameters in  &lt;code&gt;run_BLUPF90&lt;/code&gt; are the as &lt;code&gt;run_DMU&lt;/code&gt; function(see details).&lt;/p&gt;
+&lt;p&gt;Many parameters in  &lt;code&gt;run_BLUPF90&lt;/code&gt; are the as &lt;code&gt;run_DMU&lt;/code&gt; function(&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;💫Thus, we will introduce  specific parameters in&lt;code&gt;run_BLUPF90&lt;/code&gt; function.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;

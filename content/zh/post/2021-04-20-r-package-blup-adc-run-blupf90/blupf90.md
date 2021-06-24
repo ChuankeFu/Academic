@@ -96,7 +96,7 @@ run_BLUPF90(
         )  
 ```
 
-同样的，与DMU使用类似，我们仅需改变 `analysis_model` 及 `relationship_name` 这两个参数即可完成 系谱、GBLUP及SSBLUP的分析(PS: blupf90_genumeric 文件 均可通过 `genotype_data_format_conversion`函数得到，具体可见：XXXX)。
+同样的，与DMU使用类似，我们仅需改变 `analysis_model` 及 `relationship_name` 这两个参数即可完成 系谱、GBLUP及SSBLUP的分析(PS: blupf90_genumeric 文件 均可通过 `genotype_data_format_conversion`函数得到 [了解更多](https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/))。
 
 ### **多性状模型-系谱**
 
@@ -125,7 +125,7 @@ run_BLUPF90(
 
 ## 参数详解
 
-接下来，我们将对`run_BLUPF90` 中特有的参数进行讲解，剩余的参数大家可移步 [R package:blupADC-使用说明6](https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/) 进行查看，相同参数的用法和含义均是一模一样的。
+接下来，我们将对`run_BLUPF90` 中特有的参数进行讲解，剩余的参数大家可移步[DMU软件的交互使用](https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/)进行查看，相同参数的用法和含义均是一模一样的。
 
 ### 💫特有参数
 

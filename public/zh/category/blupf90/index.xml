@@ -99,7 +99,7 @@ run_BLUPF90(
         output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
         )  
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;同样的，与DMU使用类似，我们仅需改变 &lt;code&gt;analysis_model&lt;/code&gt; 及 &lt;code&gt;relationship_name&lt;/code&gt; 这两个参数即可完成 系谱、GBLUP及SSBLUP的分析(PS: blupf90_genumeric 文件 均可通过 &lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数得到，具体可见：XXXX)。&lt;/p&gt;
+&lt;p&gt;同样的，与DMU使用类似，我们仅需改变 &lt;code&gt;analysis_model&lt;/code&gt; 及 &lt;code&gt;relationship_name&lt;/code&gt; 这两个参数即可完成 系谱、GBLUP及SSBLUP的分析(PS: blupf90_genumeric 文件 均可通过 &lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数得到 &lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)。&lt;/p&gt;
 &lt;h3 id=&#34;多性状模型-系谱&#34;&gt;&lt;strong&gt;多性状模型-系谱&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;上面我们介绍的都是单性状模型(&lt;strong&gt;只包括了一个目标性状&lt;/strong&gt;)。与上一节的介绍的&lt;code&gt;run_DMU&lt;/code&gt;函数类似，如果我们想完成双性状模型的计算，只需要在上面的脚本的基础上稍作修改就能实现目的，具体代码如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
@@ -120,7 +120,7 @@ run_BLUPF90(
         ) 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;参数详解&#34;&gt;参数详解&lt;/h2&gt;
-&lt;p&gt;接下来，我们将对&lt;code&gt;run_BLUPF90&lt;/code&gt; 中特有的参数进行讲解，剩余的参数大家可移步 &lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;R package:blupADC-使用说明6&lt;/a&gt; 进行查看，相同参数的用法和含义均是一模一样的。&lt;/p&gt;
+&lt;p&gt;接下来，我们将对&lt;code&gt;run_BLUPF90&lt;/code&gt; 中特有的参数进行讲解，剩余的参数大家可移步&lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU软件的交互使用&lt;/a&gt;进行查看，相同参数的用法和含义均是一模一样的。&lt;/p&gt;
 &lt;h3 id=&#34;特有参数&#34;&gt;💫特有参数&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;

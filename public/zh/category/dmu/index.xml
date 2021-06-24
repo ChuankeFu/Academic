@@ -107,7 +107,7 @@ run_DMU(
         output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
         )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;细心的同学应该能发现，我们仅需改变 &lt;code&gt;analysis_model&lt;/code&gt; 及 &lt;code&gt;relationship_name&lt;/code&gt; 这两个参数即可完成 系谱、GBLUP及SSBLUP的分析，极大的简化了我们的分析步骤(PS: G_Ainv_col_three.txt 和 G_A_col_three.txt 文件 均可通过 &lt;code&gt;cal_kinship&lt;/code&gt;函数得到，具体可见：XXXX)。&lt;/p&gt;
+&lt;p&gt;细心的同学应该能发现，我们仅需改变 &lt;code&gt;analysis_model&lt;/code&gt; 及 &lt;code&gt;relationship_name&lt;/code&gt; 这两个参数即可完成 系谱、GBLUP及SSBLUP的分析，极大的简化了我们的分析步骤(PS: G_Ainv_col_three.txt 和 G_A_col_three.txt 文件 均可通过 &lt;code&gt;cal_kinship&lt;/code&gt;函数得到 &lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)。&lt;/p&gt;
 &lt;p&gt;上面我们介绍的都是单性状模型(&lt;strong&gt;只包括了一个目标性状&lt;/strong&gt;)，而在实际育种分析中，多性状模型也是非常常见。在上面代码的基础上稍作修改，我们就能够非常方便的完成多性状模型的运算，如下：&lt;/p&gt;
 &lt;h3 id=&#34;多性状模型-系谱&#34;&gt;&lt;strong&gt;多性状模型-系谱&lt;/strong&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)

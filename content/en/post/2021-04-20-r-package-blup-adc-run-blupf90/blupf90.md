@@ -100,7 +100,7 @@ run_BLUPF90(
         )   
 ```
 
-Similar to `run_DMU` function, through modifying the two parameters: `analysis_model` and `relationship_name` , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: blupf90_genumeric is generated through `cal_kinship` function，see more tails(XXXX) about `cal_kinship` function). 
+Similar to `run_DMU` function, through modifying the two parameters: `analysis_model` and `relationship_name` , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: blupf90_genumeric is generated through `cal_kinship` function，[see more details](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/) about `cal_kinship` function). 
 
 ### **Multiple traits model - Pedigree BLUP**
 
@@ -130,7 +130,7 @@ run_BLUPF90(
 
 ## Parameter
 
-Many parameters in  `run_BLUPF90` are the as `run_DMU` function(see details). 
+Many parameters in  `run_BLUPF90` are the as `run_DMU` function([see more details](https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/)). 
 
 💫Thus, we will introduce  specific parameters in`run_BLUPF90` function.
 

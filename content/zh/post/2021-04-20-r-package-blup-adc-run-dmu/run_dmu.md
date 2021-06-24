@@ -104,7 +104,7 @@ run_DMU(
         )
 ```
 
-细心的同学应该能发现，我们仅需改变 `analysis_model` 及 `relationship_name` 这两个参数即可完成 系谱、GBLUP及SSBLUP的分析，极大的简化了我们的分析步骤(PS: G_Ainv_col_three.txt 和 G_A\_col_three.txt 文件 均可通过 `cal_kinship`函数得到，具体可见：XXXX)。
+细心的同学应该能发现，我们仅需改变 `analysis_model` 及 `relationship_name` 这两个参数即可完成 系谱、GBLUP及SSBLUP的分析，极大的简化了我们的分析步骤(PS: G_Ainv_col_three.txt 和 G_A\_col_three.txt 文件 均可通过 `cal_kinship`函数得到 [了解更多](https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/))。
 
 上面我们介绍的都是单性状模型(**只包括了一个目标性状**)，而在实际育种分析中，多性状模型也是非常常见。在上面代码的基础上稍作修改，我们就能够非常方便的完成多性状模型的运算，如下：
 

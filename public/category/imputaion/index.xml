@@ -46,7 +46,7 @@ genotype_data_QC_Imputation(
             output_data_type=&amp;quot;Plink&amp;quot;                #output data format 
             )                       
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In the process of quality control and imputation，we should provide genotype data，these parameters are the as in&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;function(see more details).&lt;/p&gt;
+&lt;p&gt;In the process of quality control and imputation，we should provide genotype data，these parameters are the as in&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;function((&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
 &lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
 &lt;h3 id=&#34;basic&#34;&gt;💙Basic&lt;/h3&gt;
 &lt;ul&gt;
