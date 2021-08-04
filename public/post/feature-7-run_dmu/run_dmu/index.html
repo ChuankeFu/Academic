@@ -1,0 +1,1542 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.1.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Mei Quanshun" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Genetic evaluation with software DMU" />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/feature-7-run_dmu/run_dmu/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.9a66e344a68eb664b392d406a3f80726.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/post/feature-7-run_dmu/run_dmu/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="QSmei-Academic" />
+  <meta property="og:url" content="/post/feature-7-run_dmu/run_dmu/" />
+  <meta property="og:title" content="R package:blupADC-Feature 7 | QSmei-Academic" />
+  <meta property="og:description" content="Genetic evaluation with software DMU" /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-04-20T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-04-20T18:31:18&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/feature-7-run_dmu/run_dmu/"
+  },
+  "headline": "R package:blupADC-Feature 7",
+  
+  "datePublished": "2021-04-20T00:00:00Z",
+  "dateModified": "2021-04-20T18:31:18+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Mei Quanshun"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "QSmei-Academic",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Genetic evaluation with software DMU"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>R package:blupADC-Feature 7 | QSmei-Academic</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="5814be3e29f082ce7eea6171a9d56fcb" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.226a9011996d125bf3fe4a5f22353a49.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">QSmei-Academic</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">QSmei-Academic</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>About Me</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/GeorgeCushen" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>R package:blupADC-Feature 7</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Apr 20, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    6 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/dmu/">DMU</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <details class="toc-inpage d-print-none  " open>
+  <summary class="font-weight-bold">Table of Contents</summary>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#example">Example</a>
+      <ul>
+        <li><a href="#single-trait-model---pedigree-blup"><strong>Single trait model - Pedigree BLUP</strong></a></li>
+        <li><a href="#single-trait-model---gblup"><strong>Single trait model - GBLUP</strong></a></li>
+        <li><a href="#single-trait-model---single-step-blup"><strong>Single trait model - Single-step BLUP</strong></a></li>
+        <li><a href="#multiple-traits-model---pedigree-blup"><strong>Multiple traits model - Pedigree BLUP</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#parameter">Parameter</a>
+      <ul>
+        <li><a href="#basic">🤡Basic</a></li>
+        <li><a href="#advanced">👺Advanced</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</details>
+
+<h2 id="overview">Overview</h2>
+<p>🤠 In the previous section, we have given detailed description about data preparation.  In the following section, we will introduce genetic evaluation software in animal and plant breeding.  Nowadays, in the filed of animal and plant breeding,  two of the most famous breeding software are <strong>DMU</strong> and <strong>BLUPF90</strong> ( cited over than one thousand).</p>
+<p>Although these two softwares have many advantages, these two softwares have one common pitfall: it is a little difficult to use for freshman(need to prepare parameter file). Thus, in order to overcome this pitfall,  package <code>blupADC</code>  provides  <code>run_DMU</code> and <code>run_BLUPF90</code> for interfacing <strong>DMU</strong> and <strong>BLUPF90</strong> in an easy way.</p>
+<p>In this section, we will give detail description about <code>run_DMU</code> function.</p>
+<p>👉 <strong>Note:</strong>  <strong>Package <code>blupADC</code> has encapsulated  the basic module of DMU(<code>dmu1</code>,<code>dmuai</code>, and <code>dmu5</code>) , more modules could be download from website</strong>(<a href="https://dmu.ghpc.au.dk/dmu/" target="_blank" rel="noopener">DMU download website</a>).</p>
+<p><strong>For commercial use of DMU,  user must contact the author of DMU !!!</strong></p>
+<h2 id="example">Example</h2>
+<h3 id="single-trait-model---pedigree-blup"><strong>Single trait model - Pedigree BLUP</strong></h3>
+<pre><code class="language-{.r}">library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+  
+run_DMU(
+        phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype
+        target_trait_name=c(&quot;Trait1&quot;),                           #trait name 
+        fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
+        random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&quot;PBLUP_A&quot;,                    #model of genetic evaluation
+        dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
+        output_result_path=&quot;/root&quot;                   # output path 
+        )
+</code></pre>
+<h3 id="single-trait-model---gblup"><strong>Single trait model - GBLUP</strong></h3>
+<pre><code class="language-{.r}">library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+run_DMU(
+        phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
+        target_trait_name=c(&quot;Trait1&quot;),                           #trait name 
+        fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
+        random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&quot;GBLUP_A&quot;,                    #model of genetic evaluation
+        dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&quot;G_Ainv_col_three.txt&quot;,            #name of relationship file 
+        output_result_path=&quot;/root&quot;                   # output path 
+        )
+</code></pre>
+<h3 id="single-trait-model---single-step-blup"><strong>Single trait model - Single-step BLUP</strong></h3>
+<pre><code class="language-{.r}">library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+run_DMU(
+        phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;), # colnames of phenotype 
+        target_trait_name=c(&quot;Trait1&quot;),                           #trait name 
+        fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
+        random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&quot;SSBLUP_A&quot;,                    #model of genetic evaluation
+        dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=c(&quot;pedigree.txt&quot;,&quot;G_A_col_three.txt&quot;),            #name of relationship file 
+        output_result_path=&quot;/root&quot;                   # output path 
+        )
+</code></pre>
+<p>Through modifying the two parameters: <code>analysis_model</code> and <code>relationship_name</code> , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis (PS: we can get G_Ainv_col_three.txt  and G_A_col_three.txt   by <code>cal_kinship</code> function，<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" target="_blank" rel="noopener">see more details</a>  about <code>cal_kinship</code> function).</p>
+<p>The above example is single-trait model, while in actual breeding, multiple traits model is also common.  Similarly, we only need to modify several parameters to  perform multiple traits model:</p>
+<h3 id="multiple-traits-model---pedigree-blup"><strong>Multiple traits model - Pedigree BLUP</strong></h3>
+<pre><code class="language-{.r}">library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+  
+run_DMU(
+        phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
+        target_trait_name=c(&quot;Trait1&quot;,&quot;Trait2&quot;),                           #trait name 
+        fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;),c(&quot;Herd_Year_Season&quot;)),     #fixed effect name
+        random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;),c(&quot;Id&quot;)),               #random effect name
+        covariate_effect_name=list(NULL,&quot;Age&quot;),                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&quot;PBLUP_A&quot;,                    #model of genetic evaluation
+        dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
+        output_result_path=&quot;/root&quot;                   # output path 
+        )
+</code></pre>
+<h2 id="parameter">Parameter</h2>
+<h3 id="basic">🤡Basic</h3>
+<ul>
+<li><strong>1：phe_path</strong></li>
+</ul>
+<p>File path of phenotype data ，<code>character</code> class。</p>
+<ul>
+<li><strong>2：phe_name</strong></li>
+</ul>
+<p>File name of phenotype data，<code>character</code> class。</p>
+<p><strong>Note</strong>: User-provided phenotype doesn&rsquo;t have colnames (the same as the requirement of DMU)</p>
+<ul>
+<li><strong>3：phe_col_names</strong></li>
+</ul>
+<p>Colnames of  phenotype data，<code>character</code> class。</p>
+<ul>
+<li><strong>4：integer_n</strong></li>
+</ul>
+<p>Number of integer variable, <code>numeric</code> class。</p>
+<ul>
+<li><strong>5：genetic_effect_name</strong></li>
+</ul>
+<p>Genetic effect name (usually is the individual name), <code>character</code> class.</p>
+<ul>
+<li><strong>6：target_trait_name</strong></li>
+</ul>
+<p>Target trait name,  <code>character</code> class.</p>
+<p>For multiple traits model, we should set target_trait_name as character vector, e.g. <code>target_trait_name=c(&quot;Trait1&quot;,&quot;Trait2&quot;)</code></p>
+<ul>
+<li><strong>7：fixed_effect_name</strong></li>
+</ul>
+<p>Fixed effects name, <code>list</code> class.</p>
+<p>For multiple traits model,  the order of  fixed effects name should correspond to the target trait name.</p>
+<p>eg.  <code>target_trait_name=c(&quot;Trait1&quot;,&quot;Trait2&quot;)</code></p>
+<p><code>fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;),c(&quot;Herd_Year_Season&quot;))</code></p>
+<p>which means the fixed effects name of trait1 is : <code>c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)</code>,  the fixed effect name of trait2 is : <code>c(&quot;Herd_Year_Season&quot;) </code></p>
+<ul>
+<li><strong>8：random_effect_name</strong></li>
+</ul>
+<p>Random effects name, <code>list</code> class.</p>
+<p>For multiple traits model,  the order of  random effects name should correspond to the target trait name.</p>
+<p>eg.  <code>target_trait_name=c(&quot;Trait1&quot;,&quot;Trait2&quot;)</code></p>
+<p><code>random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;),c(&quot;Id&quot;))</code></p>
+<p>which means the random effects name of trait1 is : <code>c(&quot;Id&quot;,&quot;Litter&quot;)</code>,  the random effects name of trait2 is : <code>c(&quot;Id&quot;)</code></p>
+<ul>
+<li><strong>9：covariate_effect_name</strong></li>
+</ul>
+<p>Covariate effects name, <code>list</code> class.</p>
+<p>For multiple traits model,  the order of  covariate effects name should correspond to the target trait name.</p>
+<p>eg.  <code>target_trait_name=c(&quot;Trait1&quot;,&quot;Trait2&quot;)</code></p>
+<p><code>covariate_effect_name=list(NULL,&quot;Age&quot;)</code></p>
+<p>which means the covariate effects name of trait1 is : <code>NULL</code> (NULL means no this effect),  the covariate effects name of trait2 is : <code>Age</code></p>
+<ul>
+<li>
+<p><strong>10：analysis_model</strong></p>
+<p>Model of genetic evaluation, <code>character</code> class.</p>
+<ul>
+<li><code>&quot;PBLUP_A&quot;</code> : Pedigree BLUP- additive model</li>
+<li><code>&quot;GBLUP_A&quot;</code> :GBLUP- additive model</li>
+<li><code>&quot;GBLUP_AD&quot;</code> :GBLUP- additive and dominance model</li>
+<li><code>&quot;SSBLUP_A&quot;</code> :SSBLUP- additive model</li>
+<li><code>&quot;User_define&quot;</code>: User define model</li>
+</ul>
+</li>
+<li>
+<p><strong>11：dmu_module</strong></p>
+<p>Module of estimating variance components,  <code>character</code> class.</p>
+<ul>
+<li>
+<p><code>&quot;dmuai&quot;</code></p>
+</li>
+<li>
+<p><code>&quot;dmu4&quot;</code></p>
+</li>
+<li>
+<p><code>&quot;dmu5&quot;</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>12：DMU_software_path</strong></p>
+</li>
+</ul>
+<p>Path of DMU software,  <code>character</code> class.</p>
+<ul>
+<li><strong>13：relationship_path</strong></li>
+</ul>
+<p>File path of relationship data,  <code>character</code> class.</p>
+<ul>
+<li><strong>14：relationship_name</strong></li>
+</ul>
+<p>File name of relationship data,  <code>character</code> class.</p>
+<p>For different genetic evaluation model , we should provide different relationship file.</p>
+<p>E.g. for  &ldquo;PBLUP_A&rdquo; model, we need to provide pedigree file,  then we should set <code>relationship_name=&quot;pedigree.txt&quot;</code>   ;</p>
+<p>for  &ldquo;GBLUP_A&rdquo; model, we need to provide inverse of additive relationship matrix file(3 columns  format),  then we should set <code>relationship_name=&quot;G_Ainv_col_three.txt&quot;</code>   ;</p>
+<p>for  &ldquo;SSBLUP_A&rdquo; model, we need to provide pedigree and  additive relationship matrix file(3 columns  format),  then we should set <code>relationship_name=c(&quot;pedigree.txt&quot;,&quot;G_A_col_three.txt&quot;)</code>   ;</p>
+<ul>
+<li><strong>15：output_result_path</strong></li>
+</ul>
+<p>Path of output DMU result,   <code>character</code> class.</p>
+<ul>
+<li><strong>16：output_ebv_path</strong></li>
+</ul>
+<p>File path of output EBV,   <code>character</code> class. Default is equal to  output_result_path</p>
+<ul>
+<li><strong>17：output_ebv_name</strong></li>
+</ul>
+<p>File name of output EBV,   <code>character</code> class.</p>
+<h3 id="advanced">👺Advanced</h3>
+<ul>
+<li><strong>18：provided_effect_file_path</strong></li>
+</ul>
+<p>File path of trait&rsquo;s  model effect data,   <code>character</code> class.</p>
+<p>File of trait&rsquo;s model effect include fixed effects name, random effects name, and covariate effects name.  Once user provides this file,  user don&rsquo;t need to set  these three parameters: <code>fixed_effect_name </code>  <code>random_effect_name </code>  <code>covariate_effect_name </code>.</p>
+<p>The format of this effect file is as following:</p>
+<table>
+<thead>
+<tr>
+<th>V1</th>
+<th>V2</th>
+<th>V3</th>
+<th>V4</th>
+<th>V5</th>
+<th>V6</th>
+<th>V7</th>
+<th>V8</th>
+<th>V9</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trait1</td>
+<td>*</td>
+<td>Sex</td>
+<td>Herd_Year_Season</td>
+<td>*</td>
+<td>Id</td>
+<td>Litter</td>
+<td>*</td>
+<td>*</td>
+</tr>
+<tr>
+<td>Trait2</td>
+<td>*</td>
+<td>Sex</td>
+<td>*</td>
+<td>Id</td>
+<td>*</td>
+<td>Age</td>
+<td>*</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The first column is the name of target trait.  Each column stands for one effect name.  In order to recognize three types of effect, we  set  *   to distinguish each type.</p>
+<p>Effects name between the first   *  and the second  *  stand for fixed effects name;</p>
+<p>effects name between the second   *  and the third  *  stand for random effects name;</p>
+<p>effects name between the third   *  and the fourth  *  stand for covariate effects name.</p>
+<ul>
+<li><strong>19：provided_effect_file_name</strong></li>
+</ul>
+<p>File name of trait&rsquo;s  model effect data,   <code>character</code> class.</p>
+<ul>
+<li><strong>20：provided_DIR_file_path</strong></li>
+</ul>
+<p>File path of user-provided DIR data,   <code>character</code> class.</p>
+<ul>
+<li><strong>21：provided_DIR_file_name</strong></li>
+</ul>
+<p>File name of user-provided DIR data,   <code>character</code> class.</p>
+<ul>
+<li><strong>22：included_permanent_effect</strong></li>
+</ul>
+<p>Whether perform permanent-environment analysis,    <code>logical</code> class.   Default is FALSE.</p>
+<ul>
+<li><strong>23：dmu_algorithm_code</strong></li>
+</ul>
+<p>Number of dmu-module algorithm,  <code>numeric</code> class.</p>
+<ul>
+<li><strong>24：provided_prior_file_path</strong></li>
+</ul>
+<p>File path of user-provided prior file,   <code>character</code> class.</p>
+<ul>
+<li><strong>25：provided_prior_file_name</strong></li>
+</ul>
+<p>File name of user-provided prior file,   <code>character</code> class.</p>
+<ul>
+<li><strong>26：missing_value</strong></li>
+</ul>
+<p>Missing value in phenotype file,  <code>numeric</code> class. Default is -9999.</p>
+<ul>
+<li><strong>27：iteration_criteria</strong></li>
+</ul>
+<p>Value of iteration convergence,  <code>numeric</code> class. Default is 1.0e-7.</p>
+<ul>
+<li><strong>28：genetic_effect_number</strong></li>
+</ul>
+<p>Number of genetic effect in SOL file,  <code>numeric</code> class. Default is 4.</p>
+<ul>
+<li><strong>29：residual_cov_trait</strong></li>
+</ul>
+<p>Traits combination of assuming residual-covariance equals to 0. e.g <code>residual_cov_trait=list(c(&quot;Trait1&quot;,&quot;Trait2&quot;))</code></p>
+<ul>
+<li><strong>30：selected_id</strong></li>
+</ul>
+<p>Individuals set of output EBV,  <code>character</code> class.</p>
+<ul>
+<li><strong>31：cal_debv</strong></li>
+</ul>
+<p>Whether calculate de-regressed EBV(DEBV),   <code>logical</code> class.   Default is FALSE.</p>
+<ul>
+<li><strong>32：debv_pedigree_path</strong></li>
+</ul>
+<p>File path of pedigree data for calculating DEBV,   <code>character</code> class.</p>
+<ul>
+<li><strong>33：debv_pedigree_name</strong></li>
+</ul>
+<p>File name of pedigree data for calculating DEBV,   <code>character</code> class.</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/feature-7-run_dmu/run_dmu/&amp;text=R%20package:blupADC-Feature%207" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/feature-7-run_dmu/run_dmu/&amp;t=R%20package:blupADC-Feature%207" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=R%20package:blupADC-Feature%207&amp;body=/post/feature-7-run_dmu/run_dmu/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/feature-7-run_dmu/run_dmu/&amp;title=R%20package:blupADC-Feature%207" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=R%20package:blupADC-Feature%207%20/post/feature-7-run_dmu/run_dmu/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/feature-7-run_dmu/run_dmu/&amp;title=R%20package:blupADC-Feature%207" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/author/mei-quanshun/avatar_hu5f20744e08524ff7ac6fce3b60ea5d69_3615750_270x270_fill_q75_lanczos_center.JPG" alt="Mei Quanshun">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Mei Quanshun</h5>
+      <h6 class="card-subtitle">PhD student in animal breeding</h6>
+      <p class="card-text">My research interests include genomic selection and machine learning in animal breeding.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/GeorgeCushen" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/gcushen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.b61a8f62b6e5c0cd322c8158c5b5dfb6.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

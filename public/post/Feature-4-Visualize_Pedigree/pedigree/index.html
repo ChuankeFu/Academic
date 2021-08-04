@@ -1,0 +1,1410 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.1.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Mei Quanshun" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Visualize pedigree" />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/feature-4-visualize_pedigree/pedigree/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.9a66e344a68eb664b392d406a3f80726.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/post/feature-4-visualize_pedigree/pedigree/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="QSmei-Academic" />
+  <meta property="og:url" content="/post/feature-4-visualize_pedigree/pedigree/" />
+  <meta property="og:title" content="R package:blupADC-Feature 4 | QSmei-Academic" />
+  <meta property="og:description" content="Visualize pedigree" /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-04-17T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-04-16T09:32:43&#43;09:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/feature-4-visualize_pedigree/pedigree/"
+  },
+  "headline": "R package:blupADC-Feature 4",
+  
+  "datePublished": "2021-04-17T00:00:00Z",
+  "dateModified": "2021-04-16T09:32:43+09:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Mei Quanshun"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "QSmei-Academic",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Visualize pedigree"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>R package:blupADC-Feature 4 | QSmei-Academic</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="5387441daf4a7b521b2297c9fe5c7c4a" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.226a9011996d125bf3fe4a5f22353a49.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">QSmei-Academic</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">QSmei-Academic</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>About Me</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/GeorgeCushen" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>R package:blupADC-Feature 4</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Apr 16, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/pedigree/">pedigree</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <details class="toc-inpage d-print-none  " open>
+  <summary class="font-weight-bold">Table of Contents</summary>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#example">Example</a>
+      <ul>
+        <li><a href="#plot-whole-pedigree">Plot whole pedigree</a></li>
+        <li><a href="#plot-subset-of-whole-pedigree">Plot subset of whole pedigree</a></li>
+        <li><a href="#plot-subset-of-whole-pedigree-with-sibs">Plot subset of whole pedigree (with sibs)</a></li>
+      </ul>
+    </li>
+    <li><a href="#change-the-style-of-picture">Change the style of picture</a></li>
+    <li><a href="#output">Output</a></li>
+    <li><a href="#parameter">Parameter</a>
+      <ul>
+        <li><a href="#basic">💥Basic</a></li>
+        <li><a href="#advanced">💨Advanced</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</details>
+
+<h2 id="overview">Overview</h2>
+<p>🦄  An intuitive and clear structure of pedigree could help breeders to make better decision in breeding plan. By  applying  <code>ggped</code> function, user can plot the structure of pedigree in an easy way.</p>
+<h2 id="example">Example</h2>
+<h3 id="plot-whole-pedigree">Plot whole pedigree</h3>
+<pre><code class="language-r">library(blupADC)
+pedigree_result=ggped(
+                input_pedigree=plot_pedigree
+                )                 
+
+</code></pre>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153843.png" alt="image-20210708153839657"></p>
+<h3 id="plot-subset-of-whole-pedigree">Plot subset of whole pedigree</h3>
+<pre><code class="language-r">library(blupADC)
+pedigree_result=ggped(
+                input_pedigree=plot_pedigree,
+    			trace_id=c(&quot;121&quot;)             #provided subset-id
+                )                   
+
+</code></pre>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153708.png" alt="image-20210708153706707"></p>
+<h3 id="plot-subset-of-whole-pedigree-with-sibs">Plot subset of whole pedigree (with sibs)</h3>
+<pre><code class="language-r">library(blupADC)
+pedigree_result=ggped(
+                input_pedigree=plot_pedigree,
+    			trace_id=c(&quot;121&quot;),
+    			trace_sibs=TRUE   #whether plot the sibs of subset-id  
+                )                   
+
+</code></pre>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708161212.png" alt="image-20210708161211022"></p>
+<h2 id="change-the-style-of-picture">Change the style of picture</h2>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210709101234.png" alt="image-20210709101231119" style="zoom:25%;" /></p>
+<h2 id="output">Output</h2>
+<p>The output of  <code>ggped</code>  is the  object of <code>ggplot</code>, user can plot the pedigree structure or save it directly.</p>
+<h2 id="parameter">Parameter</h2>
+<h3 id="basic">💥Basic</h3>
+<ul>
+<li><strong>1：input_pedigree</strong></li>
+</ul>
+<p>User-provided pedigree data, <code>data.frame </code> or   <code>matrix</code> class.</p>
+<p>💌The format of provided pedigree data should be 3 columns format:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Offspring</th>
+<th style="text-align:left">Sire</th>
+<th style="text-align:left">Dam</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">DD19575312</td>
+<td style="text-align:left">DD18768902</td>
+<td style="text-align:left">DD16376015</td>
+</tr>
+<tr>
+<td style="text-align:left">DD19513112</td>
+<td style="text-align:left">DD18768902</td>
+<td style="text-align:left">DD17111017</td>
+</tr>
+<tr>
+<td style="text-align:left">DD20348012</td>
+<td style="text-align:left">DD19132207</td>
+<td style="text-align:left">DD19234510</td>
+</tr>
+<tr>
+<td style="text-align:left">DD20361110</td>
+<td style="text-align:left">DD19331001</td>
+<td style="text-align:left">DD19293112</td>
+</tr>
+<tr>
+<td style="text-align:left">DD20471212</td>
+<td style="text-align:left">DD19331001</td>
+<td style="text-align:left">DD19320808</td>
+</tr>
+<tr>
+<td style="text-align:left">DD20564818</td>
+<td style="text-align:left">DD19331001</td>
+<td style="text-align:left">DD19311009</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>**2:  trace_id **</li>
+</ul>
+<p>Individuals set in tracing pedigree, <code>character</code> class. Default is <code>NULL</code> (plot whole individuals in pedigree)</p>
+<ul>
+<li><strong>3:  trace_sibs</strong></li>
+</ul>
+<p>Whether tracing the sibs of  individuals set , <code>logical</code> class. Default is <code>FALSE</code> .</p>
+<ul>
+<li>**4:  ind_sex **</li>
+</ul>
+<p>Sex record of individuals , <code>data.frame</code> class.</p>
+<p>The format of this data is showing as follow:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Individual</th>
+<th style="text-align:left">Sex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">101</td>
+<td style="text-align:left">Male</td>
+</tr>
+<tr>
+<td style="text-align:left">102</td>
+<td style="text-align:left">Female</td>
+</tr>
+<tr>
+<td style="text-align:left">103</td>
+<td style="text-align:left">Male</td>
+</tr>
+<tr>
+<td style="text-align:left">104</td>
+<td style="text-align:left">Female</td>
+</tr>
+</tbody>
+</table>
+<p>For individual who doesn&rsquo;t have the record of sex,  the sex of this individual would be set as Male.</p>
+<ul>
+<li><strong>5:  set_family</strong></li>
+</ul>
+<p>Whether dividing the family structure when plotting the pedigree, <code>logical</code> class. Default is <code>FALSE</code> .</p>
+<ul>
+<li>**6:  text_size **</li>
+</ul>
+<p>The size of text in picture, <code>numeric</code> class. Default is <code>4</code> .</p>
+<ul>
+<li><strong>7:  shape_size</strong></li>
+</ul>
+<p>The size of shape in picture, <code>numeric</code> class. Default is <code>8</code> .</p>
+<h3 id="advanced">💨Advanced</h3>
+<ul>
+<li><strong>7：dup_error_check</strong></li>
+</ul>
+<p>Whether check the pedigree error of error_duplicated，<code>logical</code> class. Default is TRUE.</p>
+<ul>
+<li><strong>8：sex_error_check</strong></li>
+</ul>
+<p>Whether check the pedigree error of error_sex，<code>logical</code> class. Default is TRUE.</p>
+<ul>
+<li><strong>9：breed_error_check</strong></li>
+</ul>
+<p>Whether check the pedigree error of error_breed_，<code>logical</code> class. Default is FALSE.</p>
+<ul>
+<li><strong>10：birth_date_error_check</strong></li>
+</ul>
+<p>Whether check the pedigree error of error_birth_date，<code>logical</code> class. Default is FALSE.</p>
+<ul>
+<li><strong>11：trace_id</strong></li>
+</ul>
+<p>Individuals set in tracing pedigree, <code>character</code> class. Default is <code>NULL</code> (tracing all individuals in pedigree)</p>
+<ul>
+<li><strong>12：trace_generation</strong></li>
+</ul>
+<p>Generation of tracing pedigree，<code>numeric</code> class. Default is 5.</p>
+<ul>
+<li><strong>13：trace_birth_date</strong></li>
+</ul>
+<p>Birth date threshold of individuals in tracing pedigree, <code>character</code> class.</p>
+<p>Only individuals with birth date larger than  this threshold would be included in tracing pedigree.</p>
+<ul>
+<li><strong>14：output_pedigree_tree</strong></li>
+</ul>
+<p>Whether  output pedigree tree，<code>logical</code> class. Default is FALSE.</p>
+<ul>
+<li><strong>15：pedigree_tree_depth</strong></li>
+</ul>
+<p>Depth of pedigree tree，<code>numeric </code> class. Default is 3.</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/feature-4-visualize_pedigree/pedigree/&amp;text=R%20package:blupADC-Feature%204" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/feature-4-visualize_pedigree/pedigree/&amp;t=R%20package:blupADC-Feature%204" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=R%20package:blupADC-Feature%204&amp;body=/post/feature-4-visualize_pedigree/pedigree/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/feature-4-visualize_pedigree/pedigree/&amp;title=R%20package:blupADC-Feature%204" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=R%20package:blupADC-Feature%204%20/post/feature-4-visualize_pedigree/pedigree/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/feature-4-visualize_pedigree/pedigree/&amp;title=R%20package:blupADC-Feature%204" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/author/mei-quanshun/avatar_hu5f20744e08524ff7ac6fce3b60ea5d69_3615750_270x270_fill_q75_lanczos_center.JPG" alt="Mei Quanshun">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Mei Quanshun</h5>
+      <h6 class="card-subtitle">PhD student in animal breeding</h6>
+      <p class="card-text">My research interests include genomic selection and machine learning in animal breeding.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/GeorgeCushen" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/gcushen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.b61a8f62b6e5c0cd322c8158c5b5dfb6.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

@@ -13,10 +13,10 @@
     </image>
     
     <item>
-      <title>R package:blupADC-Feature 6</title>
-      <link>/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/</link>
+      <title>R package:blupADC-Feature 7</title>
+      <link>/post/feature-7-run_dmu/run_dmu/</link>
       <pubDate>Tue, 20 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/</guid>
+      <guid>/post/feature-7-run_dmu/run_dmu/</guid>
       <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
   &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
   &lt;nav id=&#34;TableOfContents&#34;&gt;
@@ -43,8 +43,8 @@
 &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;🤠 In the previous section, we have given detailed description about data preparation.  In the following section, we will introduce genetic evaluation software in animal and plant breeding.  Nowadays, in the filed of animal and plant breeding,  two of the most famous breeding software are &lt;strong&gt;DMU&lt;/strong&gt; and &lt;strong&gt;BLUPF90&lt;/strong&gt; ( cited over than one thousand).&lt;/p&gt;
 &lt;p&gt;Although these two softwares have many advantages, these two softwares have one common pitfall: it is a little difficult to use for freshman(need to prepare parameter file). Thus, in order to overcome this pitfall,  package &lt;code&gt;blupADC&lt;/code&gt;  provides  &lt;code&gt;run_DMU&lt;/code&gt; and &lt;code&gt;run_BLUPF90&lt;/code&gt; for interfacing &lt;strong&gt;DMU&lt;/strong&gt; and &lt;strong&gt;BLUPF90&lt;/strong&gt; in an easy way.&lt;/p&gt;
-&lt;p&gt;In this section, we will give detail descriptions about &lt;code&gt;run_DMU&lt;/code&gt; function.&lt;/p&gt;
-&lt;p&gt;👉 &lt;strong&gt;Note:&lt;/strong&gt;  &lt;strong&gt;Package &lt;code&gt;blupADC&lt;/code&gt; has encapsulated  the basic module of DMU(&lt;code&gt;dmu1&lt;/code&gt;,&lt;code&gt;dmuai&lt;/code&gt;, and &lt;code&gt;dmu5&lt;/code&gt;),more modules could be download from website&lt;/strong&gt;(&lt;a href=&#34;https://dmu.ghpc.au.dk/dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU download website&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;In this section, we will give detail description about &lt;code&gt;run_DMU&lt;/code&gt; function.&lt;/p&gt;
+&lt;p&gt;👉 &lt;strong&gt;Note:&lt;/strong&gt;  &lt;strong&gt;Package &lt;code&gt;blupADC&lt;/code&gt; has encapsulated  the basic module of DMU(&lt;code&gt;dmu1&lt;/code&gt;,&lt;code&gt;dmuai&lt;/code&gt;, and &lt;code&gt;dmu5&lt;/code&gt;) , more modules could be download from website&lt;/strong&gt;(&lt;a href=&#34;https://dmu.ghpc.au.dk/dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU download website&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;For commercial use of DMU,  user must contact the author of DMU !!!&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
 &lt;h3 id=&#34;single-trait-model---pedigree-blup&#34;&gt;&lt;strong&gt;Single trait model - Pedigree BLUP&lt;/strong&gt;&lt;/h3&gt;
@@ -105,8 +105,8 @@ run_DMU(
         output_result_path=&amp;quot;/root&amp;quot;                   # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Through modifying the two parameters: &lt;code&gt;analysis_model&lt;/code&gt; and &lt;code&gt;relationship_name&lt;/code&gt; , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: we can get G_Ainv_col_three.txt  and G_A_col_three.txt   through &lt;code&gt;cal_kinship&lt;/code&gt; function，&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;  about &lt;code&gt;cal_kinship&lt;/code&gt; function).&lt;/p&gt;
-&lt;p&gt;The above example is single-trait model, while in actual breeding, multiple traits model is also common.  Similarity, we only need to modify several parameters to  perform multiple traits model:&lt;/p&gt;
+&lt;p&gt;Through modifying the two parameters: &lt;code&gt;analysis_model&lt;/code&gt; and &lt;code&gt;relationship_name&lt;/code&gt; , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis (PS: we can get G_Ainv_col_three.txt  and G_A_col_three.txt   by &lt;code&gt;cal_kinship&lt;/code&gt; function，&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;  about &lt;code&gt;cal_kinship&lt;/code&gt; function).&lt;/p&gt;
+&lt;p&gt;The above example is single-trait model, while in actual breeding, multiple traits model is also common.  Similarly, we only need to modify several parameters to  perform multiple traits model:&lt;/p&gt;
 &lt;h3 id=&#34;multiple-traits-model---pedigree-blup&#34;&gt;&lt;strong&gt;Multiple traits model - Pedigree BLUP&lt;/strong&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
 data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
@@ -137,11 +137,11 @@ run_DMU(
 &lt;li&gt;&lt;strong&gt;2：phe_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;File name of phenotype data，&lt;code&gt;character&lt;/code&gt; class。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: User-provided phenotype don&amp;rsquo;t have colnames (the same as the requirement of DMU)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: User-provided phenotype doesn&amp;rsquo;t have colnames (the same as the requirement of DMU)&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;3：phe_col_names&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Column names of  phenotype data，&lt;code&gt;character&lt;/code&gt; class。&lt;/p&gt;
+&lt;p&gt;Colnames of  phenotype data，&lt;code&gt;character&lt;/code&gt; class。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;4：integer_n&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -149,7 +149,7 @@ run_DMU(
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;5：genetic_effect_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Genetic effect name(usually is the id name), &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;Genetic effect name (usually is the individual name), &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;6：target_trait_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -159,7 +159,7 @@ run_DMU(
 &lt;li&gt;&lt;strong&gt;7：fixed_effect_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Fixed effects name, &lt;code&gt;list&lt;/code&gt; class.&lt;/p&gt;
-&lt;p&gt;For multiple traits model,  the order of  fixed effects name should corresponding to the target trait name.&lt;/p&gt;
+&lt;p&gt;For multiple traits model,  the order of  fixed effects name should correspond to the target trait name.&lt;/p&gt;
 &lt;p&gt;eg.  &lt;code&gt;target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Herd_Year_Season&amp;quot;))&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;which means the fixed effects name of trait1 is : &lt;code&gt;c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)&lt;/code&gt;,  the fixed effect name of trait2 is : &lt;code&gt;c(&amp;quot;Herd_Year_Season&amp;quot;) &lt;/code&gt;&lt;/p&gt;
@@ -167,7 +167,7 @@ run_DMU(
 &lt;li&gt;&lt;strong&gt;8：random_effect_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Random effects name, &lt;code&gt;list&lt;/code&gt; class.&lt;/p&gt;
-&lt;p&gt;For multiple traits model,  the order of  random effects name should corresponding to the target trait name.&lt;/p&gt;
+&lt;p&gt;For multiple traits model,  the order of  random effects name should correspond to the target trait name.&lt;/p&gt;
 &lt;p&gt;eg.  &lt;code&gt;target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;))&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;which means the random effects name of trait1 is : &lt;code&gt;c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)&lt;/code&gt;,  the random effects name of trait2 is : &lt;code&gt;c(&amp;quot;Id&amp;quot;)&lt;/code&gt;&lt;/p&gt;
@@ -175,7 +175,7 @@ run_DMU(
 &lt;li&gt;&lt;strong&gt;9：covariate_effect_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Covariate effects name, &lt;code&gt;list&lt;/code&gt; class.&lt;/p&gt;
-&lt;p&gt;For multiple traits model,  the order of  covariate effects name should corresponding to the target trait name.&lt;/p&gt;
+&lt;p&gt;For multiple traits model,  the order of  covariate effects name should correspond to the target trait name.&lt;/p&gt;
 &lt;p&gt;eg.  &lt;code&gt;target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;covariate_effect_name=list(NULL,&amp;quot;Age&amp;quot;)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;which means the covariate effects name of trait1 is : &lt;code&gt;NULL&lt;/code&gt; (NULL means no this effect),  the covariate effects name of trait2 is : &lt;code&gt;Age&lt;/code&gt;&lt;/p&gt;
@@ -192,7 +192,7 @@ run_DMU(
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;**11：dmu_module **&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;11：dmu_module&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Module of estimating variance components,  &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -219,7 +219,7 @@ run_DMU(
 &lt;li&gt;&lt;strong&gt;14：relationship_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;File name of relationship data,  &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
-&lt;p&gt;For difference genetic evaluation model , we should provide different relationship file.&lt;/p&gt;
+&lt;p&gt;For different genetic evaluation model , we should provide different relationship file.&lt;/p&gt;
 &lt;p&gt;E.g. for  &amp;ldquo;PBLUP_A&amp;rdquo; model, we need to provide pedigree file,  then we should set &lt;code&gt;relationship_name=&amp;quot;pedigree.txt&amp;quot;&lt;/code&gt;   ;&lt;/p&gt;
 &lt;p&gt;for  &amp;ldquo;GBLUP_A&amp;rdquo; model, we need to provide inverse of additive relationship matrix file(3 columns  format),  then we should set &lt;code&gt;relationship_name=&amp;quot;G_Ainv_col_three.txt&amp;quot;&lt;/code&gt;   ;&lt;/p&gt;
 &lt;p&gt;for  &amp;ldquo;SSBLUP_A&amp;rdquo; model, we need to provide pedigree and  additive relationship matrix file(3 columns  format),  then we should set &lt;code&gt;relationship_name=c(&amp;quot;pedigree.txt&amp;quot;,&amp;quot;G_A_col_three.txt&amp;quot;)&lt;/code&gt;   ;&lt;/p&gt;
@@ -239,8 +239,8 @@ run_DMU(
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;18：provided_effect_file_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;File path of trait&amp;rsquo;s  effect data,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
-&lt;p&gt;File of trait&amp;rsquo;s effect including fixed effects name, random effects name, and covariate effects name.  Once user provide this file,  user don&amp;rsquo;t need to set  these three parameters: &lt;code&gt;fixed_effect_name &lt;/code&gt;  &lt;code&gt;random_effect_name &lt;/code&gt;  &lt;code&gt;covariate_effect_name &lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;File path of trait&amp;rsquo;s  model effect data,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;File of trait&amp;rsquo;s model effect include fixed effects name, random effects name, and covariate effects name.  Once user provides this file,  user don&amp;rsquo;t need to set  these three parameters: &lt;code&gt;fixed_effect_name &lt;/code&gt;  &lt;code&gt;random_effect_name &lt;/code&gt;  &lt;code&gt;covariate_effect_name &lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The format of this effect file is as following:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -281,14 +281,14 @@ run_DMU(
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;The first column is the name of target trait.  Each column stands for one effect name.  In order to recognize three types of effect, we  set  *   to distinct each type.&lt;/p&gt;
+&lt;p&gt;The first column is the name of target trait.  Each column stands for one effect name.  In order to recognize three types of effect, we  set  *   to distinguish each type.&lt;/p&gt;
 &lt;p&gt;Effects name between the first   *  and the second  *  stand for fixed effects name;&lt;/p&gt;
 &lt;p&gt;effects name between the second   *  and the third  *  stand for random effects name;&lt;/p&gt;
 &lt;p&gt;effects name between the third   *  and the fourth  *  stand for covariate effects name.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;19：provided_effect_file_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;File name of trait&amp;rsquo;s  effect data,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;File name of trait&amp;rsquo;s  model effect data,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;20：provided_DIR_file_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -300,7 +300,7 @@ run_DMU(
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;22：included_permanent_effect&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;If perform permanent-environment analysis,    &lt;code&gt;logical&lt;/code&gt; class.   Default is FALSE.&lt;/p&gt;
+&lt;p&gt;Whether perform permanent-environment analysis,    &lt;code&gt;logical&lt;/code&gt; class.   Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;23：dmu_algorithm_code&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -336,7 +336,7 @@ run_DMU(
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;31：cal_debv&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;If calculate desegregated-EBV(DEBV),   &lt;code&gt;logical&lt;/code&gt; class.   Default is FALSE.&lt;/p&gt;
+&lt;p&gt;Whether calculate de-regressed EBV(DEBV),   &lt;code&gt;logical&lt;/code&gt; class.   Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;32：debv_pedigree_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;

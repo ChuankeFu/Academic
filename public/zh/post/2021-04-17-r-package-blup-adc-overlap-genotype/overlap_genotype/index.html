@@ -33,8 +33,6 @@
   <meta name="description" content="基因型数据重复性检测" />
 
   
-    <link rel="alternate" hreflang="en" href="/post/2021-04-17-r-package-blup-adc-overlap-genotype/blupadc/" />
-  
   <link rel="alternate" hreflang="zh" href="/zh/post/2021-04-17-r-package-blup-adc-overlap-genotype/overlap_genotype/" />
 
   
@@ -699,22 +697,6 @@
 
       
       
-      <li class="nav-item dropdown i18n-dropdown">
-        <a href="#" class="nav-link " data-toggle="dropdown"
-           aria-haspopup="true" aria-label="语言">
-          <i class="fas fa-globe mr-1" aria-hidden="true"></i></a>
-        <div class="dropdown-menu">
-          <div class="dropdown-item dropdown-item-active">
-            <span>中文 (简体)</span>
-          </div>
-          
-          <a class="dropdown-item" href="/post/2021-04-17-r-package-blup-adc-overlap-genotype/blupadc/">
-            <span>English</span>
-          </a>
-          
-        </div>
-      </li>
-      
 
     </ul>
 
@@ -815,6 +797,13 @@
   <nav id="TableOfContents">
   <ul>
     <li><a href="#简介">简介</a></li>
+    <li><a href="#示例">示例</a>
+      <ul>
+        <li><a href="#check-duplication">Check duplication</a></li>
+        <li><a href="#check-breed-record">Check breed record</a></li>
+      </ul>
+    </li>
+    <li><a href="#输出结果">输出结果</a></li>
     <li><a href="#参数详解">参数详解</a></li>
   </ul>
 </nav>
@@ -823,13 +812,29 @@
 <h2 id="简介">简介</h2>
 <p>👦大家好,这一节给大家带来的是如何使用<code>blupADC</code>中的<code>genotype_data_overlap</code>函数来对基因型数据进行重复性检测。</p>
 <p>与之前类似，我们还是用一个小例子来简单的看下该函数的用法</p>
+<h2 id="示例">示例</h2>
+<h3 id="check-duplication">Check duplication</h3>
 <pre><code class="language-{.R}">library(blupADC)
-overlap_result=genotype_data_overlap(
+overlap_result=genotype_data_check(
                   input_data_hmp=data_hmp,   #provided hapmap data object
-                  overlap_threshold=0.95,    # threshold of duplicate 
+                 duplication_threshold=0.95, #threshold of duplication
+                  duplication_check=TRUE,    #whether check the duplication of genotype
+                  breed_check=FALSE,         # whether check the record of breed
                   return_result=TRUE         #return result 
                   )
 </code></pre>
+<h3 id="check-breed-record">Check breed record</h3>
+<pre><code class="language-{.R}">library(blupADC)
+overlap_result=genotype_data_check(
+                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+                  duplication_check=FALSE,       #whether check the duplication of genotype
+                  breed_check=TRUE,              # whether check the record of breed
+                  ind_breed=PCA_Breed,           # provided breed record
+                  output_data_path=&quot;/root&quot;,      #output path
+                  return_result=TRUE             #return result 
+                  )
+</code></pre>
+<h2 id="输出结果">输出结果</h2>
 <h2 id="参数详解">参数详解</h2>
 <p>关于<code>genotype_data_overlap</code> 函数中的参数介绍，我们主要介绍以下两个参数：</p>
 <ul>
@@ -841,6 +846,18 @@ overlap_result=genotype_data_overlap(
 </ul>
 <p>判断基因型重复的阈值，<code>numeric</code> 类型，默认为0.95。</p>
 <p>当个体间的基因型overlap比例超过该阈值时，基因型就会被判定为重复的基因型。</p>
+<ul>
+<li><strong>参数3：duplication_check</strong></li>
+</ul>
+<p>是否进行基因型重复性检测，<code>logical</code> 类型，默认为 TRUE。</p>
+<ul>
+<li><strong>参数4：breed_check</strong></li>
+</ul>
+<p>是否进行品种记录检测，<code>logical</code> 类型，默认为 FALSE。</p>
+<ul>
+<li><strong>参数4：ind_breed</strong></li>
+</ul>
+<p>用户提供的个体品种记录数据，<code>data.frame</code> 类型。  该数据包括两列，第一列为个体号，第二列为个体的品种。</p>
 <p>该函数中的其他参数均和<code>genotype_data_format_conversion</code>函数中的参数一致(基因型数据的输入与输出)，具体大家可参阅之前的介绍:</p>
 <p>具体大家可参阅之前的介绍: <a href="https://qsmei.netlify.app/zh/post/blupadc/" target="_blank" rel="noopener">基因型数据间的格式转换</a>。</p>
 

@@ -22,6 +22,13 @@
   &lt;nav id=&#34;TableOfContents&#34;&gt;
   &lt;ul&gt;
     &lt;li&gt;&lt;a href=&#34;#简介&#34;&gt;简介&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#示例&#34;&gt;示例&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#check-duplication&#34;&gt;Check duplication&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#check-breed-record&#34;&gt;Check breed record&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#输出结果&#34;&gt;输出结果&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&#34;#参数详解&#34;&gt;参数详解&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/nav&gt;
@@ -30,13 +37,29 @@
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;👦大家好,这一节给大家带来的是如何使用&lt;code&gt;blupADC&lt;/code&gt;中的&lt;code&gt;genotype_data_overlap&lt;/code&gt;函数来对基因型数据进行重复性检测。&lt;/p&gt;
 &lt;p&gt;与之前类似，我们还是用一个小例子来简单的看下该函数的用法&lt;/p&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
+&lt;h3 id=&#34;check-duplication&#34;&gt;Check duplication&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
-overlap_result=genotype_data_overlap(
+overlap_result=genotype_data_check(
                   input_data_hmp=data_hmp,   #provided hapmap data object
-                  overlap_threshold=0.95,    # threshold of duplicate 
+                 duplication_threshold=0.95, #threshold of duplication
+                  duplication_check=TRUE,    #whether check the duplication of genotype
+                  breed_check=FALSE,         # whether check the record of breed
                   return_result=TRUE         #return result 
                   )
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;check-breed-record&#34;&gt;Check breed record&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+overlap_result=genotype_data_check(
+                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+                  duplication_check=FALSE,       #whether check the duplication of genotype
+                  breed_check=TRUE,              # whether check the record of breed
+                  ind_breed=PCA_Breed,           # provided breed record
+                  output_data_path=&amp;quot;/root&amp;quot;,      #output path
+                  return_result=TRUE             #return result 
+                  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;输出结果&#34;&gt;输出结果&lt;/h2&gt;
 &lt;h2 id=&#34;参数详解&#34;&gt;参数详解&lt;/h2&gt;
 &lt;p&gt;关于&lt;code&gt;genotype_data_overlap&lt;/code&gt; 函数中的参数介绍，我们主要介绍以下两个参数：&lt;/p&gt;
 &lt;ul&gt;
@@ -48,6 +71,18 @@ overlap_result=genotype_data_overlap(
 &lt;/ul&gt;
 &lt;p&gt;判断基因型重复的阈值，&lt;code&gt;numeric&lt;/code&gt; 类型，默认为0.95。&lt;/p&gt;
 &lt;p&gt;当个体间的基因型overlap比例超过该阈值时，基因型就会被判定为重复的基因型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数3：duplication_check&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;是否进行基因型重复性检测，&lt;code&gt;logical&lt;/code&gt; 类型，默认为 TRUE。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数4：breed_check&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;是否进行品种记录检测，&lt;code&gt;logical&lt;/code&gt; 类型，默认为 FALSE。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数4：ind_breed&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的个体品种记录数据，&lt;code&gt;data.frame&lt;/code&gt; 类型。  该数据包括两列，第一列为个体号，第二列为个体的品种。&lt;/p&gt;
 &lt;p&gt;该函数中的其他参数均和&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数一致(基因型数据的输入与输出)，具体大家可参阅之前的介绍:&lt;/p&gt;
 &lt;p&gt;具体大家可参阅之前的介绍: &lt;a href=&#34;https://qsmei.netlify.app/zh/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;基因型数据间的格式转换&lt;/a&gt;。&lt;/p&gt;
 </description>

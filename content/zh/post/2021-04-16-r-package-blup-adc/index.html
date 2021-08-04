@@ -25,7 +25,9 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#简介">简介</a></li>
-<li><a href="#示例">示例</a>
+<li><a href="#示例">示例</a></li>
+<li><a href="#输出">输出</a></li>
+<li><a href="#参数">参数</a>
 <ul>
 <li><a href="#基础参数">🤡基础参数</a></li>
 <li><a href="#进阶参数">💨进阶参数</a></li>
@@ -43,144 +45,139 @@ output:
 <pre class="r"><code>library(blupADC)
 sum_data=genotype_data_format_conversion(
          input_data_hmp=data_hmp,  #provided hapmap data object 
-         output_data_type=c(&quot;Plink&quot;,&quot;Blupf90&quot;,&quot;Numeric&quot;),# output data format
+         output_data_type=c(&quot;Plink&quot;,&quot;BLUPF90&quot;,&quot;Numeric&quot;),# output data format
          return_result = TRUE,      # return result 
          cpu_cores=1                # number of cpu 
          )</code></pre>
 <pre><code>## Start numeric(0,1,2) format conversion...... 
-## Complete Blupf90  format conversion 
+## Complete BLUPF90  format conversion 
 ## Complete Plink Data Format Conversion</code></pre>
 <p>下面，我们将对<code>genotype_data_format_conversion</code> 中的参数一一进行讲解</p>
-<div id="基础参数" class="section level3">
-<h3>🤡基础参数</h3>
+</div>
+<div id="输出" class="section level2">
+<h2>输出</h2>
+<pre class="r"><code>str(sum_data) 
+## List of 5
+##  $ hmp    :&#39;data.frame&#39;: 6 obs. of  311 variables:
+##   ..$ rs#      : chr [1:6] &quot;SNP1&quot; &quot;SNP2&quot; &quot;SNP3&quot; &quot;SNP4&quot; ...
+##   ..$ alleles  : logi [1:6] NA NA NA NA NA NA
+##   ..$ chrom    : int [1:6] 1 1 1 1 1 1
+##   ..$ pos      : int [1:6] 224488 293696 333333 464830 722623 838596
+##   ..$ strand   : logi [1:6] NA NA NA NA NA NA
+##   ..$ assembly : logi [1:6] NA NA NA NA NA NA
+##   ..$ center   : logi [1:6] NA NA NA NA NA NA
+##   ..$ protLSID : logi [1:6] NA NA NA NA NA NA
+##   ..$ assayLSID: logi [1:6] NA NA NA NA NA NA
+##   ..$ panelLSID: logi [1:6] NA NA NA NA NA NA
+##   ..$ QCcode   : logi [1:6] NA NA NA NA NA NA
+##   ..$ 3098     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
+##   ..$ 3498     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3297     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 2452     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
+##   ..$ 4255     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 2946     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3926     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3426     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 4213     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 2895     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 4172     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3620     : chr [1:6] &quot;AA&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 4797     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 4660     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 4010     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 4095     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3029     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3930     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 4404     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 2020     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 2455     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3747     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 1590     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 2707     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 2320     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
+##   ..$ 3397     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
+##   ..$ 3876     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3658     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 2310     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 1996     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3000     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
+##   ..$ 2485     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 4412     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3395     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 4449     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3302     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3895     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 4328     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3892     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3764     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3922     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 4459     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 4236     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3535     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
+##   ..$ 2957     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 2927     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3499     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 4537     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 4288     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 4048     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3371     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3901     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3344     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 4745     : chr [1:6] &quot;AA&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3118     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3093     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3410     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
+##   ..$ 4024     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3053     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3571     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3740     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 4374     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 4550     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
+##   ..$ 3060     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
+##   ..$ 3460     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GG&quot; &quot;CC&quot; ...
+##   ..$ 3791     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3116     : chr [1:6] &quot;AA&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3078     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 1974     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 1990     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3433     : chr [1:6] &quot;AA&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 4349     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3340     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 2681     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 2628     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 4813     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
+##   ..$ 2221     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 2384     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 2721     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3463     : chr [1:6] &quot;AA&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 2748     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 2973     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 1999     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 3474     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 3689     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
+##   ..$ 1924     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
+##   ..$ 1948     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   ..$ 110      : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
+##   .. [list output truncated]
+##  $ ped    : chr [1:300, 1:18] &quot;3098&quot; &quot;3498&quot; &quot;3297&quot; &quot;2452&quot; ...
+##  $ map    :&#39;data.frame&#39;: 6 obs. of  4 variables:
+##   ..$ chrom : int [1:6] 1 1 1 1 1 1
+##   ..$ rs#   : chr [1:6] &quot;SNP1&quot; &quot;SNP2&quot; &quot;SNP3&quot; &quot;SNP4&quot; ...
+##   ..$ strand: num [1:6] 0.224 0.294 0.333 0.465 0.723 ...
+##   ..$ pos   : int [1:6] 224488 293696 333333 464830 722623 838596
+##  $ blupf90: chr [1:300, 1:2] &quot;3098                &quot; &quot;3498                &quot; &quot;3297                &quot; &quot;2452                &quot; ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : NULL
+##   .. ..$ : chr [1:2] &quot;IND_name&quot; &quot;&quot;
+##  $ numeric: num [1:300, 1:6] 2 1 1 2 1 2 1 1 2 2 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:300] &quot;3098&quot; &quot;3498&quot; &quot;3297&quot; &quot;2452&quot; ...
+##   .. ..$ : chr [1:6] &quot;SNP1&quot; &quot;SNP2&quot; &quot;SNP3&quot; &quot;SNP4&quot; ...</code></pre>
+<p>我们可以清楚的看到输出结果分为5个部分(长度为5的列表)，分别为：</p>
 <ul>
-<li><strong>参数1:input_data_plink_ped</strong></li>
+<li><strong>hmp </strong> : <code>Hapmap</code> 格式的基因型数据</li>
 </ul>
-<p>用户提供的 Plink-ped格式的数据，<code>data.frame</code>类型。具体格式如下所示：</p>
-<table>
-<tbody>
-<tr class="odd">
-<td align="left">3098</td>
-<td align="left">3098</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">C</td>
-<td align="left">C</td>
-<td align="left">G</td>
-<td align="left">G</td>
-</tr>
-<tr class="even">
-<td align="left">3498</td>
-<td align="left">3498</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">A</td>
-<td align="left">C</td>
-<td align="left">T</td>
-<td align="left">G</td>
-</tr>
-<tr class="odd">
-<td align="left">3297</td>
-<td align="left">3297</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">A</td>
-<td align="left">C</td>
-<td align="left">T</td>
-<td align="left">G</td>
-</tr>
-<tr class="even">
-<td align="left">2452</td>
-<td align="left">2452</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">C</td>
-<td align="left">C</td>
-<td align="left">G</td>
-<td align="left">G</td>
-</tr>
-<tr class="odd">
-<td align="left">4255</td>
-<td align="left">4255</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">A</td>
-<td align="left">C</td>
-<td align="left">G</td>
-<td align="left">G</td>
-</tr>
-<tr class="even">
-<td align="left">2946</td>
-<td align="left">2946</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">C</td>
-<td align="left">C</td>
-<td align="left">T</td>
-<td align="left">G</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><strong>参数2:input_data_plink_map</strong></li>
-</ul>
-<p>用户提供的 Plink-map格式的数据，<code>data.frame</code>类型。具体格式如下所示：</p>
-<table>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">SNP1</td>
-<td align="right">0.224488</td>
-<td align="right">224488</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="left">SNP2</td>
-<td align="right">0.293696</td>
-<td align="right">293696</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">SNP3</td>
-<td align="right">0.333333</td>
-<td align="right">333333</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="left">SNP4</td>
-<td align="right">0.464830</td>
-<td align="right">464830</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">SNP5</td>
-<td align="right">0.722623</td>
-<td align="right">722623</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="left">SNP6</td>
-<td align="right">0.838596</td>
-<td align="right">838596</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><strong>参数3:input_data_hmp</strong></li>
-</ul>
-<p>用户提供的 Hapmap格式的数据，<code>data.frame</code>类型。具体格式如下所示</p>
+<p><code>第1列为SNP，第3列为染色体，第4列为物理位置，第12列开始为基因型数据</code></p>
 <table style="width:100%;">
 <colgroup>
 <col width="4%" />
@@ -324,9 +321,133 @@ sum_data=genotype_data_format_conversion(
 </tbody>
 </table>
 <ul>
-<li><strong>参数4:input_data_blupf90</strong></li>
+<li><strong>ped</strong> : <code>Plink</code> 格式的ped数据</li>
 </ul>
-<p>用户提供的 BLUPF90格式数据，<code>data.frame</code>类型。具体格式如下所示</p>
+<p><code>第1列为家系，第2列为个体号，第7列开始为基因型数据。</code></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">3098</td>
+<td align="left">3098</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">C</td>
+<td align="left">C</td>
+<td align="left">G</td>
+<td align="left">G</td>
+</tr>
+<tr class="even">
+<td align="left">3498</td>
+<td align="left">3498</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">A</td>
+<td align="left">C</td>
+<td align="left">T</td>
+<td align="left">G</td>
+</tr>
+<tr class="odd">
+<td align="left">3297</td>
+<td align="left">3297</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">A</td>
+<td align="left">C</td>
+<td align="left">T</td>
+<td align="left">G</td>
+</tr>
+<tr class="even">
+<td align="left">2452</td>
+<td align="left">2452</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">C</td>
+<td align="left">C</td>
+<td align="left">G</td>
+<td align="left">G</td>
+</tr>
+<tr class="odd">
+<td align="left">4255</td>
+<td align="left">4255</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">A</td>
+<td align="left">C</td>
+<td align="left">G</td>
+<td align="left">G</td>
+</tr>
+<tr class="even">
+<td align="left">2946</td>
+<td align="left">2946</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">C</td>
+<td align="left">C</td>
+<td align="left">T</td>
+<td align="left">G</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>map </strong>: <code>Plink</code>格式的map数据</li>
+</ul>
+<p><code>第1列为染色体，第2列为SNP，第3列为遗传距离(cM), 第4列为物理位置。</code></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">SNP1</td>
+<td align="right">0.224488</td>
+<td align="right">224488</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">SNP2</td>
+<td align="right">0.293696</td>
+<td align="right">293696</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">SNP3</td>
+<td align="right">0.333333</td>
+<td align="right">333333</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">SNP4</td>
+<td align="right">0.464830</td>
+<td align="right">464830</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">SNP5</td>
+<td align="right">0.722623</td>
+<td align="right">722623</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">SNP6</td>
+<td align="right">0.838596</td>
+<td align="right">838596</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>blupf90 </strong>: <code>BLUPF90</code>格式的基因型数据</li>
+</ul>
+<p><code>第1列为个体号，第2列为基因型。</code></p>
 <table>
 <tbody>
 <tr class="odd">
@@ -356,9 +477,9 @@ sum_data=genotype_data_format_conversion(
 </tbody>
 </table>
 <ul>
-<li><strong>参数5:input_data_genumeric</strong></li>
+<li><strong>numeric </strong>: <code>Numeric</code> 格式的基因型数据</li>
 </ul>
-<p>用户提供的 Numeric格式的数据，<code>matrix(纯数字)</code>类型。具体格式如下所示</p>
+<p><code>行名为个体，列名为SNP，0,1,2表示的是个体在某个SNP位点的基因型数据</code></p>
 <table>
 <thead>
 <tr class="header">
@@ -428,8 +549,32 @@ sum_data=genotype_data_format_conversion(
 </tr>
 </tbody>
 </table>
-<p><strong>Note:</strong> 行为个体，列为SNP，必须包括列名和行名。</p>
-<p>此外，为了方便用户使用，用户还可以直接通过提供本地数据的路径、名称与数据类型即可完成数据提供这一步骤,而无需将数据读入到<strong>R</strong>里面。</p>
+</div>
+<div id="参数" class="section level2">
+<h2>参数</h2>
+<div id="基础参数" class="section level3">
+<h3>🤡基础参数</h3>
+<ul>
+<li><strong>参数1:input_data_plink_ped</strong></li>
+</ul>
+<p>用户提供的 Plink-ped格式的数据，<code>data.frame</code>类型。具体格式见结果部分</p>
+<ul>
+<li><strong>参数2:input_data_plink_map</strong></li>
+</ul>
+<p>用户提供的 Plink-map格式的数据，<code>data.frame</code>类型。具体格式见结果部分</p>
+<ul>
+<li><strong>参数3:input_data_hmp</strong></li>
+</ul>
+<p>用户提供的 Hapmap格式的数据，<code>data.frame</code>类型。具体格式见结果部分</p>
+<ul>
+<li><strong>参数4:input_data_blupf90</strong></li>
+</ul>
+<p>用户提供的 BLUPF90格式数据，<code>data.frame</code>类型。具体格式见结果部分</p>
+<ul>
+<li><strong>参数5:input_data_numeric</strong></li>
+</ul>
+<p>用户提供的 Numeric格式的数据，<code>matrix(纯数字)</code>类型。具体格式见结果部分</p>
+<p><strong>此外，为了方便用户使用，用户还可以直接通过提供本地数据的路径、名称与数据类型即可完成数据提供这一步骤,而无需将数据读入到R里面。</strong></p>
 <ul>
 <li><strong>参数6:input_data_path</strong></li>
 </ul>
@@ -445,7 +590,7 @@ sum_data=genotype_data_format_conversion(
 <ul>
 <li><code>Hapmap</code></li>
 <li><code>Plink</code></li>
-<li><code>Blupf90</code></li>
+<li><code>BLUPF90</code></li>
 <li><code>Numeric</code></li>
 <li><code>VCF</code></li>
 </ul></li>
@@ -467,12 +612,12 @@ sum_data=genotype_data_format_conversion(
 <ul>
 <li><code>Hapmap</code></li>
 <li><code>Plink</code></li>
-<li><code>Blupf90</code></li>
+<li><code>BLUPF90</code></li>
 <li><code>Numeric</code></li>
 <li><code>VCF</code></li>
 </ul></li>
 </ul>
-<p>可选择同时输出多种数据格式。e.g.<code>output_data_type=c("Hapmap","Plink","Blupf90","Numeric")</code> 可同时输出以上4种数据类型。</p>
+<p>可选择同时输出多种数据格式。e.g.<code>output_data_type=c("Hapmap","Plink","BLUPF90","Numeric")</code> 可同时输出以上4种数据类型。</p>
 </div>
 <div id="进阶参数" class="section level3">
 <h3>💨进阶参数</h3>

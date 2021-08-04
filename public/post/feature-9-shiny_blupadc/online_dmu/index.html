@@ -1,0 +1,1343 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.1.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Mei Quanshun" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="blupADC-online" />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/feature-9-shiny_blupadc/online_dmu/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.9a66e344a68eb664b392d406a3f80726.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/post/feature-9-shiny_blupadc/online_dmu/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="QSmei-Academic" />
+  <meta property="og:url" content="/post/feature-9-shiny_blupadc/online_dmu/" />
+  <meta property="og:title" content="shiny-blupADC 1 | QSmei-Academic" />
+  <meta property="og:description" content="blupADC-online" /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-04-22T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-04-22T23:11:41&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/feature-9-shiny_blupadc/online_dmu/"
+  },
+  "headline": "shiny-blupADC 1",
+  
+  "datePublished": "2021-04-22T00:00:00Z",
+  "dateModified": "2021-04-22T23:11:41+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Mei Quanshun"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "QSmei-Academic",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "blupADC-online"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>shiny-blupADC 1 | QSmei-Academic</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="1c2e38a35338970012171a927ee72425" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.226a9011996d125bf3fe4a5f22353a49.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">QSmei-Academic</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">QSmei-Academic</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>About Me</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/GeorgeCushen" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>shiny-blupADC 1</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Apr 22, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/shiny/">shiny</a>, <a href="/category/online/">online</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>🙀大家好，从本节开始，我将给大家分享 <code>blupADC-online</code> (在线版)的使用说明。可能有同学会问：既然已经有了<code>blupADC</code> 这个package了，那么为什么还要开发<code>blupADC-online</code> 呢？</p>
+<p>其实，<code>blupADC-online</code>可以看成是<code>blupADC</code> package的简化版。凡是<code>blupADC-online</code> 能实现的功能， <code>blupADC</code>package均能实现。但是，考虑到部分用户可能对R不太了解，因此我们想到了开发<code>blupADC-online</code> 。通过<code>blupADC-online</code> ，用户即使没有编程基础也能很快的完成相应的分析💯。</p>
+<p>本节，我们给大家带来的是如何通过<code>blupADC-online</code> 完成<strong>DMU</strong>相关的分析。</p>
+<div id="登录" class="section level3">
+<h3>✋<a href="http://47.95.251.15:443/sample-apps/blupADC/">登录</a></h3>
+<p>在浏览器栏直接输入网址: <a href="http://47.95.251.15:443/sample-apps/blupADC/" class="uri">http://47.95.251.15:443/sample-apps/blupADC/</a> 即可登录到<code>blupADC-online</code>主界面，如下所示：</p>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210423090310.png" /></p>
+<p>首先我们在菜单栏点击DMU图标，即可发现有三个子菜单，从上到下依次是：</p>
+<p><strong>DIR</strong>、<strong>SOL</strong> 和 <strong>Run DMU</strong>。本节的重点就是介绍这三个子菜单界面。</p>
+<p>如果大家事先已经了解过<a href="https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/"><code>run_DMU</code> 函数</a>的话，那么本节内容可能对大家来说就比较熟悉了。如果没有事先了解也没关系，因为相关的操作还是非常简单的。</p>
+</div>
+<div id="dir界面" class="section level3">
+<h3>✋DIR界面</h3>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210423091906.png" /></p>
+<p>点击<strong>DIR</strong>菜单，我们就能进入 <strong>DIR</strong>界面。<strong>DIR</strong>界面的主要功能是生成 <strong>DMU</strong>格式的参数文件。下面我们来对界面内的各个参数进行逐一讲解：</p>
+<div id="basic-information" class="section level4">
+<h4>Basic information</h4>
+<ul>
+<li><code>Number of trait</code>: 要分析的性状的数目</li>
+<li><code>Number of integer variable</code>: 表型数据中，整型变量的个数</li>
+<li><code>Name of genetic effect</code>: 遗传效应的名称(一般为动植物个体Id)</li>
+<li><code>Upload colnames of phenotype data</code>: 上传表型数据的列名文件。文件格式如下所示：</li>
+</ul>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210423093222.png" /></p>
+<p><strong>Note</strong>: 列名文件的格式为：n行1列。每行代表的是表型数据的列名。</p>
+</div>
+<div id="file-path-and-name" class="section level4">
+<h4>File path and name</h4>
+<ul>
+<li><p><code>Relationship file path</code>: 亲缘关系文件的路径</p></li>
+<li><p><code>Relationship file name</code>: 亲缘关系文件的名称。</p>
+<p>针对不同的Analysis model，我们需要提供不同的亲缘关系文件。具体对应关系为：</p>
+<ul>
+<li>PBLUP_A: 亲缘关系文件为系谱文件</li>
+<li>GBLUP_A: 亲缘关系文件为基因组亲缘关系矩阵的逆矩阵文件</li>
+<li>GBLUP_AD: 亲缘关系文件为基因组亲缘关系矩阵的逆矩阵文件</li>
+<li>SSBLUP_A: 亲缘关系文件为系谱文件及基因组亲缘关系矩阵文件</li>
+</ul></li>
+<li><p><code>Phenotype file path</code>: 表型文件的路径</p></li>
+<li><p><code>Phenotype file name</code>: 表型文件的名称</p></li>
+</ul>
+</div>
+<div id="dmu-parameter" class="section level4">
+<h4>DMU parameter</h4>
+<ul>
+<li><p><code>DMU module</code>: DMU进行遗传评估时所选用的模块，默认为 dmuai 。</p></li>
+<li><p><code>DMU algorithm code</code>: 方差组分估计所用的算法，默认为 1。</p></li>
+<li><p><code>Analysis model</code>: 进行遗传评估所选用的模型。可选模型包括：</p>
+<ul>
+<li>PBLUP_A: 系谱加性效应模型</li>
+<li>GBLUP_A: 基因组加性效应模型</li>
+<li>GBLUP_AD:基因组加性-显性效应模型</li>
+<li>SSBLUP_A:一步法加性效应模型</li>
+</ul></li>
+</ul>
+<p>当用户上传表型数据的列名文件后，当前界面内便会新增几个窗口，如下：</p>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210423095607.png" style="zoom:50%;"/></p>
+<p>用户可以通过设置<code>Number of trait</code>来调整小窗口的个数。</p>
+<p>e.g. 当设置<code>Number of trait</code>为3时，就会生成3个小窗口，如下所示：</p>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210423095826.png" /></p>
+<p>用户可以在窗口内输入想要分析的性状名称及对应的固定效应、随机效应和协变量效应的名称。为了方便用户输入，选择性状和效应名称时可通过下拉菜单选取，如下：</p>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210423100809.png" style="zoom:50%;"/></p>
+<p>下面以一个具体的例子进行说明：</p>
+<p>e.g. 想要分析的性状为：<strong>ADG</strong> ;</p>
+<p>固定效应包括： <strong>Sex</strong> 和 <strong>Breed</strong>;</p>
+<p>随机效应包括<strong>Id</strong> ;</p>
+<p>协变量效应包括：<strong>Age_at_off_test</strong>。</p>
+<p>那么我们只需要在窗口内输入对应的信息即可，如下：</p>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210423101319.png" style="zoom:50%;"/></p>
+<p>输入完相应的效应后，在界面的正下方会实时显示所生成的 dir 参数文件内容，如下所示：</p>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210423102004.png" style="zoom:50%;"/></p>
+<p>用户可以通过下方的 <strong>Download DIR</strong>按键即可将生成的 dir 文件下载到本地。</p>
+</div>
+</div>
+<div id="sol界面" class="section level3">
+<h3>✋SOL界面</h3>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210423102855.png" /></p>
+<p>点击左侧的<strong>SOL</strong>子菜单，我们就能进入<strong>SOL界面</strong>。</p>
+<p><strong>SOL</strong>界面的主要功能是整理<strong>DMU</strong>输出的结果，快速得到EBV、残差、校正表型和DEBV等结果。下面我们来对界面内的各个参数进行逐一讲解：</p>
+<ul>
+<li><code>Number of trait</code>: 要分析的性状的数目</li>
+<li><code>Genetic number in SOL file</code>: SOL文件中，遗传效应所对应的数字代码</li>
+<li><code>Name of genetic effect</code>: 遗传效应的名称(一般为动植物个体Id)</li>
+</ul>
+<div id="phenotype" class="section level4">
+<h4>Phenotype</h4>
+<ul>
+<li><code>Upload colnames of phenotype data</code>: 上传表型数据的列名文件。</li>
+<li><code>Upload phenotype data</code>: 上传表型数据文件</li>
+</ul>
+</div>
+<div id="debv可选当需要计算debv时才需要上传相应的文件" class="section level4">
+<h4>DEBV(可选:当需要计算DEBV时，才需要上传相应的文件。)</h4>
+<ul>
+<li><code>Upload pedigree file</code>: 上传系谱数据文件</li>
+<li><code>Upload subset id</code>: 上传需要计算DEBV的个体号数据文件</li>
+</ul>
+</div>
+<div id="dmu-result" class="section level4">
+<h4>DMU result</h4>
+<ul>
+<li><code>Upload SOL file</code>: 上传DMU输出的SOL文件</li>
+<li><code>Upload RESIDUAL file:</code> 上传DMU输出的RESIDUAL文件</li>
+<li><code>Upload PAROUT file</code>: 上传DMU输出的PAROUT 文件</li>
+</ul>
+<p>和之前的类似，当我们上传了表型数据的列名文件后，当前界面内同样会新增几个窗口，如下：</p>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210423104324.png" style="zoom:50%;"/></p>
+<p>当我们输入了对应的性状名称后，界面正下方就会以表格的形式 实时显示 个体对应的EBV, 残差，校正表型和 DEBV，如下：</p>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210423104550.png" style="zoom:50%;"/></p>
+<p>用户可以在表格内轻松的完成查询、排序等操作。</p>
+<p>用户可以通过下方的 <strong>Download corrected phe</strong>按键即可将校正表型文件下载到本地。</p>
+</div>
+</div>
+<div id="run-dmu界面" class="section level3">
+<h3>✋Run dmu界面</h3>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210423104934.png" /></p>
+<p>点击左侧的<strong>Run DMU子菜单</strong>，我们就能进入<strong>Run DMU</strong> 界面。</p>
+<p><strong>Run DMU</strong>界面的主要功能是快速帮我们完成<strong>DMU</strong>相关的分析。其实，<strong>Run DMU</strong>界面的功能可以看成是 <strong>DIR</strong>界面和 <strong>SOL</strong>界面功能的集合体。不过，二者最重要的区别是，<strong>Run DMU</strong>界面能自动帮我们调用<strong>DMU</strong>软件并完成相应的分析。</p>
+<p>总结起来就是：通过<strong>Run DMU</strong> 界面，我们只需要提供相关的性状名称和表型、系谱等数据文件后，就能得到最终的个体育种值、残差、校正表型和DEBV等结果。</p>
+<p><strong>Run DMU</strong> 界面内的各个参数在 <strong>DIR</strong>界面和<strong>SOL</strong>界面内都有详细讲解，这里就不再赘述了。</p>
+<p>完成了前期的数据准备工作后，用户只需要点击 <strong>Run DMU</strong> 按键，就能开始<strong>DMU</strong>的分析了。</p>
+<p>由于不同数据量的分析时间是不同的，因此需要耐心的等待。通常情况下，几分钟就能得到结果。结果如下所示：</p>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210423111116.png" style="zoom:50%;"/></p>
+<p>用户通过点击下方的 <strong>Download EBV</strong>按键即可将生成的文件保存到本地。</p>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/feature-9-shiny_blupadc/online_dmu/&amp;text=shiny-blupADC%201" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/feature-9-shiny_blupadc/online_dmu/&amp;t=shiny-blupADC%201" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=shiny-blupADC%201&amp;body=/post/feature-9-shiny_blupadc/online_dmu/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/feature-9-shiny_blupadc/online_dmu/&amp;title=shiny-blupADC%201" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=shiny-blupADC%201%20/post/feature-9-shiny_blupadc/online_dmu/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/feature-9-shiny_blupadc/online_dmu/&amp;title=shiny-blupADC%201" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/author/mei-quanshun/avatar_hu5f20744e08524ff7ac6fce3b60ea5d69_3615750_270x270_fill_q75_lanczos_center.JPG" alt="Mei Quanshun">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Mei Quanshun</h5>
+      <h6 class="card-subtitle">PhD student in animal breeding</h6>
+      <p class="card-text">My research interests include genomic selection and machine learning in animal breeding.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/GeorgeCushen" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/gcushen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.b61a8f62b6e5c0cd322c8158c5b5dfb6.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

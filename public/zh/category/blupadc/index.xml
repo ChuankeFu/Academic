@@ -88,7 +88,7 @@ install.packages(packageurl,repos=NULL)
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 sum_data=genotype_data_format_conversion(
          input_data_hmp=data_hmp,   #提供的hampap格式数据的对象
-         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;Blupf90&amp;quot;,&amp;quot;Numeric&amp;quot;),#基因型数据的输出类型
+         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;BLUPF90&amp;quot;,&amp;quot;Numeric&amp;quot;),#基因型数据的输出类型
          return_result = TRUE,      #是否在R中返回结果
          cpu_cores=1                #调用的cpu数目
                   )
@@ -147,7 +147,7 @@ run_DMU(
         output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
         )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-7-blupf90软件的交互使用-了解更多httpsqsmeinetlifyappzhpost2021-04-20-r-package-blup-adc-run-blupf90blupf90&#34;&gt;功能 7. BLUPF90软件的交互使用 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-7-blupf90软件的交互使用-了解更多httpsqsmeinetlifyappzhpost2021-04-20-r-package-blup-adc-run-blupf90blupf90&#34;&gt;功能 7. BLUPF90软件的交互使用 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-BLUPF90/BLUPF90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)   #  示例文件的路径
   
