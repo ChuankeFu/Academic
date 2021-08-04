@@ -33,8 +33,6 @@
   <meta name="description" content="简介" />
 
   
-    <link rel="alternate" hreflang="en" href="/post/2021-04-21-r-package-rblupadc-overview/overview/" />
-  
   <link rel="alternate" hreflang="zh" href="/zh/post/2021-04-21-r-package-rblupadc-overview/overview/" />
 
   
@@ -699,22 +697,6 @@
 
       
       
-      <li class="nav-item dropdown i18n-dropdown">
-        <a href="#" class="nav-link " data-toggle="dropdown"
-           aria-haspopup="true" aria-label="语言">
-          <i class="fas fa-globe mr-1" aria-hidden="true"></i></a>
-        <div class="dropdown-menu">
-          <div class="dropdown-item dropdown-item-active">
-            <span>中文 (简体)</span>
-          </div>
-          
-          <a class="dropdown-item" href="/post/2021-04-21-r-package-rblupadc-overview/overview/">
-            <span>English</span>
-          </a>
-          
-        </div>
-      </li>
-      
 
     </ul>
 
@@ -881,7 +863,7 @@ install.packages(packageurl,repos=NULL)
 <pre><code class="language-R">library(blupADC)
 sum_data=genotype_data_format_conversion(
          input_data_hmp=data_hmp,   #提供的hampap格式数据的对象
-         output_data_type=c(&quot;Plink&quot;,&quot;Blupf90&quot;,&quot;Numeric&quot;),#基因型数据的输出类型
+         output_data_type=c(&quot;Plink&quot;,&quot;BLUPF90&quot;,&quot;Numeric&quot;),#基因型数据的输出类型
          return_result = TRUE,      #是否在R中返回结果
          cpu_cores=1                #调用的cpu数目
                   )
@@ -940,7 +922,7 @@ run_DMU(
         output_result_path=&quot;/root&quot;                   #结果输出路径
         )
 </code></pre>
-<h4 id="功能-7-blupf90软件的交互使用-了解更多httpsqsmeinetlifyappzhpost2021-04-20-r-package-blup-adc-run-blupf90blupf90">功能 7. BLUPF90软件的交互使用 (<a href="https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/" target="_blank" rel="noopener">了解更多</a>)</h4>
+<h4 id="功能-7-blupf90软件的交互使用-了解更多httpsqsmeinetlifyappzhpost2021-04-20-r-package-blup-adc-run-blupf90blupf90">功能 7. BLUPF90软件的交互使用 (<a href="https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-BLUPF90/BLUPF90/" target="_blank" rel="noopener">了解更多</a>)</h4>
 <pre><code class="language-R">library(blupADC)
 data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)   #  示例文件的路径
   

@@ -13,10 +13,10 @@
     </image>
     
     <item>
-      <title>R package:blupADC-Feature 7</title>
-      <link>/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/</link>
+      <title>R package:blupADC-Feature 8</title>
+      <link>/post/feature-8-run_blupf90/blupf90/</link>
       <pubDate>Wed, 21 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/</guid>
+      <guid>/post/feature-8-run_blupf90/blupf90/</guid>
       <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
   &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
   &lt;nav id=&#34;TableOfContents&#34;&gt;
@@ -36,7 +36,7 @@
 &lt;/details&gt;
 
 &lt;h2 id=&#34;oveview&#34;&gt;Oveview&lt;/h2&gt;
-&lt;p&gt;👻In the previous section, we have given detailed description about the interface with &lt;strong&gt;DMU&lt;/strong&gt;  throught &lt;code&gt;run_DMU&lt;/code&gt; function.  In this chapter, we will introduce the usage of &lt;code&gt;run_BLUPF90&lt;/code&gt;  function.&lt;/p&gt;
+&lt;p&gt;👻In the previous section, we have given detailed description about the interface with &lt;strong&gt;DMU&lt;/strong&gt;  by &lt;code&gt;run_DMU&lt;/code&gt; function.  In this chapter, we will introduce the usage of &lt;code&gt;run_BLUPF90&lt;/code&gt;  function.&lt;/p&gt;
 &lt;p&gt;Note: the usage of  &lt;code&gt;run_BLUPF90&lt;/code&gt;  and  &lt;code&gt;run_DMU&lt;/code&gt;  is similar. Thus, we recommend to have a look at the  usage of &lt;code&gt;run_DMU&lt;/code&gt; function.&lt;/p&gt;
 &lt;p&gt;👉 &lt;strong&gt;Note:&lt;/strong&gt;  &lt;strong&gt;Package &lt;code&gt;blupADC&lt;/code&gt; has encapsulated  the basic module of BLUPF90 (&lt;code&gt;renumf90&lt;/code&gt;, &lt;code&gt;remlf90&lt;/code&gt;, &lt;code&gt;airemlf90&lt;/code&gt;, and &lt;code&gt;blupf90&lt;/code&gt;), if you want to use more modules, please download from websit&lt;/strong&gt; (&lt;a href=&#34;http://nce.ads.uga.edu/html/projects/programs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BLUPF90 download website&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;For commercial use of BLUPF90,  user must contact the author of BLUPF90 !!!&lt;/strong&gt;&lt;/p&gt;
@@ -56,8 +56,7 @@ run_BLUPF90(
         analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;,                  # output path 
-        BLUPF90_software_path=&amp;quot;/root/software/BLUPF90&amp;quot;  # path of BLUPF90 software 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
         )   
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait-model---gblup&#34;&gt;&lt;strong&gt;Single trait model - GBLUP&lt;/strong&gt;&lt;/h3&gt;
@@ -75,8 +74,7 @@ run_BLUPF90(
         analysis_model=&amp;quot;GBLUP_A&amp;quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;blupf90_genumeric&amp;quot;,            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;,                  # output path 
-        BLUPF90_software_path=&amp;quot;/root/software/BLUPF90&amp;quot;  # path of BLUPF90 software 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path  
         )   
 
 &lt;/code&gt;&lt;/pre&gt;
@@ -95,8 +93,7 @@ run_BLUPF90(
         analysis_model=&amp;quot;SSBLUP_A&amp;quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=c(&amp;quot;pedigree.txt&amp;quot;,&amp;quot;blupf90_genumeric&amp;quot;),            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;,                  # output path 
-        BLUPF90_software_path=&amp;quot;/root/software/BLUPF90&amp;quot;  # path of BLUPF90 software 
+        output_result_path=&amp;quot;/root&amp;quot;                  # output path 
         )   
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Similar to &lt;code&gt;run_DMU&lt;/code&gt; function, through modifying the two parameters: &lt;code&gt;analysis_model&lt;/code&gt; and &lt;code&gt;relationship_name&lt;/code&gt; , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: blupf90_genumeric is generated through &lt;code&gt;cal_kinship&lt;/code&gt; function，&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt; about &lt;code&gt;cal_kinship&lt;/code&gt; function).&lt;/p&gt;
@@ -116,13 +113,12 @@ run_BLUPF90(
         analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=c(&amp;quot;pedigree.txt&amp;quot;),            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;,                  # output path 
-        BLUPF90_software_path=&amp;quot;/root/software/BLUPF90&amp;quot;  # path of BLUPF90 software 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
         )   
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
-&lt;p&gt;Many parameters in  &lt;code&gt;run_BLUPF90&lt;/code&gt; are the as &lt;code&gt;run_DMU&lt;/code&gt; function(&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;💫Thus, we will introduce  specific parameters in&lt;code&gt;run_BLUPF90&lt;/code&gt; function.&lt;/p&gt;
+&lt;p&gt;Many parameters in  &lt;code&gt;run_BLUPF90&lt;/code&gt; are the same as in &lt;code&gt;run_DMU&lt;/code&gt; function(&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;💫Thus, we will introduce  specific parameters in &lt;code&gt;run_BLUPF90&lt;/code&gt; function.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;1：BLUPF90_algorithm&lt;/strong&gt;&lt;/p&gt;
@@ -138,7 +134,7 @@ run_BLUPF90(
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;File path of user-provided prior file,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: The format of BLUPF90 prior file is different to the DMU prior file. In the next section, i will give a detailed introduction.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: The format of BLUPF90 prior file is different to the format of DMU prior file. In the next section, i will give a detailed introduction.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;3：provided_blupf90_prior_file_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;

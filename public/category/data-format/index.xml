@@ -24,17 +24,18 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#example&#34;&gt;Example&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#output&#34;&gt;Output&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#primary&#34;&gt;🤡Primary&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#secondary&#34;&gt;💨Secondary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#basic&#34;&gt;🤡Basic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#advanced&#34;&gt;💨Advanced&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
 &lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Overview&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;genotype_data_format_conversion&lt;/code&gt; is the basic function of package:&lt;code&gt;blupADC&lt;/code&gt;. By applying &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; , we can convert multiple genotype data formats in an easy way, including Hapmap, Plink, Blupf90, Numeric and VCF.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;genotype_data_format_conversion&lt;/code&gt; is the basic function of package:&lt;code&gt;blupADC&lt;/code&gt;. By applying &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; , we can convert multiple genotype data formats in an easy way, including Hapmap, Plink, BLUPF90, Numeric and VCF.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;👉 Note: For analyzing VCF format data, &lt;code&gt;blupADC&lt;/code&gt; has encapsulated software Plink &lt;code&gt;version-1.9&lt;/code&gt; and VCFtools &lt;code&gt;version-0.1.17&lt;/code&gt;. If you want change this version, you could set the related parameters in the part of Advanced parameter.&lt;/strong&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;example&#34; class=&#34;section level2&#34;&gt;
@@ -42,146 +43,138 @@
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(blupADC)
 sum_data=genotype_data_format_conversion(
          input_data_hmp=data_hmp,  #provided hapmap data object 
-         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;Blupf90&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
+         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;BLUPF90&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
          return_result = TRUE,      # return result 
          cpu_cores=1                # number of cpu 
          )&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Start numeric(0,1,2) format conversion...... 
-## Complete Blupf90  format conversion 
+## Complete BLUPF90  format conversion 
 ## Complete Plink Data Format Conversion&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div id=&#34;parameter&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Parameter&lt;/h2&gt;
-&lt;div id=&#34;primary&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;🤡Primary&lt;/h3&gt;
+&lt;div id=&#34;output&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Output&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;str(sum_data) 
+## List of 5
+##  $ hmp    :&amp;#39;data.frame&amp;#39;: 6 obs. of  311 variables:
+##   ..$ rs#      : chr [1:6] &amp;quot;SNP1&amp;quot; &amp;quot;SNP2&amp;quot; &amp;quot;SNP3&amp;quot; &amp;quot;SNP4&amp;quot; ...
+##   ..$ alleles  : logi [1:6] NA NA NA NA NA NA
+##   ..$ chrom    : int [1:6] 1 1 1 1 1 1
+##   ..$ pos      : int [1:6] 224488 293696 333333 464830 722623 838596
+##   ..$ strand   : logi [1:6] NA NA NA NA NA NA
+##   ..$ assembly : logi [1:6] NA NA NA NA NA NA
+##   ..$ center   : logi [1:6] NA NA NA NA NA NA
+##   ..$ protLSID : logi [1:6] NA NA NA NA NA NA
+##   ..$ assayLSID: logi [1:6] NA NA NA NA NA NA
+##   ..$ panelLSID: logi [1:6] NA NA NA NA NA NA
+##   ..$ QCcode   : logi [1:6] NA NA NA NA NA NA
+##   ..$ 3098     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3498     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3297     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2452     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4255     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2946     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3926     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3426     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4213     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2895     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4172     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3620     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4797     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4660     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4010     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4095     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3029     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3930     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4404     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2020     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2455     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3747     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1590     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2707     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2320     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3397     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3876     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3658     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2310     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1996     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3000     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2485     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4412     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3395     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4449     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3302     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3895     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4328     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3892     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3764     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3922     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4459     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4236     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3535     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2957     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2927     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3499     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4537     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4288     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4048     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3371     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3901     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3344     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4745     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3118     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3093     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3410     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4024     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3053     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3571     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3740     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4374     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4550     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3060     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3460     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3791     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3116     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3078     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1974     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1990     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3433     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4349     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3340     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2681     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2628     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4813     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2221     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2384     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2721     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3463     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2748     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2973     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1999     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3474     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3689     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1924     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1948     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 110      : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   .. [list output truncated]
+##  $ ped    : chr [1:300, 1:18] &amp;quot;3098&amp;quot; &amp;quot;3498&amp;quot; &amp;quot;3297&amp;quot; &amp;quot;2452&amp;quot; ...
+##  $ map    :&amp;#39;data.frame&amp;#39;: 6 obs. of  4 variables:
+##   ..$ chrom : int [1:6] 1 1 1 1 1 1
+##   ..$ rs#   : chr [1:6] &amp;quot;SNP1&amp;quot; &amp;quot;SNP2&amp;quot; &amp;quot;SNP3&amp;quot; &amp;quot;SNP4&amp;quot; ...
+##   ..$ strand: num [1:6] 0.224 0.294 0.333 0.465 0.723 ...
+##   ..$ pos   : int [1:6] 224488 293696 333333 464830 722623 838596
+##  $ blupf90: chr [1:300, 1:2] &amp;quot;3098                &amp;quot; &amp;quot;3498                &amp;quot; &amp;quot;3297                &amp;quot; &amp;quot;2452                &amp;quot; ...
+##   ..- attr(*, &amp;quot;dimnames&amp;quot;)=List of 2
+##   .. ..$ : NULL
+##   .. ..$ : chr [1:2] &amp;quot;IND_name&amp;quot; &amp;quot;&amp;quot;
+##  $ numeric: num [1:300, 1:6] 2 1 1 2 1 2 1 1 2 2 ...
+##   ..- attr(*, &amp;quot;dimnames&amp;quot;)=List of 2
+##   .. ..$ : chr [1:300] &amp;quot;3098&amp;quot; &amp;quot;3498&amp;quot; &amp;quot;3297&amp;quot; &amp;quot;2452&amp;quot; ...
+##   .. ..$ : chr [1:6] &amp;quot;SNP1&amp;quot; &amp;quot;SNP2&amp;quot; &amp;quot;SNP3&amp;quot; &amp;quot;SNP4&amp;quot; ...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;According to the result of output, we find that the output contains 5 parts, including:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;1: input_data_plink_ped&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;hmp &lt;/strong&gt; : &lt;code&gt;Hapmap&lt;/code&gt; format genotype data&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;User-provided ped format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class。&lt;/p&gt;
-&lt;table&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;2:input_data_plink_map&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;User-provided map format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class。&lt;/p&gt;
-&lt;table&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.224488&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;224488&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.293696&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;293696&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP3&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.333333&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;333333&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP4&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.464830&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;464830&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP5&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.722623&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;722623&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP6&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.838596&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;838596&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;3:input_data_hmp&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;User-provided hapmap format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;The first column stands for the name of SNP, the thrid column stands for chromosome, the fourth column stands for the physical postion, and the twelth column and the after columns stand for the genotype data&lt;/code&gt;&lt;/p&gt;
 &lt;table style=&#34;width:100%;&#34;&gt;
 &lt;colgroup&gt;
 &lt;col width=&#34;4%&#34; /&gt;
@@ -325,9 +318,133 @@ sum_data=genotype_data_format_conversion(
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;4:input_data_blupf90&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ped&lt;/strong&gt; : &lt;code&gt;Plink&lt;/code&gt; 格式的ped数据&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;User-provided BLUPF90 format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;The first column stands for family name,the second column stands for the individual name,the seventh column and the after columns stand for the genotype data&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;map &lt;/strong&gt;: &lt;code&gt;Plink&lt;/code&gt;格式的map数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;The first column stands for chromosome, the second column stands for the name of SNP, the thrid column stands for the genetic positon(CM), and the fourth column stands for the physical position&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.224488&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;224488&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.293696&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;293696&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.333333&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;333333&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.464830&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;464830&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.722623&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;722623&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.838596&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;838596&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;blupf90 &lt;/strong&gt;: &lt;code&gt;BLUPF90&lt;/code&gt;格式的基因型数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;The first column stands for individual name, the second column stands for the genotype data(numeric)&lt;/code&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;tbody&gt;
 &lt;tr class=&#34;odd&#34;&gt;
@@ -357,9 +474,9 @@ sum_data=genotype_data_format_conversion(
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;5:input_data_genumeric&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;numeric &lt;/strong&gt;: &lt;code&gt;Numeric&lt;/code&gt; 格式的基因型数据&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;User-provided Numeric format genotype data ，&lt;code&gt;matrix(numeric)&lt;/code&gt; class。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;rownames stands for the individual name, colnames stands for the name of SNP, 0,1,2 stand for the numeric genotype&lt;/code&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr class=&#34;header&#34;&gt;
@@ -429,31 +546,56 @@ sum_data=genotype_data_format_conversion(
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; rownames stand for individuals，colnames stands for SNPs. &lt;code&gt;input_data_genumeric&lt;/code&gt; should contain both rownames and colnames.&lt;/p&gt;
-&lt;p&gt;In addition, for convenience, users can provide the file name, file path, and file type of genotype data directly without reading them in R enviroument by themself .&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;parameter&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Parameter&lt;/h2&gt;
+&lt;div id=&#34;basic&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;🤡Basic&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;1: input_data_plink_ped&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;User-provided &lt;code&gt;Plink&lt;/code&gt;-ped format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;2:input_data_plink_map&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;User-provided &lt;code&gt;Plink&lt;/code&gt;-map format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;3:input_data_hmp&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;User-provided &lt;code&gt;Hapmap&lt;/code&gt; format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;4:input_data_BLUPF90&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;User-provided &lt;code&gt;BLUPF90&lt;/code&gt; format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;5:input_data_numeric&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;User-provided &lt;code&gt;Numeric&lt;/code&gt; format genotype data ，&lt;code&gt;matrix(numeric)&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;code&gt;input_data_numeric&lt;/code&gt; should contain both rownames and colnames.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;In addition, for convenience, users can provide the file name, file path, and file type of genotype data directly without reading them in R environment.&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;6:input_data_type&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;User-provided file type of genotype data ，&lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;File type of provided genotype data ，&lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Hapmap&lt;/li&gt;
 &lt;li&gt;Plink&lt;/li&gt;
-&lt;li&gt;Blupf90&lt;/li&gt;
+&lt;li&gt;BLUPF90&lt;/li&gt;
 &lt;li&gt;Numeric&lt;/li&gt;
 &lt;li&gt;VCF&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;7:input_data_path&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;User-provided file path of genotype data ，&lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;File path of provided genotype data ，&lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;8:input_data_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;User-provided file name of genotype data ，&lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;File name of provided genotype data ，&lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; if input_data_type is Plink or VCF, user don’t need to include suffix in the file name of genotype data.&lt;/p&gt;
-&lt;p&gt;eg. for Plink type data, files name are test1.map and test1.ped，we should set&lt;code&gt;input_data_name=&#34;test1&#34;&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;eg. for Plink type data, files name are test1.map and test1.ped，we should set&lt;code&gt;input_data_name=&#34;test1&#34;&lt;/code&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;9:return_result&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;If return result, &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
+&lt;p&gt;Whether return result, &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;p&gt;Additionally, for convenience, users can save output genotype data into local computer .&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;10:output_data_path&lt;/strong&gt;&lt;/li&gt;
@@ -469,43 +611,43 @@ sum_data=genotype_data_format_conversion(
 &lt;ul&gt;
 &lt;li&gt;Hapmap&lt;/li&gt;
 &lt;li&gt;Plink&lt;/li&gt;
-&lt;li&gt;Blupf90&lt;/li&gt;
+&lt;li&gt;BLUPF90&lt;/li&gt;
 &lt;li&gt;Numeric&lt;/li&gt;
 &lt;li&gt;VCF&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: users can output multiple formats of genotype data simultaneously. e.g.&lt;code&gt;output_data_type=c(&#34;Hapmap&#34;,&#34;Plink&#34;,&#34;Blupf90&#34;,&#34;Numeric&#34;)&lt;/code&gt;, outout 4 types of genotype data simultaneously 。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: users can output multiple formats of genotype data simultaneously. e.g.&lt;code&gt;output_data_type=c(&#34;Hapmap&#34;,&#34;Plink&#34;,&#34;BLUPF90&#34;,&#34;Numeric&#34;)&lt;/code&gt;, outout 4 types of genotype data simultaneously .&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;secondary&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;💨Secondary&lt;/h3&gt;
+&lt;div id=&#34;advanced&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;💨Advanced&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;13:cpu_cores&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Number of cpu in calculating, &lt;code&gt;numeric&lt;/code&gt;calss. Default is 1.&lt;/p&gt;
+&lt;p&gt;Number of cpu in calculating, &lt;code&gt;numeric&lt;/code&gt; class. Default is 1.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;14:miss_base&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Missing genotype character, &lt;code&gt;character&lt;/code&gt;calss. Default is “NN”.&lt;/p&gt;
+&lt;p&gt;Missing genotype character, &lt;code&gt;character&lt;/code&gt; class. Default is “NN”.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;15:miss_base_num&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Missing genotype number after numeric conversion, &lt;code&gt;numeric&lt;/code&gt;calss. Default is 5.&lt;/p&gt;
+&lt;p&gt;Missing genotype number after numeric conversion, &lt;code&gt;numeric&lt;/code&gt; class. Default is 5.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;16:plink_software_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Path of plink software in user computer. &lt;code&gt;character&lt;/code&gt;calss.&lt;/p&gt;
+&lt;p&gt;Path of plink software in user computer. &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;17:plink_software_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Name of plink software in user computer. &lt;code&gt;character&lt;/code&gt;calss.&lt;/p&gt;
+&lt;p&gt;Name of plink software in user computer. &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;18:vcftools_software_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Path of vcftools software in user computer. &lt;code&gt;character&lt;/code&gt;calss.&lt;/p&gt;
+&lt;p&gt;Path of vcftools software in user computer. &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;19:vcftools_software_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Name of vcftools software in user computer. &lt;code&gt;character&lt;/code&gt;calss.&lt;/p&gt;
+&lt;p&gt;Name of vcftools software in user computer. &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>

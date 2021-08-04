@@ -1,0 +1,217 @@
+---
+title: 'R package:blupADC-Feature 1'
+author: qsmei
+date: '2021-04-14'
+slug: blupADC
+categories: ["Data format"]
+tags: []
+subtitle: ''
+summary: 'Genomic data format conversion'
+authors: []
+lastmod: '2021-04-14T14:59:41+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+## Overview 
+
+`genotype_data_format_conversion` is the basic function of  package:`blupADC`.  By applying `genotype_data_format_conversion` , we can convert multiple genotype data formats in an easy way, including Hapmap, Plink, BLUPF90, Numeric and VCF.  
+
+**👉 Note:  For analyzing VCF format data,  `blupADC` has encapsulated software Plink `version-1.9` and  VCFtools `version-0.1.17`. If you want change this version, you could set the related parameters in the part of Advanced parameter.**
+
+## Example
+
+```R
+library(blupADC)
+sum_data=genotype_data_format_conversion(
+         input_data_hmp=data_hmp,  #provided hapmap data object 
+         output_data_type=c("Plink","BLUPF90","Numeric"),# output data format
+         return_result = TRUE,      # return result 
+         cpu_cores=1                # number of cpu 
+         )
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(blupADC)
+colnames(data_hmp)[1]="rs#"
+data_hmp[1:6,1]=paste0("SNP",1:6)
+sum_data=genotype_data_format_conversion(
+         input_data_hmp=data_hmp[1:6,],  #provided hapmap data object 
+         output_data_type=c("Plink","BLUPF90","Numeric"),# output data format
+         return_result = TRUE,      # return result 
+         cpu_cores=1                # number of cpu 
+                  )
+```
+
+## Output
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+str(sum_data) 
+```
+
+According to the result of output, we find that the output contains 5 parts, including:
+
+-   **hmp ** : `Hapmap` format genotype data
+
+`The first column stands for the name of SNP, the thrid column stands for chromosome, the fourth column stands for the physical postion, and the twelth column and the after columns stand for the genotype data`
+
+```{r input_data_hmp1,echo=FALSE}
+knitr::kable(head(data_hmp[,1:15]))
+```
+
+-   **ped**  : `Plink` 格式的ped数据
+
+`The first column stands for family name,the second column stands for the individual name,the seventh column and the after columns stand for the genotype data`
+
+```{r input_data_plink_map13,echo=FALSE}
+data_ped=sum_data$ped
+data_map=sum_data$map
+colnames(data_map)=NULL
+data_numeric=sum_data$numeric
+data_blupf90=sum_data$blupf90
+colnames(data_blupf90)=NULL
+knitr::kable(head(data_ped[,1:10]))
+```
+
+-   **map **:  `Plink`格式的map数据
+
+`The first column stands for chromosome, the second column stands for the name of SNP, the thrid column stands for the genetic positon(CM), and the fourth column stands for the physical position`
+
+```{r input_data_plink_map3,echo=FALSE}
+knitr::kable(head(data_map))
+```
+
+-   **blupf90 **: `BLUPF90`格式的基因型数据
+
+`The first column stands for individual name, the second column stands for the genotype data(numeric)`
+
+```{r input_data_blupf903,echo=FALSE}
+knitr::kable(head(data_blupf90))
+```
+
+-   **numeric **: `Numeric` 格式的基因型数据
+
+`rownames stands for the individual name, colnames stands for the name of SNP, 0,1,2 stand for the numeric genotype `
+
+```{r input_data_genumeric3,echo=FALSE}
+knitr::kable(head(data_numeric[,1:6]))
+```
+
+
+
+## Parameter 
+
+### 🤡Basic
+
+-   **1: input_data_plink_ped**
+
+User-provided  `Plink`-ped format genotype data ，`data.frame` class. 
+
+-   **2:input_data_plink_map**
+
+User-provided `Plink`-map format genotype data ，`data.frame` class.
+
+-   **3:input_data_hmp**
+
+User-provided  `Hapmap` format genotype data ，`data.frame` class.
+
+-   **4:input_data_BLUPF90**
+
+User-provided  `BLUPF90` format genotype data ，`data.frame` class.
+
+-   **5:input_data_numeric**
+
+User-provided  `Numeric` format genotype data ，`matrix(numeric)` class.
+
+**Note:**  `input_data_numeric`  should contain both rownames and colnames.
+
+**In addition, for convenience, users can provide the  file name, file path, and file type of genotype data directly without reading them in R environment.**
+
+- **6:input_data_type**
+
+  File type of provided genotype data ，`character` class.
+
+  -   Hapmap
+  -   Plink
+  -   BLUPF90
+  -   Numeric
+  -   VCF
+
+-   **7:input_data_path**
+
+File path of provided genotype data ，`character` class.
+
+-   **8:input_data_name**
+
+File name of provided genotype data ，`character` class.
+
+**Note:**  if input_data_type is Plink or VCF, user don't need to include suffix in the file name of genotype data. 
+
+eg. for Plink type data, files name are test1.map and test1.ped，we should set`input_data_name="test1"`.
+
+-   **9:return_result**
+
+Whether return result, `logical` class. Default is FALSE.
+
+Additionally,  for convenience, users can  save output genotype data  into local computer .
+
+-   **10:output_data_path**
+
+File path of output genotype data, `character` class.
+
+-   **11:output_data_name**
+
+File name of output genotype data, `character` class.
+
+-   **12:output_data_type**
+
+    File type of output genotype data, `character` class.
+
+    -   Hapmap
+    -   Plink
+    -   BLUPF90
+    -   Numeric
+    -   VCF
+
+**Note**: users can  output multiple formats of genotype data simultaneously. e.g.`output_data_type=c("Hapmap","Plink","BLUPF90","Numeric")`, outout 4 types of genotype data simultaneously .
+
+### 💨Advanced
+
+-   **13:cpu_cores**
+
+Number of cpu in calculating,  `numeric ` class. Default is 1.
+
+-   **14:miss_base**
+
+Missing genotype character,  `character` class. Default is "NN".
+
+-   **15:miss_base_num** 
+
+Missing genotype number after numeric conversion,  `numeric` class. Default is 5.
+
+-   **16:plink_software_path**
+
+Path of plink software in user computer. `character` class.
+
+-   **17:plink_software_name**
+
+Name of plink software in user computer. `character` class.
+
+-   **18:vcftools_software_path**
+
+Path of vcftools software in user computer. `character` class.
+
+-   **19:vcftools_software_name**
+
+Name of vcftools software in user computer. `character` class.

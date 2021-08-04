@@ -1,0 +1,1379 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.1.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Mei Quanshun" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Overview of package:blupADC " />
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/feature-0-overview/overview/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.9a66e344a68eb664b392d406a3f80726.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/post/feature-0-overview/overview/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="QSmei-Academic" />
+  <meta property="og:url" content="/post/feature-0-overview/overview/" />
+  <meta property="og:title" content="R package:blupADC- Overview | QSmei-Academic" />
+  <meta property="og:description" content="Overview of package:blupADC " /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-04-13T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-04-13T22:32:36&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/feature-0-overview/overview/"
+  },
+  "headline": "R package:blupADC- Overview",
+  
+  "datePublished": "2021-04-13T00:00:00Z",
+  "dateModified": "2021-04-13T22:32:36+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Mei Quanshun"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "QSmei-Academic",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Overview of package:blupADC "
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>R package:blupADC- Overview | QSmei-Academic</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="797828734720c63d3bac747eef5c9b10" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.226a9011996d125bf3fe4a5f22353a49.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">QSmei-Academic</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">QSmei-Academic</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#talks"><span>Talks</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>About Me</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="https://twitter.com/GeorgeCushen" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>R package:blupADC- Overview</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Apr 13, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/blupadc/">blupADC</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p><details class="toc-inpage d-print-none  " open>
+  <summary class="font-weight-bold">Table of Contents</summary>
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#overview">OVERVIEW</a></li>
+      </ul>
+    </li>
+    <li><a href="#getting-started">GETTING STARTED</a>
+      <ul>
+        <li><a href="#installation">🙊Installation</a></li>
+        <li><a href="#features">🙊Features</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</details>
+<img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210617165506.png" alt="logo-blupADC"  height="250" align="right" style="zoom:25%;" /></p>
+<p><strong>Documents support two-language(<a href="https://qsmei.netlify.app/post/2021-04-21-r-package-rblupadc-overview/overview/" target="_blank" rel="noopener">English</a> and <a href="https://qsmei.netlify.app/zh/post/2021-04-21-r-package-rblupadc-overview/overview/" target="_blank" rel="noopener">Chinese</a>).</strong></p>
+<h3 id="overview">OVERVIEW</h3>
+<p><code>blupADC</code> is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding(<strong>traditional blup and genomic selection</strong>).  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (<code>Rcpp</code> and <code>RcppArmadillo </code>) , and it also supports  parallel calculation by applying <code>openMP</code> programming.</p>
+<p><code>blupADC</code> provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(<strong>trace pedigree, rename pedigree, and correct pedigree errors</strong>), genotype data format conversion(supports <strong>Hapmap, Plink, Blupf90, Numeric, and VCF</strong> format), genotype data quality control and imputation, construction of kinship matrix(<strong>pedigree, genomic  and single-step</strong>),and genetic evaluation( by interfacing with two famous breeding softwares, <strong>DMU</strong> and <strong>BLUPF90</strong>  in an easy way).</p>
+<p>Finally, we kindly provides an easier way of applying <code>blupADC</code>, which is a free  website(<a href="https://qsmei.netlify.app/post/2021-04-22-blupadc-online-dmu/online_dmu/" target="_blank" rel="noopener">see more details</a>).  Most functions of  package<code>blupADC</code>  can be found in this website. Thus, for user who has little code experience, we recommend  to use this website(<strong>only need to click and type, that&rsquo;s enough</strong>).  But the pitfall of this website is that it can&rsquo;t handle big data.</p>
+<p>😊 Good Luck Charlie !</p>
+<h2 id="getting-started">GETTING STARTED</h2>
+<h3 id="installation">🙊Installation</h3>
+<p><code>blupADC</code> links to R packages <code>Rcpp</code>, <code>RcppArmadillo</code> and <code>data.table</code>. These dependencies should be installed before installing <code>blupADC</code>.</p>
+<pre><code class="language-R">install.packages(c(&quot;Rcpp&quot;, &quot;RcppArmadillo&quot;,&quot;data.table&quot;))
+</code></pre>
+<p><strong>👉 Note: In the analysis of DMU  and BLUPF90 , we need to download software DMU  (<a href="https://dmu.ghpc.au.dk/dmu/" target="_blank" rel="noopener">DMU download website</a>)  and BLUPF90 previously (<a href="http://nce.ads.uga.edu/html/projects/programs/" target="_blank" rel="noopener">BLUPF90 download website</a>). For convenience, we have encapsulated  the basic module of DMU and BLUPF90 in package <code>blupADC</code>.</strong></p>
+<p><strong>For commercial use of DMU and BLUPF90,  user must contact the author of DMU and BLUPF90 !!!</strong></p>
+<h4 id="install-blupadc-on-linux">Install blupADC on Linux</h4>
+<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1_linux.tar.gz&quot;
+install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
+</code></pre>
+<p>For Chinese users, we recommend to use the following code(<strong>installation would be  faster</strong>):</p>
+<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blup-adc/attach_files/751023/download/blupADC_1.0.1_linux.tar.gz&quot;
+install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
+</code></pre>
+<h4 id="install-blupadc-on-windows">Install blupADC on Windows</h4>
+<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.1.zip&quot;
+install.packages(packageurl,repos=NULL)
+</code></pre>
+<p>For Chinese users, we recommend to use the following code(<strong>installation would be  faster</strong>):</p>
+<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blup-adc/attach_files/751003/download/blupADC_1.0.1.zip&quot;
+install.packages(packageurl,repos=NULL)
+</code></pre>
+<p>After installed successfully, the <code>blupADC</code> package can be loaded by typing</p>
+<pre><code class="language-{.r}">library(blupADC)
+</code></pre>
+<h3 id="features">🙊Features</h3>
+<ul>
+<li>Feature 1. Genomic data format conversion</li>
+<li>Feature 2. Genomic data quality control and genotype imputation</li>
+<li>Feature 3. Breed composition analysis and duplication detection of genomic data</li>
+<li>Feature 4. Pedigree tracing, analysis and visualization</li>
+<li>Feature 5. Relationship matrix construction(A,G, and H)</li>
+<li>Feature 6. Genetic evaluation with DMU</li>
+<li>Feature 7. Genetic  evaluation with BLUPF90</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p><strong>For convenience, all documents support two-language(<a href="https://qsmei.netlify.app/post/2021-04-21-r-package-rblupadc-overview/overview/" target="_blank" rel="noopener">English</a> and <a href="https://qsmei.netlify.app/zh/post/2021-04-21-r-package-rblupadc-overview/overview/" target="_blank" rel="noopener">Chinese</a>).</strong></p>
+<p><code>blupADC</code> provides several datasets objects, including <code>data_hmp</code>, <code>origin_pedigree</code>.</p>
+<p>In addition, <code>blupADC</code> provides several files which are saved in <code>~/blupADC/extdata</code>. We can get the path of these files by typing</p>
+<pre><code class="language-{.r}">system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;) # path of provided files
+</code></pre>
+<h4 id="feature-1-genomic-data-format-conversion-see-more-detailshttpsqsmeinetlifyapppostblupadc">Feature 1. Genomic data format conversion (<a href="https://qsmei.netlify.app/post/blupadc/" target="_blank" rel="noopener">see more details</a>)</h4>
+<pre><code class="language-R">library(blupADC)
+sum_data=genotype_data_format_conversion(
+         input_data_hmp=data_hmp,  #provided hapmap data object 
+         output_data_type=c(&quot;Plink&quot;,&quot;BLUPF90&quot;,&quot;Numeric&quot;),# output data format
+         return_result = TRUE,      # return result 
+         cpu_cores=1                # number of cpu 
+                  )
+</code></pre>
+<h4 id="feature-2-genomic-data-quality-control-and-genotype-imputation-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-qc-imputaionqc_imputation">Feature 2. Genomic data quality control and genotype imputation (<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/" target="_blank" rel="noopener">see more details</a>)</h4>
+<pre><code class="language-R">library(blupADC)
+genotype_data_QC_Imputation(
+            input_data_hmp=data_hmp,    #provided hapmap data object
+            data_analysis_method=&quot;QC_Imputation&quot;,   #analysis method type,QC + imputatoin
+            output_data_path=&quot;/root/result&quot;,        #output data path
+            output_data_name=&quot;YY_data&quot;,             #output data name
+            output_data_type=&quot;Plink&quot;                #output data format 
+            )                       
+</code></pre>
+<h4 id="feature-3-breed-composition-analysis-and-duplication-detection-of-genomic-data-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-overlap-genotypeblupadc">Feature 3. Breed composition analysis and duplication detection of genomic data (<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-overlap-genotype/blupadc/" target="_blank" rel="noopener">see more details</a>)</h4>
+<pre><code class="language-R">library(blupADC)
+check_result=genotype_data_check(
+                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+                  duplication_check=FALSE,       #whether check the duplication of genotype
+                  breed_check=TRUE,              # whether check the record of breed
+                  breed_record=PCA_Breed,           # provided breed record
+                  output_data_path=&quot;/root&quot;,      #output path
+                  return_result=TRUE             #return result 
+                  )
+</code></pre>
+<h4 id="feature-4-pedigree-tracing-analysis-and-visualization-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-pedigreepedigree">Feature 4. Pedigree tracing, analysis and visualization (<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/" target="_blank" rel="noopener">see more details</a>)</h4>
+<pre><code class="language-R">library(blupADC)
+#Trace pedigree
+pedigree_result=trace_pedigree(
+                input_pedigree=origin_pedigree,   #provided pedigree data object
+                trace_generation=3,       # trace generation
+                output_pedigree_tree=TRUE  # output pedigree tree
+                )  
+#Visualize pedigree
+library(blupADC)
+plot=ggped(
+       input_pedigree=plot_pedigree,
+       trace_id=c(&quot;121&quot;),
+       trace_sibs=TRUE   #whether plot the sibs of subset-id  
+        ) 
+</code></pre>
+<h4 id="feature-5-relationship-matrix-constructionag-and-h--see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-calculate-relationship-matrixrelationship_matrix">Feature 5. Relationship matrix construction(A,G, and H)  (<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" target="_blank" rel="noopener">see more details</a>)</h4>
+<pre><code class="language-R">library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=data_hmp,          #provided hapmap data object
+                kinship_type=c(&quot;G_A&quot;,&quot;G_D&quot;),      #type of  kinship matrix
+                dominance_type=c(&quot;genotypic&quot;),    #type of dominance effect
+                inbred_type=c(&quot;Homozygous&quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
+</code></pre>
+<h4 id="feature-6-genetic-evaluation-with-dmu-see-more-detailshttpsqsmeinetlifyapppost2021-04-20-r-package-blup-adc-run-dmurun_dmu">Feature 6. Genetic evaluation with DMU (<a href="https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/" target="_blank" rel="noopener">see more details</a>)</h4>
+<pre><code class="language-R">library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+  
+run_DMU(
+        phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
+        target_trait_name=c(&quot;Trait1&quot;),                           #trait name 
+        fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
+        random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&quot;PBLUP_A&quot;,                    #model of genetic evaluation
+        dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
+        output_result_path=&quot;/root&quot;                   # output path 
+        )
+</code></pre>
+<h4 id="feature-7-genetic-evaluation-with-blupf90-see-more-detailshttpsqsmeinetlifyapppost2021-04-20-r-package-blup-adc-run-blupf90blupf90">Feature 7. Genetic evaluation with BLUPF90 (<a href="https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/" target="_blank" rel="noopener">see more details</a>)</h4>
+<pre><code class="language-R">library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+  
+run_BLUPF90(
+        phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
+        target_trait_name=c(&quot;Trait1&quot;),                           #trait name 
+        fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
+        random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
+        analysis_model=&quot;PBLUP_A&quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
+        output_result_path=&quot;/root&quot;                   # output path 
+        )   
+</code></pre>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/feature-0-overview/overview/&amp;text=R%20package:blupADC-%20Overview" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/feature-0-overview/overview/&amp;t=R%20package:blupADC-%20Overview" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=R%20package:blupADC-%20Overview&amp;body=/post/feature-0-overview/overview/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/feature-0-overview/overview/&amp;title=R%20package:blupADC-%20Overview" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=R%20package:blupADC-%20Overview%20/post/feature-0-overview/overview/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/feature-0-overview/overview/&amp;title=R%20package:blupADC-%20Overview" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/author/mei-quanshun/avatar_hu5f20744e08524ff7ac6fce3b60ea5d69_3615750_270x270_fill_q75_lanczos_center.JPG" alt="Mei Quanshun">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Mei Quanshun</h5>
+      <h6 class="card-subtitle">PhD student in animal breeding</h6>
+      <p class="card-text">My research interests include genomic selection and machine learning in animal breeding.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/GeorgeCushen" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/gcushen" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.b61a8f62b6e5c0cd322c8158c5b5dfb6.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

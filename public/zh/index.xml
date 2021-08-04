@@ -1354,6 +1354,13 @@ pedigree_result=trace_pedigree(
   &lt;nav id=&#34;TableOfContents&#34;&gt;
   &lt;ul&gt;
     &lt;li&gt;&lt;a href=&#34;#简介&#34;&gt;简介&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#示例&#34;&gt;示例&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#check-duplication&#34;&gt;Check duplication&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#check-breed-record&#34;&gt;Check breed record&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#输出结果&#34;&gt;输出结果&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&#34;#参数详解&#34;&gt;参数详解&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/nav&gt;
@@ -1362,13 +1369,29 @@ pedigree_result=trace_pedigree(
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;👦大家好,这一节给大家带来的是如何使用&lt;code&gt;blupADC&lt;/code&gt;中的&lt;code&gt;genotype_data_overlap&lt;/code&gt;函数来对基因型数据进行重复性检测。&lt;/p&gt;
 &lt;p&gt;与之前类似，我们还是用一个小例子来简单的看下该函数的用法&lt;/p&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
+&lt;h3 id=&#34;check-duplication&#34;&gt;Check duplication&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
-overlap_result=genotype_data_overlap(
+overlap_result=genotype_data_check(
                   input_data_hmp=data_hmp,   #provided hapmap data object
-                  overlap_threshold=0.95,    # threshold of duplicate 
+                 duplication_threshold=0.95, #threshold of duplication
+                  duplication_check=TRUE,    #whether check the duplication of genotype
+                  breed_check=FALSE,         # whether check the record of breed
                   return_result=TRUE         #return result 
                   )
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;check-breed-record&#34;&gt;Check breed record&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+overlap_result=genotype_data_check(
+                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+                  duplication_check=FALSE,       #whether check the duplication of genotype
+                  breed_check=TRUE,              # whether check the record of breed
+                  ind_breed=PCA_Breed,           # provided breed record
+                  output_data_path=&amp;quot;/root&amp;quot;,      #output path
+                  return_result=TRUE             #return result 
+                  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;输出结果&#34;&gt;输出结果&lt;/h2&gt;
 &lt;h2 id=&#34;参数详解&#34;&gt;参数详解&lt;/h2&gt;
 &lt;p&gt;关于&lt;code&gt;genotype_data_overlap&lt;/code&gt; 函数中的参数介绍，我们主要介绍以下两个参数：&lt;/p&gt;
 &lt;ul&gt;
@@ -1380,6 +1403,18 @@ overlap_result=genotype_data_overlap(
 &lt;/ul&gt;
 &lt;p&gt;判断基因型重复的阈值，&lt;code&gt;numeric&lt;/code&gt; 类型，默认为0.95。&lt;/p&gt;
 &lt;p&gt;当个体间的基因型overlap比例超过该阈值时，基因型就会被判定为重复的基因型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数3：duplication_check&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;是否进行基因型重复性检测，&lt;code&gt;logical&lt;/code&gt; 类型，默认为 TRUE。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数4：breed_check&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;是否进行品种记录检测，&lt;code&gt;logical&lt;/code&gt; 类型，默认为 FALSE。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数4：ind_breed&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的个体品种记录数据，&lt;code&gt;data.frame&lt;/code&gt; 类型。  该数据包括两列，第一列为个体号，第二列为个体的品种。&lt;/p&gt;
 &lt;p&gt;该函数中的其他参数均和&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数一致(基因型数据的输入与输出)，具体大家可参阅之前的介绍:&lt;/p&gt;
 &lt;p&gt;具体大家可参阅之前的介绍: &lt;a href=&#34;https://qsmei.netlify.app/zh/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;基因型数据间的格式转换&lt;/a&gt;。&lt;/p&gt;
 </description>
@@ -1396,7 +1431,9 @@ overlap_result=genotype_data_overlap(
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#简介&#34;&gt;简介&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#示例&#34;&gt;示例&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;#示例&#34;&gt;示例&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#输出&#34;&gt;输出&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#参数&#34;&gt;参数&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#基础参数&#34;&gt;🤡基础参数&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#进阶参数&#34;&gt;💨进阶参数&lt;/a&gt;&lt;/li&gt;
@@ -1414,144 +1451,139 @@ overlap_result=genotype_data_overlap(
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(blupADC)
 sum_data=genotype_data_format_conversion(
          input_data_hmp=data_hmp,  #provided hapmap data object 
-         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;Blupf90&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
+         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;BLUPF90&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
          return_result = TRUE,      # return result 
          cpu_cores=1                # number of cpu 
          )&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Start numeric(0,1,2) format conversion...... 
-## Complete Blupf90  format conversion 
+## Complete BLUPF90  format conversion 
 ## Complete Plink Data Format Conversion&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;下面，我们将对&lt;code&gt;genotype_data_format_conversion&lt;/code&gt; 中的参数一一进行讲解&lt;/p&gt;
-&lt;div id=&#34;基础参数&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;🤡基础参数&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div id=&#34;输出&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;输出&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;str(sum_data) 
+## List of 5
+##  $ hmp    :&amp;#39;data.frame&amp;#39;: 6 obs. of  311 variables:
+##   ..$ rs#      : chr [1:6] &amp;quot;SNP1&amp;quot; &amp;quot;SNP2&amp;quot; &amp;quot;SNP3&amp;quot; &amp;quot;SNP4&amp;quot; ...
+##   ..$ alleles  : logi [1:6] NA NA NA NA NA NA
+##   ..$ chrom    : int [1:6] 1 1 1 1 1 1
+##   ..$ pos      : int [1:6] 224488 293696 333333 464830 722623 838596
+##   ..$ strand   : logi [1:6] NA NA NA NA NA NA
+##   ..$ assembly : logi [1:6] NA NA NA NA NA NA
+##   ..$ center   : logi [1:6] NA NA NA NA NA NA
+##   ..$ protLSID : logi [1:6] NA NA NA NA NA NA
+##   ..$ assayLSID: logi [1:6] NA NA NA NA NA NA
+##   ..$ panelLSID: logi [1:6] NA NA NA NA NA NA
+##   ..$ QCcode   : logi [1:6] NA NA NA NA NA NA
+##   ..$ 3098     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3498     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3297     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2452     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4255     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2946     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3926     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3426     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4213     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2895     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4172     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3620     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4797     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4660     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4010     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4095     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3029     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3930     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4404     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2020     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2455     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3747     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1590     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2707     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2320     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3397     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3876     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3658     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2310     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1996     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3000     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2485     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4412     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3395     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4449     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3302     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3895     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4328     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3892     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3764     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3922     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4459     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4236     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3535     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2957     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2927     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3499     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4537     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4288     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4048     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3371     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3901     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3344     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4745     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3118     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3093     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3410     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4024     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3053     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3571     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3740     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4374     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4550     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3060     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3460     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3791     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3116     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3078     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1974     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1990     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3433     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4349     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3340     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2681     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2628     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 4813     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2221     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2384     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2721     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3463     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2748     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 2973     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1999     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3474     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 3689     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1924     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 1948     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   ..$ 110      : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
+##   .. [list output truncated]
+##  $ ped    : chr [1:300, 1:18] &amp;quot;3098&amp;quot; &amp;quot;3498&amp;quot; &amp;quot;3297&amp;quot; &amp;quot;2452&amp;quot; ...
+##  $ map    :&amp;#39;data.frame&amp;#39;: 6 obs. of  4 variables:
+##   ..$ chrom : int [1:6] 1 1 1 1 1 1
+##   ..$ rs#   : chr [1:6] &amp;quot;SNP1&amp;quot; &amp;quot;SNP2&amp;quot; &amp;quot;SNP3&amp;quot; &amp;quot;SNP4&amp;quot; ...
+##   ..$ strand: num [1:6] 0.224 0.294 0.333 0.465 0.723 ...
+##   ..$ pos   : int [1:6] 224488 293696 333333 464830 722623 838596
+##  $ blupf90: chr [1:300, 1:2] &amp;quot;3098                &amp;quot; &amp;quot;3498                &amp;quot; &amp;quot;3297                &amp;quot; &amp;quot;2452                &amp;quot; ...
+##   ..- attr(*, &amp;quot;dimnames&amp;quot;)=List of 2
+##   .. ..$ : NULL
+##   .. ..$ : chr [1:2] &amp;quot;IND_name&amp;quot; &amp;quot;&amp;quot;
+##  $ numeric: num [1:300, 1:6] 2 1 1 2 1 2 1 1 2 2 ...
+##   ..- attr(*, &amp;quot;dimnames&amp;quot;)=List of 2
+##   .. ..$ : chr [1:300] &amp;quot;3098&amp;quot; &amp;quot;3498&amp;quot; &amp;quot;3297&amp;quot; &amp;quot;2452&amp;quot; ...
+##   .. ..$ : chr [1:6] &amp;quot;SNP1&amp;quot; &amp;quot;SNP2&amp;quot; &amp;quot;SNP3&amp;quot; &amp;quot;SNP4&amp;quot; ...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们可以清楚的看到输出结果分为5个部分(长度为5的列表)，分别为：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数1:input_data_plink_ped&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;hmp &lt;/strong&gt; : &lt;code&gt;Hapmap&lt;/code&gt; 格式的基因型数据&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的 Plink-ped格式的数据，&lt;code&gt;data.frame&lt;/code&gt;类型。具体格式如下所示：&lt;/p&gt;
-&lt;table&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数2:input_data_plink_map&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;用户提供的 Plink-map格式的数据，&lt;code&gt;data.frame&lt;/code&gt;类型。具体格式如下所示：&lt;/p&gt;
-&lt;table&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.224488&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;224488&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.293696&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;293696&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP3&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.333333&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;333333&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP4&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.464830&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;464830&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP5&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.722623&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;722623&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP6&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.838596&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;838596&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数3:input_data_hmp&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;用户提供的 Hapmap格式的数据，&lt;code&gt;data.frame&lt;/code&gt;类型。具体格式如下所示&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;第1列为SNP，第3列为染色体，第4列为物理位置，第12列开始为基因型数据&lt;/code&gt;&lt;/p&gt;
 &lt;table style=&#34;width:100%;&#34;&gt;
 &lt;colgroup&gt;
 &lt;col width=&#34;4%&#34; /&gt;
@@ -1695,9 +1727,133 @@ sum_data=genotype_data_format_conversion(
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数4:input_data_blupf90&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ped&lt;/strong&gt; : &lt;code&gt;Plink&lt;/code&gt; 格式的ped数据&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的 BLUPF90格式数据，&lt;code&gt;data.frame&lt;/code&gt;类型。具体格式如下所示&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;第1列为家系，第2列为个体号，第7列开始为基因型数据。&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;map &lt;/strong&gt;: &lt;code&gt;Plink&lt;/code&gt;格式的map数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;第1列为染色体，第2列为SNP，第3列为遗传距离(cM), 第4列为物理位置。&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.224488&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;224488&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.293696&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;293696&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.333333&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;333333&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.464830&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;464830&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.722623&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;722623&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;SNP6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.838596&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;838596&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;blupf90 &lt;/strong&gt;: &lt;code&gt;BLUPF90&lt;/code&gt;格式的基因型数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;第1列为个体号，第2列为基因型。&lt;/code&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;tbody&gt;
 &lt;tr class=&#34;odd&#34;&gt;
@@ -1727,9 +1883,9 @@ sum_data=genotype_data_format_conversion(
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数5:input_data_genumeric&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;numeric &lt;/strong&gt;: &lt;code&gt;Numeric&lt;/code&gt; 格式的基因型数据&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;用户提供的 Numeric格式的数据，&lt;code&gt;matrix(纯数字)&lt;/code&gt;类型。具体格式如下所示&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;行名为个体，列名为SNP，0,1,2表示的是个体在某个SNP位点的基因型数据&lt;/code&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr class=&#34;header&#34;&gt;
@@ -1799,8 +1955,32 @@ sum_data=genotype_data_format_conversion(
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; 行为个体，列为SNP，必须包括列名和行名。&lt;/p&gt;
-&lt;p&gt;此外，为了方便用户使用，用户还可以直接通过提供本地数据的路径、名称与数据类型即可完成数据提供这一步骤,而无需将数据读入到&lt;strong&gt;R&lt;/strong&gt;里面。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;参数&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;参数&lt;/h2&gt;
+&lt;div id=&#34;基础参数&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;🤡基础参数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数1:input_data_plink_ped&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的 Plink-ped格式的数据，&lt;code&gt;data.frame&lt;/code&gt;类型。具体格式见结果部分&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数2:input_data_plink_map&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的 Plink-map格式的数据，&lt;code&gt;data.frame&lt;/code&gt;类型。具体格式见结果部分&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数3:input_data_hmp&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的 Hapmap格式的数据，&lt;code&gt;data.frame&lt;/code&gt;类型。具体格式见结果部分&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数4:input_data_blupf90&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的 BLUPF90格式数据，&lt;code&gt;data.frame&lt;/code&gt;类型。具体格式见结果部分&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数5:input_data_numeric&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的 Numeric格式的数据，&lt;code&gt;matrix(纯数字)&lt;/code&gt;类型。具体格式见结果部分&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;此外，为了方便用户使用，用户还可以直接通过提供本地数据的路径、名称与数据类型即可完成数据提供这一步骤,而无需将数据读入到R里面。&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;参数6:input_data_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -1816,7 +1996,7 @@ sum_data=genotype_data_format_conversion(
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;Hapmap&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Plink&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Blupf90&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BLUPF90&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Numeric&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;VCF&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
@@ -1838,12 +2018,12 @@ sum_data=genotype_data_format_conversion(
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;Hapmap&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Plink&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Blupf90&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BLUPF90&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Numeric&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;VCF&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;可选择同时输出多种数据格式。e.g.&lt;code&gt;output_data_type=c(&#34;Hapmap&#34;,&#34;Plink&#34;,&#34;Blupf90&#34;,&#34;Numeric&#34;)&lt;/code&gt; 可同时输出以上4种数据类型。&lt;/p&gt;
+&lt;p&gt;可选择同时输出多种数据格式。e.g.&lt;code&gt;output_data_type=c(&#34;Hapmap&#34;,&#34;Plink&#34;,&#34;BLUPF90&#34;,&#34;Numeric&#34;)&lt;/code&gt; 可同时输出以上4种数据类型。&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;进阶参数&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;💨进阶参数&lt;/h3&gt;
@@ -1956,7 +2136,7 @@ install.packages(packageurl,repos=NULL)
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 sum_data=genotype_data_format_conversion(
          input_data_hmp=data_hmp,   #提供的hampap格式数据的对象
-         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;Blupf90&amp;quot;,&amp;quot;Numeric&amp;quot;),#基因型数据的输出类型
+         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;BLUPF90&amp;quot;,&amp;quot;Numeric&amp;quot;),#基因型数据的输出类型
          return_result = TRUE,      #是否在R中返回结果
          cpu_cores=1                #调用的cpu数目
                   )
@@ -2015,7 +2195,7 @@ run_DMU(
         output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
         )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-7-blupf90软件的交互使用-了解更多httpsqsmeinetlifyappzhpost2021-04-20-r-package-blup-adc-run-blupf90blupf90&#34;&gt;功能 7. BLUPF90软件的交互使用 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-7-blupf90软件的交互使用-了解更多httpsqsmeinetlifyappzhpost2021-04-20-r-package-blup-adc-run-blupf90blupf90&#34;&gt;功能 7. BLUPF90软件的交互使用 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-BLUPF90/BLUPF90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)   #  示例文件的路径
   

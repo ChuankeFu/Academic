@@ -107,7 +107,7 @@ system.file("extdata", package = "blupADC") # path of provided files
 library(blupADC)
 sum_data=genotype_data_format_conversion(
          input_data_hmp=data_hmp,   #提供的hampap格式数据的对象
-         output_data_type=c("Plink","Blupf90","Numeric"),#基因型数据的输出类型
+         output_data_type=c("Plink","BLUPF90","Numeric"),#基因型数据的输出类型
          return_result = TRUE,      #是否在R中返回结果
          cpu_cores=1                #调用的cpu数目
                   )
@@ -182,7 +182,7 @@ run_DMU(
         )
 ```
 
-#### 功能 7. BLUPF90软件的交互使用 ([了解更多](https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/))
+#### 功能 7. BLUPF90软件的交互使用 ([了解更多](https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-BLUPF90/BLUPF90/))
 
 ``` R
 library(blupADC)

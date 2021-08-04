@@ -27,14 +27,38 @@ toc: true
 
 与之前类似，我们还是用一个小例子来简单的看下该函数的用法
 
+## 示例
+
+### Check duplication 
+
 ``` {.R}
 library(blupADC)
-overlap_result=genotype_data_overlap(
+overlap_result=genotype_data_check(
                   input_data_hmp=data_hmp,   #provided hapmap data object
-                  overlap_threshold=0.95,    # threshold of duplicate 
+                 duplication_threshold=0.95, #threshold of duplication
+                  duplication_check=TRUE,    #whether check the duplication of genotype
+                  breed_check=FALSE,         # whether check the record of breed
                   return_result=TRUE         #return result 
                   )
 ```
+
+### Check breed record 
+
+``` {.R}
+library(blupADC)
+overlap_result=genotype_data_check(
+                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+                  duplication_check=FALSE,       #whether check the duplication of genotype
+                  breed_check=TRUE,              # whether check the record of breed
+                  ind_breed=PCA_Breed,           # provided breed record
+                  output_data_path="/root",      #output path
+                  return_result=TRUE             #return result 
+                  )
+```
+
+## 输出结果
+
+
 
 ## 参数详解
 
@@ -49,6 +73,20 @@ overlap_result=genotype_data_overlap(
 判断基因型重复的阈值，`numeric` 类型，默认为0.95。
 
 当个体间的基因型overlap比例超过该阈值时，基因型就会被判定为重复的基因型。
+
+-   **参数3：duplication_check** 
+
+是否进行基因型重复性检测，`logical` 类型，默认为 TRUE。
+
+-   **参数4：breed_check** 
+
+是否进行品种记录检测，`logical` 类型，默认为 FALSE。
+
+-   **参数4：ind_breed** 
+
+用户提供的个体品种记录数据，`data.frame` 类型。  该数据包括两列，第一列为个体号，第二列为个体的品种。
+
+
 
 该函数中的其他参数均和`genotype_data_format_conversion`函数中的参数一致(基因型数据的输入与输出)，具体大家可参阅之前的介绍:
 

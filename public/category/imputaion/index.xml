@@ -5,7 +5,7 @@
     <link>/category/imputaion/</link>
       <atom:link href="/category/imputaion/index.xml" rel="self" type="application/rss+xml" />
     <description>Imputaion</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 17 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 15 Apr 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
       <title>Imputaion</title>
@@ -13,10 +13,10 @@
     </image>
     
     <item>
-      <title>R package:blupADC-Feature 4</title>
-      <link>/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/</link>
-      <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/</guid>
+      <title>R package:blupADC-Feature 2</title>
+      <link>/post/feature-2-qc_imputation/qc_imputation/</link>
+      <pubDate>Thu, 15 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/post/feature-2-qc_imputation/qc_imputation/</guid>
       <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
   &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
   &lt;nav id=&#34;TableOfContents&#34;&gt;
@@ -34,8 +34,8 @@
 &lt;/details&gt;
 
 &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;🤖 Generally, most genotype data need to perform quality control and imputation.  For convenience,  package &lt;code&gt;blupADC&lt;/code&gt; provides &lt;code&gt;genotype_data_QC_Imputation&lt;/code&gt; function to perform quality control and imputation by interfacing with  software &lt;strong&gt;Plink&lt;/strong&gt; and software &lt;strong&gt;Beagle&lt;/strong&gt; in an easy way (we only need to provide the software path and software name).&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;👉 Note:  For convenience,  &lt;code&gt;blupADC&lt;/code&gt; has encapsulated software Plink(for quality control)  &lt;code&gt;version-1.9&lt;/code&gt; and software Beagle(for imputation) &lt;code&gt;version-5.2&lt;/code&gt;. If you want change this version, you could set the related parameters in the part of Advanced parameter.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;🤖 Generally, most genotype data need to perform quality control and imputation before applying in animal and plant breeding.  For convenience,  package &lt;code&gt;blupADC&lt;/code&gt; provides &lt;code&gt;genotype_data_QC_Imputation&lt;/code&gt; function to perform quality control and imputation by interfacing with  software &lt;strong&gt;Plink&lt;/strong&gt; and software &lt;strong&gt;Beagle&lt;/strong&gt; in an easy way (we only need to provide the software path and software name).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;👉 Note:  For convenience,  &lt;code&gt;blupADC&lt;/code&gt; has encapsulated software Plink(for quality control)  &lt;code&gt;version-1.9&lt;/code&gt; and software Beagle(for imputation) &lt;code&gt;version-5.2&lt;/code&gt;. If you want change this version, you should set the related parameters in the part of Advanced parameter.&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
 genotype_data_QC_Imputation(
@@ -46,7 +46,7 @@ genotype_data_QC_Imputation(
             output_data_type=&amp;quot;Plink&amp;quot;                #output data format 
             )                       
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In the process of quality control and imputation，we should provide genotype data，these parameters are the as in&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;function((&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;In the process of quality control and imputation，we should provide genotype data，these parameters are the as in &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function(&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
 &lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
 &lt;h3 id=&#34;basic&#34;&gt;💙Basic&lt;/h3&gt;
 &lt;ul&gt;
@@ -66,17 +66,16 @@ genotype_data_QC_Imputation(
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Threshold of SNPs call rate in quality control, &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.1&lt;/p&gt;
-&lt;p&gt;使用Plink进行质控时，SNP call rate 的阈值，&lt;code&gt;numeric&lt;/code&gt;类型，默认为0.1。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;3：qc_ind_rate&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Threshold of individuals call rate in quality control, &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.1&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;**4：qc_maf **&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;4：qc_maf&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Threshold of minor allele frequency(MAF)  in quality control, &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.05&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;**5：qc_hwe **&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;5：qc_hwe&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Threshold of hardy weinberg equilibrium(HWE)  in quality control, &lt;code&gt;numeric&lt;/code&gt; class. Default is 1e-7&lt;/p&gt;
 &lt;h3 id=&#34;advanced&#34;&gt;💜Advanced&lt;/h3&gt;
