@@ -22,6 +22,7 @@ toc: true
 {{<toc>}}<img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210617165506.png" alt="logo-blupADC"  height="250" align="right" style="zoom:25%;" />
 
 **Documents support two-language([English](https://qsmei.netlify.app/post/2021-04-21-r-package-rblupadc-overview/overview/) and [Chinese](https://qsmei.netlify.app/zh/post/2021-04-21-r-package-rblupadc-overview/overview/)).** 
+<<<<<<< HEAD:content/en/post/Feature-0-overview/overView.md
 
 ### OVERVIEW
 
@@ -29,6 +30,14 @@ toc: true
 
 `blupADC` provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(**trace pedigree, rename pedigree, and correct pedigree errors**), genotype data format conversion(supports **Hapmap, Plink, Blupf90, Numeric, and VCF** format), genotype data quality control and imputation, construction of kinship matrix(**pedigree, genomic  and single-step**),and genetic evaluation( by interfacing with two famous breeding softwares, **DMU** and **BLUPF90**  in an easy way). 
 
+=======
+### OVERVIEW
+
+`blupADC` is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding(**traditional blup and genomic selection**).  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (`Rcpp` and `RcppArmadillo `) , and it also supports  parallel calculation by applying `openMP` programming.
+
+`blupADC` provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(**trace pedigree, rename pedigree, and correct pedigree errors**), genotype data format conversion(supports **Hapmap, Plink, Blupf90, Numeric, and VCF** format), genotype data quality control and imputation, construction of kinship matrix(**pedigree, genomic  and single-step**),and genetic evaluation( by interfacing with two famous breeding softwares, **DMU** and **BLUPF90**  in an easy way). 
+
+>>>>>>> c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md
 Finally, we kindly provides an easier way of applying `blupADC`, which is a free  website([see more details](https://qsmei.netlify.app/post/2021-04-22-blupadc-online-dmu/online_dmu/)).  Most functions of  package`blupADC`  can be found in this website. Thus, for user who has little code experience, we recommend  to use this website(**only need to click and type, that's enough**).  But the pitfall of this website is that it can't handle big data. 
 
 😊 Good Luck Charlie ! 
@@ -86,11 +95,18 @@ library(blupADC)
 -   Feature 1. Genomic data format conversion
 -   Feature 2. Genomic data quality control and genotype imputation
 -   Feature 3. Breed composition analysis and duplication detection of genomic data
+<<<<<<< HEAD:content/en/post/Feature-0-overview/overView.md
 -   Feature 4. Pedigree tracing, and analysis
 -   Feature 5. Pedigree visualization
 -   Feature 6. Relationship matrix construction(A,G, and H) 
 -   Feature 7. Genetic evaluation with DMU
 -   Feature 8. Genetic  evaluation with BLUPF90 
+=======
+-   Feature 4. Pedigree tracing, analysis and visualization
+-   Feature 5. Relationship matrix construction(A,G, and H) 
+-   Feature 6. Genetic evaluation with DMU
+-   Feature 7. Genetic  evaluation with BLUPF90
+>>>>>>> c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md
 
 ## Usage
 
@@ -116,6 +132,7 @@ sum_data=genotype_data_format_conversion(
                   )
 ```
 
+<<<<<<< HEAD:content/en/post/Feature-0-overview/overView.md
 #### Feature 2. Genomic data quality control and genotype imputation ([see more details](https://qsmei.netlify.app/post/feature-2-qc_imputation/qc_imputation/))
 
 ``` R
@@ -133,6 +150,25 @@ genotype_data_QC_Imputation(
 
 ``` R
 library(blupADC)
+=======
+#### Feature 2. Genomic data quality control and genotype imputation ([see more details](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/))
+
+``` R
+library(blupADC)
+genotype_data_QC_Imputation(
+            input_data_hmp=data_hmp,    #provided hapmap data object
+            data_analysis_method="QC_Imputation",   #analysis method type,QC + imputatoin
+            output_data_path="/root/result",        #output data path
+            output_data_name="YY_data",             #output data name
+            output_data_type="Plink"                #output data format 
+            )                       
+```
+
+#### Feature 3. Breed composition analysis and duplication detection of genomic data ([see more details](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-overlap-genotype/blupadc/))
+
+``` R
+library(blupADC)
+>>>>>>> c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md
 check_result=genotype_data_check(
                   input_data_hmp=PCA_data_hmp,   #provided hapmap data object
                   duplication_check=FALSE,       #whether check the duplication of genotype
@@ -143,7 +179,11 @@ check_result=genotype_data_check(
                   )
 ```
 
+<<<<<<< HEAD:content/en/post/Feature-0-overview/overView.md
 #### Feature 4. Pedigree tracing, and analysis ([see more details](https://qsmei.netlify.app/post/feature-4-trace_pedigree/pedigree/)) 
+=======
+#### Feature 4. Pedigree tracing, analysis and visualization ([see more details](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/))
+>>>>>>> c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md
 
 ``` R
 library(blupADC)
@@ -162,6 +202,7 @@ plot=ggped(
         ) 
 ```
 
+<<<<<<< HEAD:content/en/post/Feature-0-overview/overView.md
 #### Feature 5. Pedigree visualization ([see more details](https://qsmei.netlify.app/post/feature-5-visualize_pedigree/pedigree/))
 
 ``` R
@@ -174,6 +215,11 @@ plot=ggped(
 ```
 
 #### Feature 6. Relationship matrix construction(A,G, and H)  ([see more details](https://qsmei.netlify.app/post/feature-6-kinship_matrix/relationship_matrix/))
+=======
+
+
+#### Feature 5. Relationship matrix construction(A,G, and H)  ([see more details](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/))
+>>>>>>> c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md
 
 ``` R
 library(blupADC)
@@ -185,7 +231,11 @@ kinship_result=cal_kinship(
                 return_result=TRUE)               #return result              
 ```
 
+<<<<<<< HEAD:content/en/post/Feature-0-overview/overView.md
 #### Feature 7. Genetic evaluation with DMU ([see more details](https://qsmei.netlify.app/post/feature-7-run_dmu/run_dmu/))
+=======
+#### Feature 6. Genetic evaluation with DMU ([see more details](https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/))
+>>>>>>> c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md
 
 ``` R
 library(blupADC)
@@ -208,7 +258,11 @@ run_DMU(
         )
 ```
 
+<<<<<<< HEAD:content/en/post/Feature-0-overview/overView.md
 #### Feature 8. Genetic evaluation with BLUPF90 ([see more details](https://qsmei.netlify.app/post/feature-8-run_blupf90/blupf90/))
+=======
+#### Feature 7. Genetic evaluation with BLUPF90 ([see more details](https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/))
+>>>>>>> c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md
 
 ``` R
 library(blupADC)
