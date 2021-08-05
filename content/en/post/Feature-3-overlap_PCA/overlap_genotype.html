@@ -1,0 +1,202 @@
+---
+title: 'R package:blupADC-Feature 3'
+author: qsmei
+date: '2021-04-16'
+slug: blupADC
+categories: ["Check genotype"]
+tags: []
+subtitle: ''
+summary: 'Breed composition analysis '
+authors: []
+lastmod: '2021-04-15T15:11:30+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+toc: true
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+
+</div>
+
+<p>{{<toc>}}</p>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>👦 Breed composition analysis is usually a problem in data analysis. In package:<code>blupADC</code>, user can solve this problem by applying <code>genotype_data_check</code> function. In addition, user can detect the duplication of genomic data easily by applying <code>genotype_data_check</code> function.</p>
+</div>
+<div id="example" class="section level2">
+<h2>Example</h2>
+<div id="breed-composition-analysis" class="section level3">
+<h3>Breed composition analysis</h3>
+<pre class="R"><code>library(blupADC)
+check_result=genotype_data_check(
+                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+                  duplication_check=FALSE,       #whether check the duplication of genotype
+                  breed_check=TRUE,              # whether check the record of breed
+                  breed_record=PCA_Breed,        # provided breed record
+                  return_result=TRUE             #return result 
+                  )</code></pre>
+</div>
+<div id="check-duplication" class="section level3">
+<h3>Check duplication</h3>
+<pre class="R"><code>library(blupADC)
+check_result=genotype_data_check(
+                  input_data_hmp=data_hmp,   #provided hapmap data object
+                 duplication_threshold=0.95, #threshold of duplication
+                  duplication_check=TRUE,    #whether check the duplication of genotype
+                  breed_check=FALSE,         # whether check the record of breed
+                  return_result=TRUE         #return result 
+                  )</code></pre>
+</div>
+</div>
+<div id="output" class="section level2">
+<h2>Output</h2>
+<pre><code>## Start numeric(0,1,2) format conversion......</code></pre>
+<pre><code>## Start numeric(0,1,2) format conversion...... 
+## Before filter, there are 304 individuals, after filter, there are 296 individuals 
+## Finally, there are total 296 individuals in your data!</code></pre>
+<p>The result of output mainly contains two parts, including:</p>
+<ul>
+<li><strong>duplicated_genotype</strong></li>
+</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">IND1</td>
+<td align="left">IND1</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">IND2</td>
+<td align="left">IND2</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">IND3</td>
+<td align="left">IND3</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">IND4</td>
+<td align="left">IND4</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<p>The first and the second column is the name of individual, the third column is the percentage of overlap.</p>
+<ul>
+<li><strong>pca_outlier</strong></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Id</th>
+<th align="left">Breed</th>
+<th align="left">Expeced_Breed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">IND1</td>
+<td align="left">YY</td>
+<td align="left">DD</td>
+</tr>
+<tr class="even">
+<td align="left">IND100</td>
+<td align="left">LL</td>
+<td align="left">DD</td>
+</tr>
+<tr class="odd">
+<td align="left">IND12</td>
+<td align="left">YY</td>
+<td align="left">DD</td>
+</tr>
+<tr class="even">
+<td align="left">IND14</td>
+<td align="left">YY</td>
+<td align="left">DD</td>
+</tr>
+<tr class="odd">
+<td align="left">IND16</td>
+<td align="left">YY</td>
+<td align="left">DD</td>
+</tr>
+<tr class="even">
+<td align="left">IND18</td>
+<td align="left">YY</td>
+<td align="left">DD</td>
+</tr>
+</tbody>
+</table>
+<p>Figure A is the PCA result before correcting breed record , Figure B is the PCA result after correcting breed correcting record</p>
+<div class="figure">
+<img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210805034645.png" alt="" />
+<p class="caption">PCA_blupADC</p>
+</div>
+</div>
+<div id="parameter" class="section level2">
+<h2>Parameter</h2>
+<p>Many parameters in <code>genotype_data_overlap</code> are the same as in <code>genotype_data_format_conversion</code> function (<a href="https://qsmei.netlify.app/post/blupadc/">see more details</a>).</p>
+<p>Thus, we will introduce specific parameters in <code>genotype_data_overlap</code> function.</p>
+<ul>
+<li><strong>1：selected_snps</strong></li>
+</ul>
+<p>Number of SNPs in detecting overlap, <code>numeric</code> class. Default is 1000.</p>
+<ul>
+<li><strong>2：overlap_threshold</strong></li>
+</ul>
+<p>Threshold of duplicate genotype, <code>numeric</code> class. Default is 0.95.</p>
+<ul>
+<li><strong>3：duplication_check</strong></li>
+</ul>
+<p>Whether check duplication of genotype, <code>logical</code> class. Default is TRUE.</p>
+<ul>
+<li><strong>4：breed_check</strong></li>
+</ul>
+<p>Whether check breed record of genotype, <code>logical</code> class. Default is FALSE.</p>
+<ul>
+<li><strong>5：ind_breed</strong></li>
+</ul>
+<p>Breed record of individuals, <code>data.frame</code> class.</p>
+<p>The format of <code>ind_breed</code> is showing as follow:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Id</th>
+<th align="left">Breed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">IND1</td>
+<td align="left">YY</td>
+</tr>
+<tr class="even">
+<td align="left">IND2</td>
+<td align="left">YY</td>
+</tr>
+<tr class="odd">
+<td align="left">IND3</td>
+<td align="left">YY</td>
+</tr>
+<tr class="even">
+<td align="left">IND4</td>
+<td align="left">YY</td>
+</tr>
+<tr class="odd">
+<td align="left">IND5</td>
+<td align="left">YY</td>
+</tr>
+<tr class="even">
+<td align="left">IND6</td>
+<td align="left">YY</td>
+</tr>
+</tbody>
+</table>
+<p>When the proportion of genotype data between two individuals is larger than this threshold, these two individuals will be regarded as the same individual.</p>
+</div>

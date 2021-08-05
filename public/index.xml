@@ -1419,6 +1419,201 @@ pedigree_result=trace_pedigree(
     </item>
     
     <item>
+      <title>R package:blupADC-Feature 3</title>
+      <link>/post/feature-3-overlap_pca/blupadc/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/post/feature-3-overlap_pca/blupadc/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+
+&lt;/div&gt;
+
+&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
+  
+&lt;/details&gt;
+
+&lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;👦 Breed composition analysis is usually a problem in data analysis. In package:&lt;code&gt;blupADC&lt;/code&gt;, user can solve this problem by applying &lt;code&gt;genotype_data_check&lt;/code&gt; function. In addition, user can detect the duplication of genomic data easily by applying &lt;code&gt;genotype_data_check&lt;/code&gt; function.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;div id=&#34;breed-composition-analysis&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Breed composition analysis&lt;/h3&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+check_result=genotype_data_check(
+                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+                  duplication_check=FALSE,       #whether check the duplication of genotype
+                  breed_check=TRUE,              # whether check the record of breed
+                  breed_record=PCA_Breed,        # provided breed record
+                  return_result=TRUE             #return result 
+                  )&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;check-duplication&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Check duplication&lt;/h3&gt;
+&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
+check_result=genotype_data_check(
+                  input_data_hmp=data_hmp,   #provided hapmap data object
+                 duplication_threshold=0.95, #threshold of duplication
+                  duplication_check=TRUE,    #whether check the duplication of genotype
+                  breed_check=FALSE,         # whether check the record of breed
+                  return_result=TRUE         #return result 
+                  )&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;output&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Output&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;## Start numeric(0,1,2) format conversion......&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Start numeric(0,1,2) format conversion...... 
+## Before filter, there are 304 individuals, after filter, there are 296 individuals 
+## Finally, there are total 296 individuals in your data!&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The result of output mainly contains two parts, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;duplicated_genotype&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;IND1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;IND2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND3&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;IND3&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;IND4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The first and the second column is the name of individual, the third column is the percentage of overlap.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;pca_outlier&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Id&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Breed&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Expeced_Breed&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND100&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;LL&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND12&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND14&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND16&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND18&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Figure A is the PCA result before correcting breed record , Figure B is the PCA result after correcting breed correcting record&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210805034645.png&#34; alt=&#34;&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;PCA_blupADC&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;parameter&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Parameter&lt;/h2&gt;
+&lt;p&gt;Many parameters in &lt;code&gt;genotype_data_overlap&lt;/code&gt; are the same as in &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function (&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Thus, we will introduce specific parameters in &lt;code&gt;genotype_data_overlap&lt;/code&gt; function.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;1：selected_snps&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Number of SNPs in detecting overlap, &lt;code&gt;numeric&lt;/code&gt; class. Default is 1000.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;2：overlap_threshold&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Threshold of duplicate genotype, &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.95.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;3：duplication_check&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Whether check duplication of genotype, &lt;code&gt;logical&lt;/code&gt; class. Default is TRUE.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;4：breed_check&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Whether check breed record of genotype, &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;5：ind_breed&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Breed record of individuals, &lt;code&gt;data.frame&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;The format of &lt;code&gt;ind_breed&lt;/code&gt; is showing as follow:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Id&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Breed&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND3&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND5&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND6&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;When the proportion of genotype data between two individuals is larger than this threshold, these two individuals will be regarded as the same individual.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>R package:blupADC-使用说明3</title>
       <link>/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/</link>
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
@@ -2514,19 +2709,19 @@ sum_data=genotype_data_format_conversion(
 &lt;p&gt;&lt;strong&gt;👉 Note: In the analysis of DMU  and BLUPF90 , we need to download software DMU  (&lt;a href=&#34;https://dmu.ghpc.au.dk/dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU download website&lt;/a&gt;)  and BLUPF90 previously (&lt;a href=&#34;http://nce.ads.uga.edu/html/projects/programs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BLUPF90 download website&lt;/a&gt;). For convenience, we have encapsulated  the basic module of DMU and BLUPF90 in package &lt;code&gt;blupADC&lt;/code&gt;.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;For commercial use of DMU and BLUPF90,  user must contact the author of DMU and BLUPF90 !!!&lt;/strong&gt;&lt;/p&gt;
 &lt;h4 id=&#34;install-blupadc-on-linux&#34;&gt;Install blupADC on Linux&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1_linux.tar.gz&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz&amp;quot;
 install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;For Chinese users, we recommend to use the following code(&lt;strong&gt;installation would be  faster&lt;/strong&gt;):&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/751023/download/blupADC_1.0.1_linux.tar.gz&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/793574/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz&amp;quot;
 install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;install-blupadc-on-windows&#34;&gt;Install blupADC on Windows&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.1.zip&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2.zip&amp;quot;
 install.packages(packageurl,repos=NULL)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;For Chinese users, we recommend to use the following code(&lt;strong&gt;installation would be  faster&lt;/strong&gt;):&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/751003/download/blupADC_1.0.1.zip&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/793573/download/blupADC_1.0.2.zip&amp;quot;
 install.packages(packageurl,repos=NULL)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;After installed successfully, the &lt;code&gt;blupADC&lt;/code&gt; package can be loaded by typing&lt;/p&gt;
@@ -2579,7 +2774,7 @@ check_result=genotype_data_check(
                   return_result=TRUE             #return result 
                   )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;feature-4-pedigree-tracing-analysis-and-visualization-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-pedigreepedigree&#34;&gt;Feature 4. Pedigree tracing, analysis and visualization (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;feature-4-pedigree-tracing-analysis-see-more-detailshttpsqsmeinetlifyapppostfeature-4-trace_pedigreepedigree&#34;&gt;Feature 4. Pedigree tracing, analysis (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-4-trace_pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 pedigree_result=trace_pedigree(
                 input_pedigree=origin_pedigree,   #provided pedigree data object
@@ -2642,6 +2837,7 @@ run_BLUPF90(
         output_result_path=&amp;quot;/root&amp;quot;                   # output path 
         )   
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;1&lt;/p&gt;
 </description>
     </item>
     

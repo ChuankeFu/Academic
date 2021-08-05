@@ -106,44 +106,16 @@ check_result=genotype_data_check(
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-<<<<<<< HEAD
-&lt;td align=&#34;left&#34;&gt;IND291&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;LL&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND292&lt;/td&gt;
-=======
 &lt;td align=&#34;left&#34;&gt;IND1&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td align=&#34;left&#34;&gt;IND100&lt;/td&gt;
->>>>>>> c07c6ac1f298cde787b338fabdfeaa04baad351a
 &lt;td align=&#34;left&#34;&gt;LL&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-<<<<<<< HEAD
-&lt;td align=&#34;left&#34;&gt;IND293&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;LL&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND294&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;LL&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND295&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;LL&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND296&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;LL&lt;/td&gt;
-=======
 &lt;td align=&#34;left&#34;&gt;IND12&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
@@ -161,7 +133,6 @@ check_result=genotype_data_check(
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td align=&#34;left&#34;&gt;IND18&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
->>>>>>> c07c6ac1f298cde787b338fabdfeaa04baad351a
 &lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;

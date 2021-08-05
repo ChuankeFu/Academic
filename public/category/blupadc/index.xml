@@ -61,19 +61,19 @@
 &lt;p&gt;&lt;strong&gt;👉 Note: In the analysis of DMU  and BLUPF90 , we need to download software DMU  (&lt;a href=&#34;https://dmu.ghpc.au.dk/dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU download website&lt;/a&gt;)  and BLUPF90 previously (&lt;a href=&#34;http://nce.ads.uga.edu/html/projects/programs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BLUPF90 download website&lt;/a&gt;). For convenience, we have encapsulated  the basic module of DMU and BLUPF90 in package &lt;code&gt;blupADC&lt;/code&gt;.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;For commercial use of DMU and BLUPF90,  user must contact the author of DMU and BLUPF90 !!!&lt;/strong&gt;&lt;/p&gt;
 &lt;h4 id=&#34;install-blupadc-on-linux&#34;&gt;Install blupADC on Linux&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1_linux.tar.gz&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz&amp;quot;
 install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;For Chinese users, we recommend to use the following code(&lt;strong&gt;installation would be  faster&lt;/strong&gt;):&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/751023/download/blupADC_1.0.1_linux.tar.gz&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/793574/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz&amp;quot;
 install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;install-blupadc-on-windows&#34;&gt;Install blupADC on Windows&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.1.zip&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2.zip&amp;quot;
 install.packages(packageurl,repos=NULL)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;For Chinese users, we recommend to use the following code(&lt;strong&gt;installation would be  faster&lt;/strong&gt;):&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/751003/download/blupADC_1.0.1.zip&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/793573/download/blupADC_1.0.2.zip&amp;quot;
 install.packages(packageurl,repos=NULL)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;After installed successfully, the &lt;code&gt;blupADC&lt;/code&gt; package can be loaded by typing&lt;/p&gt;
@@ -126,7 +126,7 @@ check_result=genotype_data_check(
                   return_result=TRUE             #return result 
                   )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;feature-4-pedigree-tracing-analysis-and-visualization-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-pedigreepedigree&#34;&gt;Feature 4. Pedigree tracing, analysis and visualization (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;feature-4-pedigree-tracing-analysis-see-more-detailshttpsqsmeinetlifyapppostfeature-4-trace_pedigreepedigree&#34;&gt;Feature 4. Pedigree tracing, analysis (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-4-trace_pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 pedigree_result=trace_pedigree(
                 input_pedigree=origin_pedigree,   #provided pedigree data object
@@ -189,6 +189,7 @@ run_BLUPF90(
         output_result_path=&amp;quot;/root&amp;quot;                   # output path 
         )   
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;1&lt;/p&gt;
 </description>
     </item>
     

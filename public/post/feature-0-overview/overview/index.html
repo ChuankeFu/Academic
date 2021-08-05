@@ -836,19 +836,19 @@
 <p><strong>👉 Note: In the analysis of DMU  and BLUPF90 , we need to download software DMU  (<a href="https://dmu.ghpc.au.dk/dmu/" target="_blank" rel="noopener">DMU download website</a>)  and BLUPF90 previously (<a href="http://nce.ads.uga.edu/html/projects/programs/" target="_blank" rel="noopener">BLUPF90 download website</a>). For convenience, we have encapsulated  the basic module of DMU and BLUPF90 in package <code>blupADC</code>.</strong></p>
 <p><strong>For commercial use of DMU and BLUPF90,  user must contact the author of DMU and BLUPF90 !!!</strong></p>
 <h4 id="install-blupadc-on-linux">Install blupADC on Linux</h4>
-<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1_linux.tar.gz&quot;
+<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz&quot;
 install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
 </code></pre>
 <p>For Chinese users, we recommend to use the following code(<strong>installation would be  faster</strong>):</p>
-<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blup-adc/attach_files/751023/download/blupADC_1.0.1_linux.tar.gz&quot;
+<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blup-adc/attach_files/793574/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz&quot;
 install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
 </code></pre>
 <h4 id="install-blupadc-on-windows">Install blupADC on Windows</h4>
-<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.1.zip&quot;
+<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2.zip&quot;
 install.packages(packageurl,repos=NULL)
 </code></pre>
 <p>For Chinese users, we recommend to use the following code(<strong>installation would be  faster</strong>):</p>
-<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blup-adc/attach_files/751003/download/blupADC_1.0.1.zip&quot;
+<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blup-adc/attach_files/793573/download/blupADC_1.0.2.zip&quot;
 install.packages(packageurl,repos=NULL)
 </code></pre>
 <p>After installed successfully, the <code>blupADC</code> package can be loaded by typing</p>
@@ -901,7 +901,7 @@ check_result=genotype_data_check(
                   return_result=TRUE             #return result 
                   )
 </code></pre>
-<h4 id="feature-4-pedigree-tracing-analysis-and-visualization-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-pedigreepedigree">Feature 4. Pedigree tracing, analysis and visualization (<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/" target="_blank" rel="noopener">see more details</a>)</h4>
+<h4 id="feature-4-pedigree-tracing-analysis-see-more-detailshttpsqsmeinetlifyapppostfeature-4-trace_pedigreepedigree">Feature 4. Pedigree tracing, analysis (<a href="https://qsmei.netlify.app/post/feature-4-trace_pedigree/pedigree/" target="_blank" rel="noopener">see more details</a>)</h4>
 <pre><code class="language-R">library(blupADC)
 pedigree_result=trace_pedigree(
                 input_pedigree=origin_pedigree,   #provided pedigree data object
@@ -964,6 +964,7 @@ run_BLUPF90(
         output_result_path=&quot;/root&quot;                   # output path 
         )   
 </code></pre>
+<p>1</p>
 
     </div>
 

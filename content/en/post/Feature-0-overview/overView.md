@@ -58,28 +58,28 @@ install.packages(c("Rcpp", "RcppArmadillo","data.table"))
 #### Install blupADC on Linux 
 
 ```R
-packageurl <- "https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1_linux.tar.gz"
+packageurl <- "https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz"
 install.packages(packageurl,repos=NULL,method="libcurl")
 ```
 
 For Chinese users, we recommend to use the following code(**installation would be  faster**):
 
 ```R
-packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/751023/download/blupADC_1.0.1_linux.tar.gz"
+packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/793574/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz"
 install.packages(packageurl,repos=NULL,method="libcurl")
 ```
 
 #### Install blupADC on Windows
 
 ```R
-packageurl <- "https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.1.zip"
+packageurl <- "https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2.zip"
 install.packages(packageurl,repos=NULL)
 ```
 
 For Chinese users, we recommend to use the following code(**installation would be  faster**):
 
 ```R
-packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/751003/download/blupADC_1.0.1.zip"
+packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/793573/download/blupADC_1.0.2.zip"
 install.packages(packageurl,repos=NULL)
 ```
 
@@ -150,7 +150,7 @@ check_result=genotype_data_check(
                   )
 ```
 
-#### Feature 4. Pedigree tracing, analysis and visualization ([see more details](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/))
+#### Feature 4. Pedigree tracing, analysis ([see more details](https://qsmei.netlify.app/post/feature-4-trace_pedigree/pedigree/))
 ``` R
 library(blupADC)
 pedigree_result=trace_pedigree(
@@ -223,3 +223,5 @@ run_BLUPF90(
         output_result_path="/root"                   # output path 
         )   
 ```
+
+1
