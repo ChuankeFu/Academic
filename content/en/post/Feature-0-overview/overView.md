@@ -90,7 +90,7 @@ library(blupADC)
 -   Feature 5. Pedigree visualization
 -   Feature 6. Relationship matrix construction(A,G, and H) 
 -   Feature 7. Genetic evaluation with DMU
--   Feature 8. Genetic  evaluation with BLUPF90
+-   Feature 8. Genetic  evaluation with BLUPF90 
 
 ## Usage
 
