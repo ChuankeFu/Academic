@@ -26,12 +26,11 @@ math: true
 
 🙉 In the application of animal and plant breeding, the key step is the construction of kinship matrix.  Package: `blupADC` provides `cal_kinship `function which can construct various type of relationship matrix directly,  including  **additive relationship matrix**(pedigree, genomic and single-step), and **dominance relationship matrix**(pedigree, genomic and single-step), and **the inverse matrix** of these kinship matrix.  
 
-<<<<<<< HEAD:content/en/post/Feature-6-Kinship_Matrix/relationship_matrix.md
-In the construction of single-step relationship matrix, users can select metafounder algorithm or APY algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, `cal_kinship ` can calculate several types of **inbreeding coefficients**  (pedigree, genomic, and single-step) .
-=======
-In the construction of single-step relationship matrix, users can select metafounder algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, `cal_kinship ` can calculate several types of **inbreeding coefficients**  (pedigree, genomic, and single-step) .
->>>>>>> c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix.md
+In the construction of single-step relationship matrix, users can select metafounder algorithm or APY algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, `cal_kinship ` can calculate several types of inbreeding coefficients  (pedigree, genomic, and single-step) .
 
+
+
+In the construction of single-step relationship matrix, users can select metafounder algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, `cal_kinship ` can calculate several types of **inbreeding coefficients**  (pedigree, genomic, and single-step) .
 ## Example
 
 ### 😾 Pedigree-based kinship matrix
@@ -62,12 +61,6 @@ kinship_result=cal_kinship(
 **Note**: In the construction of genomic and single-step relationship matrix, people need to provide genotype data. These parameters are the same as in `genotype_data_format_conversion` function(([see more details](https://qsmei.netlify.app/post/blupadc/)).
 
 ###  💨Single-step based kinship matrix
-<<<<<<< HEAD:content/en/post/Feature-6-Kinship_Matrix/relationship_matrix.md
-=======
-
-
->>>>>>> c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix.md
-
 ``` {.R}
 library(blupADC)
 kinship_result=cal_kinship(
@@ -172,7 +165,6 @@ Whether take $p=q=0.5$  in the construction of relationship matrix,  `logical` c
 -   **13：kinship_trace**
 
 Whether take the trace of kinship matrix to scale relationship matrix,  `logical` class. Default is FALSE.
-<<<<<<< HEAD:content/en/post/Feature-6-Kinship_Matrix/relationship_matrix.md
 
 -   **14：Metafounder_algorithm** 
 
@@ -185,16 +177,10 @@ Whether take the APY algorithm to construct inverse relationship matrix,  `logic
 -   **16：APY_eigen_threshold** 
 
 Threshold of variation explained by eigenvalues ,  `numeric` class. Default is 0.95.
-=======
->>>>>>> c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix.md
 
 -   **17：APY_n_core** 
 
-<<<<<<< HEAD:content/en/post/Feature-6-Kinship_Matrix/relationship_matrix.md
 Number of  core animals ,  `numeric` class. Default is NULL.
-=======
-Whether take the metafounder algorithm to construct single-step relationship matrix,  `logical` class. Default is FALSE.
->>>>>>> c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix.md
 
 -   **18：SSBLUP_omega**  
 

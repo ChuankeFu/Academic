@@ -761,7 +761,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    5 min read
+    4 min read
   </span>
   
 
@@ -800,9 +800,6 @@
   <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
-  </ul>
-
-  <ul>
     <li><a href="#example">Example</a>
       <ul>
         <li><a href="#-pedigree-based-kinship-matrix">😾 Pedigree-based kinship matrix</a></li>
@@ -810,9 +807,6 @@
         <li><a href="#single-step-based-kinship-matrix">💨Single-step based kinship matrix</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
     <li><a href="#parameter">Parameter</a>
       <ul>
         <li><a href="#basic">💪Basic</a></li>
@@ -825,24 +819,8 @@
 
 <h2 id="overview">Overview</h2>
 <p>🙉 In the application of animal and plant breeding, the key step is the construction of kinship matrix.  Package: <code>blupADC</code> provides <code>cal_kinship </code>function which can construct various type of relationship matrix directly,  including  <strong>additive relationship matrix</strong>(pedigree, genomic and single-step), and <strong>dominance relationship matrix</strong>(pedigree, genomic and single-step), and <strong>the inverse matrix</strong> of these kinship matrix.</p>
-<h1 id="in-the-construction-of-single-step-relationship-matrix-users-can-select-metafounder-algorithm-or-apy-algorithm-in-terms-of-the-construction-of-dominance-relationship-matrix-users-can-select-different-coding-manners-for-genomic-dominance-relationship-matrix-gene-dropping-algorithm-for-pedigree-dominance-relationship-matrix--in-addition-cal_kinship--can-calculate-several-types-of-inbreeding-coefficients--pedigree-genomic-and-single-step-">&laquo;&laquo;&laquo;&lt; HEAD:content/en/post/Feature-6-Kinship_Matrix/relationship_matrix.md
-In the construction of single-step relationship matrix, users can select metafounder algorithm or APY algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, <code>cal_kinship </code> can calculate several types of <strong>inbreeding coefficients</strong>  (pedigree, genomic, and single-step) .</h1>
+<p>In the construction of single-step relationship matrix, users can select metafounder algorithm or APY algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, <code>cal_kinship </code> can calculate several types of inbreeding coefficients  (pedigree, genomic, and single-step) .</p>
 <p>In the construction of single-step relationship matrix, users can select metafounder algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, <code>cal_kinship </code> can calculate several types of <strong>inbreeding coefficients</strong>  (pedigree, genomic, and single-step) .</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix.md</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <h2 id="example">Example</h2>
 <h3 id="-pedigree-based-kinship-matrix">😾 Pedigree-based kinship matrix</h3>
 <pre><code class="language-{.R}">library(blupADC)
@@ -864,22 +842,6 @@ kinship_result=cal_kinship(
 </code></pre>
 <p><strong>Note</strong>: In the construction of genomic and single-step relationship matrix, people need to provide genotype data. These parameters are the same as in <code>genotype_data_format_conversion</code> function((<a href="https://qsmei.netlify.app/post/blupadc/" target="_blank" rel="noopener">see more details</a>).</p>
 <h3 id="single-step-based-kinship-matrix">💨Single-step based kinship matrix</h3>
-<h1 id="-headcontentenpostfeature-6-kinship_matrixrelationship_matrixmd">&laquo;&laquo;&laquo;&lt; HEAD:content/en/post/Feature-6-Kinship_Matrix/relationship_matrix.md</h1>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix.md</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <pre><code class="language-{.R}">library(blupADC)
 kinship_result=cal_kinship(
                 input_data_hmp=data_hmp,          #provided hapmap data object
@@ -1016,8 +978,7 @@ kinship_result=cal_kinship(
 <ul>
 <li><strong>13：kinship_trace</strong></li>
 </ul>
-<p>Whether take the trace of kinship matrix to scale relationship matrix,  <code>logical</code> class. Default is FALSE.
-&laquo;&laquo;&laquo;&lt; HEAD:content/en/post/Feature-6-Kinship_Matrix/relationship_matrix.md</p>
+<p>Whether take the trace of kinship matrix to scale relationship matrix,  <code>logical</code> class. Default is FALSE.</p>
 <ul>
 <li><strong>14：Metafounder_algorithm</strong></li>
 </ul>
@@ -1029,43 +990,11 @@ kinship_result=cal_kinship(
 <ul>
 <li><strong>16：APY_eigen_threshold</strong></li>
 </ul>
-<h1 id="threshold-of-variation-explained-by-eigenvalues---numeric-class-default-is-095">Threshold of variation explained by eigenvalues ,  <code>numeric</code> class. Default is 0.95.</h1>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix.md</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+<p>Threshold of variation explained by eigenvalues ,  <code>numeric</code> class. Default is 0.95.</p>
 <ul>
 <li><strong>17：APY_n_core</strong></li>
 </ul>
-<h1 id="number-of--core-animals---numeric-class-default-is-null">&laquo;&laquo;&laquo;&lt; HEAD:content/en/post/Feature-6-Kinship_Matrix/relationship_matrix.md
-Number of  core animals ,  <code>numeric</code> class. Default is NULL.</h1>
-<p>Whether take the metafounder algorithm to construct single-step relationship matrix,  <code>logical</code> class. Default is FALSE.</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix.md</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+<p>Number of  core animals ,  <code>numeric</code> class. Default is NULL.</p>
 <ul>
 <li><strong>18：SSBLUP_omega</strong></li>
 </ul>

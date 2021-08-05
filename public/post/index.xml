@@ -633,9 +633,6 @@ run_DMU(
   &lt;nav id=&#34;TableOfContents&#34;&gt;
   &lt;ul&gt;
     &lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-
-  &lt;ul&gt;
     &lt;li&gt;&lt;a href=&#34;#example&#34;&gt;Example&lt;/a&gt;
       &lt;ul&gt;
         &lt;li&gt;&lt;a href=&#34;#-pedigree-based-kinship-matrix&#34;&gt;😾 Pedigree-based kinship matrix&lt;/a&gt;&lt;/li&gt;
@@ -643,9 +640,6 @@ run_DMU(
         &lt;li&gt;&lt;a href=&#34;#single-step-based-kinship-matrix&#34;&gt;💨Single-step based kinship matrix&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/li&gt;
-  &lt;/ul&gt;
-
-  &lt;ul&gt;
     &lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;
       &lt;ul&gt;
         &lt;li&gt;&lt;a href=&#34;#basic&#34;&gt;💪Basic&lt;/a&gt;&lt;/li&gt;
@@ -658,24 +652,8 @@ run_DMU(
 
 &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;🙉 In the application of animal and plant breeding, the key step is the construction of kinship matrix.  Package: &lt;code&gt;blupADC&lt;/code&gt; provides &lt;code&gt;cal_kinship &lt;/code&gt;function which can construct various type of relationship matrix directly,  including  &lt;strong&gt;additive relationship matrix&lt;/strong&gt;(pedigree, genomic and single-step), and &lt;strong&gt;dominance relationship matrix&lt;/strong&gt;(pedigree, genomic and single-step), and &lt;strong&gt;the inverse matrix&lt;/strong&gt; of these kinship matrix.&lt;/p&gt;
-&lt;h1 id=&#34;in-the-construction-of-single-step-relationship-matrix-users-can-select-metafounder-algorithm-or-apy-algorithm-in-terms-of-the-construction-of-dominance-relationship-matrix-users-can-select-different-coding-manners-for-genomic-dominance-relationship-matrix-gene-dropping-algorithm-for-pedigree-dominance-relationship-matrix--in-addition-cal_kinship--can-calculate-several-types-of-inbreeding-coefficients--pedigree-genomic-and-single-step-&#34;&gt;&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD:content/en/post/Feature-6-Kinship_Matrix/relationship_matrix.md
-In the construction of single-step relationship matrix, users can select metafounder algorithm or APY algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, &lt;code&gt;cal_kinship &lt;/code&gt; can calculate several types of &lt;strong&gt;inbreeding coefficients&lt;/strong&gt;  (pedigree, genomic, and single-step) .&lt;/h1&gt;
+&lt;p&gt;In the construction of single-step relationship matrix, users can select metafounder algorithm or APY algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, &lt;code&gt;cal_kinship &lt;/code&gt; can calculate several types of inbreeding coefficients  (pedigree, genomic, and single-step) .&lt;/p&gt;
 &lt;p&gt;In the construction of single-step relationship matrix, users can select metafounder algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, &lt;code&gt;cal_kinship &lt;/code&gt; can calculate several types of &lt;strong&gt;inbreeding coefficients&lt;/strong&gt;  (pedigree, genomic, and single-step) .&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix.md&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
 &lt;h3 id=&#34;-pedigree-based-kinship-matrix&#34;&gt;😾 Pedigree-based kinship matrix&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
@@ -697,22 +675,6 @@ kinship_result=cal_kinship(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: In the construction of genomic and single-step relationship matrix, people need to provide genotype data. These parameters are the same as in &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function((&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
 &lt;h3 id=&#34;single-step-based-kinship-matrix&#34;&gt;💨Single-step based kinship matrix&lt;/h3&gt;
-&lt;h1 id=&#34;-headcontentenpostfeature-6-kinship_matrixrelationship_matrixmd&#34;&gt;&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD:content/en/post/Feature-6-Kinship_Matrix/relationship_matrix.md&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix.md&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
 kinship_result=cal_kinship(
                 input_data_hmp=data_hmp,          #provided hapmap data object
@@ -849,8 +811,7 @@ kinship_result=cal_kinship(
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;13：kinship_trace&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Whether take the trace of kinship matrix to scale relationship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.
-&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD:content/en/post/Feature-6-Kinship_Matrix/relationship_matrix.md&lt;/p&gt;
+&lt;p&gt;Whether take the trace of kinship matrix to scale relationship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;14：Metafounder_algorithm&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -862,43 +823,11 @@ kinship_result=cal_kinship(
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;16：APY_eigen_threshold&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;threshold-of-variation-explained-by-eigenvalues---numeric-class-default-is-095&#34;&gt;Threshold of variation explained by eigenvalues ,  &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.95.&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix.md&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;Threshold of variation explained by eigenvalues ,  &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.95.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;17：APY_n_core&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;number-of--core-animals---numeric-class-default-is-null&#34;&gt;&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD:content/en/post/Feature-6-Kinship_Matrix/relationship_matrix.md
-Number of  core animals ,  &lt;code&gt;numeric&lt;/code&gt; class. Default is NULL.&lt;/h1&gt;
-&lt;p&gt;Whether take the metafounder algorithm to construct single-step relationship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix.md&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;Number of  core animals ,  &lt;code&gt;numeric&lt;/code&gt; class. Default is NULL.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;18：SSBLUP_omega&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -2460,22 +2389,7 @@ sum_data=genotype_data_format_conversion(
 &lt;h3 id=&#34;overview-1&#34;&gt;OVERVIEW&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding(&lt;strong&gt;traditional blup and genomic selection&lt;/strong&gt;).  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (&lt;code&gt;Rcpp&lt;/code&gt; and &lt;code&gt;RcppArmadillo &lt;/code&gt;) , and it also supports  parallel calculation by applying &lt;code&gt;openMP&lt;/code&gt; programming.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(&lt;strong&gt;trace pedigree, rename pedigree, and correct pedigree errors&lt;/strong&gt;), genotype data format conversion(supports &lt;strong&gt;Hapmap, Plink, Blupf90, Numeric, and VCF&lt;/strong&gt; format), genotype data quality control and imputation, construction of kinship matrix(&lt;strong&gt;pedigree, genomic  and single-step&lt;/strong&gt;),and genetic evaluation( by interfacing with two famous breeding softwares, &lt;strong&gt;DMU&lt;/strong&gt; and &lt;strong&gt;BLUPF90&lt;/strong&gt;  in an easy way).&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md
-Finally, we kindly provides an easier way of applying &lt;code&gt;blupADC&lt;/code&gt;, which is a free  website(&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-22-blupadc-online-dmu/online_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).  Most functions of  package&lt;code&gt;blupADC&lt;/code&gt;  can be found in this website. Thus, for user who has little code experience, we recommend  to use this website(&lt;strong&gt;only need to click and type, that&amp;rsquo;s enough&lt;/strong&gt;).  But the pitfall of this website is that it can&amp;rsquo;t handle big data.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;Finally, we kindly provides an easier way of applying &lt;code&gt;blupADC&lt;/code&gt;, which is a free  website(&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-22-blupadc-online-dmu/online_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).  Most functions of  package&lt;code&gt;blupADC&lt;/code&gt;  can be found in this website. Thus, for user who has little code experience, we recommend  to use this website(&lt;strong&gt;only need to click and type, that&amp;rsquo;s enough&lt;/strong&gt;).  But the pitfall of this website is that it can&amp;rsquo;t handle big data.&lt;/p&gt;
 &lt;p&gt;😊 Good Luck Charlie !&lt;/p&gt;
 &lt;h2 id=&#34;getting-started&#34;&gt;GETTING STARTED&lt;/h2&gt;
 &lt;h3 id=&#34;installation&#34;&gt;🙊Installation&lt;/h3&gt;
@@ -2507,34 +2421,13 @@ install.packages(packageurl,repos=NULL)
 &lt;ul&gt;
 &lt;li&gt;Feature 1. Genomic data format conversion&lt;/li&gt;
 &lt;li&gt;Feature 2. Genomic data quality control and genotype imputation&lt;/li&gt;
-&lt;li&gt;Feature 3. Breed composition analysis and duplication detection of genomic data
-&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD:content/en/post/Feature-0-overview/overView.md&lt;/li&gt;
+&lt;li&gt;Feature 3. Breed composition analysis and duplication detection of genomic data&lt;/li&gt;
 &lt;li&gt;Feature 4. Pedigree tracing, and analysis&lt;/li&gt;
 &lt;li&gt;Feature 5. Pedigree visualization&lt;/li&gt;
 &lt;li&gt;Feature 6. Relationship matrix construction(A,G, and H)&lt;/li&gt;
 &lt;li&gt;Feature 7. Genetic evaluation with DMU&lt;/li&gt;
-&lt;li&gt;Feature 8. Genetic  evaluation with BLUPF90 
-=======&lt;/li&gt;
-&lt;li&gt;Feature 4. Pedigree tracing, analysis and visualization&lt;/li&gt;
-&lt;li&gt;Feature 5. Relationship matrix construction(A,G, and H)&lt;/li&gt;
-&lt;li&gt;Feature 6. Genetic evaluation with DMU&lt;/li&gt;
-&lt;li&gt;Feature 7. Genetic  evaluation with BLUPF90&lt;/li&gt;
+&lt;li&gt;Feature 8. Genetic  evaluation with BLUPF90&lt;/li&gt;
 &lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
 &lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;For convenience, all documents support two-language(&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-21-r-package-rblupadc-overview/overview/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;English&lt;/a&gt; and &lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-21-r-package-rblupadc-overview/overview/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chinese&lt;/a&gt;).&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; provides several datasets objects, including &lt;code&gt;data_hmp&lt;/code&gt;, &lt;code&gt;origin_pedigree&lt;/code&gt;.&lt;/p&gt;
@@ -2550,7 +2443,6 @@ sum_data=genotype_data_format_conversion(
          cpu_cores=1                # number of cpu 
                   )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD:content/en/post/Feature-0-overview/overView.md&lt;/p&gt;
 &lt;h4 id=&#34;feature-2-genomic-data-quality-control-and-genotype-imputation-see-more-detailshttpsqsmeinetlifyapppostfeature-2-qc_imputationqc_imputation&#34;&gt;Feature 2. Genomic data quality control and genotype imputation (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-2-qc_imputation/qc_imputation/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 genotype_data_QC_Imputation(
@@ -2561,24 +2453,8 @@ genotype_data_QC_Imputation(
             output_data_type=&amp;quot;Plink&amp;quot;                #output data format 
             )                       
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;feature-3-breed-composition-analysis-and-duplication-detection-of-genomic-data-see-more-detailshttpsqsmeinetlifyapppostfeature-3-overlap_pcablupadc&#34;&gt;Feature 3. Breed composition analysis and duplication detection of genomic data (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-3-overlap_pca/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-=======
-#### Feature 2. Genomic data quality control and genotype imputation ([see more details](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/))
-
-``` R
-library(blupADC)
-genotype_data_QC_Imputation(
-            input_data_hmp=data_hmp,    #provided hapmap data object
-            data_analysis_method=&amp;quot;QC_Imputation&amp;quot;,   #analysis method type,QC + imputatoin
-            output_data_path=&amp;quot;/root/result&amp;quot;,        #output data path
-            output_data_name=&amp;quot;YY_data&amp;quot;,             #output data name
-            output_data_type=&amp;quot;Plink&amp;quot;                #output data format 
-            )                       
-&lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-3-breed-composition-analysis-and-duplication-detection-of-genomic-data-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-overlap-genotypeblupadc&#34;&gt;Feature 3. Breed composition analysis and duplication detection of genomic data (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-overlap-genotype/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md
 check_result=genotype_data_check(
                   input_data_hmp=PCA_data_hmp,   #provided hapmap data object
                   duplication_check=FALSE,       #whether check the duplication of genotype
@@ -2588,41 +2464,14 @@ check_result=genotype_data_check(
                   return_result=TRUE             #return result 
                   )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD:content/en/post/Feature-0-overview/overView.md&lt;/p&gt;
-&lt;h4 id=&#34;feature-4-pedigree-tracing-and-analysis-see-more-detailshttpsqsmeinetlifyapppostfeature-4-trace_pedigreepedigree&#34;&gt;Feature 4. Pedigree tracing, and analysis (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-4-trace_pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
-&lt;p&gt;=======&lt;/p&gt;
 &lt;h4 id=&#34;feature-4-pedigree-tracing-analysis-and-visualization-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-pedigreepedigree&#34;&gt;Feature 4. Pedigree tracing, analysis and visualization (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-#Trace pedigree
 pedigree_result=trace_pedigree(
                 input_pedigree=origin_pedigree,   #provided pedigree data object
                 trace_generation=3,       # trace generation
                 output_pedigree_tree=TRUE  # output pedigree tree
                 )  
-#Visualize pedigree
-library(blupADC)
-plot=ggped(
-       input_pedigree=plot_pedigree,
-       trace_id=c(&amp;quot;121&amp;quot;),
-       trace_sibs=TRUE   #whether plot the sibs of subset-id  
-        ) 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD:content/en/post/Feature-0-overview/overView.md&lt;/p&gt;
 &lt;h4 id=&#34;feature-5-pedigree-visualization-see-more-detailshttpsqsmeinetlifyapppostfeature-5-visualize_pedigreepedigree&#34;&gt;Feature 5. Pedigree visualization (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-5-visualize_pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 plot=ggped(
@@ -2632,23 +2481,6 @@ plot=ggped(
         ) 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-6-relationship-matrix-constructionag-and-h--see-more-detailshttpsqsmeinetlifyapppostfeature-6-kinship_matrixrelationship_matrix&#34;&gt;Feature 6. Relationship matrix construction(A,G, and H)  (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-6-kinship_matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
-&lt;p&gt;=======&lt;/p&gt;
-&lt;h4 id=&#34;feature-5-relationship-matrix-constructionag-and-h--see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-calculate-relationship-matrixrelationship_matrix&#34;&gt;Feature 5. Relationship matrix construction(A,G, and H)  (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 kinship_result=cal_kinship(
                 input_data_hmp=data_hmp,          #provided hapmap data object
@@ -2657,25 +2489,7 @@ kinship_result=cal_kinship(
                 inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #type of inbreeding coefficients
                 return_result=TRUE)               #return result              
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD:content/en/post/Feature-0-overview/overView.md&lt;/p&gt;
 &lt;h4 id=&#34;feature-7-genetic-evaluation-with-dmu-see-more-detailshttpsqsmeinetlifyapppostfeature-7-run_dmurun_dmu&#34;&gt;Feature 7. Genetic evaluation with DMU (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-7-run_dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
-&lt;p&gt;=======&lt;/p&gt;
-&lt;h4 id=&#34;feature-6-genetic-evaluation-with-dmu-see-more-detailshttpsqsmeinetlifyapppost2021-04-20-r-package-blup-adc-run-dmurun_dmu&#34;&gt;Feature 6. Genetic evaluation with DMU (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
   
@@ -2695,25 +2509,7 @@ run_DMU(
         output_result_path=&amp;quot;/root&amp;quot;                   # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD:content/en/post/Feature-0-overview/overView.md&lt;/p&gt;
 &lt;h4 id=&#34;feature-8-genetic-evaluation-with-blupf90-see-more-detailshttpsqsmeinetlifyapppostfeature-8-run_blupf90blupf90&#34;&gt;Feature 8. Genetic evaluation with BLUPF90 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-8-run_blupf90/blupf90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
-&lt;p&gt;=======&lt;/p&gt;
-&lt;h4 id=&#34;feature-7-genetic-evaluation-with-blupf90-see-more-detailshttpsqsmeinetlifyapppost2021-04-20-r-package-blup-adc-run-blupf90blupf90&#34;&gt;Feature 7. Genetic evaluation with BLUPF90 (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-20-r-package-blup-adc-run-blupf90/blupf90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;c07c6ac1f298cde787b338fabdfeaa04baad351a:content/en/post/2021-04-21-r-package-rblupadc-overview/overView.md&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
-&lt;/blockquote&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
   
