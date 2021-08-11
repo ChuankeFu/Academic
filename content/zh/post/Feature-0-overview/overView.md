@@ -103,7 +103,7 @@ library(blupADC)
 system.file("extdata", package = "blupADC") # path of provided files
 ```
 
-#### 功能 1. 基因型数据间的格式转换 ([see more details](https://qsmei.netlify.app/post/blupadc/))
+#### 功能 1. 基因型数据间的格式转换 ([see more details](https://qsmei.netlify.app/zh/post/blupadc/))
 
 ``` R
 library(blupADC)
@@ -115,7 +115,7 @@ sum_data=genotype_data_format_conversion(
                   )
 ```
 
-#### 功能 2. 基因型数据的质控与填充 ([see more details](https://qsmei.netlify.app/post/feature-2-qc_imputation/qc_imputation/))
+#### 功能 2. 基因型数据的质控与填充 ([see more details](https://qsmei.netlify.app/zh/post/feature-2-qc_imputation/qc_imputation/))
 
 ``` R
 library(blupADC)
@@ -128,7 +128,7 @@ genotype_data_QC_Imputation(
             )                       
 ```
 
-#### 功能 3. 品种分析及基因型数据重复性检测 ([see more details](https://qsmei.netlify.app/post/feature-3-overlap_pca/blupadc/))
+#### 功能 3. 品种分析及基因型数据重复性检测 ([see more details](https://qsmei.netlify.app/zh/post/feature-3-overlap_pca/blupadc/))
 
 ``` R
 library(blupADC)
@@ -142,7 +142,7 @@ check_result=genotype_data_check(
                   )
 ```
 
-#### 功能 4. 系谱追溯、重命名及纠错 ([see more details](https://qsmei.netlify.app/post/feature-4-trace_pedigree/pedigree/))
+#### 功能 4. 系谱追溯、重命名及纠错 ([see more details](https://qsmei.netlify.app/zh/post/feature-4-trace_pedigree/pedigree/))
 
 ``` R
 library(blupADC)
@@ -153,7 +153,7 @@ pedigree_result=trace_pedigree(
                 )  
 ```
 
-#### 功能 5. 系谱可视化 ([see more details](https://qsmei.netlify.app/post/feature-5-visualize_pedigree/pedigree/))
+#### 功能 5. 系谱可视化 ([see more details](https://qsmei.netlify.app/zh/post/feature-5-visualize_pedigree/pedigree/))
 
 ``` R
 library(blupADC)
@@ -164,7 +164,7 @@ plot=ggped(
         ) 
 ```
 
-#### 功能 6. 亲缘关系矩阵的构建(A,G, H)  ([see more details](https://qsmei.netlify.app/post/feature-6-kinship_matrix/relationship_matrix/))
+#### 功能 6. 亲缘关系矩阵的构建(A,G, H)  ([see more details](https://qsmei.netlify.app/zh/post/feature-6-kinship_matrix/relationship_matrix/))
 
 ``` R
 library(blupADC)
@@ -176,7 +176,7 @@ kinship_result=cal_kinship(
                 return_result=TRUE)               #return result              
 ```
 
-#### 功能 7. 利用DMU软件进行遗传评估 ([see more details](https://qsmei.netlify.app/post/feature-7-run_dmu/run_dmu/))
+#### 功能 7. 利用DMU软件进行遗传评估 ([see more details](https://qsmei.netlify.app/zh/post/feature-7-run_dmu/run_dmu/))
 
 ``` R
 library(blupADC)
@@ -199,7 +199,7 @@ run_DMU(
         )
 ```
 
-#### 功能 8. 利用BLUPF90软件进行遗传评估 ([see more details](https://qsmei.netlify.app/post/feature-8-run_blupf90/blupf90/))
+#### 功能 8. 利用BLUPF90软件进行遗传评估 ([see more details](https://qsmei.netlify.app/zh/post/feature-8-run_blupf90/blupf90/))
 
 ``` R
 library(blupADC)

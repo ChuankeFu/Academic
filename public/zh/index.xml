@@ -2435,7 +2435,7 @@ install.packages(packageurl,repos=NULL)
 &lt;p&gt;此外，&lt;code&gt;blupADC&lt;/code&gt;  提供一些示例文件， 这些文件存储在&lt;code&gt;~/blupADC/extdata&lt;/code&gt; 路径下。通过输出下面的代码，我们就能得到 这些文件的绝对路径了：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;) # path of provided files
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-1-基因型数据间的格式转换-see-more-detailshttpsqsmeinetlifyapppostblupadc&#34;&gt;功能 1. 基因型数据间的格式转换 (&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-1-基因型数据间的格式转换-see-more-detailshttpsqsmeinetlifyappzhpostblupadc&#34;&gt;功能 1. 基因型数据间的格式转换 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 sum_data=genotype_data_format_conversion(
          input_data_hmp=data_hmp,  #provided hapmap data object 
@@ -2444,7 +2444,7 @@ sum_data=genotype_data_format_conversion(
          cpu_cores=1                # number of cpu 
                   )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-2-基因型数据的质控与填充-see-more-detailshttpsqsmeinetlifyapppostfeature-2-qc_imputationqc_imputation&#34;&gt;功能 2. 基因型数据的质控与填充 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-2-qc_imputation/qc_imputation/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-2-基因型数据的质控与填充-see-more-detailshttpsqsmeinetlifyappzhpostfeature-2-qc_imputationqc_imputation&#34;&gt;功能 2. 基因型数据的质控与填充 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/feature-2-qc_imputation/qc_imputation/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 genotype_data_QC_Imputation(
             input_data_hmp=data_hmp,    #provided hapmap data object
@@ -2454,7 +2454,7 @@ genotype_data_QC_Imputation(
             output_data_type=&amp;quot;VCF&amp;quot;                #output data format 
             )                       
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-3-品种分析及基因型数据重复性检测-see-more-detailshttpsqsmeinetlifyapppostfeature-3-overlap_pcablupadc&#34;&gt;功能 3. 品种分析及基因型数据重复性检测 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-3-overlap_pca/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-3-品种分析及基因型数据重复性检测-see-more-detailshttpsqsmeinetlifyappzhpostfeature-3-overlap_pcablupadc&#34;&gt;功能 3. 品种分析及基因型数据重复性检测 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/feature-3-overlap_pca/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 check_result=genotype_data_check(
                   input_data_hmp=PCA_data_hmp,   #provided hapmap data object
@@ -2465,7 +2465,7 @@ check_result=genotype_data_check(
                   return_result=TRUE             #return result 
                   )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-4-系谱追溯重命名及纠错-see-more-detailshttpsqsmeinetlifyapppostfeature-4-trace_pedigreepedigree&#34;&gt;功能 4. 系谱追溯、重命名及纠错 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-4-trace_pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-4-系谱追溯重命名及纠错-see-more-detailshttpsqsmeinetlifyappzhpostfeature-4-trace_pedigreepedigree&#34;&gt;功能 4. 系谱追溯、重命名及纠错 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/feature-4-trace_pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 pedigree_result=trace_pedigree(
                 input_pedigree=origin_pedigree,   #provided pedigree data object
@@ -2473,7 +2473,7 @@ pedigree_result=trace_pedigree(
                 output_pedigree_tree=TRUE  # output pedigree tree
                 )  
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-5-系谱可视化-see-more-detailshttpsqsmeinetlifyapppostfeature-5-visualize_pedigreepedigree&#34;&gt;功能 5. 系谱可视化 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-5-visualize_pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-5-系谱可视化-see-more-detailshttpsqsmeinetlifyappzhpostfeature-5-visualize_pedigreepedigree&#34;&gt;功能 5. 系谱可视化 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/feature-5-visualize_pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 plot=ggped(
        input_pedigree=plot_pedigree,
@@ -2481,7 +2481,7 @@ plot=ggped(
        trace_sibs=TRUE   #whether plot the sibs of subset-id  
         ) 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-6-亲缘关系矩阵的构建ag-h--see-more-detailshttpsqsmeinetlifyapppostfeature-6-kinship_matrixrelationship_matrix&#34;&gt;功能 6. 亲缘关系矩阵的构建(A,G, H)  (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-6-kinship_matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-6-亲缘关系矩阵的构建ag-h--see-more-detailshttpsqsmeinetlifyappzhpostfeature-6-kinship_matrixrelationship_matrix&#34;&gt;功能 6. 亲缘关系矩阵的构建(A,G, H)  (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/feature-6-kinship_matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 kinship_result=cal_kinship(
                 input_data_hmp=data_hmp,          #provided hapmap data object
@@ -2490,7 +2490,7 @@ kinship_result=cal_kinship(
                 inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #type of inbreeding coefficients
                 return_result=TRUE)               #return result              
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-7-利用dmu软件进行遗传评估-see-more-detailshttpsqsmeinetlifyapppostfeature-7-run_dmurun_dmu&#34;&gt;功能 7. 利用DMU软件进行遗传评估 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-7-run_dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-7-利用dmu软件进行遗传评估-see-more-detailshttpsqsmeinetlifyappzhpostfeature-7-run_dmurun_dmu&#34;&gt;功能 7. 利用DMU软件进行遗传评估 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/feature-7-run_dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
   
@@ -2510,7 +2510,7 @@ run_DMU(
         output_result_path=&amp;quot;/root&amp;quot;                   # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-8-利用blupf90软件进行遗传评估-see-more-detailshttpsqsmeinetlifyapppostfeature-8-run_blupf90blupf90&#34;&gt;功能 8. 利用BLUPF90软件进行遗传评估 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-8-run_blupf90/blupf90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-8-利用blupf90软件进行遗传评估-see-more-detailshttpsqsmeinetlifyappzhpostfeature-8-run_blupf90blupf90&#34;&gt;功能 8. 利用BLUPF90软件进行遗传评估 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/feature-8-run_blupf90/blupf90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
   
