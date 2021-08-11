@@ -13,7 +13,7 @@
     </image>
     
     <item>
-      <title>R package:blupADC-Feature 3</title>
+      <title>R package:blupADC-功能3</title>
       <link>/zh/post/feature-3-overlap_pca/blupadc/</link>
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
       <guid>/zh/post/feature-3-overlap_pca/blupadc/</guid>
@@ -31,12 +31,12 @@
 
 &lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Overview&lt;/h2&gt;
-&lt;p&gt;👦 Breed composition analysis is usually a problem in data analysis. In package:&lt;code&gt;blupADC&lt;/code&gt;, user can solve this problem by applying &lt;code&gt;genotype_data_check&lt;/code&gt; function. In addition, user can detect the duplication of genomic data easily by applying &lt;code&gt;genotype_data_check&lt;/code&gt; function.&lt;/p&gt;
+&lt;p&gt;👦 品种成分分析一直以来都是数据分析中的一个难题。&lt;code&gt;blupADC&lt;/code&gt; 为用户提供了&lt;code&gt;genotype_data_check&lt;/code&gt; 函数，使得用户能够方便的解决这个问题。此外，用户还可以用这个函数进行基因型数据的重复性检测。&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;example&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Example&lt;/h2&gt;
-&lt;div id=&#34;breed-composition-analysis&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Breed composition analysis&lt;/h3&gt;
+&lt;div id=&#34;示例&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;示例&lt;/h2&gt;
+&lt;div id=&#34;品种成分分析&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;品种成分分析&lt;/h3&gt;
 &lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
 check_result=genotype_data_check(
                   input_data_hmp=PCA_data_hmp,   #provided hapmap data object
@@ -46,8 +46,8 @@ check_result=genotype_data_check(
                   return_result=TRUE             #return result 
                   )&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div id=&#34;check-duplication&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Check duplication&lt;/h3&gt;
+&lt;div id=&#34;重复性检测&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;重复性检测&lt;/h3&gt;
 &lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
 check_result=genotype_data_check(
                   input_data_hmp=data_hmp,   #provided hapmap data object
@@ -58,13 +58,13 @@ check_result=genotype_data_check(
                   )&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id=&#34;output&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Output&lt;/h2&gt;
+&lt;div id=&#34;输出&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;输出&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;## Start numeric(0,1,2) format conversion......&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Start numeric(0,1,2) format conversion...... 
 ## Before filter, there are 304 individuals, after filter, there are 296 individuals 
 ## Finally, there are total 296 individuals in your data!&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The result of output mainly contains two parts, including:&lt;/p&gt;
+&lt;p&gt;输出的结果主要包括以下两个部分，如下：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;duplicated_genotype&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -92,7 +92,7 @@ check_result=genotype_data_check(
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;The first and the second column is the name of individual, the third column is the percentage of overlap.&lt;/p&gt;
+&lt;p&gt;第一列和第二列为个体名称，第三列为重复的比例&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;pca_outlier&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -106,68 +106,67 @@ check_result=genotype_data_check(
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
 &lt;td align=&#34;left&#34;&gt;IND100&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;LL&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND12&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND14&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;IND233&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND16&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;IND91&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;LL&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND18&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;IND92&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;LL&lt;/td&gt;
 &lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND93&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;LL&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;IND94&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;LL&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Figure A is the PCA result before correcting breed record , Figure B is the PCA result after correcting breed correcting record&lt;/p&gt;
+&lt;p&gt;图A是进行品种分析前的品种记录，图B是进行品种分析后(可以理解为对错误的品种记录数据进行纠正)的品种记录&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210805034645.png&#34; alt=&#34;&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;PCA_blupADC&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id=&#34;parameter&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Parameter&lt;/h2&gt;
-&lt;p&gt;Many parameters in &lt;code&gt;genotype_data_overlap&lt;/code&gt; are the same as in &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function (&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;Thus, we will introduce specific parameters in &lt;code&gt;genotype_data_overlap&lt;/code&gt; function.&lt;/p&gt;
+&lt;div id=&#34;参数&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;参数&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;genotype_data_check&lt;/code&gt; 函数中的许多参数均与 &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; 函数中一致。故此，接下来我们将主要介绍 &lt;code&gt;genotype_data_check&lt;/code&gt; 函数中独有的参数&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;1：selected_snps&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Number of SNPs in detecting overlap, &lt;code&gt;numeric&lt;/code&gt; class. Default is 1000.&lt;/p&gt;
+&lt;p&gt;进行基因型数据重复性检测时，所选用的SNP数目， &lt;code&gt;numeric&lt;/code&gt; 类型. 默认 为 1000.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;2：overlap_threshold&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Threshold of duplicate genotype, &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.95.&lt;/p&gt;
+&lt;p&gt;判定两个个体为重复的阈值, &lt;code&gt;numeric&lt;/code&gt; 类型. 默认 为 0.95.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;3：duplication_check&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Whether check duplication of genotype, &lt;code&gt;logical&lt;/code&gt; class. Default is TRUE.&lt;/p&gt;
+&lt;p&gt;是否进行基因型数据重复性检测, &lt;code&gt;logical&lt;/code&gt; 类型. 默认为 TRUE.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;4：breed_check&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Whether check breed record of genotype, &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
+&lt;p&gt;是否进行品种分析, &lt;code&gt;logical&lt;/code&gt; 类型. 默认为 FALSE.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;5：ind_breed&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Breed record of individuals, &lt;code&gt;data.frame&lt;/code&gt; class.&lt;/p&gt;
-&lt;p&gt;The format of &lt;code&gt;ind_breed&lt;/code&gt; is showing as follow:&lt;/p&gt;
+&lt;p&gt;个体的品种记录数据，&lt;code&gt;data.frame&lt;/code&gt; 类型.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ind_breed&lt;/code&gt; 数据格式如下所示:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr class=&#34;header&#34;&gt;
@@ -202,7 +201,6 @@ check_result=genotype_data_check(
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;When the proportion of genotype data between two individuals is larger than this threshold, these two individuals will be regarded as the same individual.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
