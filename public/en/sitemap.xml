@@ -134,6 +134,16 @@
   </url><url>
     <loc>/post/feature-9-shiny_blupadc/online_dmu/</loc>
     <lastmod>2021-04-22T23:11:41+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/post/feature-9-shiny_blupadc/online_dmu/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/post/feature-9-shiny_blupadc/online_dmu/"
+                />
   </url><url>
     <loc>/category/blupf90/</loc>
     <lastmod>2021-04-21T15:47:39+08:00</lastmod>
@@ -150,6 +160,16 @@
   </url><url>
     <loc>/post/feature-8-run_blupf90/blupf90/</loc>
     <lastmod>2021-04-21T15:47:39+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/post/feature-8-run_blupf90/blupf90/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/post/feature-8-run_blupf90/blupf90/"
+                />
   </url><url>
     <loc>/category/dmu/</loc>
     <lastmod>2021-04-20T18:31:18+08:00</lastmod>
@@ -166,9 +186,29 @@
   </url><url>
     <loc>/post/feature-7-run_dmu/run_dmu/</loc>
     <lastmod>2021-04-20T18:31:18+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/post/feature-7-run_dmu/run_dmu/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/post/feature-7-run_dmu/run_dmu/"
+                />
   </url><url>
     <loc>/post/feature-6-kinship_matrix/relationship_matrix/</loc>
     <lastmod>2021-04-18T16:36:39+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/post/feature-6-kinship_matrix/relationship_matrix/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/post/feature-6-kinship_matrix/relationship_matrix/"
+                />
   </url><url>
     <loc>/category/relationship-matrix/</loc>
     <lastmod>2021-04-18T16:36:39+08:00</lastmod>
@@ -198,27 +238,54 @@
   </url><url>
     <loc>/post/feature-5-visualize_pedigree/pedigree/</loc>
     <lastmod>2021-04-16T09:32:43+09:00</lastmod>
-  </url><url>
-    <loc>/post/feature-4-trace_pedigree/pedigree/</loc>
-    <lastmod>2021-04-16T08:32:43+06:00</lastmod>
-  </url><url>
-    <loc>/category/check-genotype/</loc>
-    <lastmod>2021-04-15T15:11:30+08:00</lastmod>
-  </url><url>
-    <loc>/post/feature-3-overlap_pca/blupadc/</loc>
-    <lastmod>2021-04-15T15:11:30+08:00</lastmod>
-  </url><url>
-    <loc>/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/</loc>
-    <lastmod>2021-04-16T09:32:43+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/zh/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/"
+                href="/zh/post/feature-5-visualize_pedigree/pedigree/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/"
+                href="/post/feature-5-visualize_pedigree/pedigree/"
+                />
+  </url><url>
+    <loc>/post/feature-4-trace_pedigree/pedigree/</loc>
+    <lastmod>2021-04-16T08:32:43+06:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/post/feature-4-trace_pedigree/pedigree/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/post/feature-4-trace_pedigree/pedigree/"
+                />
+  </url><url>
+    <loc>/category/check-genotype/</loc>
+    <lastmod>2021-04-15T15:11:30+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/category/check-genotype/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/category/check-genotype/"
+                />
+  </url><url>
+    <loc>/post/feature-3-overlap_pca/blupadc/</loc>
+    <lastmod>2021-04-15T15:11:30+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/post/feature-3-overlap_pca/blupadc/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/post/feature-3-overlap_pca/blupadc/"
                 />
   </url><url>
     <loc>/category/imputaion/</loc>
@@ -249,12 +316,32 @@
   </url><url>
     <loc>/post/feature-2-qc_imputation/qc_imputation/</loc>
     <lastmod>2021-04-17T21:07:25+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/post/feature-2-qc_imputation/qc_imputation/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/post/feature-2-qc_imputation/qc_imputation/"
+                />
   </url><url>
     <loc>/category/data-format/</loc>
     <lastmod>2021-04-14T14:59:41+08:00</lastmod>
   </url><url>
     <loc>/post/blupadc/</loc>
     <lastmod>2021-04-14T14:59:41+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/post/blupadc/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/post/blupadc/"
+                />
   </url><url>
     <loc>/category/blupadc/</loc>
     <lastmod>2021-04-13T22:32:36+08:00</lastmod>
@@ -271,6 +358,16 @@
   </url><url>
     <loc>/post/feature-0-overview/overview/</loc>
     <lastmod>2021-04-13T22:32:36+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/post/feature-0-overview/overview/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/post/feature-0-overview/overview/"
+                />
   </url><url>
     <loc>/courses/</loc>
     <lastmod>2021-01-24T00:00:00+00:00</lastmod>

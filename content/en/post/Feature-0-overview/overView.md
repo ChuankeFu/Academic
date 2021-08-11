@@ -65,7 +65,8 @@ install.packages(packageurl,repos=NULL,method="libcurl")
 For Chinese users, we recommend to use the following code(**installation would be  faster**):
 
 ```R
-packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/793574/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz"
+packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/798138/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz
+"
 install.packages(packageurl,repos=NULL,method="libcurl")
 ```
 
@@ -79,7 +80,7 @@ install.packages(packageurl,repos=NULL)
 For Chinese users, we recommend to use the following code(**installation would be  faster**):
 
 ```R
-packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/793573/download/blupADC_1.0.2.zip"
+packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/798137/download/blupADC_1.0.2.zip"
 install.packages(packageurl,repos=NULL)
 ```
 
@@ -132,11 +133,11 @@ genotype_data_QC_Imputation(
             data_analysis_method="QC_Imputation",   #analysis method type,QC + imputatoin
             output_data_path="/root/result",        #output data path
             output_data_name="YY_data",             #output data name
-            output_data_type="Plink"                #output data format 
+            output_data_type="VCF"                #output data format 
             )                       
 ```
 
-#### Feature 3. Breed composition analysis and duplication detection of genomic data ([see more details](https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-overlap-genotype/blupadc/))
+#### Feature 3. Breed composition analysis and duplication detection of genomic data ([see more details](https://qsmei.netlify.app/post/feature-3-overlap_pca/blupadc/))
 
 ``` R
 library(blupADC)

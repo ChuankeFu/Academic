@@ -1,0 +1,200 @@
+---
+title: 'R package:blupADC-功能3'
+author: qsmei
+date: '2021-04-16'
+slug: blupADC
+categories: ["Check genotype"]
+tags: []
+subtitle: ''
+summary: 'Breed composition analysis '
+authors: []
+lastmod: '2021-04-15T15:11:30+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+toc: true
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+
+</div>
+
+<p>{{<toc>}}</p>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>👦 品种成分分析一直以来都是数据分析中的一个难题。<code>blupADC</code> 为用户提供了<code>genotype_data_check</code> 函数，使得用户能够方便的解决这个问题。此外，用户还可以用这个函数进行基因型数据的重复性检测。</p>
+</div>
+<div id="示例" class="section level2">
+<h2>示例</h2>
+<div id="品种成分分析" class="section level3">
+<h3>品种成分分析</h3>
+<pre class="R"><code>library(blupADC)
+check_result=genotype_data_check(
+                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+                  duplication_check=FALSE,       #whether check the duplication of genotype
+                  breed_check=TRUE,              # whether check the record of breed
+                  breed_record=PCA_Breed,        # provided breed record
+                  return_result=TRUE             #return result 
+                  )</code></pre>
+</div>
+<div id="重复性检测" class="section level3">
+<h3>重复性检测</h3>
+<pre class="R"><code>library(blupADC)
+check_result=genotype_data_check(
+                  input_data_hmp=data_hmp,   #provided hapmap data object
+                 duplication_threshold=0.95, #threshold of duplication
+                  duplication_check=TRUE,    #whether check the duplication of genotype
+                  breed_check=FALSE,         # whether check the record of breed
+                  return_result=TRUE         #return result 
+                  )</code></pre>
+</div>
+</div>
+<div id="输出" class="section level2">
+<h2>输出</h2>
+<pre><code>## Start numeric(0,1,2) format conversion......</code></pre>
+<pre><code>## Start numeric(0,1,2) format conversion...... 
+## Before filter, there are 304 individuals, after filter, there are 296 individuals 
+## Finally, there are total 296 individuals in your data!</code></pre>
+<p>输出的结果主要包括以下两个部分，如下：</p>
+<ul>
+<li><strong>duplicated_genotype</strong></li>
+</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">IND1</td>
+<td align="left">IND1</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">IND2</td>
+<td align="left">IND2</td>
+<td align="left">1</td>
+</tr>
+<tr class="odd">
+<td align="left">IND3</td>
+<td align="left">IND3</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">IND4</td>
+<td align="left">IND4</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<p>第一列和第二列为个体名称，第三列为重复的比例</p>
+<ul>
+<li><strong>pca_outlier</strong></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Id</th>
+<th align="left">Breed</th>
+<th align="left">Expeced_Breed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">IND100</td>
+<td align="left">LL</td>
+<td align="left">YY</td>
+</tr>
+<tr class="even">
+<td align="left">IND233</td>
+<td align="left">DD</td>
+<td align="left">YY</td>
+</tr>
+<tr class="odd">
+<td align="left">IND91</td>
+<td align="left">LL</td>
+<td align="left">YY</td>
+</tr>
+<tr class="even">
+<td align="left">IND92</td>
+<td align="left">LL</td>
+<td align="left">YY</td>
+</tr>
+<tr class="odd">
+<td align="left">IND93</td>
+<td align="left">LL</td>
+<td align="left">YY</td>
+</tr>
+<tr class="even">
+<td align="left">IND94</td>
+<td align="left">LL</td>
+<td align="left">YY</td>
+</tr>
+</tbody>
+</table>
+<p>图A是进行品种分析前的品种记录，图B是进行品种分析后(可以理解为对错误的品种记录数据进行纠正)的品种记录</p>
+<div class="figure">
+<img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210805034645.png" alt="" />
+<p class="caption">PCA_blupADC</p>
+</div>
+</div>
+<div id="参数" class="section level2">
+<h2>参数</h2>
+<p><code>genotype_data_check</code> 函数中的许多参数均与 <code>genotype_data_format_conversion</code> 函数中一致。故此，接下来我们将主要介绍 <code>genotype_data_check</code> 函数中独有的参数<a href="https://qsmei.netlify.app/post/blupadc/">see more details</a>).</p>
+<ul>
+<li><strong>1：selected_snps</strong></li>
+</ul>
+<p>进行基因型数据重复性检测时，所选用的SNP数目， <code>numeric</code> 类型. 默认 为 1000.</p>
+<ul>
+<li><strong>2：overlap_threshold</strong></li>
+</ul>
+<p>判定两个个体为重复的阈值, <code>numeric</code> 类型. 默认 为 0.95.</p>
+<ul>
+<li><strong>3：duplication_check</strong></li>
+</ul>
+<p>是否进行基因型数据重复性检测, <code>logical</code> 类型. 默认为 TRUE.</p>
+<ul>
+<li><strong>4：breed_check</strong></li>
+</ul>
+<p>是否进行品种分析, <code>logical</code> 类型. 默认为 FALSE.</p>
+<ul>
+<li><strong>5：ind_breed</strong></li>
+</ul>
+<p>个体的品种记录数据，<code>data.frame</code> 类型.</p>
+<p><code>ind_breed</code> 数据格式如下所示:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Id</th>
+<th align="left">Breed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">IND1</td>
+<td align="left">YY</td>
+</tr>
+<tr class="even">
+<td align="left">IND2</td>
+<td align="left">YY</td>
+</tr>
+<tr class="odd">
+<td align="left">IND3</td>
+<td align="left">YY</td>
+</tr>
+<tr class="even">
+<td align="left">IND4</td>
+<td align="left">YY</td>
+</tr>
+<tr class="odd">
+<td align="left">IND5</td>
+<td align="left">YY</td>
+</tr>
+<tr class="even">
+<td align="left">IND6</td>
+<td align="left">YY</td>
+</tr>
+</tbody>
+</table>
+</div>

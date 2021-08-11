@@ -5,7 +5,7 @@
     <link>/zh/category/pedigree/</link>
       <atom:link href="/zh/category/pedigree/index.xml" rel="self" type="application/rss+xml" />
     <description>pedigree</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Fri, 16 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Sun, 18 Apr 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
       <title>pedigree</title>
@@ -13,10 +13,182 @@
     </image>
     
     <item>
-      <title>R package:blupADC-功能3</title>
-      <link>/zh/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/</link>
-      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/zh/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/</guid>
+      <title>R package:blupADC-功能 5</title>
+      <link>/zh/post/feature-5-visualize_pedigree/pedigree/</link>
+      <pubDate>Sun, 18 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/zh/post/feature-5-visualize_pedigree/pedigree/</guid>
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;目录&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#简介&#34;&gt;简介&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#示例&#34;&gt;示例&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#绘制系谱中所有个体&#34;&gt;绘制系谱中所有个体&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#绘制系谱中的子集&#34;&gt;绘制系谱中的子集&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#绘制系谱中的子集-考虑子集的同胞&#34;&gt;绘制系谱中的子集 (考虑子集的同胞)&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#系谱图的样式&#34;&gt;系谱图的样式&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#参数详解&#34;&gt;参数详解&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#基础参数&#34;&gt;💥基础参数&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#进阶参数&#34;&gt;💨进阶参数&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
+
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;🦄  一个直观和清楚的系谱结构图能够帮助育种家和研究者做出更好的育种规划。通过使用 &lt;code&gt;ggped&lt;/code&gt; 函数, 用户即能非常简单的绘制出所需的系谱图。&lt;/p&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
+&lt;h3 id=&#34;绘制系谱中所有个体&#34;&gt;绘制系谱中所有个体&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
+pedigree_result=ggped(
+                input_pedigree=plot_pedigree
+                )                 
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153843.png&#34; alt=&#34;image-20210708153839657&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;绘制系谱中的子集&#34;&gt;绘制系谱中的子集&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
+pedigree_result=ggped(
+                input_pedigree=plot_pedigree,
+    			trace_id=c(&amp;quot;121&amp;quot;)             #provided subset-id
+                )                   
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153708.png&#34; alt=&#34;image-20210708153706707&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;绘制系谱中的子集-考虑子集的同胞&#34;&gt;绘制系谱中的子集 (考虑子集的同胞)&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
+pedigree_result=ggped(
+                input_pedigree=plot_pedigree,
+    			trace_id=c(&amp;quot;121&amp;quot;),
+    			trace_sibs=TRUE   #whether plot the sibs of subset-id  
+                )                   
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708161212.png&#34; alt=&#34;image-20210708161211022&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;系谱图的样式&#34;&gt;系谱图的样式&lt;/h3&gt;
+&lt;p&gt;通过修改&lt;code&gt;shape_type&lt;/code&gt;参数， 用户即可改变系谱图的样式。默认的 &lt;code&gt;shape_type&lt;/code&gt; 为 4。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210805002017.png&#34; alt=&#34;shape_type&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;参数详解&#34;&gt;参数详解&lt;/h2&gt;
+&lt;h3 id=&#34;基础参数&#34;&gt;💥基础参数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数1：input_pedigree&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户提供的系谱数据, &lt;code&gt;data.frame &lt;/code&gt; 或者  &lt;code&gt;matrix&lt;/code&gt; 类型.&lt;/p&gt;
+&lt;p&gt;💌提供的系谱数据类型应为3列如下的3列结构：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Offspring&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Sire&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Dam&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19575312&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD18768902&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD16376015&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19513112&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD18768902&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD17111017&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20348012&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19132207&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19234510&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20361110&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19331001&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19293112&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20471212&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19331001&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19320808&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD20564818&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19331001&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DD19311009&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;**参数2:  trace_id **&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;追溯子集的系谱, &lt;code&gt;character&lt;/code&gt; 类型. 默认为 &lt;code&gt;NULL&lt;/code&gt; (绘制系谱中所有个体)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数3:  trace_sibs&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;追溯子集的系谱过程中，是否追溯子集的同胞 , &lt;code&gt;logical&lt;/code&gt; 类型. 默认为 &lt;code&gt;FALSE&lt;/code&gt; .&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;**参数4:  ind_sex **&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;个体的性别记录 , &lt;code&gt;data.frame&lt;/code&gt; 类型.&lt;/p&gt;
+&lt;p&gt;数据格式如下:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Individual&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Sex&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;101&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Male&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;102&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Female&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;103&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Male&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;104&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Female&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;**参数5：plot_family **&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;绘制系谱过程中，是否划分家系结构，&lt;code&gt;logical&lt;/code&gt; 类型. 默认为 &lt;code&gt;FALSE&lt;/code&gt; .&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;**参数6：shape_type **&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;系谱图的样式，&lt;code&gt;numeric&lt;/code&gt; 类型. 默认为 4.&lt;/p&gt;
+&lt;h3 id=&#34;进阶参数&#34;&gt;💨进阶参数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数7:  shape_size&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;系谱图的大小, &lt;code&gt;numeric&lt;/code&gt; 类型. 默认为 &lt;code&gt;8&lt;/code&gt; .&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数8：ind_text_size&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;个体名称的文本大小, &lt;code&gt;numeric&lt;/code&gt; 类型. 默认为 4` .&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数9：ind_text_vjust&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;个体名称的文本垂直距离, &lt;code&gt;numeric&lt;/code&gt; 类型. 默认为 &lt;code&gt;3&lt;/code&gt; .&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R package:blupADC-功能4</title>
+      <link>/zh/post/feature-4-trace_pedigree/pedigree/</link>
+      <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/zh/post/feature-4-trace_pedigree/pedigree/</guid>
       <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
   &lt;summary class=&#34;font-weight-bold&#34;&gt;目录&lt;/summary&gt;
   &lt;nav id=&#34;TableOfContents&#34;&gt;

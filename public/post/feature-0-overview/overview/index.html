@@ -33,6 +33,8 @@
   <meta name="description" content="Overview of package:blupADC " />
 
   
+    <link rel="alternate" hreflang="zh" href="/zh/post/feature-0-overview/overview/" />
+  
   <link rel="alternate" hreflang="en-us" href="/post/feature-0-overview/overview/" />
 
   
@@ -697,6 +699,22 @@
 
       
       
+      <li class="nav-item dropdown i18n-dropdown">
+        <a href="#" class="nav-link " data-toggle="dropdown"
+           aria-haspopup="true" aria-label="Languages">
+          <i class="fas fa-globe mr-1" aria-hidden="true"></i></a>
+        <div class="dropdown-menu">
+          <div class="dropdown-item dropdown-item-active">
+            <span>English</span>
+          </div>
+          
+          <a class="dropdown-item" href="/zh/post/feature-0-overview/overview/">
+            <span>中文 (简体)</span>
+          </a>
+          
+        </div>
+      </li>
+      
 
     </ul>
 
@@ -840,7 +858,8 @@
 install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
 </code></pre>
 <p>For Chinese users, we recommend to use the following code(<strong>installation would be  faster</strong>):</p>
-<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blup-adc/attach_files/793574/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz&quot;
+<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blup-adc/attach_files/798138/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz
+&quot;
 install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
 </code></pre>
 <h4 id="install-blupadc-on-windows">Install blupADC on Windows</h4>
@@ -848,7 +867,7 @@ install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
 install.packages(packageurl,repos=NULL)
 </code></pre>
 <p>For Chinese users, we recommend to use the following code(<strong>installation would be  faster</strong>):</p>
-<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blup-adc/attach_files/793573/download/blupADC_1.0.2.zip&quot;
+<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blup-adc/attach_files/798137/download/blupADC_1.0.2.zip&quot;
 install.packages(packageurl,repos=NULL)
 </code></pre>
 <p>After installed successfully, the <code>blupADC</code> package can be loaded by typing</p>
@@ -887,10 +906,10 @@ genotype_data_QC_Imputation(
             data_analysis_method=&quot;QC_Imputation&quot;,   #analysis method type,QC + imputatoin
             output_data_path=&quot;/root/result&quot;,        #output data path
             output_data_name=&quot;YY_data&quot;,             #output data name
-            output_data_type=&quot;Plink&quot;                #output data format 
+            output_data_type=&quot;VCF&quot;                #output data format 
             )                       
 </code></pre>
-<h4 id="feature-3-breed-composition-analysis-and-duplication-detection-of-genomic-data-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-overlap-genotypeblupadc">Feature 3. Breed composition analysis and duplication detection of genomic data (<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-overlap-genotype/blupadc/" target="_blank" rel="noopener">see more details</a>)</h4>
+<h4 id="feature-3-breed-composition-analysis-and-duplication-detection-of-genomic-data-see-more-detailshttpsqsmeinetlifyapppostfeature-3-overlap_pcablupadc">Feature 3. Breed composition analysis and duplication detection of genomic data (<a href="https://qsmei.netlify.app/post/feature-3-overlap_pca/blupadc/" target="_blank" rel="noopener">see more details</a>)</h4>
 <pre><code class="language-R">library(blupADC)
 check_result=genotype_data_check(
                   input_data_hmp=PCA_data_hmp,   #provided hapmap data object

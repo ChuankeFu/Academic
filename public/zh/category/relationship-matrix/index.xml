@@ -5,7 +5,7 @@
     <link>/zh/category/relationship-matrix/</link>
       <atom:link href="/zh/category/relationship-matrix/index.xml" rel="self" type="application/rss+xml" />
     <description>Relationship matrix</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Sun, 18 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Mon, 19 Apr 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
       <title>Relationship matrix</title>
@@ -13,10 +13,10 @@
     </image>
     
     <item>
-      <title>R package:blupADC-功能5</title>
-      <link>/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/</link>
-      <pubDate>Sun, 18 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/</guid>
+      <title>R package:blupADC-功能6</title>
+      <link>/zh/post/feature-6-kinship_matrix/relationship_matrix/</link>
+      <pubDate>Mon, 19 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/zh/post/feature-6-kinship_matrix/relationship_matrix/</guid>
       <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
   &lt;summary class=&#34;font-weight-bold&#34;&gt;目录&lt;/summary&gt;
   &lt;nav id=&#34;TableOfContents&#34;&gt;
@@ -180,23 +180,35 @@ kinship_result=cal_kinship(
 &lt;/ul&gt;
 &lt;p&gt;是否按照矩阵迹和的方式对基因组亲缘关系矩阵进行标准化，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数14：kinship_metafounder&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数14：Metafounder_algorithm&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;是否按照metafounder的方法计算一步法亲缘关系矩阵，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数15：SSBLUP_omega&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数15：APY_algorithm&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;是否按照APY的方法计算亲缘关系矩阵的逆矩阵，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数16：APY_eigen_threshold&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;特征值所能解释的遗传变异的比例的阈值 ,  &lt;code&gt;numeric&lt;/code&gt; 类型. 默认为 0.95.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数17：APY_n_core&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;核心个体数,  &lt;code&gt;numeric&lt;/code&gt; 类型. 默认为 NULL.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数18：SSBLUP_omega&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;构建一步法亲缘关系矩阵时G矩阵和A矩阵的比例，&lt;code&gt;numeric&lt;/code&gt;类型，默认为0.05。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数16：gene_dropping&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数19：gene_dropping&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;是否使用 gene dropping 的方法构建系谱显性亲缘关系矩阵，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数17：gene_dropping_iteration&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数20：gene_dropping_iteration&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;gene dropping方法的迭代次数，&lt;code&gt;numeric&lt;/code&gt;类型，默认为1000。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数18：memory_save&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数21：memory_save&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;是否使用省内存的方式进行上述所有的计算，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。该方法非常节省内存，但是会极大的占据本地存储空间。&lt;/p&gt;
 </description>

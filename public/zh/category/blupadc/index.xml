@@ -14,9 +14,9 @@
     
     <item>
       <title>R package:blupADC-简介</title>
-      <link>/zh/post/2021-04-21-r-package-rblupadc-overview/overview/</link>
+      <link>/zh/post/feature-0-overview/overview/</link>
       <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/zh/post/2021-04-21-r-package-rblupadc-overview/overview/</guid>
+      <guid>/zh/post/feature-0-overview/overview/</guid>
       <description>&lt;p&gt;&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
   &lt;summary class=&#34;font-weight-bold&#34;&gt;目录&lt;/summary&gt;
   &lt;nav id=&#34;TableOfContents&#34;&gt;
@@ -50,19 +50,20 @@
 &lt;p&gt;&lt;strong&gt;👉 Note:  在 DMU 和 BLUPF90的分析中，我们通常需要提前下载好 DMU 软件 (&lt;a href=&#34;https://dmu.ghpc.au.dk/dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU下载网站&lt;/a&gt;)  和 BLUPF90软件 (&lt;a href=&#34;http://nce.ads.uga.edu/html/projects/programs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BLUPF90下载网站&lt;/a&gt;)。为了方便用户使用，我们已经将两款软件中基础模块封装进了 &lt;code&gt;blupADC&lt;/code&gt;，请大家合理使用。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;如果您想将DMU和BLUPF90用作商业用途，请务必联系 DMU 和 BLUPF90的作者！！！&lt;/strong&gt;&lt;/p&gt;
 &lt;h4 id=&#34;在-linux-上-安装-blupadc&#34;&gt;在 Linux 上 安装 blupADC&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1_linux.tar.gz&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz&amp;quot;
 install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;对于中国用户来说，我们推荐使用如下代码进行安装（&lt;strong&gt;安装速度更快&lt;/strong&gt;）：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/751023/download/blupADC_1.0.1_linux.tar.gz&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/798138/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz
+&amp;quot;
 install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;在-windows-上-安装-blupadc&#34;&gt;在 Windows 上 安装 blupADC&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/main/blupADC_1.0.1.zip&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2.zip&amp;quot;
 install.packages(packageurl,repos=NULL)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;对于中国用户来说，我们推荐使用如下代码进行安装（&lt;strong&gt;安装速度更快&lt;/strong&gt;）：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/751003/download/blupADC_1.0.1.zip&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/798137/download/blupADC_1.0.2.zip&amp;quot;
 install.packages(packageurl,repos=NULL)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;安装成功后，我们输入如下代码即可加载R包:&lt;/p&gt;
@@ -71,12 +72,13 @@ install.packages(packageurl,repos=NULL)
 &lt;h3 id=&#34;功能&#34;&gt;🙊功能&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;功能 1. 基因型数据间的格式转换&lt;/li&gt;
-&lt;li&gt;功能 2.基因型数据的重复性检测&lt;/li&gt;
-&lt;li&gt;功能 3. 系谱追溯、重命名及纠错&lt;/li&gt;
-&lt;li&gt;功能 4. 基因型数据的质控与填充&lt;/li&gt;
-&lt;li&gt;功能 5. 亲缘关系矩阵的构建&lt;/li&gt;
-&lt;li&gt;功能 6. DMU软件的交互使用&lt;/li&gt;
-&lt;li&gt;功能 7. BLUPF90软件的交互使用&lt;/li&gt;
+&lt;li&gt;功能 2. 基因型数据的质控与填充&lt;/li&gt;
+&lt;li&gt;功能 3. 品种分析及基因型数据重复性检测&lt;/li&gt;
+&lt;li&gt;功能 4. 系谱追溯、重命名及纠错&lt;/li&gt;
+&lt;li&gt;功能 5. 系谱可视化&lt;/li&gt;
+&lt;li&gt;功能 6. 亲缘关系矩阵的构建(A,G, H)&lt;/li&gt;
+&lt;li&gt;功能 7. 利用DMU软件进行遗传评估&lt;/li&gt;
+&lt;li&gt;功能 8. 利用BLUPF90软件进行遗传评估&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;使用&#34;&gt;使用&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;为了方便用户使用，所有的文档均支持双语模式(中英文说明书)。&lt;/strong&gt;&lt;/p&gt;
@@ -84,86 +86,98 @@ install.packages(packageurl,repos=NULL)
 &lt;p&gt;此外，&lt;code&gt;blupADC&lt;/code&gt;  提供一些示例文件， 这些文件存储在&lt;code&gt;~/blupADC/extdata&lt;/code&gt; 路径下。通过输出下面的代码，我们就能得到 这些文件的绝对路径了：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;) # path of provided files
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-1-基因型数据间的格式转换-了解更多httpsqsmeinetlifyappzhpostblupadc&#34;&gt;功能 1. 基因型数据间的格式转换 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-1-基因型数据间的格式转换-see-more-detailshttpsqsmeinetlifyapppostblupadc&#34;&gt;功能 1. 基因型数据间的格式转换 (&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 sum_data=genotype_data_format_conversion(
-         input_data_hmp=data_hmp,   #提供的hampap格式数据的对象
-         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;BLUPF90&amp;quot;,&amp;quot;Numeric&amp;quot;),#基因型数据的输出类型
-         return_result = TRUE,      #是否在R中返回结果
-         cpu_cores=1                #调用的cpu数目
+         input_data_hmp=data_hmp,  #provided hapmap data object 
+         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;BLUPF90&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
+         return_result = TRUE,      # return result 
+         cpu_cores=1                # number of cpu 
                   )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-2基因型数据的重复性检测-了解更多httpsqsmeinetlifyappzhpost2021-04-17-r-package-blup-adc-overlap-genotypeoverlap_genotype&#34;&gt;功能 2.基因型数据的重复性检测 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-overlap-genotype/overlap_genotype/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-overlap_result=genotype_data_overlap(
-                  input_data_hmp=data_hmp,    #提供的hampap格式数据的对象
-                  overlap_threshold=0.95,     #判断重复的阈值
-                  return_result=TRUE          #是否在R中返回结果
-                  )
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-3-系谱追溯重命名及纠错-了解更多httpsqsmeinetlifyappzhpost2021-04-17-r-package-blup-adc-pedigreepedigree&#34;&gt;功能 3. 系谱追溯、重命名及纠错 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-pedigree_result=trace_pedigree(
-                input_pedigree=origin_pedigree,    #提供的系谱数据的对象
-                trace_generation=3                 # 系谱追溯的代数
-                )                 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-4-基因型数据的质控与填充-了解更多httpsqsmeinetlifyappzhpost2021-04-17-r-package-blup-adc-qc-imputaionqc_imputation&#34;&gt;功能 4. 基因型数据的质控与填充 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-2-基因型数据的质控与填充-see-more-detailshttpsqsmeinetlifyapppostfeature-2-qc_imputationqc_imputation&#34;&gt;功能 2. 基因型数据的质控与填充 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-2-qc_imputation/qc_imputation/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 genotype_data_QC_Imputation(
-            input_data_hmp=data_hmp,                #提供的hampap格式数据的对象
-            data_analysis_method=&amp;quot;QC_Imputation&amp;quot;,   #数据分析方法，质控+填充
-            output_data_path=&amp;quot;/root/result&amp;quot;,        #基因型数据的输出路径
-            output_data_name=&amp;quot;YY_data&amp;quot;,             #基因型数据的输出名称
-            output_data_type=&amp;quot;Plink&amp;quot;                #基因型数据的输出类型
+            input_data_hmp=data_hmp,    #provided hapmap data object
+            data_analysis_method=&amp;quot;QC_Imputation&amp;quot;,   #analysis method type,QC + imputatoin
+            output_data_path=&amp;quot;/root/result&amp;quot;,        #output data path
+            output_data_name=&amp;quot;YY_data&amp;quot;,             #output data name
+            output_data_type=&amp;quot;VCF&amp;quot;                #output data format 
             )                       
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-5-亲缘关系矩阵的构建-了解更多httpsqsmeinetlifyappzhpost2021-04-17-r-package-blup-adc-calculate-relationship-matrixrelationship_matrix&#34;&gt;功能 5. 亲缘关系矩阵的构建 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-3-品种分析及基因型数据重复性检测-see-more-detailshttpsqsmeinetlifyapppostfeature-3-overlap_pcablupadc&#34;&gt;功能 3. 品种分析及基因型数据重复性检测 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-3-overlap_pca/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+check_result=genotype_data_check(
+                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+                  duplication_check=FALSE,       #whether check the duplication of genotype
+                  breed_check=TRUE,              # whether check the record of breed
+                  breed_record=PCA_Breed,           # provided breed record
+                  output_data_path=&amp;quot;/root&amp;quot;,      #output path
+                  return_result=TRUE             #return result 
+                  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;功能-4-系谱追溯重命名及纠错-see-more-detailshttpsqsmeinetlifyapppostfeature-4-trace_pedigreepedigree&#34;&gt;功能 4. 系谱追溯、重命名及纠错 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-4-trace_pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+pedigree_result=trace_pedigree(
+                input_pedigree=origin_pedigree,   #provided pedigree data object
+                trace_generation=3,       # trace generation
+                output_pedigree_tree=TRUE  # output pedigree tree
+                )  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;功能-5-系谱可视化-see-more-detailshttpsqsmeinetlifyapppostfeature-5-visualize_pedigreepedigree&#34;&gt;功能 5. 系谱可视化 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-5-visualize_pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+plot=ggped(
+       input_pedigree=plot_pedigree,
+       trace_id=c(&amp;quot;121&amp;quot;),
+       trace_sibs=TRUE   #whether plot the sibs of subset-id  
+        ) 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;功能-6-亲缘关系矩阵的构建ag-h--see-more-detailshttpsqsmeinetlifyapppostfeature-6-kinship_matrixrelationship_matrix&#34;&gt;功能 6. 亲缘关系矩阵的构建(A,G, H)  (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-6-kinship_matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,          #提供的hampap格式数据的对象
-                kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_D&amp;quot;),      #亲缘关系矩阵的类型
-                dominance_type=c(&amp;quot;genotypic&amp;quot;),    #显性效应的类型
-                inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #近交系数的类型
-                return_result=TRUE)               #在R中返回结果        
+                input_data_hmp=data_hmp,          #provided hapmap data object
+                kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_D&amp;quot;),      #type of  kinship matrix
+                dominance_type=c(&amp;quot;genotypic&amp;quot;),    #type of dominance effect
+                inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-6-dmu软件的交互使用-了解更多httpsqsmeinetlifyappzhpost2021-04-20-r-package-blup-adc-run-dmurun_dmu&#34;&gt;功能 6. DMU软件的交互使用 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-7-利用dmu软件进行遗传评估-see-more-detailshttpsqsmeinetlifyapppostfeature-7-run_dmurun_dmu&#34;&gt;功能 7. 利用DMU软件进行遗传评估 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-7-run_dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
   
 run_DMU(
-        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;), # colnames of phenotype 
-        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #性状名称 
-        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
-        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #随机效应名称
-        covariate_effect_name=NULL,                              #协变量效应名称
-        phe_path=data_path,                          #表型文件路径
-        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #表型文件名
-        integer_n=5,                                 #整型变量数
-        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #遗传评估模型
-        dmu_module=&amp;quot;dmuai&amp;quot;,                          #方差组分估计使用的DMU模块
-        relationship_path=data_path,                 #亲缘关系文件路径
-        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #亲缘关系文件名
-        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;功能-7-blupf90软件的交互使用-了解更多httpsqsmeinetlifyappzhpost2021-04-20-r-package-blup-adc-run-blupf90blupf90&#34;&gt;功能 7. BLUPF90软件的交互使用 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-20-r-package-blup-adc-run-BLUPF90/BLUPF90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;功能-8-利用blupf90软件进行遗传评估-see-more-detailshttpsqsmeinetlifyapppostfeature-8-run_blupf90blupf90&#34;&gt;功能 8. 利用BLUPF90软件进行遗传评估 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-8-run_blupf90/blupf90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)   #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
   
 run_BLUPF90(
-        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;), # 表型数据的列名(ps.表型文件无列名)
-        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #性状名称
-        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
-        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #随机效应名称
-        covariate_effect_name=NULL,                              #协变量效应名称
-        phe_path=data_path,                          #表型文件路径
-        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #表型文件名
-        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #遗传评估模型
-        relationship_path=data_path,                 #亲缘关系文件路径
-        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #亲缘关系文件名
-        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
-        )   
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
+        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        )    
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>

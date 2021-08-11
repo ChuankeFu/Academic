@@ -24,9 +24,9 @@ output:
 knitr::opts_chunk$set(collapse = TRUE)
 ```
 
-## Overview 
+## Overview  
 
-`genotype_data_format_conversion` is the basic function of  package:`blupADC`.  By applying `genotype_data_format_conversion` , we can convert multiple genotype data formats in an easy way, including Hapmap, Plink, BLUPF90, Numeric and VCF.  
+`genotype_data_format_conversion` is the basic function of  package:`blupADC`.  By applying `genotype_data_format_conversion` , we can convert multiple genotype data formats in an easy way, including Hapmap, Plink, BLUPF90, Numeric and VCF.   
 
 **👉 Note:  For analyzing VCF format data,  `blupADC` has encapsulated software Plink `version-1.9` and  VCFtools `version-0.1.17`. If you want change this version, you could set the related parameters in the part of Advanced parameter.**
 

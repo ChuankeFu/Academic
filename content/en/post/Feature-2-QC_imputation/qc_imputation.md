@@ -37,7 +37,7 @@ genotype_data_QC_Imputation(
             data_analysis_method="QC_Imputation",   #analysis method type,QC + imputatoin
             output_data_path="/root/result",        #output data path
             output_data_name="YY_data",             #output data name
-            output_data_type="Plink"                #output data format 
+            output_data_type="VCF"                #output data format 
             )                       
 ```
 

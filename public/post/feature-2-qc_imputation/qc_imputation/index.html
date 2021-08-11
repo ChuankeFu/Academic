@@ -33,6 +33,8 @@
   <meta name="description" content="Genomic data quality control and genotype imputation" />
 
   
+    <link rel="alternate" hreflang="zh" href="/zh/post/feature-2-qc_imputation/qc_imputation/" />
+  
   <link rel="alternate" hreflang="en-us" href="/post/feature-2-qc_imputation/qc_imputation/" />
 
   
@@ -697,6 +699,22 @@
 
       
       
+      <li class="nav-item dropdown i18n-dropdown">
+        <a href="#" class="nav-link " data-toggle="dropdown"
+           aria-haspopup="true" aria-label="Languages">
+          <i class="fas fa-globe mr-1" aria-hidden="true"></i></a>
+        <div class="dropdown-menu">
+          <div class="dropdown-item dropdown-item-active">
+            <span>English</span>
+          </div>
+          
+          <a class="dropdown-item" href="/zh/post/feature-2-qc_imputation/qc_imputation/">
+            <span>中文 (简体)</span>
+          </a>
+          
+        </div>
+      </li>
+      
 
     </ul>
 
@@ -818,7 +836,7 @@ genotype_data_QC_Imputation(
             data_analysis_method=&quot;QC_Imputation&quot;,   #analysis method type,QC + imputatoin
             output_data_path=&quot;/root/result&quot;,        #output data path
             output_data_name=&quot;YY_data&quot;,             #output data name
-            output_data_type=&quot;Plink&quot;                #output data format 
+            output_data_type=&quot;VCF&quot;                #output data format 
             )                       
 </code></pre>
 <p>In the process of quality control and imputation，we should provide genotype data，these parameters are the as in <code>genotype_data_format_conversion</code> function(<a href="https://qsmei.netlify.app/post/blupadc/" target="_blank" rel="noopener">see more details</a>).</p>

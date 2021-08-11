@@ -65,7 +65,8 @@
 install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;For Chinese users, we recommend to use the following code(&lt;strong&gt;installation would be  faster&lt;/strong&gt;):&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/793574/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/798138/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz
+&amp;quot;
 install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;install-blupadc-on-windows&#34;&gt;Install blupADC on Windows&lt;/h4&gt;
@@ -73,7 +74,7 @@ install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 install.packages(packageurl,repos=NULL)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;For Chinese users, we recommend to use the following code(&lt;strong&gt;installation would be  faster&lt;/strong&gt;):&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/793573/download/blupADC_1.0.2.zip&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/798137/download/blupADC_1.0.2.zip&amp;quot;
 install.packages(packageurl,repos=NULL)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;After installed successfully, the &lt;code&gt;blupADC&lt;/code&gt; package can be loaded by typing&lt;/p&gt;
@@ -112,10 +113,10 @@ genotype_data_QC_Imputation(
             data_analysis_method=&amp;quot;QC_Imputation&amp;quot;,   #analysis method type,QC + imputatoin
             output_data_path=&amp;quot;/root/result&amp;quot;,        #output data path
             output_data_name=&amp;quot;YY_data&amp;quot;,             #output data name
-            output_data_type=&amp;quot;Plink&amp;quot;                #output data format 
+            output_data_type=&amp;quot;VCF&amp;quot;                #output data format 
             )                       
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;feature-3-breed-composition-analysis-and-duplication-detection-of-genomic-data-see-more-detailshttpsqsmeinetlifyapppost2021-04-17-r-package-blup-adc-overlap-genotypeblupadc&#34;&gt;Feature 3. Breed composition analysis and duplication detection of genomic data (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-overlap-genotype/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;feature-3-breed-composition-analysis-and-duplication-detection-of-genomic-data-see-more-detailshttpsqsmeinetlifyapppostfeature-3-overlap_pcablupadc&#34;&gt;Feature 3. Breed composition analysis and duplication detection of genomic data (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-3-overlap_pca/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 check_result=genotype_data_check(
                   input_data_hmp=PCA_data_hmp,   #provided hapmap data object

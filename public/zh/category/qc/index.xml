@@ -5,7 +5,7 @@
     <link>/zh/category/qc/</link>
       <atom:link href="/zh/category/qc/index.xml" rel="self" type="application/rss+xml" />
     <description>QC</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Sat, 17 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Thu, 15 Apr 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
       <title>QC</title>
@@ -13,10 +13,10 @@
     </image>
     
     <item>
-      <title>R package:blupADC-功能4</title>
-      <link>/zh/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/</link>
-      <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>/zh/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/</guid>
+      <title>R package:blupADC-功能2</title>
+      <link>/zh/post/feature-2-qc_imputation/qc_imputation/</link>
+      <pubDate>Thu, 15 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/zh/post/feature-2-qc_imputation/qc_imputation/</guid>
       <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
   &lt;summary class=&#34;font-weight-bold&#34;&gt;目录&lt;/summary&gt;
   &lt;nav id=&#34;TableOfContents&#34;&gt;
@@ -44,7 +44,7 @@ genotype_data_QC_Imputation(
             data_analysis_method=&amp;quot;QC_Imputation&amp;quot;,   #analysis method type,QC + imputatoin
             output_data_path=&amp;quot;/root/result&amp;quot;,        #output data path
             output_data_name=&amp;quot;YY_data&amp;quot;,             #output data name
-            output_data_type=&amp;quot;Plink&amp;quot;                #output data format 
+            output_data_type=&amp;quot;VCF&amp;quot;                #output data format 
             )                       
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;通过上述代码，我们即可对本地的&lt;strong&gt;Hapmap&lt;/strong&gt;格式的基因型数据进行质控和填充，并将其以&lt;strong&gt;Plink&lt;/strong&gt;格式并保存到本地。&lt;/p&gt;
