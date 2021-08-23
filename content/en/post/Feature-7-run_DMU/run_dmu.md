@@ -135,8 +135,7 @@ run_DMU(
 library(blupADC)
 data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
   
-run_DMU(
-        phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype
+run_DMU(   phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype
         target_trait_name=list(c("Trait1")),                           #trait name 
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
