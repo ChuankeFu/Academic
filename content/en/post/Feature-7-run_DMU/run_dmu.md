@@ -35,15 +35,15 @@ In this section, we will give detail description about `run_DMU` function.
 
 ## Example
 
-### **Single trait model - Pedigree BLUP**
+### Single trait  - pedigree BLUP model
 
-``` {.r}
+``` R
 library(blupADC)
 data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
   
 run_DMU(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype
-        target_trait_name=c("Trait1"),                           #trait name 
+        target_trait_name=list(c("Trait1")),                           #trait name 
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
@@ -58,14 +58,14 @@ run_DMU(
         )
 ```
 
-### **Single trait model - GBLUP**
+### Single trait  - GBLUP  model
 
-``` {.r}
+``` R
 library(blupADC)
 data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
 run_DMU(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
-        target_trait_name=c("Trait1"),                           #trait name 
+        target_trait_name=list(c("Trait1")),                           #trait name 
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
@@ -80,14 +80,14 @@ run_DMU(
         )
 ```
 
-### **Single trait model - Single-step BLUP** 
+### Single trait  - single-step BLUP model
 
-``` {.r}
+``` R
 library(blupADC)
 data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
 run_DMU(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2"), # colnames of phenotype 
-        target_trait_name=c("Trait1"),                           #trait name 
+        target_trait_name=list(c("Trait1")),                           #trait name 
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
@@ -106,15 +106,15 @@ Through modifying the two parameters: `analysis_model` and `relationship_name` ,
 
 The above example is single-trait model, while in actual breeding, multiple traits model is also common.  Similarly, we only need to modify several parameters to  perform multiple traits model: 
 
-### **Multiple traits model - Pedigree BLUP** 
+### Multiple traits  - pedigree BLUP model
 
-``` {.r}
+``` R
 library(blupADC)
 data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
   
 run_DMU(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
-        target_trait_name=c("Trait1","Trait2"),                           #trait name 
+        target_trait_name=list(c("Trait1"),c("Trait2")),                           #trait name 
         fixed_effect_name=list(c("Sex","Herd_Year_Season"),c("Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter"),c("Id")),               #random effect name
         covariate_effect_name=list(NULL,"Age"),                              #covariate effect name
@@ -129,7 +129,152 @@ run_DMU(
         )
 ```
 
-## Parameter
+### Single trait  - pedigree BLUP model(with user-provided prior)
+
+``` {.r}
+library(blupADC)
+data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+  
+run_DMU(
+        phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype
+        target_trait_name=list(c("Trait1")),                           #trait name 
+        fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
+        random_effect_name=list(c("Id","Litter")),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name="phenotype.txt",                    #name of phenotype file
+        provided_prior_file_path=data_path,          #path of user-provided prior file
+        provided_prior_file_name="PAROUT",           #name of user-provided prior file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model="PBLUP_A",                    #model of genetic evaluation
+        dmu_module="dmuai",                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name="pedigree.txt",            #name of relationship file 
+        output_result_path="/root"                   # output path 
+        )
+```
+
+### Single trait  - pedigree BLUP model( with maternal effect)
+
+```R
+run_DMU(
+        phe_col_names=c("Herd","B_month","D_age","Litter","Sex","HY","ID","DAM","L_Dam",
+						"W_birth","W_2mth","W_4mth","G_0_2","G_0_4","G_2_4"), # colnames of phenotype
+        target_trait_name=list(c("W_birth")),                           #trait name 
+        fixed_effect_name=list(c("B_month","D_age","Litter","Sex","HY")),     #fixed effect name
+        random_effect_name=list(c("ID","L_Dam")),               #random effect name
+		maternal_effect_name=list(c("DAM")),
+		genetic_effect_name="ID",
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name="maternal_data",                    #name of phenotype file
+        integer_n=9,                                 #number of integer variable 
+        analysis_model="PBLUP_A",                    #model of genetic evaluation
+        dmu_module="dmuai",                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name="maternal_pedigree",            #name of relationship file 
+        output_result_path="/root"  # output path 
+        )
+```
+
+### Single trait  - pedigree BLUP model( with permanent effect)
+
+```R
+run_DMU(
+        phe_col_names=c("id","year_grp","breed","time","t_dato",
+						"age","L1","L2","L3","gh"), # colnames of phenotype
+        target_trait_name=list(c("gh")),                           #trait name 
+        fixed_effect_name=list(c("year_grp","breed","time")),     #fixed effect name
+        random_effect_name=list(c("id","t_dato")),               #random effect name
+        covariate_effect_name=list(c("age")),                              #covariate effect name		
+		genetic_effect_name="id",
+		included_permanent_effect=list(c(TRUE)),     #whether include permant effect
+        phe_path=data_path,                          #path of phenotype file
+        phe_name="rr_data",                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model="PBLUP_A",                    #model of genetic evaluation
+        dmu_module="dmuai",                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name="rr_pedigree",            #name of relationship file 
+        output_result_path="/root"  # output path 
+        )
+```
+
+### Single trait  - pedigree BLUP model( with random regression effect)
+
+```R
+run_DMU(
+        phe_col_names=c("id","year_grp","breed","time","t_dato",
+						"age","L1","L2","L3","gh"), # colnames of phenotype
+        target_trait_name=list(c("gh")),                           #trait name 
+        fixed_effect_name=list(c("year_grp","breed","time")),     #fixed effect name
+        random_effect_name=list(c("id","t_dato")),               #random effect name
+        covariate_effect_name=list(c("age")),                              #covariate effect name		
+		genetic_effect_name="id",
+		included_permanent_effect=list(c(TRUE)),
+		random_regression_effect_name=list(c("L1&id","L1&pe_effect","L2&id","L2&pe_effect")),	
+        phe_path=data_path,                          #path of phenotype file
+        phe_name="rr_data",                    #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model="PBLUP_A",                    #model of genetic evaluation
+        dmu_module="dmuai",                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name="rr_pedigree",            #name of relationship file 
+        output_result_path="/root"  # output path 
+        )
+```
+
+### Single trait  - pedigree BLUP model( with social genetic effect) 
+
+#### phenotype doesn't need to have max group size columns 
+
+```R
+run_DMU(
+        phe_col_names=c("Id","Group","Sex","Phe"), # colnames of phenotype
+        target_trait_name=list(c("Phe")),          #trait name 
+        fixed_effect_name=list(c("Sex")),          #fixed effect name
+        random_effect_name=list(c("Id","Group")),  #random effect name
+        covariate_effect_name=NULL,                #covariate effect name		
+		genetic_effect_name="Id",
+		include_social_effect=list(c(TRUE)),   
+		group_effect_name="Group",
+        phe_path=data_path,                          #path of phenotype file
+        phe_name="raw_social_data",                  #name of phenotype file
+        integer_n=3,                                 #number of integer variable 
+        analysis_model="PBLUP_A",                    #model of genetic evaluation
+        dmu_module="dmuai",                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name="pedigree_10000.txt",            #name of relationship file 
+        output_result_path="/root"  # output path 
+        )
+```
+
+### Single trait  - pedigree BLUP model( with social genetic effect) 
+
+#### phenotype need to have  max group size columns
+
+```R
+run_DMU(phe_col_names=c("Id","Group","Sex","Gr_id1","Gr_id2","Gr_id3","Gr_id4","Gr_id5",   "Phe","Status_Gr_id1","Status_Gr_id2","Status_Gr_id3","Status_Gr_id4","Status_Gr_id5"),
+                                                    # colnames of phenotype
+		target_trait_name=list(c("Phe")),           #trait name 
+		fixed_effect_name=list(c("Sex")),           #fixed effect name
+		random_effect_name=list(c("Id","Group")),   #random effect name
+		covariate_effect_name=NULL,
+		genetic_effect_name="Id",		
+		include_social_effect=list(c(TRUE)),       #whether include social genetic effect 
+		integer_group_names=c("Gr_id1","Gr_id2","Gr_id3","Gr_id4","Gr_id5"),  #integer variable name of max group size
+		real_group_names=c("Status_Gr_id1","Status_Gr_id2","Status_Gr_id3","Status_Gr_id4","Status_Gr_id5"),   #real variable name of max group size
+		
+        phe_path=data_path,                          #path of phenotype file
+        phe_name="social_data",                      #name of phenotype file
+        integer_n=8,                                 #number of integer variable 
+        analysis_model="PBLUP_A",                    #model of genetic evaluation
+        dmu_module="dmuai",                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name="socail_pedigree",         #name of relationship file 
+        output_result_path="c:/Users/26564/Desktop"  # output path 
+		)
+```
 
 ### 🤡Basic
 
