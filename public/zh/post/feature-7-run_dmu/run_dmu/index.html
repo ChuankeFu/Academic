@@ -951,7 +951,10 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;He
         )
 </code></pre>
 <h3 id="单性状模型-系谱-包含母性效应">单性状模型-系谱 (包含母性效应)</h3>
-<pre><code class="language-R">run_DMU(
+<pre><code class="language-R">library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+  
+run_DMU(
         phe_col_names=c(&quot;Herd&quot;,&quot;B_month&quot;,&quot;D_age&quot;,&quot;Litter&quot;,&quot;Sex&quot;,&quot;HY&quot;,&quot;ID&quot;,&quot;DAM&quot;,&quot;L_Dam&quot;,
 		         &quot;W_birth&quot;,&quot;W_2mth&quot;,&quot;W_4mth&quot;,&quot;G_0_2&quot;,&quot;G_0_4&quot;,&quot;G_2_4&quot;), # colnames of phenotype
         target_trait_name=list(c(&quot;W_birth&quot;)),                           #trait name 
@@ -971,7 +974,10 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;He
         )
 </code></pre>
 <h3 id="单性状模型-系谱-包含永久环境效应">单性状模型-系谱 (包含永久环境效应)</h3>
-<pre><code class="language-R">run_DMU(
+<pre><code class="language-R">library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+  
+run_DMU(
         phe_col_names=c(&quot;id&quot;,&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;,&quot;t_dato&quot;,
                         &quot;age&quot;,&quot;L1&quot;,&quot;L2&quot;,&quot;L3&quot;,&quot;gh&quot;),           # colnames of phenotype
         target_trait_name=list(c(&quot;gh&quot;)),                      #trait name 
@@ -991,7 +997,10 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;He
         )
 </code></pre>
 <h3 id="单性状模型-系谱--包含随机回归效应">单性状模型-系谱 ( 包含随机回归效应)</h3>
-<pre><code class="language-R">run_DMU(
+<pre><code class="language-R">library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+  
+run_DMU(
         phe_col_names=c(&quot;id&quot;,&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;,&quot;t_dato&quot;,
                         &quot;age&quot;,&quot;L1&quot;,&quot;L2&quot;,&quot;L3&quot;,&quot;gh&quot;),           # colnames of phenotype
         target_trait_name=list(c(&quot;gh&quot;)),                      #trait name 
@@ -1013,7 +1022,10 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;He
 </code></pre>
 <h3 id="单性状模型-系谱-包含-社会遗传效应">单性状模型-系谱( 包含 社会遗传效应)</h3>
 <p>用户提供的表型文件不需要包含 最大群体大小相关的列</p>
-<pre><code class="language-R">run_DMU(
+<pre><code class="language-R">library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+  
+run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;Phe&quot;), # colnames of phenotype
         target_trait_name=list(c(&quot;Phe&quot;)),          #trait name 
         fixed_effect_name=list(c(&quot;Sex&quot;)),          #fixed effect name
@@ -1034,7 +1046,10 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;He
 </code></pre>
 <h3 id="单性状模型-系谱-包含-社会遗传效应-1">单性状模型-系谱( 包含 社会遗传效应)</h3>
 <p>用户提供的表型文件需要包含 最大群体大小相关的列</p>
-<pre><code class="language-R">run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;Gr_id1&quot;,&quot;Gr_id2&quot;,&quot;Gr_id3&quot;,&quot;Gr_id4&quot;,&quot;Gr_id5&quot;,                         
+<pre><code class="language-R">library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+  
+run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;Gr_id1&quot;,&quot;Gr_id2&quot;,&quot;Gr_id3&quot;,&quot;Gr_id4&quot;,&quot;Gr_id5&quot;,                         
                         &quot;Phe&quot;,&quot;Status_Gr_id1&quot;,&quot;Status_Gr_id2&quot;,&quot;Status_Gr_id3&quot;,&quot;Status_Gr_id4&quot;,&quot;Status_Gr_id5&quot;),# colnames of phenotype
 	target_trait_name=list(c(&quot;Phe&quot;)),           #trait name 
 	fixed_effect_name=list(c(&quot;Sex&quot;)),           #fixed effect name

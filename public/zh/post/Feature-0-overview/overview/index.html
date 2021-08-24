@@ -815,6 +815,11 @@
   <nav id="TableOfContents">
   <ul>
     <li><a href="#简介">简介</a></li>
+    <li><a href="#新添加的功能">新添加的功能</a>
+      <ul>
+        <li><a href="#103">1.0.3</a></li>
+      </ul>
+    </li>
     <li><a href="#开始">开始</a>
       <ul>
         <li><a href="#安装">🙊安装</a></li>
@@ -835,6 +840,11 @@
 <p><code>blupADC</code>提供了许多有用的功能在整个动植物育种的流程中，包括 系谱分析(系谱追溯、重命名及纠错)，基因型数据格式转换(支持<strong>Hapmap, Plink, BLUPF90, Numeric 及VCF</strong> 格式)，基因型数据的质控填充，亲缘关系矩阵的构建(<strong>系谱，基因组及一步法亲缘关系矩阵</strong>)以及遗传评估（仅需几行代码即可通过DMU和BLUPF90完成遗传评估）。</p>
 <p>最后，为了方进一步方便用户的使用(尤其是编程基础弱的用户)，我们创建了一个免费的在线网站。绝大部分的<code>blupADC</code> 的功能均可通过在网站上实现，用户只需上传、点击及下载即可完成整套的分析流程。但是，网站的一个缺点就是，不能处理大数据，请大家合理选择！</p>
 <p>😊 祝好运 !</p>
+<h2 id="新添加的功能">新添加的功能</h2>
+<h3 id="103">1.0.3</h3>
+<ul>
+<li>目前能够通过DMU自动分析 母性效应，永久环境效应，随机回归效应 及 社会遗传效应的模型 (2021.8.24)</li>
+</ul>
 <h2 id="开始">开始</h2>
 <h3 id="安装">🙊安装</h3>
 <p>安装<code>blupADC</code> 之前，用户首先需要安装如下3个包：<code>Rcpp</code>, <code>RcppArmadillo</code> and <code>data.table</code>.</p>
@@ -940,7 +950,7 @@ data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  pa
   
 run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
-        target_trait_name=c(&quot;Trait1&quot;),                           #trait name 
+        target_trait_name=list(c(&quot;Trait1&quot;)),                     #trait name 
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
@@ -960,7 +970,7 @@ data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  pa
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
-        target_trait_name=c(&quot;Trait1&quot;),                           #trait name 
+        target_trait_name=list(c(&quot;Trait1&quot;)),                     #trait name 
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name

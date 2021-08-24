@@ -159,6 +159,9 @@ run_DMU(phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter",
 ### 单性状模型-系谱 (包含母性效应)
 
 ```R
+library(blupADC)
+data_path=system.file("extdata", package = "blupADC")  #  示例文件的路径
+  
 run_DMU(
         phe_col_names=c("Herd","B_month","D_age","Litter","Sex","HY","ID","DAM","L_Dam",
 		         "W_birth","W_2mth","W_4mth","G_0_2","G_0_4","G_2_4"), # colnames of phenotype
@@ -182,6 +185,9 @@ run_DMU(
 ### 单性状模型-系谱 (包含永久环境效应)
 
 ```R
+library(blupADC)
+data_path=system.file("extdata", package = "blupADC")  #  示例文件的路径
+  
 run_DMU(
         phe_col_names=c("id","year_grp","breed","time","t_dato",
                         "age","L1","L2","L3","gh"),           # colnames of phenotype
@@ -205,6 +211,9 @@ run_DMU(
 ### 单性状模型-系谱 ( 包含随机回归效应)
 
 ```R
+library(blupADC)
+data_path=system.file("extdata", package = "blupADC")  #  示例文件的路径
+  
 run_DMU(
         phe_col_names=c("id","year_grp","breed","time","t_dato",
                         "age","L1","L2","L3","gh"),           # colnames of phenotype
@@ -231,6 +240,9 @@ run_DMU(
 用户提供的表型文件不需要包含 最大群体大小相关的列
 
 ```R
+library(blupADC)
+data_path=system.file("extdata", package = "blupADC")  #  示例文件的路径
+  
 run_DMU(
         phe_col_names=c("Id","Group","Sex","Phe"), # colnames of phenotype
         target_trait_name=list(c("Phe")),          #trait name 
@@ -256,6 +268,9 @@ run_DMU(
 用户提供的表型文件需要包含 最大群体大小相关的列
 
 ```R
+library(blupADC)
+data_path=system.file("extdata", package = "blupADC")  #  示例文件的路径
+  
 run_DMU(phe_col_names=c("Id","Group","Sex","Gr_id1","Gr_id2","Gr_id3","Gr_id4","Gr_id5",                         
                         "Phe","Status_Gr_id1","Status_Gr_id2","Status_Gr_id3","Status_Gr_id4","Status_Gr_id5"),# colnames of phenotype
 	target_trait_name=list(c("Phe")),           #trait name 

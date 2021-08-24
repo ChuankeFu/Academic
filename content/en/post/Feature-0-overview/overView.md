@@ -22,15 +22,7 @@ toc: true
 {{<toc>}}<img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210617165506.png" alt="logo-blupADC"  height="250" align="right" style="zoom:25%;" />
 
 **Documents support two-language([English](https://qsmei.netlify.app/post/2021-04-21-r-package-rblupadc-overview/overview/) and [Chinese](https://qsmei.netlify.app/zh/post/2021-04-21-r-package-rblupadc-overview/overview/)).** 
-<<<<<<< HEAD:content/en/post/Feature-0-overview/overView.md
 
-### OVERVIEW
-
-`blupADC` is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding(**traditional blup and genomic selection**).  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (`Rcpp` and `RcppArmadillo `) , and it also supports  parallel calculation by applying `openMP` programming.
-
-`blupADC` provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(**trace pedigree, rename pedigree, and correct pedigree errors**), genotype data format conversion(supports **Hapmap, Plink, Blupf90, Numeric, and VCF** format), genotype data quality control and imputation, construction of kinship matrix(**pedigree, genomic  and single-step**),and genetic evaluation( by interfacing with two famous breeding softwares, **DMU** and **BLUPF90**  in an easy way). 
-
-=======
 ### OVERVIEW
 
 `blupADC` is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding(**traditional blup and genomic selection**).  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (`Rcpp` and `RcppArmadillo `) , and it also supports  parallel calculation by applying `openMP` programming.
@@ -40,6 +32,12 @@ toc: true
 Finally, we kindly provides an easier way of applying `blupADC`, which is a free  website([see more details](https://qsmei.netlify.app/post/2021-04-22-blupadc-online-dmu/online_dmu/)).  Most functions of  package`blupADC`  can be found in this website. Thus, for user who has little code experience, we recommend  to use this website(**only need to click and type, that's enough**).  But the pitfall of this website is that it can't handle big data. 
 
 😊 Good Luck Charlie ! 
+
+## New features 
+
+### 1.0.3
+
+- Incorporate  maternal effect, permanent effect, random regression effect, and social genetic  effect models in  the genetic evaluation by DMU (2021.8.24)
 
 ## GETTING STARTED
 
@@ -58,29 +56,28 @@ install.packages(c("Rcpp", "RcppArmadillo","data.table"))
 #### Install blupADC on Linux 
 
 ```R
-packageurl <- "https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz"
+packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3_R_x86_64-pc-linux-gnu.tar.gz"
 install.packages(packageurl,repos=NULL,method="libcurl")
 ```
 
 For Chinese users, we recommend to use the following code(**installation would be  faster**):
 
 ```R
-packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/798138/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz
-"
+packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/811381/download/blupADC_1.0.3_R_x86_64-pc-linux-gnu.tar.gz"
 install.packages(packageurl,repos=NULL,method="libcurl")
 ```
 
 #### Install blupADC on Windows
 
 ```R
-packageurl <- "https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2.zip"
+packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3.zip"
 install.packages(packageurl,repos=NULL)
 ```
 
 For Chinese users, we recommend to use the following code(**installation would be  faster**):
 
 ```R
-packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/798137/download/blupADC_1.0.2.zip"
+packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/811380/download/blupADC_1.0.3.zip"
 install.packages(packageurl,repos=NULL)
 ```
 
@@ -190,7 +187,7 @@ data_path=system.file("extdata", package = "blupADC")  #  path of provided files
   
 run_DMU(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
-        target_trait_name=c("Trait1"),                           #trait name 
+        target_trait_name=list(c("Trait1")),                     #trait name 
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
@@ -212,7 +209,7 @@ data_path=system.file("extdata", package = "blupADC")  #  path of provided files
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
-        target_trait_name=c("Trait1"),                           #trait name 
+        target_trait_name=list(c("Trait1")),                     #trait name 
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
@@ -224,5 +221,3 @@ run_BLUPF90(
         output_result_path="/root"                   # output path 
         )   
 ```
-
-1

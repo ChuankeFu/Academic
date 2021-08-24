@@ -157,6 +157,9 @@ run_DMU(phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter",
 ### Single trait  - pedigree BLUP model( with maternal effect)
 
 ```R
+library(blupADC)
+data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+  
 run_DMU(
         phe_col_names=c("Herd","B_month","D_age","Litter","Sex","HY","ID","DAM","L_Dam",
 		         "W_birth","W_2mth","W_4mth","G_0_2","G_0_4","G_2_4"), # colnames of phenotype
@@ -180,6 +183,9 @@ run_DMU(
 ### Single trait  - pedigree BLUP model( with permanent effect)
 
 ```R
+library(blupADC)
+data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+  
 run_DMU(
         phe_col_names=c("id","year_grp","breed","time","t_dato",
                         "age","L1","L2","L3","gh"),           # colnames of phenotype
@@ -203,6 +209,9 @@ run_DMU(
 ### Single trait  - pedigree BLUP model( with random regression effect)
 
 ```R
+library(blupADC)
+data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+  
 run_DMU(
         phe_col_names=c("id","year_grp","breed","time","t_dato",
                         "age","L1","L2","L3","gh"),           # colnames of phenotype
@@ -229,6 +238,9 @@ run_DMU(
 #### User-provided phenotype doesn't need to have max group size columns 
 
 ```R
+library(blupADC)
+data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+  
 run_DMU(
         phe_col_names=c("Id","Group","Sex","Phe"), # colnames of phenotype
         target_trait_name=list(c("Phe")),          #trait name 
@@ -254,6 +266,9 @@ run_DMU(
 #### User-provided phenotype need to have  max group size columns
 
 ```R
+library(blupADC)
+data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+  
 run_DMU(phe_col_names=c("Id","Group","Sex","Gr_id1","Gr_id2","Gr_id3","Gr_id4","Gr_id5",                         
                         "Phe","Status_Gr_id1","Status_Gr_id2","Status_Gr_id3","Status_Gr_id4","Status_Gr_id5"),# colnames of phenotype
 	target_trait_name=list(c("Phe")),           #trait name 

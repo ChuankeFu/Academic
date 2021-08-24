@@ -31,6 +31,12 @@ toc: true
 
 😊 祝好运 ! 
 
+## 新添加的功能 
+
+### 1.0.3
+
+- 目前能够通过DMU自动分析 母性效应，永久环境效应，随机回归效应 及 社会遗传效应的模型 (2021.8.24)
+
 ## 开始
 
 ### 🙊安装
@@ -184,7 +190,7 @@ data_path=system.file("extdata", package = "blupADC")  #  path of provided files
   
 run_DMU(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
-        target_trait_name=c("Trait1"),                           #trait name 
+        target_trait_name=list(c("Trait1")),                     #trait name 
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
@@ -207,7 +213,7 @@ data_path=system.file("extdata", package = "blupADC")  #  path of provided files
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
-        target_trait_name=c("Trait1"),                           #trait name 
+        target_trait_name=list(c("Trait1")),                     #trait name 
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name

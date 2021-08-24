@@ -437,7 +437,10 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quo
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱-包含母性效应&#34;&gt;单性状模型-系谱 (包含母性效应)&lt;/h3&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;run_DMU(
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+  
+run_DMU(
         phe_col_names=c(&amp;quot;Herd&amp;quot;,&amp;quot;B_month&amp;quot;,&amp;quot;D_age&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;HY&amp;quot;,&amp;quot;ID&amp;quot;,&amp;quot;DAM&amp;quot;,&amp;quot;L_Dam&amp;quot;,
 		         &amp;quot;W_birth&amp;quot;,&amp;quot;W_2mth&amp;quot;,&amp;quot;W_4mth&amp;quot;,&amp;quot;G_0_2&amp;quot;,&amp;quot;G_0_4&amp;quot;,&amp;quot;G_2_4&amp;quot;), # colnames of phenotype
         target_trait_name=list(c(&amp;quot;W_birth&amp;quot;)),                           #trait name 
@@ -457,7 +460,10 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quo
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱-包含永久环境效应&#34;&gt;单性状模型-系谱 (包含永久环境效应)&lt;/h3&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;run_DMU(
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+  
+run_DMU(
         phe_col_names=c(&amp;quot;id&amp;quot;,&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;,&amp;quot;t_dato&amp;quot;,
                         &amp;quot;age&amp;quot;,&amp;quot;L1&amp;quot;,&amp;quot;L2&amp;quot;,&amp;quot;L3&amp;quot;,&amp;quot;gh&amp;quot;),           # colnames of phenotype
         target_trait_name=list(c(&amp;quot;gh&amp;quot;)),                      #trait name 
@@ -477,7 +483,10 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quo
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱--包含随机回归效应&#34;&gt;单性状模型-系谱 ( 包含随机回归效应)&lt;/h3&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;run_DMU(
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+  
+run_DMU(
         phe_col_names=c(&amp;quot;id&amp;quot;,&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;,&amp;quot;t_dato&amp;quot;,
                         &amp;quot;age&amp;quot;,&amp;quot;L1&amp;quot;,&amp;quot;L2&amp;quot;,&amp;quot;L3&amp;quot;,&amp;quot;gh&amp;quot;),           # colnames of phenotype
         target_trait_name=list(c(&amp;quot;gh&amp;quot;)),                      #trait name 
@@ -499,7 +508,10 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quo
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱-包含-社会遗传效应&#34;&gt;单性状模型-系谱( 包含 社会遗传效应)&lt;/h3&gt;
 &lt;p&gt;用户提供的表型文件不需要包含 最大群体大小相关的列&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;run_DMU(
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+  
+run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Phe&amp;quot;), # colnames of phenotype
         target_trait_name=list(c(&amp;quot;Phe&amp;quot;)),          #trait name 
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;)),          #fixed effect name
@@ -520,7 +532,10 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quo
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱-包含-社会遗传效应-1&#34;&gt;单性状模型-系谱( 包含 社会遗传效应)&lt;/h3&gt;
 &lt;p&gt;用户提供的表型文件需要包含 最大群体大小相关的列&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Gr_id1&amp;quot;,&amp;quot;Gr_id2&amp;quot;,&amp;quot;Gr_id3&amp;quot;,&amp;quot;Gr_id4&amp;quot;,&amp;quot;Gr_id5&amp;quot;,                         
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+  
+run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Gr_id1&amp;quot;,&amp;quot;Gr_id2&amp;quot;,&amp;quot;Gr_id3&amp;quot;,&amp;quot;Gr_id4&amp;quot;,&amp;quot;Gr_id5&amp;quot;,                         
                         &amp;quot;Phe&amp;quot;,&amp;quot;Status_Gr_id1&amp;quot;,&amp;quot;Status_Gr_id2&amp;quot;,&amp;quot;Status_Gr_id3&amp;quot;,&amp;quot;Status_Gr_id4&amp;quot;,&amp;quot;Status_Gr_id5&amp;quot;),# colnames of phenotype
 	target_trait_name=list(c(&amp;quot;Phe&amp;quot;)),           #trait name 
 	fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;)),           #fixed effect name
@@ -2432,6 +2447,11 @@ sum_data=genotype_data_format_conversion(
   &lt;nav id=&#34;TableOfContents&#34;&gt;
   &lt;ul&gt;
     &lt;li&gt;&lt;a href=&#34;#简介&#34;&gt;简介&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#新添加的功能&#34;&gt;新添加的功能&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#103&#34;&gt;1.0.3&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
     &lt;li&gt;&lt;a href=&#34;#开始&#34;&gt;开始&lt;/a&gt;
       &lt;ul&gt;
         &lt;li&gt;&lt;a href=&#34;#安装&#34;&gt;🙊安装&lt;/a&gt;&lt;/li&gt;
@@ -2452,6 +2472,11 @@ sum_data=genotype_data_format_conversion(
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt;提供了许多有用的功能在整个动植物育种的流程中，包括 系谱分析(系谱追溯、重命名及纠错)，基因型数据格式转换(支持&lt;strong&gt;Hapmap, Plink, BLUPF90, Numeric 及VCF&lt;/strong&gt; 格式)，基因型数据的质控填充，亲缘关系矩阵的构建(&lt;strong&gt;系谱，基因组及一步法亲缘关系矩阵&lt;/strong&gt;)以及遗传评估（仅需几行代码即可通过DMU和BLUPF90完成遗传评估）。&lt;/p&gt;
 &lt;p&gt;最后，为了方进一步方便用户的使用(尤其是编程基础弱的用户)，我们创建了一个免费的在线网站。绝大部分的&lt;code&gt;blupADC&lt;/code&gt; 的功能均可通过在网站上实现，用户只需上传、点击及下载即可完成整套的分析流程。但是，网站的一个缺点就是，不能处理大数据，请大家合理选择！&lt;/p&gt;
 &lt;p&gt;😊 祝好运 !&lt;/p&gt;
+&lt;h2 id=&#34;新添加的功能&#34;&gt;新添加的功能&lt;/h2&gt;
+&lt;h3 id=&#34;103&#34;&gt;1.0.3&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;目前能够通过DMU自动分析 母性效应，永久环境效应，随机回归效应 及 社会遗传效应的模型 (2021.8.24)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;开始&#34;&gt;开始&lt;/h2&gt;
 &lt;h3 id=&#34;安装&#34;&gt;🙊安装&lt;/h3&gt;
 &lt;p&gt;安装&lt;code&gt;blupADC&lt;/code&gt; 之前，用户首先需要安装如下3个包：&lt;code&gt;Rcpp&lt;/code&gt;, &lt;code&gt;RcppArmadillo&lt;/code&gt; and &lt;code&gt;data.table&lt;/code&gt;.&lt;/p&gt;
@@ -2557,7 +2582,7 @@ data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&a
   
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
-        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        target_trait_name=list(c(&amp;quot;Trait1&amp;quot;)),                     #trait name 
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
@@ -2577,7 +2602,7 @@ data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&a
   
 run_BLUPF90(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
-        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #trait name 
+        target_trait_name=list(c(&amp;quot;Trait1&amp;quot;)),                     #trait name 
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
