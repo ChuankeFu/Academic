@@ -844,7 +844,7 @@ data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)   #  �
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # 表型数据的列名(ps.表型文件无列名)
-        target_trait_name=c(&quot;Trait1&quot;),                           #性状名称
+        target_trait_name=list(c(&quot;Trait1&quot;)),                     #性状名称
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #固定效应名称
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
@@ -862,7 +862,7 @@ data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)   #  �
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # 表型数据的列名(ps.表型文件无列名)
-        target_trait_name=c(&quot;Trait1&quot;),                           #性状名称
+        target_trait_name=list(c(&quot;Trait1&quot;)),                     #性状名称
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #固定效应名称
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
@@ -880,7 +880,7 @@ data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)   #  �
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # 表型数据的列名(ps.表型文件无列名)
-        target_trait_name=c(&quot;Trait1&quot;),                           #性状名称
+        target_trait_name=list(c(&quot;Trait1&quot;)),                     #性状名称
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #固定效应名称
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
@@ -900,7 +900,7 @@ data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)   #  �
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # 表型数据的列名(ps.表型文件无列名)
-        target_trait_name=c(&quot;Trait1&quot;,&quot;Trait2&quot;),                  #性状名称
+        target_trait_name=list(c(&quot;Trait1&quot;),c(&quot;Trait2&quot;)),                     #性状名称
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;),c(&quot;Herd_Year_Season&quot;)),     #固定效应名称
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;),c(&quot;Id&quot;)),               #随机效应名称
         covariate_effect_name=list(NULL,&quot;Age&quot;),                              #协变量效应名称

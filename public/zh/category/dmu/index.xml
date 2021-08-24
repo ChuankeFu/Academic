@@ -28,6 +28,12 @@
         &lt;li&gt;&lt;a href=&#34;#单性状模型-gblup&#34;&gt;&lt;strong&gt;单性状模型-GBLUP&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#单性状模型-single-step一步法&#34;&gt;&lt;strong&gt;单性状模型-Single-step(一步法)&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#多性状模型-系谱&#34;&gt;&lt;strong&gt;多性状模型-系谱&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#单性状模型-系谱-用户提供方差组分先验文件&#34;&gt;单性状模型-系谱 (用户提供方差组分先验文件)&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#单性状模型-系谱-包含母性效应&#34;&gt;单性状模型-系谱 (包含母性效应)&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#单性状模型-系谱-包含永久环境效应&#34;&gt;单性状模型-系谱 (包含永久环境效应)&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#单性状模型-系谱--包含随机回归效应&#34;&gt;单性状模型-系谱 ( 包含随机回归效应)&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#单性状模型-系谱-包含-社会遗传效应&#34;&gt;单性状模型-系谱( 包含 社会遗传效应)&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#单性状模型-系谱-包含-社会遗传效应-1&#34;&gt;单性状模型-系谱( 包含 社会遗传效应)&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/li&gt;
     &lt;li&gt;&lt;a href=&#34;#参数详解&#34;&gt;参数详解&lt;/a&gt;
@@ -53,7 +59,7 @@ data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&a
   
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
-        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #性状名称 
+        target_trait_name=list(c(&amp;quot;Trait1&amp;quot;)),                           #性状名称 
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
@@ -73,7 +79,7 @@ data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&a
   
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
-        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #性状名称 
+        target_trait_name=list(c(&amp;quot;Trait1&amp;quot;)),                     #性状名称 
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
@@ -93,7 +99,7 @@ data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&a
   
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
-        target_trait_name=c(&amp;quot;Trait1&amp;quot;),                           #性状名称 
+        target_trait_name=list(c(&amp;quot;Trait1&amp;quot;)),                     #性状名称 
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
@@ -115,7 +121,7 @@ data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&a
   
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
-        target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;),                           #性状名称 
+        target_trait_name=list(c(&amp;quot;Trait1&amp;quot;),c(&amp;quot;Trait2&amp;quot;)),                               #性状名称 
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;)),       #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
@@ -129,7 +135,133 @@ run_DMU(
         output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
         )
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;接下来，我们将对&lt;code&gt;run_DMU&lt;/code&gt;函数中的参数一一进行讲解。&lt;/p&gt;
+&lt;h3 id=&#34;单性状模型-系谱-用户提供方差组分先验文件&#34;&gt;单性状模型-系谱 (用户提供方差组分先验文件)&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+  
+run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,
+                         &amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),               # colnames of phenotype
+        target_trait_name=list(c(&amp;quot;Trait1&amp;quot;)),                     #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        provided_prior_file_path=data_path,          #path of user-provided prior file
+        provided_prior_file_name=&amp;quot;PAROUT&amp;quot;,           #name of user-provided prior file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;单性状模型-系谱-包含母性效应&#34;&gt;单性状模型-系谱 (包含母性效应)&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;run_DMU(
+        phe_col_names=c(&amp;quot;Herd&amp;quot;,&amp;quot;B_month&amp;quot;,&amp;quot;D_age&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;HY&amp;quot;,&amp;quot;ID&amp;quot;,&amp;quot;DAM&amp;quot;,&amp;quot;L_Dam&amp;quot;,
+		         &amp;quot;W_birth&amp;quot;,&amp;quot;W_2mth&amp;quot;,&amp;quot;W_4mth&amp;quot;,&amp;quot;G_0_2&amp;quot;,&amp;quot;G_0_4&amp;quot;,&amp;quot;G_2_4&amp;quot;), # colnames of phenotype
+        target_trait_name=list(c(&amp;quot;W_birth&amp;quot;)),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;B_month&amp;quot;,&amp;quot;D_age&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;HY&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;ID&amp;quot;,&amp;quot;L_Dam&amp;quot;)),    #random effect name
+        maternal_effect_name=list(c(&amp;quot;DAM&amp;quot;)),
+        genetic_effect_name=&amp;quot;ID&amp;quot;,
+        covariate_effect_name=NULL,                  #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;maternal_data&amp;quot;,                    #name of phenotype file
+        integer_n=9,                                 #number of integer variable 
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;maternal_pedigree&amp;quot;,       #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;单性状模型-系谱-包含永久环境效应&#34;&gt;单性状模型-系谱 (包含永久环境效应)&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;run_DMU(
+        phe_col_names=c(&amp;quot;id&amp;quot;,&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;,&amp;quot;t_dato&amp;quot;,
+                        &amp;quot;age&amp;quot;,&amp;quot;L1&amp;quot;,&amp;quot;L2&amp;quot;,&amp;quot;L3&amp;quot;,&amp;quot;gh&amp;quot;),           # colnames of phenotype
+        target_trait_name=list(c(&amp;quot;gh&amp;quot;)),                      #trait name 
+        fixed_effect_name=list(c(&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;)), #fixed effect name
+        random_effect_name=list(c(&amp;quot;id&amp;quot;,&amp;quot;t_dato&amp;quot;)),            #random effect name
+        covariate_effect_name=list(c(&amp;quot;age&amp;quot;)),                 #covariate effect name	
+        genetic_effect_name=&amp;quot;id&amp;quot;,
+        included_permanent_effect=list(c(TRUE)),     #whether include permant effect
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;rr_data&amp;quot;,                          #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;rr_pedigree&amp;quot;,             #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;单性状模型-系谱--包含随机回归效应&#34;&gt;单性状模型-系谱 ( 包含随机回归效应)&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;run_DMU(
+        phe_col_names=c(&amp;quot;id&amp;quot;,&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;,&amp;quot;t_dato&amp;quot;,
+                        &amp;quot;age&amp;quot;,&amp;quot;L1&amp;quot;,&amp;quot;L2&amp;quot;,&amp;quot;L3&amp;quot;,&amp;quot;gh&amp;quot;),           # colnames of phenotype
+        target_trait_name=list(c(&amp;quot;gh&amp;quot;)),                      #trait name 
+        fixed_effect_name=list(c(&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;)), #fixed effect name
+        random_effect_name=list(c(&amp;quot;id&amp;quot;,&amp;quot;t_dato&amp;quot;)),            #random effect name
+        covariate_effect_name=list(c(&amp;quot;age&amp;quot;)),                 #covariate effect name	
+        genetic_effect_name=&amp;quot;id&amp;quot;,
+        included_permanent_effect=list(c(TRUE)),     #whether include permant effect
+        random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;quot;,&amp;quot;L1&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;quot;,&amp;quot;L2&amp;amp;pe_effect&amp;quot;)), #random regression effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;rr_data&amp;quot;,                          #name of phenotype file
+        integer_n=5,                                 #number of integer variable 
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;rr_pedigree&amp;quot;,             #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;单性状模型-系谱-包含-社会遗传效应&#34;&gt;单性状模型-系谱( 包含 社会遗传效应)&lt;/h3&gt;
+&lt;p&gt;用户提供的表型文件不需要包含 最大群体大小相关的列&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;run_DMU(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Phe&amp;quot;), # colnames of phenotype
+        target_trait_name=list(c(&amp;quot;Phe&amp;quot;)),          #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;)),          #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;)),  #random effect name
+        covariate_effect_name=NULL,                #covariate effect name		
+        genetic_effect_name=&amp;quot;Id&amp;quot;,
+        include_social_effect=list(c(TRUE)),   
+        group_effect_name=&amp;quot;Group&amp;quot;,
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;raw_social_data&amp;quot;,                  #name of phenotype file
+        integer_n=3,                                 #number of integer variable 
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;socail_pedigree&amp;quot;,         #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;  # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;单性状模型-系谱-包含-社会遗传效应-1&#34;&gt;单性状模型-系谱( 包含 社会遗传效应)&lt;/h3&gt;
+&lt;p&gt;用户提供的表型文件需要包含 最大群体大小相关的列&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Gr_id1&amp;quot;,&amp;quot;Gr_id2&amp;quot;,&amp;quot;Gr_id3&amp;quot;,&amp;quot;Gr_id4&amp;quot;,&amp;quot;Gr_id5&amp;quot;,                         
+                        &amp;quot;Phe&amp;quot;,&amp;quot;Status_Gr_id1&amp;quot;,&amp;quot;Status_Gr_id2&amp;quot;,&amp;quot;Status_Gr_id3&amp;quot;,&amp;quot;Status_Gr_id4&amp;quot;,&amp;quot;Status_Gr_id5&amp;quot;),# colnames of phenotype
+	target_trait_name=list(c(&amp;quot;Phe&amp;quot;)),           #trait name 
+	fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;)),           #fixed effect name
+	random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;)),   #random effect name
+	covariate_effect_name=NULL,
+	genetic_effect_name=&amp;quot;Id&amp;quot;,		
+	include_social_effect=list(c(TRUE)),       #whether include social genetic effect 
+	integer_group_names=c(&amp;quot;Gr_id1&amp;quot;,&amp;quot;Gr_id2&amp;quot;,&amp;quot;Gr_id3&amp;quot;,&amp;quot;Gr_id4&amp;quot;,&amp;quot;Gr_id5&amp;quot;),  #integer variable name of max group size    
+        real_group_names= c(&amp;quot;Status_Gr_id1&amp;quot;,&amp;quot;Status_Gr_id2&amp;quot;,&amp;quot;Status_Gr_id3&amp;quot;,&amp;quot;Status_Gr_id4&amp;quot;,&amp;quot;Status_Gr_id5&amp;quot;), #real variable name of max group size
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;social_data&amp;quot;,                      #name of phenotype file
+        integer_n=8,                                 #number of integer variable 
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;socail_pedigree&amp;quot;,         #name of relationship file 
+        output_result_path=&amp;quot;/root&amp;quot;  # output path 
+		)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们将对&lt;code&gt;run_DMU&lt;/code&gt;函数中的参数一一进行讲解。&lt;/p&gt;
 &lt;h2 id=&#34;参数详解&#34;&gt;参数详解&lt;/h2&gt;
 &lt;h3 id=&#34;基础参数&#34;&gt;🤡基础参数&lt;/h3&gt;
 &lt;ul&gt;
@@ -155,8 +287,8 @@ run_DMU(
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;参数6：target_trait_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;目标性状的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
-&lt;p&gt;通过添加多个性状的名称，我们即可完成多性状模型的分析，e.g. &lt;code&gt;target_trait_name=c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;)&lt;/code&gt; 即可完成 &lt;code&gt;Trait1&lt;/code&gt; 和 &lt;code&gt;Trait2&lt;/code&gt;的双性状模型&lt;/p&gt;
+&lt;p&gt;目标性状的名称，&lt;code&gt;list&lt;/code&gt;类型。 每个列表均代表一个性状。&lt;/p&gt;
+&lt;p&gt;通过添加多个性状的名称，我们即可完成多性状模型的分析，e.g. &lt;code&gt;target_trait_name=list(c(&amp;quot;Trait1&amp;quot;),c(&amp;quot;Trait2&amp;quot;))&lt;/code&gt; 即可完成 &lt;code&gt;Trait1&lt;/code&gt; 和 &lt;code&gt;Trait2&lt;/code&gt;的双性状模型&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;参数7：fixed_effect_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -177,10 +309,54 @@ run_DMU(
 &lt;p&gt;目标性状的协变量效应名称，&lt;code&gt;list&lt;/code&gt;类型。在多性状模型中，&lt;code&gt;random_effect_name&lt;/code&gt;为每个性状的协变量效应名称向量组成的列表结构，性状的顺序需与&lt;code&gt;target_trait_name&lt;/code&gt;一一对应。&lt;/p&gt;
 &lt;p&gt;e.g. 第一个性状的协变量效应名称为： &lt;code&gt;c(&amp;quot;Age&amp;quot;)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;第二个性状的协变量效应名称为：&lt;code&gt;NULL&lt;/code&gt; (&lt;strong&gt;意味着无协变量&lt;/strong&gt;)&lt;/p&gt;
-&lt;p&gt;那么&lt;code&gt;covariate_effect_name=list(c(&amp;quot;Age&amp;quot;),NULL)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;那么&lt;code&gt;covariate_effect_name=list(c(&amp;quot;Age&amp;quot;),NULL) &lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数10：maternal_effect_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;母性效应名称(一般为母亲名称), &lt;code&gt;list&lt;/code&gt; 类型.&lt;/p&gt;
+&lt;p&gt;在多性状模型中，&lt;code&gt;maternal_effect_name&lt;/code&gt;为每个性状的母性效应名称向量组成的列表结构，性状的顺序需与&lt;code&gt;target_trait_name&lt;/code&gt;一一对应。&lt;/p&gt;
+&lt;p&gt;eg.  &lt;code&gt;target_trait_name=list(c(&amp;quot;Trait1&amp;quot;),c(&amp;quot;Trait2&amp;quot;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;maternal_effect_name=list(c(NULL),c(&amp;quot;Dam&amp;quot;))&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数11：random_regression_effect_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;随机回归效应名称, &lt;code&gt;list&lt;/code&gt; 类型.&lt;/p&gt;
+&lt;p&gt;在多性状模型中，&lt;code&gt;random_regression_effect_name&lt;/code&gt;为每个性状的随机回归效应名称向量组成的列表结构，性状的顺序需与&lt;code&gt;target_trait_name&lt;/code&gt;一一对应。&lt;/p&gt;
+&lt;p&gt;eg.  &lt;code&gt;target_trait_name=list(c(&amp;quot;Trait1&amp;quot;),c(&amp;quot;Trait2&amp;quot;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;quot;,&amp;quot;L1&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;quot;,&amp;quot;L2&amp;amp;pe_effect&amp;quot;),c(&amp;quot;L1&amp;amp;id&amp;quot;,&amp;quot;L1&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;quot;,&amp;quot;L2&amp;amp;pe_effect&amp;quot;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在每个列表中,    &lt;code&gt;&amp;amp;&lt;/code&gt;  左边 代表的是多项式系数名称,   &lt;code&gt;&amp;amp;&lt;/code&gt;  右边 代表的是嵌套在多项式里的相应的随机效应名称。 如果用户想将 永久环境效应也嵌套在多项式里，&lt;code&gt;&amp;amp;&lt;/code&gt;  右边 代表的随机效应名称应设置为 &amp;ldquo;pe_effect&amp;rdquo;，并且需要设置  included_permanent_effect 参数为 TRUE。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数12: included_permanent_effect&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;是否包括永久环境效应在分析中,&lt;code&gt;list&lt;/code&gt; 类型.&lt;/p&gt;
+&lt;p&gt;在多性状模型中，&lt;code&gt;included_permanent_effect&lt;/code&gt;为每个逻辑向量组成的列表结构，性状的顺序需与&lt;code&gt;target_trait_name&lt;/code&gt;一一对应。&lt;/p&gt;
+&lt;p&gt;eg.  &lt;code&gt;target_trait_name=list(c(&amp;quot;Trait1&amp;quot;),c(&amp;quot;Trait2&amp;quot;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;included_permanent_effect=list(c(TRUE),c(TRUE))&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数13：include_social_effect&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;是否包括社会遗传效应在分析中,&lt;code&gt;list&lt;/code&gt; 类型.&lt;/p&gt;
+&lt;p&gt;在多性状模型中，&lt;code&gt;include_social_effect&lt;/code&gt;为每个逻辑向量组成的列表结构，性状的顺序需与&lt;code&gt;target_trait_name&lt;/code&gt;一一对应。&lt;/p&gt;
+&lt;p&gt;eg.  &lt;code&gt;target_trait_name=list(c(&amp;quot;Trait1&amp;quot;),c(&amp;quot;Trait2&amp;quot;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;include_social_effect=list(c(TRUE),c(TRUE))&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数14：group_effect_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Group效应的名称在社会遗传效应分析中， &lt;code&gt;character&lt;/code&gt; 类型。&lt;/p&gt;
+&lt;p&gt;当用户提供的表型数据中不包含最大群体大小相关的列时，用户需要提供 group_effect_name 参数。 当用户提供了 Group效应的名称后， 软件将会自动生成包含 最大群体大小相关的列的表型并进行后续的社会遗传分析。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数15：integer_group_names&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最大群体大小相关的整型列的变量名称,  &lt;code&gt;character&lt;/code&gt; 类型。&lt;/p&gt;
+&lt;p&gt;当用户提供的表型数据中包含最大群体大小相关的列时, 用户需要指定 最大群体大小相关的整型列的变量名称。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数16：real_group_names&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最大群体大小相关的实型列的变量名称,  &lt;code&gt;character&lt;/code&gt; 类型。&lt;/p&gt;
+&lt;p&gt;当用户提供的表型数据中包含最大群体大小相关的列时, 用户需要指定 最大群体大小相关的实型列的变量名称。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;参数10：analysis_model&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参数17：analysis_model&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;遗传评估的分析模型，&lt;code&gt;character&lt;/code&gt;类型。可选模型包括：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;&amp;quot;PBLUP_A&amp;quot;&lt;/code&gt; : 系谱-加性效应模型&lt;/li&gt;
@@ -191,7 +367,7 @@ run_DMU(
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;参数11：dmu_module&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参数18：dmu_module&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;DMU分析时使用的模块，&lt;code&gt;character&lt;/code&gt;类型。可选模块包括：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -206,16 +382,16 @@ run_DMU(
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;参数12：DMU_software_path&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参数19：DMU_software_path&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;DMU软件在本地的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数13：relationship_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数20：relationship_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;提供的亲缘关系文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数14：relationship_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数21：relationship_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;提供的亲缘关系文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;p&gt;针对不同的遗传评估分析模型，我们需要提供不同类型的亲缘关系文件。&lt;/p&gt;
@@ -223,20 +399,20 @@ run_DMU(
 &lt;p&gt;针对&lt;code&gt;&amp;quot;GBLUP_A&amp;quot;&lt;/code&gt; 或 &lt;code&gt;&amp;quot;GBLUP_AD&amp;quot;&lt;/code&gt;模型，我们需要提供3列格式的基因组亲缘关系矩阵的逆矩阵文件, e.g. &lt;code&gt;relationship_name=c(&amp;quot;G_A_inv_matrix.txt&amp;quot;,&amp;quot;G_D_inv_matrix.txt&amp;quot;)&lt;/code&gt;；&lt;/p&gt;
 &lt;p&gt;针对 &lt;code&gt;&amp;quot;SSBLUP_A&amp;quot;&lt;/code&gt;模型, 我们需要同时提供系谱文件及3列格式的基因组亲缘关系矩阵的文件, e.g. &lt;code&gt;relationship_name=c(&amp;quot;pedigree.txt&amp;quot;,&amp;quot;G_A_matrix.txt&amp;quot;)&lt;/code&gt; 。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数15：output_result_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数22：output_result_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;DMU运行结果的保存路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数16：output_ebv_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数23：output_ebv_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;输出的育种值、残差及校正表型文件的保存路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数17：output_ebv_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数24：output_ebv_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;输出的育种值、残差及校正表型文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;h3 id=&#34;进阶参数&#34;&gt;👺进阶参数&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;provided_effect_file_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数25: provided_effect_file_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;性状效应记录文件的路径，&lt;code&gt;character&lt;/code&gt;类型。为了方便用户输入固定效应、随机效应及协变量效应，用户可以在本地直接提供相应的文件，格式如下所示：&lt;/p&gt;
 &lt;table&gt;
@@ -280,63 +456,63 @@ run_DMU(
 &lt;/table&gt;
 &lt;p&gt;每类效应都用*&lt;em&gt;隔开，每一列的间隔均为制表符间隔。每个性状所在的行均有4个，第1-2个*之间的效应代表的是固定效应，第2-3个*&lt;/em&gt; &lt;em&gt;之间的效应代表的是随机效应，第3-4个*&lt;/em&gt; &lt;em&gt;之间的效应代表的是协变量效应。&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数19：provided_effect_file_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数26：provided_effect_file_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;性状效应记录文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数20：provided_DIR_file_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数27：provided_DIR_file_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;用户自己提供的DIR文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数21：provided_DIR_file_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数28：provided_DIR_file_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;用户自己提供的DIR文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数22：included_permanent_effect&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数29：included_permanent_effect&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;是否进行永久环境效应分析，&lt;code&gt;logical&lt;/code&gt;类型，默认为FASLE。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数23：dmu_algorithm_code&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数30：dmu_algorithm_code&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;DMU模块内的算法代码，&lt;code&gt;numeric&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数24：provided_prior_file_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数31：provided_prior_file_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;用户提供的方差组分-PRIOR文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数25：provided_prior_file_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数32：provided_prior_file_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;用户提供的方差组分-PRIOR文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数26：missing_value&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数33：missing_value&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;表型数据的缺失值，&lt;code&gt;numeric&lt;/code&gt;类型，默认为 -9999。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数27：iteration_criteria&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数34：iteration_criteria&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;方差组分迭代收敛的标准，&lt;code&gt;numeric&lt;/code&gt;类型，默认为 1.0e-7。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数28：genetic_effect_number&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数35：genetic_effect_number&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;SOL文件中，遗传效应所代表的数字，&lt;code&gt;numeric&lt;/code&gt;类型，默认为4。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数29：residual_cov_trait&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数36：residual_cov_trait&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;残差协方差约束为0的性状，&lt;code&gt;list&lt;/code&gt;类型。e.g. 将Trait1和Trait2的残差协方差约束为0，&lt;code&gt;residual_cov_trait=list(c(&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;))&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数30：selected_id&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数37：selected_id&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;只输出这部分个体的育种值、残差及校正表型，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数31：cal_debv&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数38：cal_debv&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;是否计算DEBV，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数32：debv_pedigree_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数39：debv_pedigree_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;计算DEBV时，提供的系谱文件的路径，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数33：debv_pedigree_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数40：debv_pedigree_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;计算DEBV时，提供的系谱文件的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 </description>

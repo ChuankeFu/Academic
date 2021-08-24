@@ -840,7 +840,7 @@ data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  pa
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
-        target_trait_name=c(&quot;Trait1&quot;),                           #trait name 
+        target_trait_name=list(c(&quot;Trait1&quot;)),                     #trait name 
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
@@ -858,7 +858,7 @@ data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  pa
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
-        target_trait_name=c(&quot;Trait1&quot;),                           #trait name 
+        target_trait_name=list(c(&quot;Trait1&quot;)),                     #trait name 
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
@@ -877,7 +877,7 @@ data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  pa
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
-        target_trait_name=c(&quot;Trait1&quot;),                           #trait name 
+        target_trait_name=list(c(&quot;Trait1&quot;)),                     #trait name 
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
@@ -897,7 +897,7 @@ data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  pa
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
-        target_trait_name=c(&quot;Trait1&quot;,&quot;Trait2&quot;),                           #trait name 
+        target_trait_name=list(c(&quot;Trait1&quot;),c(&quot;Trait2&quot;)),                 #trait name 
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;),c(&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;),c(&quot;Id&quot;)),               #random effect name
         covariate_effect_name=list(NULL,&quot;Age&quot;),                          #covariate effect name

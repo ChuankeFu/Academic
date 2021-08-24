@@ -776,7 +776,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    9 min read
+    10 min read
   </span>
   
 
@@ -926,8 +926,9 @@ run_DMU(
 <pre><code class="language-{.r}">library(blupADC)
 data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
   
-run_DMU(   phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype
-        target_trait_name=list(c(&quot;Trait1&quot;)),                           #trait name 
+run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,
+                         &quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),               # colnames of phenotype
+        target_trait_name=list(c(&quot;Trait1&quot;)),                     #trait name 
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
@@ -946,98 +947,97 @@ run_DMU(   phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot
 <h3 id="single-trait----pedigree-blup-model-with-maternal-effect">Single trait  - pedigree BLUP model( with maternal effect)</h3>
 <pre><code class="language-R">run_DMU(
         phe_col_names=c(&quot;Herd&quot;,&quot;B_month&quot;,&quot;D_age&quot;,&quot;Litter&quot;,&quot;Sex&quot;,&quot;HY&quot;,&quot;ID&quot;,&quot;DAM&quot;,&quot;L_Dam&quot;,
-						&quot;W_birth&quot;,&quot;W_2mth&quot;,&quot;W_4mth&quot;,&quot;G_0_2&quot;,&quot;G_0_4&quot;,&quot;G_2_4&quot;), # colnames of phenotype
+		         &quot;W_birth&quot;,&quot;W_2mth&quot;,&quot;W_4mth&quot;,&quot;G_0_2&quot;,&quot;G_0_4&quot;,&quot;G_2_4&quot;), # colnames of phenotype
         target_trait_name=list(c(&quot;W_birth&quot;)),                           #trait name 
         fixed_effect_name=list(c(&quot;B_month&quot;,&quot;D_age&quot;,&quot;Litter&quot;,&quot;Sex&quot;,&quot;HY&quot;)),     #fixed effect name
-        random_effect_name=list(c(&quot;ID&quot;,&quot;L_Dam&quot;)),               #random effect name
-		maternal_effect_name=list(c(&quot;DAM&quot;)),
-		genetic_effect_name=&quot;ID&quot;,
-        covariate_effect_name=NULL,                              #covariate effect name
+        random_effect_name=list(c(&quot;ID&quot;,&quot;L_Dam&quot;)),    #random effect name
+        maternal_effect_name=list(c(&quot;DAM&quot;)),
+        genetic_effect_name=&quot;ID&quot;,
+        covariate_effect_name=NULL,                  #covariate effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;maternal_data&quot;,                    #name of phenotype file
         integer_n=9,                                 #number of integer variable 
         analysis_model=&quot;PBLUP_A&quot;,                    #model of genetic evaluation
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
-        relationship_name=&quot;maternal_pedigree&quot;,            #name of relationship file 
-        output_result_path=&quot;/root&quot;  # output path 
+        relationship_name=&quot;maternal_pedigree&quot;,       #name of relationship file 
+        output_result_path=&quot;/root&quot;                   # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-permanent-effect">Single trait  - pedigree BLUP model( with permanent effect)</h3>
 <pre><code class="language-R">run_DMU(
         phe_col_names=c(&quot;id&quot;,&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;,&quot;t_dato&quot;,
-						&quot;age&quot;,&quot;L1&quot;,&quot;L2&quot;,&quot;L3&quot;,&quot;gh&quot;), # colnames of phenotype
-        target_trait_name=list(c(&quot;gh&quot;)),                           #trait name 
-        fixed_effect_name=list(c(&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;)),     #fixed effect name
-        random_effect_name=list(c(&quot;id&quot;,&quot;t_dato&quot;)),               #random effect name
-        covariate_effect_name=list(c(&quot;age&quot;)),                              #covariate effect name		
-		genetic_effect_name=&quot;id&quot;,
-		included_permanent_effect=list(c(TRUE)),     #whether include permant effect
+                        &quot;age&quot;,&quot;L1&quot;,&quot;L2&quot;,&quot;L3&quot;,&quot;gh&quot;),           # colnames of phenotype
+        target_trait_name=list(c(&quot;gh&quot;)),                      #trait name 
+        fixed_effect_name=list(c(&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;)), #fixed effect name
+        random_effect_name=list(c(&quot;id&quot;,&quot;t_dato&quot;)),            #random effect name
+        covariate_effect_name=list(c(&quot;age&quot;)),                 #covariate effect name	
+        genetic_effect_name=&quot;id&quot;,
+        included_permanent_effect=list(c(TRUE)),     #whether include permant effect
         phe_path=data_path,                          #path of phenotype file
-        phe_name=&quot;rr_data&quot;,                    #name of phenotype file
+        phe_name=&quot;rr_data&quot;,                          #name of phenotype file
         integer_n=5,                                 #number of integer variable 
         analysis_model=&quot;PBLUP_A&quot;,                    #model of genetic evaluation
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
-        relationship_name=&quot;rr_pedigree&quot;,            #name of relationship file 
-        output_result_path=&quot;/root&quot;  # output path 
+        relationship_name=&quot;rr_pedigree&quot;,             #name of relationship file 
+        output_result_path=&quot;/root&quot;                   # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-random-regression-effect">Single trait  - pedigree BLUP model( with random regression effect)</h3>
 <pre><code class="language-R">run_DMU(
         phe_col_names=c(&quot;id&quot;,&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;,&quot;t_dato&quot;,
-						&quot;age&quot;,&quot;L1&quot;,&quot;L2&quot;,&quot;L3&quot;,&quot;gh&quot;), # colnames of phenotype
-        target_trait_name=list(c(&quot;gh&quot;)),                           #trait name 
-        fixed_effect_name=list(c(&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;)),     #fixed effect name
-        random_effect_name=list(c(&quot;id&quot;,&quot;t_dato&quot;)),               #random effect name
-        covariate_effect_name=list(c(&quot;age&quot;)),                              #covariate effect name		
-		genetic_effect_name=&quot;id&quot;,
-		included_permanent_effect=list(c(TRUE)),
-		random_regression_effect_name=list(c(&quot;L1&amp;id&quot;,&quot;L1&amp;pe_effect&quot;,&quot;L2&amp;id&quot;,&quot;L2&amp;pe_effect&quot;)),	
+                        &quot;age&quot;,&quot;L1&quot;,&quot;L2&quot;,&quot;L3&quot;,&quot;gh&quot;),           # colnames of phenotype
+        target_trait_name=list(c(&quot;gh&quot;)),                      #trait name 
+        fixed_effect_name=list(c(&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;)), #fixed effect name
+        random_effect_name=list(c(&quot;id&quot;,&quot;t_dato&quot;)),            #random effect name
+        covariate_effect_name=list(c(&quot;age&quot;)),                 #covariate effect name	
+        genetic_effect_name=&quot;id&quot;,
+        included_permanent_effect=list(c(TRUE)),     #whether include permant effect
+        random_regression_effect_name=list(c(&quot;L1&amp;id&quot;,&quot;L1&amp;pe_effect&quot;,&quot;L2&amp;id&quot;,&quot;L2&amp;pe_effect&quot;)), #random regression effect name
         phe_path=data_path,                          #path of phenotype file
-        phe_name=&quot;rr_data&quot;,                    #name of phenotype file
+        phe_name=&quot;rr_data&quot;,                          #name of phenotype file
         integer_n=5,                                 #number of integer variable 
         analysis_model=&quot;PBLUP_A&quot;,                    #model of genetic evaluation
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
-        relationship_name=&quot;rr_pedigree&quot;,            #name of relationship file 
-        output_result_path=&quot;/root&quot;  # output path 
+        relationship_name=&quot;rr_pedigree&quot;,             #name of relationship file 
+        output_result_path=&quot;/root&quot;                   # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-social-genetic-effect">Single trait  - pedigree BLUP model( with social genetic effect)</h3>
-<h4 id="phenotype-doesnt-need-to-have-max-group-size-columns">phenotype doesn&rsquo;t need to have max group size columns</h4>
+<h4 id="user-provided-phenotype-doesnt-need-to-have-max-group-size-columns">User-provided phenotype doesn&rsquo;t need to have max group size columns</h4>
 <pre><code class="language-R">run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;Phe&quot;), # colnames of phenotype
         target_trait_name=list(c(&quot;Phe&quot;)),          #trait name 
         fixed_effect_name=list(c(&quot;Sex&quot;)),          #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Group&quot;)),  #random effect name
         covariate_effect_name=NULL,                #covariate effect name		
-		genetic_effect_name=&quot;Id&quot;,
-		include_social_effect=list(c(TRUE)),   
-		group_effect_name=&quot;Group&quot;,
+        genetic_effect_name=&quot;Id&quot;,
+        include_social_effect=list(c(TRUE)),   
+        group_effect_name=&quot;Group&quot;,
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;raw_social_data&quot;,                  #name of phenotype file
         integer_n=3,                                 #number of integer variable 
         analysis_model=&quot;PBLUP_A&quot;,                    #model of genetic evaluation
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
-        relationship_name=&quot;pedigree_10000.txt&quot;,            #name of relationship file 
+        relationship_name=&quot;socail_pedigree&quot;,         #name of relationship file 
         output_result_path=&quot;/root&quot;  # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-social-genetic-effect-1">Single trait  - pedigree BLUP model( with social genetic effect)</h3>
-<h4 id="phenotype-need-to-have--max-group-size-columns">phenotype need to have  max group size columns</h4>
-<pre><code class="language-R">run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;Gr_id1&quot;,&quot;Gr_id2&quot;,&quot;Gr_id3&quot;,&quot;Gr_id4&quot;,&quot;Gr_id5&quot;,   &quot;Phe&quot;,&quot;Status_Gr_id1&quot;,&quot;Status_Gr_id2&quot;,&quot;Status_Gr_id3&quot;,&quot;Status_Gr_id4&quot;,&quot;Status_Gr_id5&quot;),
-                                                    # colnames of phenotype
-		target_trait_name=list(c(&quot;Phe&quot;)),           #trait name 
-		fixed_effect_name=list(c(&quot;Sex&quot;)),           #fixed effect name
-		random_effect_name=list(c(&quot;Id&quot;,&quot;Group&quot;)),   #random effect name
-		covariate_effect_name=NULL,
-		genetic_effect_name=&quot;Id&quot;,		
-		include_social_effect=list(c(TRUE)),       #whether include social genetic effect 
-		integer_group_names=c(&quot;Gr_id1&quot;,&quot;Gr_id2&quot;,&quot;Gr_id3&quot;,&quot;Gr_id4&quot;,&quot;Gr_id5&quot;),  #integer variable name of max group size
-		real_group_names=c(&quot;Status_Gr_id1&quot;,&quot;Status_Gr_id2&quot;,&quot;Status_Gr_id3&quot;,&quot;Status_Gr_id4&quot;,&quot;Status_Gr_id5&quot;),   #real variable name of max group size
-		
+<h4 id="user-provided-phenotype-need-to-have--max-group-size-columns">User-provided phenotype need to have  max group size columns</h4>
+<pre><code class="language-R">run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;Gr_id1&quot;,&quot;Gr_id2&quot;,&quot;Gr_id3&quot;,&quot;Gr_id4&quot;,&quot;Gr_id5&quot;,                         
+                        &quot;Phe&quot;,&quot;Status_Gr_id1&quot;,&quot;Status_Gr_id2&quot;,&quot;Status_Gr_id3&quot;,&quot;Status_Gr_id4&quot;,&quot;Status_Gr_id5&quot;),# colnames of phenotype
+	target_trait_name=list(c(&quot;Phe&quot;)),           #trait name 
+	fixed_effect_name=list(c(&quot;Sex&quot;)),           #fixed effect name
+	random_effect_name=list(c(&quot;Id&quot;,&quot;Group&quot;)),   #random effect name
+	covariate_effect_name=NULL,
+	genetic_effect_name=&quot;Id&quot;,		
+	include_social_effect=list(c(TRUE)),       #whether include social genetic effect 
+	integer_group_names=c(&quot;Gr_id1&quot;,&quot;Gr_id2&quot;,&quot;Gr_id3&quot;,&quot;Gr_id4&quot;,&quot;Gr_id5&quot;),  #integer variable name of max group size    
+        real_group_names= c(&quot;Status_Gr_id1&quot;,&quot;Status_Gr_id2&quot;,&quot;Status_Gr_id3&quot;,&quot;Status_Gr_id4&quot;,&quot;Status_Gr_id5&quot;), #real variable name of max group size
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;social_data&quot;,                      #name of phenotype file
         integer_n=8,                                 #number of integer variable 
@@ -1045,7 +1045,7 @@ run_DMU(   phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;socail_pedigree&quot;,         #name of relationship file 
-        output_result_path=&quot;c:/Users/26564/Desktop&quot;  # output path 
+        output_result_path=&quot;/root&quot;  # output path 
 		)
 </code></pre>
 <h3 id="basic">🤡Basic</h3>
@@ -1073,14 +1073,14 @@ run_DMU(   phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot
 <ul>
 <li><strong>6：target_trait_name</strong></li>
 </ul>
-<p>Target trait name,  <code>character</code> class.</p>
-<p>For multiple traits model, we should set target_trait_name as character vector, e.g. <code>target_trait_name=c(&quot;Trait1&quot;,&quot;Trait2&quot;)</code></p>
+<p>Target trait name,  <code>list</code> class. One list for each trait.</p>
+<p>For multiple traits model, we should set target_trait_name as character vector, e.g. <code>target_trait_name=list(c(&quot;Trait1&quot;),c(&quot;Trait2&quot;))</code></p>
 <ul>
 <li><strong>7：fixed_effect_name</strong></li>
 </ul>
 <p>Fixed effects name, <code>list</code> class.</p>
 <p>For multiple traits model,  the order of  fixed effects name should correspond to the target trait name.</p>
-<p>eg.  <code>target_trait_name=c(&quot;Trait1&quot;,&quot;Trait2&quot;)</code></p>
+<p>eg.  <code>target_trait_name=list(c(&quot;Trait1&quot;),c(&quot;Trait2&quot;))</code></p>
 <p><code>fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;),c(&quot;Herd_Year_Season&quot;))</code></p>
 <p>which means the fixed effects name of trait1 is : <code>c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)</code>,  the fixed effect name of trait2 is : <code>c(&quot;Herd_Year_Season&quot;) </code></p>
 <ul>
@@ -1088,7 +1088,7 @@ run_DMU(   phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot
 </ul>
 <p>Random effects name, <code>list</code> class.</p>
 <p>For multiple traits model,  the order of  random effects name should correspond to the target trait name.</p>
-<p>eg.  <code>target_trait_name=c(&quot;Trait1&quot;,&quot;Trait2&quot;)</code></p>
+<p>eg.  <code>target_trait_name=list(c(&quot;Trait1&quot;),c(&quot;Trait2&quot;))</code></p>
 <p><code>random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;),c(&quot;Id&quot;))</code></p>
 <p>which means the random effects name of trait1 is : <code>c(&quot;Id&quot;,&quot;Litter&quot;)</code>,  the random effects name of trait2 is : <code>c(&quot;Id&quot;)</code></p>
 <ul>
@@ -1096,12 +1096,56 @@ run_DMU(   phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot
 </ul>
 <p>Covariate effects name, <code>list</code> class.</p>
 <p>For multiple traits model,  the order of  covariate effects name should correspond to the target trait name.</p>
-<p>eg.  <code>target_trait_name=c(&quot;Trait1&quot;,&quot;Trait2&quot;)</code></p>
-<p><code>covariate_effect_name=list(NULL,&quot;Age&quot;)</code></p>
+<p>eg.  <code>target_trait_name=list(c(&quot;Trait1&quot;),c(&quot;Trait2&quot;))</code></p>
+<p><code>covariate_effect_name=list(c(NULL),c(&quot;Age&quot;))</code></p>
 <p>which means the covariate effects name of trait1 is : <code>NULL</code> (NULL means no this effect),  the covariate effects name of trait2 is : <code>Age</code></p>
 <ul>
+<li><strong>10：maternal_effect_name</strong></li>
+</ul>
+<p>Maternal effects name(usually is the Dam), <code>list</code> class.</p>
+<p>For multiple traits model,  the order of  maternal effects name should correspond to the target trait name.</p>
+<p>eg.  <code>target_trait_name=list(c(&quot;Trait1&quot;),c(&quot;Trait2&quot;))</code></p>
+<p><code>maternal_effect_name=list(c(NULL),c(&quot;Dam&quot;))</code></p>
+<ul>
+<li><strong>11：random_regression_effect_name</strong></li>
+</ul>
+<p>Random regression effects name, <code>list</code> class.</p>
+<p>For multiple traits model,  the order of  random regression effects name should correspond to the target trait name.</p>
+<p>eg.  <code>target_trait_name=list(c(&quot;Trait1&quot;),c(&quot;Trait2&quot;))</code></p>
+<p><code>random_regression_effect_name=list(c(&quot;L1&amp;id&quot;,&quot;L1&amp;pe_effect&quot;,&quot;L2&amp;id&quot;,&quot;L2&amp;pe_effect&quot;),c(&quot;L1&amp;id&quot;,&quot;L1&amp;pe_effect&quot;,&quot;L2&amp;id&quot;,&quot;L2&amp;pe_effect&quot;))</code></p>
+<p>Within each list,  the left side of  <code>&amp;</code>  stands for  polynomial coefficient name,  the right side of  <code>&amp;</code>  stands for  random effect name. If user want to include permanent effect in random regression model,  the random effect name in the right side of <code>&amp;</code>   should be &ldquo;pe_effect&rdquo;, and user must set  included_permanent_effect as TRUE</p>
+<ul>
+<li><strong>12：included_permanent_effect</strong></li>
+</ul>
+<p>Whether perform permanent-environment analysis,    <code>list</code> class.</p>
+<p>For multiple traits model,  the order of  permanent effect should correspond to the target trait name.</p>
+<p>eg.  <code>target_trait_name=list(c(&quot;Trait1&quot;),c(&quot;Trait2&quot;))</code></p>
+<p><code>included_permanent_effect=list(c(TRUE),c(TRUE))</code></p>
+<ul>
+<li><strong>13：include_social_effect</strong></li>
+</ul>
+<p>Whether perform social genetic effect analysis,    <code>list</code> class.</p>
+<p>For multiple traits model,  the order of  permanent effect should correspond to the target trait name.</p>
+<p>eg.  <code>target_trait_name=list(c(&quot;Trait1&quot;),c(&quot;Trait2&quot;))</code></p>
+<p><code>include_social_effect=list(c(TRUE),c(TRUE))</code></p>
+<ul>
+<li><strong>14：group_effect_name</strong></li>
+</ul>
+<p>The group effect name in the social genetic analysis,   <code>character</code> class.</p>
+<p>When user-provided phenotype doesn&rsquo;t have max group size columns, user need to specify the group_effect_name parameter. When user provides group_effect_name, software will generate a new phenotype with max group size columns  automatically.  And then, software will perform the social genetic analysis without additional parameter.</p>
+<ul>
+<li><strong>15：integer_group_names</strong></li>
+</ul>
+<p>Integer variable name of max group size columns, <code>character</code> class.</p>
+<p>When user-provided phenotype has max group size columns, user need to specify the integer variable name of max group size columns.</p>
+<ul>
+<li><strong>16：real_group_names</strong></li>
+</ul>
+<p>Real variable name of max group size columns, <code>character</code> class.</p>
+<p>When user-provided phenotype has max group size columns, user need to specify the real variable name of max group size columns.</p>
+<ul>
 <li>
-<p><strong>10：analysis_model</strong></p>
+<p><strong>17：analysis_model</strong></p>
 <p>Model of genetic evaluation, <code>character</code> class.</p>
 <ul>
 <li><code>&quot;PBLUP_A&quot;</code> : Pedigree BLUP- additive model</li>
@@ -1112,7 +1156,7 @@ run_DMU(   phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot
 </ul>
 </li>
 <li>
-<p><strong>11：dmu_module</strong></p>
+<p><strong>18：dmu_module</strong></p>
 <p>Module of estimating variance components,  <code>character</code> class.</p>
 <ul>
 <li>
@@ -1127,16 +1171,16 @@ run_DMU(   phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot
 </ul>
 </li>
 <li>
-<p><strong>12：DMU_software_path</strong></p>
+<p><strong>19：DMU_software_path</strong></p>
 </li>
 </ul>
 <p>Path of DMU software,  <code>character</code> class.</p>
 <ul>
-<li><strong>13：relationship_path</strong></li>
+<li><strong>20：relationship_path</strong></li>
 </ul>
 <p>File path of relationship data,  <code>character</code> class.</p>
 <ul>
-<li><strong>14：relationship_name</strong></li>
+<li><strong>21：relationship_name</strong></li>
 </ul>
 <p>File name of relationship data,  <code>character</code> class.</p>
 <p>For different genetic evaluation model , we should provide different relationship file.</p>
@@ -1144,20 +1188,20 @@ run_DMU(   phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot
 <p>for  &ldquo;GBLUP_A&rdquo; model, we need to provide inverse of additive relationship matrix file(3 columns  format),  then we should set <code>relationship_name=&quot;G_Ainv_col_three.txt&quot;</code>   ;</p>
 <p>for  &ldquo;SSBLUP_A&rdquo; model, we need to provide pedigree and  additive relationship matrix file(3 columns  format),  then we should set <code>relationship_name=c(&quot;pedigree.txt&quot;,&quot;G_A_col_three.txt&quot;)</code>   ;</p>
 <ul>
-<li><strong>15：output_result_path</strong></li>
+<li><strong>22：output_result_path</strong></li>
 </ul>
 <p>Path of output DMU result,   <code>character</code> class.</p>
 <ul>
-<li><strong>16：output_ebv_path</strong></li>
+<li><strong>23：output_ebv_path</strong></li>
 </ul>
 <p>File path of output EBV,   <code>character</code> class. Default is equal to  output_result_path</p>
 <ul>
-<li><strong>17：output_ebv_name</strong></li>
+<li><strong>24：output_ebv_name</strong></li>
 </ul>
 <p>File name of output EBV,   <code>character</code> class.</p>
 <h3 id="advanced">👺Advanced</h3>
 <ul>
-<li><strong>18：provided_effect_file_path</strong></li>
+<li><strong>25：provided_effect_file_path</strong></li>
 </ul>
 <p>File path of trait&rsquo;s  model effect data,   <code>character</code> class.</p>
 <p>File of trait&rsquo;s model effect include fixed effects name, random effects name, and covariate effects name.  Once user provides this file,  user don&rsquo;t need to set  these three parameters: <code>fixed_effect_name </code>  <code>random_effect_name </code>  <code>covariate_effect_name </code>.</p>
@@ -1206,63 +1250,63 @@ run_DMU(   phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot
 <p>effects name between the second   *  and the third  *  stand for random effects name;</p>
 <p>effects name between the third   *  and the fourth  *  stand for covariate effects name.</p>
 <ul>
-<li><strong>19：provided_effect_file_name</strong></li>
+<li><strong>26：provided_effect_file_name</strong></li>
 </ul>
 <p>File name of trait&rsquo;s  model effect data,   <code>character</code> class.</p>
 <ul>
-<li><strong>20：provided_DIR_file_path</strong></li>
+<li><strong>27：provided_DIR_file_path</strong></li>
 </ul>
 <p>File path of user-provided DIR data,   <code>character</code> class.</p>
 <ul>
-<li><strong>21：provided_DIR_file_name</strong></li>
+<li><strong>28：provided_DIR_file_name</strong></li>
 </ul>
 <p>File name of user-provided DIR data,   <code>character</code> class.</p>
 <ul>
-<li><strong>22：included_permanent_effect</strong></li>
+<li><strong>29：included_permanent_effect</strong></li>
 </ul>
 <p>Whether perform permanent-environment analysis,    <code>logical</code> class.   Default is FALSE.</p>
 <ul>
-<li><strong>23：dmu_algorithm_code</strong></li>
+<li><strong>30：dmu_algorithm_code</strong></li>
 </ul>
 <p>Number of dmu-module algorithm,  <code>numeric</code> class.</p>
 <ul>
-<li><strong>24：provided_prior_file_path</strong></li>
+<li><strong>31：provided_prior_file_path</strong></li>
 </ul>
 <p>File path of user-provided prior file,   <code>character</code> class.</p>
 <ul>
-<li><strong>25：provided_prior_file_name</strong></li>
+<li><strong>32：provided_prior_file_name</strong></li>
 </ul>
 <p>File name of user-provided prior file,   <code>character</code> class.</p>
 <ul>
-<li><strong>26：missing_value</strong></li>
+<li><strong>33：missing_value</strong></li>
 </ul>
 <p>Missing value in phenotype file,  <code>numeric</code> class. Default is -9999.</p>
 <ul>
-<li><strong>27：iteration_criteria</strong></li>
+<li><strong>34：iteration_criteria</strong></li>
 </ul>
 <p>Value of iteration convergence,  <code>numeric</code> class. Default is 1.0e-7.</p>
 <ul>
-<li><strong>28：genetic_effect_number</strong></li>
+<li><strong>35：genetic_effect_number</strong></li>
 </ul>
 <p>Number of genetic effect in SOL file,  <code>numeric</code> class. Default is 4.</p>
 <ul>
-<li><strong>29：residual_cov_trait</strong></li>
+<li><strong>36：residual_cov_trait</strong></li>
 </ul>
 <p>Traits combination of assuming residual-covariance equals to 0. e.g <code>residual_cov_trait=list(c(&quot;Trait1&quot;,&quot;Trait2&quot;))</code></p>
 <ul>
-<li><strong>30：selected_id</strong></li>
+<li><strong>37：selected_id</strong></li>
 </ul>
 <p>Individuals set of output EBV,  <code>character</code> class.</p>
 <ul>
-<li><strong>31：cal_debv</strong></li>
+<li><strong>38：cal_debv</strong></li>
 </ul>
 <p>Whether calculate de-regressed EBV(DEBV),   <code>logical</code> class.   Default is FALSE.</p>
 <ul>
-<li><strong>32：debv_pedigree_path</strong></li>
+<li><strong>39：debv_pedigree_path</strong></li>
 </ul>
 <p>File path of pedigree data for calculating DEBV,   <code>character</code> class.</p>
 <ul>
-<li><strong>33：debv_pedigree_name</strong></li>
+<li><strong>40：debv_pedigree_name</strong></li>
 </ul>
 <p>File name of pedigree data for calculating DEBV,   <code>character</code> class.</p>
 

@@ -41,7 +41,7 @@ data_path=system.file("extdata", package = "blupADC")   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # 表型数据的列名(ps.表型文件无列名)
-        target_trait_name=c("Trait1"),                           #性状名称
+        target_trait_name=list(c("Trait1")),                     #性状名称
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #固定效应名称
         random_effect_name=list(c("Id","Litter")),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
@@ -62,7 +62,7 @@ data_path=system.file("extdata", package = "blupADC")   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # 表型数据的列名(ps.表型文件无列名)
-        target_trait_name=c("Trait1"),                           #性状名称
+        target_trait_name=list(c("Trait1")),                     #性状名称
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #固定效应名称
         random_effect_name=list(c("Id","Litter")),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
@@ -83,7 +83,7 @@ data_path=system.file("extdata", package = "blupADC")   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # 表型数据的列名(ps.表型文件无列名)
-        target_trait_name=c("Trait1"),                           #性状名称
+        target_trait_name=list(c("Trait1")),                     #性状名称
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #固定效应名称
         random_effect_name=list(c("Id","Litter")),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
@@ -108,7 +108,7 @@ data_path=system.file("extdata", package = "blupADC")   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # 表型数据的列名(ps.表型文件无列名)
-        target_trait_name=c("Trait1","Trait2"),                  #性状名称
+        target_trait_name=list(c("Trait1"),c("Trait2")),                     #性状名称
         fixed_effect_name=list(c("Sex","Herd_Year_Season"),c("Herd_Year_Season")),     #固定效应名称
         random_effect_name=list(c("Id","Litter"),c("Id")),               #随机效应名称
         covariate_effect_name=list(NULL,"Age"),                              #协变量效应名称
