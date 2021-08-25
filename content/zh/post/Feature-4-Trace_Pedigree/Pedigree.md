@@ -126,7 +126,7 @@ str(pedigree_result)
 |DD16222012 |DD15145005 |DD15378812 |DD14110014 |DD15501518 |DD15206217   |
 |DD17684713 |DD16672107 |DD15122311 |DD15505715 |DD15347415 |DD16383111   |
 
-**Note**:需要注意的是，当系谱为多列时，系谱的列名需要标注为特殊形式,e.g. SireSire:父亲的父亲, SirSireSire:父亲的父亲的父亲
+**Note**:需要注意的是，当系谱为多列时，用户必须要设置  `multi_col=TRUE`, 并且系谱的列名需要标注为特殊形式,e.g. SireSire:父亲的父亲, SirSireSire:父亲的父亲的父亲.
 
 系谱数据中缺失值可以设置为: **NA或0**。
 
@@ -140,60 +140,48 @@ str(pedigree_result)
 
 本地系谱数据的名称，`character`类型。
 
--   **参数4：pedigree_format_conversion**
+-   **参数4：multi_col**
 
-是否将提供的多列系谱转换到3列，logical类型。如果用户提供的系谱数据包含多列，那么用户必须设置`pedigree_format_conversion=TRUE` 。
+是否将提供的多列系谱转换到3列，logical类型。如果用户提供的系谱数据包含多列，那么用户必须设置`multi_col` 。
 
--   **参数5：output_pedigree_type**
+-   **参数5：trace_id**  
 
-系谱输出的格式，`character`类型。可选格式包括: BLUPF90, DMU 及 Normal(未重命名)。
+在追溯系谱时，所追溯的个体集, `character` 类型. 默认为 `NULL` ， 即追溯系谱中的所有个体
 
--   **参数6：output_pedigree_path**
+-   **参数6：trace_generation**  
+
+在追溯系谱时，所追溯的最大代数, `numeric` 类型。默认为 `NULL` ， 即追溯系谱中的全部代数。
+
+-   **参数7：trace_birth_date**    
+
+追溯出生日期不早于指定日期的个体，`numeric`类型。个体出生日期早于用户提供的出生日期将会被排除在系谱追溯过程中。
+
+-   **参数8：output_pedigree_path**
 
 系谱输出到本地的路径，`character`类型。
 
--   **参数7：output_pedigree_name**
+-   **参数9：output_pedigree_name**
 
 系谱输出到本地的名称，`character`类型。
 
 ### 💨进阶参数
 
--   **参数8：dup_error_check**
+-   **参数10：dup_error_check**
 
 检查相同个体的父母却不相同的错误，`logical`类型，默认为TRUE。
 
--   **参数9：sex_error_check**
+-   **参数11：sex_error_check**
 
 检查个体同时出现在父亲列和母亲列的错误，`logical`类型，默认为TRUE。
 
--   **参数10：breed_error_check**
-
-检查个体品种与父母品种不同的错误，`logical`类型，默认为FALSE。
-
--   **参数11：birth_date_error_check**
+-   **参数12：birth_date_error_check**
 
 检查个体出生日期早于父母的错误，`logical`类型，默认为FALSE。
 
--   **参数12：trace_id**
-
-追溯系谱记录的个体号，`character`类型，默认为`NULL`(追溯系谱中所有的个体)。
-
--   **参数13：trace_offspring**
-
-是否追溯子代，`logical`类型，默认为FALSE。
-
--   **参数14：trace_generation**
-
-追溯的代数，`numeric`类型，默认为5。
-
--   **参数15：trace_birth_date**
-
-追溯出生日期晚于指定日期的个体，`character`类型。
-
--   **参数16：output_pedigree_tree**
+-   **参数13：output_pedigree_tree**
 
 是否输出系谱树，`logical`类型，默认为FALSE。
 
--   **参数17：pedigree_tree_depth**
+-   **参数14：pedigree_tree_depth**
 
 系谱树的深度(系谱代数)，`numeric`类型，默认为3。

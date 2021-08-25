@@ -27,7 +27,7 @@ toc: true
 
 `blupADC`提供了许多有用的功能在整个动植物育种的流程中，包括 系谱分析(系谱追溯、重命名及纠错)，基因型数据格式转换(支持**Hapmap, Plink, BLUPF90, Numeric 及VCF** 格式)，基因型数据的质控填充，亲缘关系矩阵的构建(**系谱，基因组及一步法亲缘关系矩阵**)以及遗传评估（仅需几行代码即可通过DMU和BLUPF90完成遗传评估）。
 
-最后，为了方进一步方便用户的使用(尤其是编程基础弱的用户)，我们创建了一个免费的在线网站。绝大部分的`blupADC` 的功能均可通过在网站上实现，用户只需上传、点击及下载即可完成整套的分析流程。但是，网站的一个缺点就是，不能处理大数据，请大家合理选择！
+最后，为了方进一步方便用户的使用(尤其是编程基础弱的用户)，我们创建了一个免费的在线网站([shinyapp](http://47.95.251.15:443/blupADC/))。相关的功能仍在开发中。但是，网站的一个缺点就是，不能处理大数据，请大家合理选择！
 
 😊 祝好运 ! 
 
@@ -54,29 +54,14 @@ install.packages(c("Rcpp", "RcppArmadillo","data.table"))
 #### 在 Linux 上 安装 blupADC
 
 ```R
-packageurl <- "https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz"
-install.packages(packageurl,repos=NULL,method="libcurl")
-```
-
-对于中国用户来说，我们推荐使用如下代码进行安装（**安装速度更快**）：
-
-```R
-packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/798138/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz
-"
+packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3_R_x86_64-pc-linux-gnu.tar.gz"
 install.packages(packageurl,repos=NULL,method="libcurl")
 ```
 
 #### 在 Windows 上 安装 blupADC
 
 ```R
-packageurl <- "https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2.zip"
-install.packages(packageurl,repos=NULL)
-```
-
-对于中国用户来说，我们推荐使用如下代码进行安装（**安装速度更快**）：
-
-```R
-packageurl <- "https://gitee.com/qsmei/blup-adc/attach_files/798137/download/blupADC_1.0.2.zip"
+packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3.zip"
 install.packages(packageurl,repos=NULL)
 ```
 
@@ -225,4 +210,3 @@ run_BLUPF90(
         output_result_path="/root"                   # output path 
         )    
 ```
-

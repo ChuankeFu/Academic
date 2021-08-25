@@ -101,7 +101,7 @@ User-provided pedigree data, `data.frame ` or   `matrix` class.
 |DD20471212 |DD19331001 |DD19320808 |
 |DD20564818 |DD19331001 |DD19311009 |
 
--   **2:  trace_id ** 
+-   **2:  trace_id** 
 
 Individuals set in tracing pedigree, `character` class. Default is `NULL` (plot whole individuals in pedigree)
 
@@ -109,7 +109,7 @@ Individuals set in tracing pedigree, `character` class. Default is `NULL` (plot 
 
 Whether tracing the sibs of  individuals set , `logical` class. Default is `FALSE` .
 
--   **4:  ind_sex **  
+-   **4:  ind_sex**  
 
 Sex record of individuals , `data.frame` class.   
 
@@ -125,11 +125,11 @@ The format of this data is showing as follow:
 
 For individual who doesn't have the record of sex,  the sex of this individual would be set as Male. 
 
--   **5：plot_family **
+-   **5：plot_family**
 
 Whether showing family structure when plotting the pedigree, `logical` class. Default is `FALSE` .
 
--   **6：shape_type **
+-   **6：shape_type**
 
 The shape type when plotting pedigree ，`numeric` class. Default is 4.
 

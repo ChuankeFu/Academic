@@ -838,7 +838,7 @@
 <h2 id="简介">简介</h2>
 <p><code>blupADC</code> 是一个专注于分析动植物育种中的系谱数据、基因型数据及遗传评估的工具。在设计该工具时，我们对数据处理时可能遇到的各种问题均进行了详细的考量(<strong>ps.如果您有好的建议，请积极联系作者!</strong>)。此外，为了提高分析效率， <code>blupADC</code> 可支持并行计算(通过<code>openMP</code> )，并且<code>blupADC</code> 中的核心函数均通过c++(<code>Rcpp</code> and <code>RcppArmadillo </code>) 进行编写。</p>
 <p><code>blupADC</code>提供了许多有用的功能在整个动植物育种的流程中，包括 系谱分析(系谱追溯、重命名及纠错)，基因型数据格式转换(支持<strong>Hapmap, Plink, BLUPF90, Numeric 及VCF</strong> 格式)，基因型数据的质控填充，亲缘关系矩阵的构建(<strong>系谱，基因组及一步法亲缘关系矩阵</strong>)以及遗传评估（仅需几行代码即可通过DMU和BLUPF90完成遗传评估）。</p>
-<p>最后，为了方进一步方便用户的使用(尤其是编程基础弱的用户)，我们创建了一个免费的在线网站。绝大部分的<code>blupADC</code> 的功能均可通过在网站上实现，用户只需上传、点击及下载即可完成整套的分析流程。但是，网站的一个缺点就是，不能处理大数据，请大家合理选择！</p>
+<p>最后，为了方进一步方便用户的使用(尤其是编程基础弱的用户)，我们创建了一个免费的在线网站(<a href="http://47.95.251.15:443/blupADC/" target="_blank" rel="noopener">shinyapp</a>)。相关的功能仍在开发中。但是，网站的一个缺点就是，不能处理大数据，请大家合理选择！</p>
 <p>😊 祝好运 !</p>
 <h2 id="新添加的功能">新添加的功能</h2>
 <h3 id="103">1.0.3</h3>
@@ -853,20 +853,11 @@
 <p><strong>👉 Note:  在 DMU 和 BLUPF90的分析中，我们通常需要提前下载好 DMU 软件 (<a href="https://dmu.ghpc.au.dk/dmu/" target="_blank" rel="noopener">DMU下载网站</a>)  和 BLUPF90软件 (<a href="http://nce.ads.uga.edu/html/projects/programs/" target="_blank" rel="noopener">BLUPF90下载网站</a>)。为了方便用户使用，我们已经将两款软件中基础模块封装进了 <code>blupADC</code>，请大家合理使用。</strong></p>
 <p><strong>如果您想将DMU和BLUPF90用作商业用途，请务必联系 DMU 和 BLUPF90的作者！！！</strong></p>
 <h4 id="在-linux-上-安装-blupadc">在 Linux 上 安装 blupADC</h4>
-<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz&quot;
-install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
-</code></pre>
-<p>对于中国用户来说，我们推荐使用如下代码进行安装（<strong>安装速度更快</strong>）：</p>
-<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blup-adc/attach_files/798138/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz
-&quot;
+<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3_R_x86_64-pc-linux-gnu.tar.gz&quot;
 install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
 </code></pre>
 <h4 id="在-windows-上-安装-blupadc">在 Windows 上 安装 blupADC</h4>
-<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2.zip&quot;
-install.packages(packageurl,repos=NULL)
-</code></pre>
-<p>对于中国用户来说，我们推荐使用如下代码进行安装（<strong>安装速度更快</strong>）：</p>
-<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blup-adc/attach_files/798137/download/blupADC_1.0.2.zip&quot;
+<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3.zip&quot;
 install.packages(packageurl,repos=NULL)
 </code></pre>
 <p>安装成功后，我们输入如下代码即可加载R包:</p>

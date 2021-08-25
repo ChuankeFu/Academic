@@ -128,7 +128,7 @@ User-provided pedigree data, `data.frame ` or   `matrix` class.
 |DD16222012 |DD15145005 |DD15378812 |DD14110014 |DD15501518 |DD15206217   |
 |DD17684713 |DD16672107 |DD15122311 |DD15505715 |DD15347415 |DD16383111   |
 
-**Note**: When the format of provided pedigree data is multiple columns ，the colnames of pedigree data should be the specify format , e.g. `SireSire` stands for the father of offspring's father, `SirSireSire` stands for the father of  `SireSire`
+**Note**: When the format of provided pedigree data is multiple columns ，user must set `multi_col=TRUE`, and the colnames of pedigree data should be the specify format , e.g. `SireSire` stands for the father of offspring's father, `SirSireSire` stands for the father of  `SireSire` 
 
 Missing record in pedigree could be set as  **NA** or **0** .
 
@@ -140,26 +140,48 @@ File path of pedigree data, `character` class.
 
 File name of pedigree data, `character` class.
 
--   **4：pedigree_format_conversion**
+-   **4：multi_col**
 
-Whether convert multiple columns pedigree into standard 3 columns pedigree, `logical` class.  Whether the format of provided pedigree data is multiple columns, user need to set `pedigree_format_conversion=TRUE` .
+Whether convert multiple columns pedigree into standard 3 columns pedigree, `logical` class.  When the format of provided pedigree data is multiple columns, user need to set `multi_col=TRUE` .
 
--   **5：output_pedigree_path**
+-   **5：trace_id**  
+
+Individuals set in tracing pedigree, `character` class. Default is `NULL` , which means tracing all individuals in pedigree.
+
+-   **6：trace_generation**  
+
+The max generation in tracing pedigree, `numeric` class. Default is `NULL` , which means tracing all  generation in pedigree. 
+
+-   **7：trace_birth_date**  
+
+Threshold of  birth date in tracing pedigree, `numeric` class.  Individuals set with birth date earlier than user provided birth date would be excluded in tracing pedigree.  
+
+-   **8：output_pedigree_path**
 
 File path of output pedigree data, `character` class.
 
--   **6：output_pedigree_name**
+-   **9：output_pedigree_name**
 
 File path of output pedigree name, `character` class.
 
 ### 💨Advanced
 
--   **7：dup_error_check**
+-   **10：dup_error_check**
 
 Whether check the pedigree error of error_duplicated，`logical` class. Default is TRUE.
 
--   **8：sex_error_check**
+-   **11：sex_error_check**
 
 Whether check the pedigree error of error_sex，`logical` class. Default is TRUE.
 
--   **9：breed_error_check**
+-   **12：birth_date_error_check**  
+
+Whether check the birth date error record，`logical` class. Default is TRUE.
+
+-   **13：output_pedigree_tree**
+
+Whether output the pedigree tree, `logical` class. Default is FALSE. 
+
+-   **14：pedigree_tree_depth** 
+
+Depth of pedigree tree, `numeric` class. Default is 3.

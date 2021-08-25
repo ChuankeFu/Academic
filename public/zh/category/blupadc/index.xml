@@ -45,7 +45,7 @@
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; 是一个专注于分析动植物育种中的系谱数据、基因型数据及遗传评估的工具。在设计该工具时，我们对数据处理时可能遇到的各种问题均进行了详细的考量(&lt;strong&gt;ps.如果您有好的建议，请积极联系作者!&lt;/strong&gt;)。此外，为了提高分析效率， &lt;code&gt;blupADC&lt;/code&gt; 可支持并行计算(通过&lt;code&gt;openMP&lt;/code&gt; )，并且&lt;code&gt;blupADC&lt;/code&gt; 中的核心函数均通过c++(&lt;code&gt;Rcpp&lt;/code&gt; and &lt;code&gt;RcppArmadillo &lt;/code&gt;) 进行编写。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt;提供了许多有用的功能在整个动植物育种的流程中，包括 系谱分析(系谱追溯、重命名及纠错)，基因型数据格式转换(支持&lt;strong&gt;Hapmap, Plink, BLUPF90, Numeric 及VCF&lt;/strong&gt; 格式)，基因型数据的质控填充，亲缘关系矩阵的构建(&lt;strong&gt;系谱，基因组及一步法亲缘关系矩阵&lt;/strong&gt;)以及遗传评估（仅需几行代码即可通过DMU和BLUPF90完成遗传评估）。&lt;/p&gt;
-&lt;p&gt;最后，为了方进一步方便用户的使用(尤其是编程基础弱的用户)，我们创建了一个免费的在线网站。绝大部分的&lt;code&gt;blupADC&lt;/code&gt; 的功能均可通过在网站上实现，用户只需上传、点击及下载即可完成整套的分析流程。但是，网站的一个缺点就是，不能处理大数据，请大家合理选择！&lt;/p&gt;
+&lt;p&gt;最后，为了方进一步方便用户的使用(尤其是编程基础弱的用户)，我们创建了一个免费的在线网站(&lt;a href=&#34;http://47.95.251.15:443/blupADC/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shinyapp&lt;/a&gt;)。相关的功能仍在开发中。但是，网站的一个缺点就是，不能处理大数据，请大家合理选择！&lt;/p&gt;
 &lt;p&gt;😊 祝好运 !&lt;/p&gt;
 &lt;h2 id=&#34;新添加的功能&#34;&gt;新添加的功能&lt;/h2&gt;
 &lt;h3 id=&#34;103&#34;&gt;1.0.3&lt;/h3&gt;
@@ -60,20 +60,11 @@
 &lt;p&gt;&lt;strong&gt;👉 Note:  在 DMU 和 BLUPF90的分析中，我们通常需要提前下载好 DMU 软件 (&lt;a href=&#34;https://dmu.ghpc.au.dk/dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU下载网站&lt;/a&gt;)  和 BLUPF90软件 (&lt;a href=&#34;http://nce.ads.uga.edu/html/projects/programs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BLUPF90下载网站&lt;/a&gt;)。为了方便用户使用，我们已经将两款软件中基础模块封装进了 &lt;code&gt;blupADC&lt;/code&gt;，请大家合理使用。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;如果您想将DMU和BLUPF90用作商业用途，请务必联系 DMU 和 BLUPF90的作者！！！&lt;/strong&gt;&lt;/p&gt;
 &lt;h4 id=&#34;在-linux-上-安装-blupadc&#34;&gt;在 Linux 上 安装 blupADC&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz&amp;quot;
-install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;对于中国用户来说，我们推荐使用如下代码进行安装（&lt;strong&gt;安装速度更快&lt;/strong&gt;）：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/798138/download/blupADC_1.0.2_R_x86_64-pc-linux-gnu.tar.gz
-&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3_R_x86_64-pc-linux-gnu.tar.gz&amp;quot;
 install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;在-windows-上-安装-blupadc&#34;&gt;在 Windows 上 安装 blupADC&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/raw/master/blupADC_1.0.2.zip&amp;quot;
-install.packages(packageurl,repos=NULL)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;对于中国用户来说，我们推荐使用如下代码进行安装（&lt;strong&gt;安装速度更快&lt;/strong&gt;）：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blup-adc/attach_files/798137/download/blupADC_1.0.2.zip&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3.zip&amp;quot;
 install.packages(packageurl,repos=NULL)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;安装成功后，我们输入如下代码即可加载R包:&lt;/p&gt;

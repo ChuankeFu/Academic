@@ -1048,7 +1048,7 @@ pedigree_result=trace_pedigree(
 </tr>
 </tbody>
 </table>
-<p><strong>Note</strong>: When the format of provided pedigree data is multiple columns ，the colnames of pedigree data should be the specify format , e.g. <code>SireSire</code> stands for the father of offspring&rsquo;s father, <code>SirSireSire</code> stands for the father of  <code>SireSire</code></p>
+<p><strong>Note</strong>: When the format of provided pedigree data is multiple columns ，user must set <code>multi_col=TRUE</code>, and the colnames of pedigree data should be the specify format , e.g. <code>SireSire</code> stands for the father of offspring&rsquo;s father, <code>SirSireSire</code> stands for the father of  <code>SireSire</code></p>
 <p>Missing record in pedigree could be set as  <strong>NA</strong> or <strong>0</strong> .</p>
 <ul>
 <li><strong>2：input_pedigree_path</strong></li>
@@ -1059,29 +1059,50 @@ pedigree_result=trace_pedigree(
 </ul>
 <p>File name of pedigree data, <code>character</code> class.</p>
 <ul>
-<li><strong>4：pedigree_format_conversion</strong></li>
+<li><strong>4：multi_col</strong></li>
 </ul>
-<p>Whether convert multiple columns pedigree into standard 3 columns pedigree, <code>logical</code> class.  Whether the format of provided pedigree data is multiple columns, user need to set <code>pedigree_format_conversion=TRUE</code> .</p>
+<p>Whether convert multiple columns pedigree into standard 3 columns pedigree, <code>logical</code> class.  When the format of provided pedigree data is multiple columns, user need to set <code>multi_col=TRUE</code> .</p>
 <ul>
-<li><strong>5：output_pedigree_path</strong></li>
+<li><strong>5：trace_id</strong></li>
+</ul>
+<p>Individuals set in tracing pedigree, <code>character</code> class. Default is <code>NULL</code> , which means tracing all individuals in pedigree.</p>
+<ul>
+<li><strong>6：trace_generation</strong></li>
+</ul>
+<p>The max generation in tracing pedigree, <code>numeric</code> class. Default is <code>NULL</code> , which means tracing all  generation in pedigree.</p>
+<ul>
+<li><strong>7：trace_birth_date</strong></li>
+</ul>
+<p>Threshold of  birth date in tracing pedigree, <code>numeric</code> class.  Individuals set with birth date earlier than user provided birth date would be excluded in tracing pedigree.</p>
+<ul>
+<li><strong>8：output_pedigree_path</strong></li>
 </ul>
 <p>File path of output pedigree data, <code>character</code> class.</p>
 <ul>
-<li><strong>6：output_pedigree_name</strong></li>
+<li><strong>9：output_pedigree_name</strong></li>
 </ul>
 <p>File path of output pedigree name, <code>character</code> class.</p>
 <h3 id="advanced">💨Advanced</h3>
 <ul>
-<li><strong>7：dup_error_check</strong></li>
+<li><strong>10：dup_error_check</strong></li>
 </ul>
 <p>Whether check the pedigree error of error_duplicated，<code>logical</code> class. Default is TRUE.</p>
 <ul>
-<li><strong>8：sex_error_check</strong></li>
+<li><strong>11：sex_error_check</strong></li>
 </ul>
 <p>Whether check the pedigree error of error_sex，<code>logical</code> class. Default is TRUE.</p>
 <ul>
-<li><strong>9：breed_error_check</strong></li>
+<li><strong>12：birth_date_error_check</strong></li>
 </ul>
+<p>Whether check the birth date error record，<code>logical</code> class. Default is TRUE.</p>
+<ul>
+<li><strong>13：output_pedigree_tree</strong></li>
+</ul>
+<p>Whether output the pedigree tree, <code>logical</code> class. Default is FALSE.</p>
+<ul>
+<li><strong>14：pedigree_tree_depth</strong></li>
+</ul>
+<p>Depth of pedigree tree, <code>numeric</code> class. Default is 3.</p>
 
     </div>
 

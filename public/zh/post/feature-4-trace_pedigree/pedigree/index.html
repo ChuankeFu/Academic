@@ -1043,7 +1043,7 @@ pedigree_result=trace_pedigree(
 </tr>
 </tbody>
 </table>
-<p><strong>Note</strong>:需要注意的是，当系谱为多列时，系谱的列名需要标注为特殊形式,e.g. SireSire:父亲的父亲, SirSireSire:父亲的父亲的父亲</p>
+<p><strong>Note</strong>:需要注意的是，当系谱为多列时，用户必须要设置  <code>multi_col=TRUE</code>, 并且系谱的列名需要标注为特殊形式,e.g. SireSire:父亲的父亲, SirSireSire:父亲的父亲的父亲.</p>
 <p>系谱数据中缺失值可以设置为: <strong>NA或0</strong>。</p>
 <p>同样的，为了便于用户操作，用户还可以直接提供本地系谱数据的路径和名称</p>
 <ul>
@@ -1055,60 +1055,48 @@ pedigree_result=trace_pedigree(
 </ul>
 <p>本地系谱数据的名称，<code>character</code>类型。</p>
 <ul>
-<li><strong>参数4：pedigree_format_conversion</strong></li>
+<li><strong>参数4：multi_col</strong></li>
 </ul>
-<p>是否将提供的多列系谱转换到3列，logical类型。如果用户提供的系谱数据包含多列，那么用户必须设置<code>pedigree_format_conversion=TRUE</code> 。</p>
+<p>是否将提供的多列系谱转换到3列，logical类型。如果用户提供的系谱数据包含多列，那么用户必须设置<code>multi_col</code> 。</p>
 <ul>
-<li><strong>参数5：output_pedigree_type</strong></li>
+<li><strong>参数5：trace_id</strong></li>
 </ul>
-<p>系谱输出的格式，<code>character</code>类型。可选格式包括: BLUPF90, DMU 及 Normal(未重命名)。</p>
+<p>在追溯系谱时，所追溯的个体集, <code>character</code> 类型. 默认为 <code>NULL</code> ， 即追溯系谱中的所有个体</p>
 <ul>
-<li><strong>参数6：output_pedigree_path</strong></li>
+<li><strong>参数6：trace_generation</strong></li>
+</ul>
+<p>在追溯系谱时，所追溯的最大代数, <code>numeric</code> 类型。默认为 <code>NULL</code> ， 即追溯系谱中的全部代数。</p>
+<ul>
+<li><strong>参数7：trace_birth_date</strong></li>
+</ul>
+<p>追溯出生日期不早于指定日期的个体，<code>numeric</code>类型。个体出生日期早于用户提供的出生日期将会被排除在系谱追溯过程中。</p>
+<ul>
+<li><strong>参数8：output_pedigree_path</strong></li>
 </ul>
 <p>系谱输出到本地的路径，<code>character</code>类型。</p>
 <ul>
-<li><strong>参数7：output_pedigree_name</strong></li>
+<li><strong>参数9：output_pedigree_name</strong></li>
 </ul>
 <p>系谱输出到本地的名称，<code>character</code>类型。</p>
 <h3 id="进阶参数">💨进阶参数</h3>
 <ul>
-<li><strong>参数8：dup_error_check</strong></li>
+<li><strong>参数10：dup_error_check</strong></li>
 </ul>
 <p>检查相同个体的父母却不相同的错误，<code>logical</code>类型，默认为TRUE。</p>
 <ul>
-<li><strong>参数9：sex_error_check</strong></li>
+<li><strong>参数11：sex_error_check</strong></li>
 </ul>
 <p>检查个体同时出现在父亲列和母亲列的错误，<code>logical</code>类型，默认为TRUE。</p>
 <ul>
-<li><strong>参数10：breed_error_check</strong></li>
-</ul>
-<p>检查个体品种与父母品种不同的错误，<code>logical</code>类型，默认为FALSE。</p>
-<ul>
-<li><strong>参数11：birth_date_error_check</strong></li>
+<li><strong>参数12：birth_date_error_check</strong></li>
 </ul>
 <p>检查个体出生日期早于父母的错误，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
-<li><strong>参数12：trace_id</strong></li>
-</ul>
-<p>追溯系谱记录的个体号，<code>character</code>类型，默认为<code>NULL</code>(追溯系谱中所有的个体)。</p>
-<ul>
-<li><strong>参数13：trace_offspring</strong></li>
-</ul>
-<p>是否追溯子代，<code>logical</code>类型，默认为FALSE。</p>
-<ul>
-<li><strong>参数14：trace_generation</strong></li>
-</ul>
-<p>追溯的代数，<code>numeric</code>类型，默认为5。</p>
-<ul>
-<li><strong>参数15：trace_birth_date</strong></li>
-</ul>
-<p>追溯出生日期晚于指定日期的个体，<code>character</code>类型。</p>
-<ul>
-<li><strong>参数16：output_pedigree_tree</strong></li>
+<li><strong>参数13：output_pedigree_tree</strong></li>
 </ul>
 <p>是否输出系谱树，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
-<li><strong>参数17：pedigree_tree_depth</strong></li>
+<li><strong>参数14：pedigree_tree_depth</strong></li>
 </ul>
 <p>系谱树的深度(系谱代数)，<code>numeric</code>类型，默认为3。</p>
 
