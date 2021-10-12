@@ -45,12 +45,13 @@ run_BLUPF90(
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #固定效应名称
         random_effect_name=list(c("Id","Litter")),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
+        genetic_effect_name="Id",	                 #遗传效应名称 
         phe_path=data_path,                          #表型文件路径
         phe_name="phenotype.txt",                    #表型文件名
         analysis_model="PBLUP_A",                    #遗传评估模型
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name="pedigree.txt",            #亲缘关系文件名
-        output_result_path="/root"                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         )
 ```
 
@@ -66,12 +67,13 @@ run_BLUPF90(
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #固定效应名称
         random_effect_name=list(c("Id","Litter")),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
+        genetic_effect_name="Id",	                 #遗传效应名称 
         phe_path=data_path,                          #表型文件路径
         phe_name="phenotype.txt",                    #表型文件名
         analysis_model="GBLUP_A",                    #遗传评估模型
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name="blupf90_genumeric",       #亲缘关系文件名
-        output_result_path="/root"                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         )
 ```
 
@@ -87,12 +89,13 @@ run_BLUPF90(
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #固定效应名称
         random_effect_name=list(c("Id","Litter")),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
+        genetic_effect_name="Id",	                 #遗传效应名称 
         phe_path=data_path,                          #表型文件路径
         phe_name="phenotype.txt",                    #表型文件名
         analysis_model="SSBLUP_A",                   #遗传评估模型
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name=c("pedigree.txt","blupf90_genumeric"),       #亲缘关系文件名
-        output_result_path="/root"                   #结果输出路径
+        output_result_path=getwd()                  #结果输出路径
         )  
 ```
 
@@ -112,12 +115,13 @@ run_BLUPF90(
         fixed_effect_name=list(c("Sex","Herd_Year_Season"),c("Herd_Year_Season")),     #固定效应名称
         random_effect_name=list(c("Id","Litter"),c("Id")),               #随机效应名称
         covariate_effect_name=list(NULL,"Age"),                              #协变量效应名称
+        genetic_effect_name="Id",	                 #遗传效应名称 
         phe_path=data_path,                          #表型文件路径
         phe_name="phenotype.txt",                    #表型文件名
         analysis_model="PBLUP_A",                    #遗传评估模型
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name="pedigree.txt",            #亲缘关系文件名
-        output_result_path="/root"                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         ) 
 ```
 

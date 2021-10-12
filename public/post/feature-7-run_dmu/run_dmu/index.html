@@ -852,6 +852,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&quot;Id&quot;,	                 #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -859,7 +860,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
-        output_result_path=&quot;/root&quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----gblup--model">Single trait  - GBLUP  model</h3>
@@ -871,6 +872,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&quot;Id&quot;,	                 #genetic effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -878,7 +880,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;G_Ainv_col_three.txt&quot;,            #name of relationship file 
-        output_result_path=&quot;/root&quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----single-step-blup-model">Single trait  - single-step BLUP model</h3>
@@ -890,6 +892,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&quot;Id&quot;,	                 #genetic effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -897,7 +900,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=c(&quot;pedigree.txt&quot;,&quot;G_A_col_three.txt&quot;),            #name of relationship file 
-        output_result_path=&quot;/root&quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 </code></pre>
 <p>Through modifying the two parameters: <code>analysis_model</code> and <code>relationship_name</code> , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis (PS: we can get G_Ainv_col_three.txt  and G_A_col_three.txt   by <code>cal_kinship</code> function，<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" target="_blank" rel="noopener">see more details</a>  about <code>cal_kinship</code> function).</p>
@@ -912,6 +915,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;),c(&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;),c(&quot;Id&quot;)),               #random effect name
         covariate_effect_name=list(NULL,&quot;Age&quot;),                              #covariate effect name
+        genetic_effect_name=&quot;Id&quot;,	                 #genetic effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -919,7 +923,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
-        output_result_path=&quot;/root&quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-modelwith-user-provided-prior">Single trait  - pedigree BLUP model(with user-provided prior)</h3>
@@ -932,6 +936,7 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;He
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&quot;Id&quot;,	                 #genetic effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
         provided_prior_file_path=data_path,          #path of user-provided prior file
@@ -941,7 +946,7 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;He
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
-        output_result_path=&quot;/root&quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-maternal-effect">Single trait  - pedigree BLUP model( with maternal effect)</h3>
@@ -955,7 +960,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;B_month&quot;,&quot;D_age&quot;,&quot;Litter&quot;,&quot;Sex&quot;,&quot;HY&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;ID&quot;,&quot;L_Dam&quot;)),    #random effect name
         maternal_effect_name=list(c(&quot;DAM&quot;)),
-        genetic_effect_name=&quot;ID&quot;,
+        genetic_effect_name=&quot;ID&quot;,                    #genetic effect name 
         covariate_effect_name=NULL,                  #covariate effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;maternal_data&quot;,                    #name of phenotype file
@@ -964,7 +969,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;maternal_pedigree&quot;,       #name of relationship file 
-        output_result_path=&quot;/root&quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-permanent-effect">Single trait  - pedigree BLUP model( with permanent effect)</h3>
@@ -978,7 +983,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;)), #fixed effect name
         random_effect_name=list(c(&quot;id&quot;,&quot;t_dato&quot;)),            #random effect name
         covariate_effect_name=list(c(&quot;age&quot;)),                 #covariate effect name	
-        genetic_effect_name=&quot;id&quot;,
+        genetic_effect_name=&quot;id&quot;,                    #genetic effect name
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;rr_data&quot;,                          #name of phenotype file
@@ -987,7 +992,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;rr_pedigree&quot;,             #name of relationship file 
-        output_result_path=&quot;/root&quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-random-regression-effect">Single trait  - pedigree BLUP model( with random regression effect)</h3>
@@ -1001,7 +1006,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;)), #fixed effect name
         random_effect_name=list(c(&quot;id&quot;,&quot;t_dato&quot;)),            #random effect name
         covariate_effect_name=list(c(&quot;age&quot;)),                 #covariate effect name	
-        genetic_effect_name=&quot;id&quot;,
+        genetic_effect_name=&quot;id&quot;,                    #genetic effect name 
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
         random_regression_effect_name=list(c(&quot;L1&amp;id&quot;,&quot;L1&amp;pe_effect&quot;,&quot;L2&amp;id&quot;,&quot;L2&amp;pe_effect&quot;)), #random regression effect name
         phe_path=data_path,                          #path of phenotype file
@@ -1011,7 +1016,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;rr_pedigree&quot;,             #name of relationship file 
-        output_result_path=&quot;/root&quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-social-genetic-effect">Single trait  - pedigree BLUP model( with social genetic effect)</h3>
@@ -1025,7 +1030,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;Sex&quot;)),          #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Group&quot;)),  #random effect name
         covariate_effect_name=NULL,                #covariate effect name		
-        genetic_effect_name=&quot;Id&quot;,
+        genetic_effect_name=&quot;Id&quot;,                  #genetic effect name
         include_social_effect=list(c(TRUE)),   
         group_effect_name=&quot;Group&quot;,
         phe_path=data_path,                          #path of phenotype file
@@ -1035,7 +1040,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;socail_pedigree&quot;,         #name of relationship file 
-        output_result_path=&quot;/root&quot;  # output path 
+        output_result_path=gewd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-social-genetic-effect-1">Single trait  - pedigree BLUP model( with social genetic effect)</h3>
@@ -1049,7 +1054,7 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;G
 	fixed_effect_name=list(c(&quot;Sex&quot;)),           #fixed effect name
 	random_effect_name=list(c(&quot;Id&quot;,&quot;Group&quot;)),   #random effect name
 	covariate_effect_name=NULL,
-	genetic_effect_name=&quot;Id&quot;,		
+	genetic_effect_name=&quot;Id&quot;,		           #genetic effect name
 	include_social_effect=list(c(TRUE)),       #whether include social genetic effect 
 	integer_group_names=c(&quot;Gr_id1&quot;,&quot;Gr_id2&quot;,&quot;Gr_id3&quot;,&quot;Gr_id4&quot;,&quot;Gr_id5&quot;),  #integer variable name of max group size    
         real_group_names= c(&quot;Status_Gr_id1&quot;,&quot;Status_Gr_id2&quot;,&quot;Status_Gr_id3&quot;,&quot;Status_Gr_id4&quot;,&quot;Status_Gr_id5&quot;), #real variable name of max group size
@@ -1060,7 +1065,7 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;G
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;socail_pedigree&quot;,         #name of relationship file 
-        output_result_path=&quot;/root&quot;  # output path 
+        output_result_path=gewd()                    # output path 
 		)
 </code></pre>
 <h3 id="basic">🤡Basic</h3>

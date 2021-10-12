@@ -55,12 +55,13 @@ run_BLUPF90(
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
+        genetic_effect_name=&amp;quot;Id&amp;quot;,	                 #遗传效应名称 
         phe_path=data_path,                          #表型文件路径
         phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #表型文件名
         analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #遗传评估模型
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #亲缘关系文件名
-        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-gblup&#34;&gt;&lt;strong&gt;单性状模型-GBLUP&lt;/strong&gt;&lt;/h3&gt;
@@ -73,12 +74,13 @@ run_BLUPF90(
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
+        genetic_effect_name=&amp;quot;Id&amp;quot;,	                 #遗传效应名称 
         phe_path=data_path,                          #表型文件路径
         phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #表型文件名
         analysis_model=&amp;quot;GBLUP_A&amp;quot;,                    #遗传评估模型
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name=&amp;quot;blupf90_genumeric&amp;quot;,       #亲缘关系文件名
-        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-single-step一步法&#34;&gt;&lt;strong&gt;单性状模型-Single-step(一步法)&lt;/strong&gt;&lt;/h3&gt;
@@ -91,12 +93,13 @@ run_BLUPF90(
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
+        genetic_effect_name=&amp;quot;Id&amp;quot;,	                 #遗传效应名称 
         phe_path=data_path,                          #表型文件路径
         phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #表型文件名
         analysis_model=&amp;quot;SSBLUP_A&amp;quot;,                   #遗传评估模型
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name=c(&amp;quot;pedigree.txt&amp;quot;,&amp;quot;blupf90_genumeric&amp;quot;),       #亲缘关系文件名
-        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
+        output_result_path=getwd()                  #结果输出路径
         )  
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;同样的，与DMU使用类似，我们仅需改变 &lt;code&gt;analysis_model&lt;/code&gt; 及 &lt;code&gt;relationship_name&lt;/code&gt; 这两个参数即可完成 系谱、GBLUP及SSBLUP的分析(PS: blupf90_genumeric 文件 均可通过 &lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数得到 &lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-qc-imputaion/qc_imputation/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)。&lt;/p&gt;
@@ -111,12 +114,13 @@ run_BLUPF90(
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Herd_Year_Season&amp;quot;)),     #固定效应名称
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;)),               #随机效应名称
         covariate_effect_name=list(NULL,&amp;quot;Age&amp;quot;),                              #协变量效应名称
+        genetic_effect_name=&amp;quot;Id&amp;quot;,	                 #遗传效应名称 
         phe_path=data_path,                          #表型文件路径
         phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #表型文件名
         analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #遗传评估模型
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #亲缘关系文件名
-        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         ) 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;参数详解&#34;&gt;参数详解&lt;/h2&gt;

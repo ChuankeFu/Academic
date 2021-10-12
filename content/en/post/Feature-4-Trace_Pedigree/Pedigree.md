@@ -35,7 +35,7 @@ show_related:
 ```r
 library(blupADC)
 pedigree_result=trace_pedigree(
-                input_pedigree=origin_pedigree,   #provided pedigree data object
+                input_pedigree=example_ped1,   #provided pedigree data object
                 output_pedigree_tree=TRUE  # output pedigree tree
                 )                 
 

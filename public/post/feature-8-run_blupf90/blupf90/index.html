@@ -844,12 +844,13 @@ run_BLUPF90(
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&quot;id&quot;,                    #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
         analysis_model=&quot;PBLUP_A&quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
-        output_result_path=&quot;/root&quot;                   # output path 
+        output_result_path=getwd()                   # output path 
         )   
 </code></pre>
 <h3 id="single-trait-model---gblup"><strong>Single trait model - GBLUP</strong></h3>
@@ -862,12 +863,13 @@ run_BLUPF90(
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&quot;id&quot;,                    #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
         analysis_model=&quot;GBLUP_A&quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;blupf90_genumeric&quot;,            #name of relationship file 
-        output_result_path=&quot;/root&quot;                   # output path  
+        output_result_path=getwd()                   # output path  
         )   
 
 </code></pre>
@@ -881,12 +883,13 @@ run_BLUPF90(
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&quot;id&quot;,                    #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
         analysis_model=&quot;SSBLUP_A&quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=c(&quot;pedigree.txt&quot;,&quot;blupf90_genumeric&quot;),            #name of relationship file 
-        output_result_path=&quot;/root&quot;                  # output path 
+        output_result_path=getwd()                  # output path 
         )   
 </code></pre>
 <p>Similar to <code>run_DMU</code> function, through modifying the two parameters: <code>analysis_model</code> and <code>relationship_name</code> , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: blupf90_genumeric is generated through <code>cal_kinship</code> function，<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" target="_blank" rel="noopener">see more details</a> about <code>cal_kinship</code> function).</p>
@@ -901,12 +904,13 @@ run_BLUPF90(
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;),c(&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;),c(&quot;Id&quot;)),               #random effect name
         covariate_effect_name=list(NULL,&quot;Age&quot;),                          #covariate effect name
+        genetic_effect_name=&quot;id&quot;,                    #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
         analysis_model=&quot;PBLUP_A&quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=c(&quot;pedigree.txt&quot;),            #name of relationship file 
-        output_result_path=&quot;/root&quot;                   # output path 
+        output_result_path=getwd()                   # output path 
         )   
 </code></pre>
 <h2 id="parameter">Parameter</h2>

@@ -856,6 +856,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #固定效应名称
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
+        genetic_effect_name=&quot;Id&quot;,	                 #遗传效应名称 
         phe_path=data_path,                          #表型文件路径
         phe_name=&quot;phenotype.txt&quot;,                    #表型文件名
         integer_n=5,                                 #整型变量数
@@ -876,6 +877,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #固定效应名称
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
+        genetic_effect_name=&quot;Id&quot;,	                 #遗传效应名称 
         phe_path=data_path,                          #表型文件路径
         phe_name=&quot;phenotype.txt&quot;,                    #表型文件名
         integer_n=5,                                 #整型变量数
@@ -896,6 +898,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #固定效应名称
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
+        genetic_effect_name=&quot;Id&quot;,	                 #遗传效应名称 
         phe_path=data_path,                          #表型文件路径
         phe_name=&quot;phenotype.txt&quot;,                    #表型文件名
         integer_n=5,                                 #整型变量数
@@ -918,6 +921,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;),c(&quot;Herd_Year_Season&quot;)),     #固定效应名称
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;),c(&quot;Id&quot;)),       #随机效应名称
         covariate_effect_name=NULL,                              #协变量效应名称
+        genetic_effect_name=&quot;Id&quot;,	                 #遗传效应名称 
         phe_path=data_path,                          #表型文件路径
         phe_name=&quot;phenotype.txt&quot;,                    #表型文件名
         integer_n=5,                                 #整型变量数
@@ -938,6 +942,7 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;He
         fixed_effect_name=list(c(&quot;Sex&quot;,&quot;Herd_Year_Season&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Litter&quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&quot;Id&quot;,	                 #遗传效应名称 
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;phenotype.txt&quot;,                    #name of phenotype file
         provided_prior_file_path=data_path,          #path of user-provided prior file
@@ -961,7 +966,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;B_month&quot;,&quot;D_age&quot;,&quot;Litter&quot;,&quot;Sex&quot;,&quot;HY&quot;)),     #fixed effect name
         random_effect_name=list(c(&quot;ID&quot;,&quot;L_Dam&quot;)),    #random effect name
         maternal_effect_name=list(c(&quot;DAM&quot;)),
-        genetic_effect_name=&quot;ID&quot;,
+        genetic_effect_name=&quot;ID&quot;,                    #遗传效应名称  
         covariate_effect_name=NULL,                  #covariate effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;maternal_data&quot;,                    #name of phenotype file
@@ -984,7 +989,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;)), #fixed effect name
         random_effect_name=list(c(&quot;id&quot;,&quot;t_dato&quot;)),            #random effect name
         covariate_effect_name=list(c(&quot;age&quot;)),                 #covariate effect name	
-        genetic_effect_name=&quot;id&quot;,
+        genetic_effect_name=&quot;id&quot;,                    #遗传效应名称  
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;rr_data&quot;,                          #name of phenotype file
@@ -1007,7 +1012,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;)), #fixed effect name
         random_effect_name=list(c(&quot;id&quot;,&quot;t_dato&quot;)),            #random effect name
         covariate_effect_name=list(c(&quot;age&quot;)),                 #covariate effect name	
-        genetic_effect_name=&quot;id&quot;,
+        genetic_effect_name=&quot;id&quot;,                             #遗传效应名称 
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
         random_regression_effect_name=list(c(&quot;L1&amp;id&quot;,&quot;L1&amp;pe_effect&quot;,&quot;L2&amp;id&quot;,&quot;L2&amp;pe_effect&quot;)), #random regression effect name
         phe_path=data_path,                          #path of phenotype file
@@ -1031,7 +1036,7 @@ run_DMU(
         fixed_effect_name=list(c(&quot;Sex&quot;)),          #fixed effect name
         random_effect_name=list(c(&quot;Id&quot;,&quot;Group&quot;)),  #random effect name
         covariate_effect_name=NULL,                #covariate effect name		
-        genetic_effect_name=&quot;Id&quot;,
+        genetic_effect_name=&quot;Id&quot;,                  #遗传效应名称   
         include_social_effect=list(c(TRUE)),   
         group_effect_name=&quot;Group&quot;,
         phe_path=data_path,                          #path of phenotype file
@@ -1055,7 +1060,7 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;G
 	fixed_effect_name=list(c(&quot;Sex&quot;)),           #fixed effect name
 	random_effect_name=list(c(&quot;Id&quot;,&quot;Group&quot;)),   #random effect name
 	covariate_effect_name=NULL,
-	genetic_effect_name=&quot;Id&quot;,		
+	genetic_effect_name=&quot;Id&quot;,		           #遗传效应名称 
 	include_social_effect=list(c(TRUE)),       #whether include social genetic effect 
 	integer_group_names=c(&quot;Gr_id1&quot;,&quot;Gr_id2&quot;,&quot;Gr_id3&quot;,&quot;Gr_id4&quot;,&quot;Gr_id5&quot;),  #integer variable name of max group size    
         real_group_names= c(&quot;Status_Gr_id1&quot;,&quot;Status_Gr_id2&quot;,&quot;Status_Gr_id3&quot;,&quot;Status_Gr_id4&quot;,&quot;Status_Gr_id5&quot;), #real variable name of max group size

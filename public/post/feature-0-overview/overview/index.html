@@ -776,7 +776,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    4 min read
+    5 min read
   </span>
   
 
@@ -822,6 +822,7 @@
     <li><a href="#new-features">New features</a>
       <ul>
         <li><a href="#103">1.0.3</a></li>
+        <li><a href="#104">1.0.4</a></li>
       </ul>
     </li>
     <li><a href="#getting-started">GETTING STARTED</a>
@@ -841,8 +842,8 @@
 <img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210617165506.png" alt="logo-blupADC"  height="250" align="right" style="zoom:25%;" /></p>
 <p><strong>Documents support two-language(<a href="https://qsmei.netlify.app/post/2021-04-21-r-package-rblupadc-overview/overview/" target="_blank" rel="noopener">English</a> and <a href="https://qsmei.netlify.app/zh/post/2021-04-21-r-package-rblupadc-overview/overview/" target="_blank" rel="noopener">Chinese</a>).</strong></p>
 <h3 id="overview">OVERVIEW</h3>
-<p><code>blupADC</code> is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding(<strong>traditional blup and genomic selection</strong>).  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (<code>Rcpp</code> and <code>RcppArmadillo </code>) , and it also supports  parallel calculation by applying <code>openMP</code> programming.</p>
-<p><code>blupADC</code> provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(<strong>trace pedigree, rename pedigree, and correct pedigree errors</strong>), genotype data format conversion(supports <strong>Hapmap, Plink, Blupf90, Numeric, and VCF</strong> format), genotype data quality control and imputation, construction of kinship matrix(<strong>pedigree, genomic  and single-step</strong>),and genetic evaluation( by interfacing with two famous breeding softwares, <strong>DMU</strong> and <strong>BLUPF90</strong>  in an easy way).</p>
+<p><code>blupADC</code> is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding(<strong>traditional blup and genomic selection</strong>).  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (<code>Rcpp</code> and <code>RcppArmadillo </code>) , and it also supports  parallel calculation (by applying <code>openMP</code> programming) and big data calculation(by importing <code>bigmemory </code> package).</p>
+<p><code>blupADC</code> provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(<strong>trace pedigree, rename pedigree, and correct pedigree errors</strong>), genotype data format conversion(supports <strong>Hapmap, Plink, Blupf90, Numeric,  VCF and Haplotype</strong> format), genotype data quality control and imputation, construction of kinship matrix(<strong>pedigree, genomic  and single-step</strong>),and genetic evaluation( by interfacing with two famous breeding softwares, <strong>DMU</strong> and <strong>BLUPF90</strong>  in an easy way).</p>
 <p>Finally, we kindly provides an easier way of applying <code>blupADC</code>, which is a free  website(<a href="http://47.95.251.15:443/blupADC/" target="_blank" rel="noopener">shinyapp</a>).  Several functions are still under development.  But the pitfall of this website is that it can&rsquo;t handle big data.</p>
 <p>😊 Good Luck Charlie !</p>
 <h2 id="new-features">New features</h2>
@@ -850,24 +851,39 @@
 <ul>
 <li>Incorporate  maternal effect, permanent effect, random regression effect, and social genetic  effect models in  the genetic evaluation by DMU (2021.8.24)</li>
 </ul>
+<h3 id="104">1.0.4</h3>
+<ul>
+<li>Incorporate  haplotype format conversion ,haplotype-based numeric matrix construction and haplotype-based additive relationship matrix construction (2021.10.8)</li>
+<li>Import  bigmemory object in matrix save and calculation  for handling big data(2021.10.8)</li>
+</ul>
 <h2 id="getting-started">GETTING STARTED</h2>
 <h3 id="installation">🙊Installation</h3>
-<p><code>blupADC</code> links to R packages <code>Rcpp</code>, <code>RcppArmadillo</code> and <code>data.table</code>. These dependencies should be installed before installing <code>blupADC</code>.</p>
-<pre><code class="language-R">install.packages(c(&quot;Rcpp&quot;, &quot;RcppArmadillo&quot;,&quot;data.table&quot;))
+<p><code>blupADC</code> links to R packages <code>Rcpp</code>, <code>RcppArmadillo</code> , <code>data.table</code> and  <code>bigmemory</code> .  These dependencies should be installed before installing <code>blupADC</code>.</p>
+<pre><code class="language-R">install.packages(c(&quot;Rcpp&quot;, &quot;RcppArmadillo&quot;,&quot;data.table&quot;,&quot;bigmemory&quot;))
 </code></pre>
 <p><strong>👉 Note: In the analysis of DMU  and BLUPF90 , we need to download software DMU  (<a href="https://dmu.ghpc.au.dk/dmu/" target="_blank" rel="noopener">DMU download website</a>)  and BLUPF90 previously (<a href="http://nce.ads.uga.edu/html/projects/programs/" target="_blank" rel="noopener">BLUPF90 download website</a>). For convenience, we have encapsulated  the basic module of DMU and BLUPF90 in package <code>blupADC</code>.</strong></p>
 <p><strong>For commercial use of DMU and BLUPF90,  user must contact the author of DMU and BLUPF90 !!!</strong></p>
 <h4 id="install-blupadc-on-linux">Install blupADC on Linux</h4>
-<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3_R_x86_64-pc-linux-gnu.tar.gz&quot;
+<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz&quot;
 install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
 </code></pre>
 <h4 id="install-blupadc-on-windows">Install blupADC on Windows</h4>
-<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3.zip&quot;
+<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4.zip&quot;
+install.packages(packageurl,repos=NULL)
+</code></pre>
+<p>👉 <strong>Note:If the connection with github is not good(such as in China), user can download as below:</strong></p>
+<h4 id="install-blupadc-on-linux-1">Install blupADC on Linux</h4>
+<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blupADC/attach_files/851170/download/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz&quot;
+install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
+</code></pre>
+<h4 id="install-blupadc-on-windows-1">Install blupADC on Windows</h4>
+<pre><code class="language-R">packageurl&lt;-&quot;https://gitee.com/qsmei/blupADC/attach_files/851169/download/blupADC_1.0.4.zip&quot;
 install.packages(packageurl,repos=NULL)
 </code></pre>
 <p>After installed successfully, the <code>blupADC</code> package can be loaded by typing</p>
 <pre><code class="language-{.r}">library(blupADC)
 </code></pre>
+<p><strong>Note</strong>: In terms of the relationship matrix construction, we highly recommend Microsoft R Open(faster than traditional R many times)</p>
 <h3 id="features">🙊Features</h3>
 <ul>
 <li>Feature 1. Genomic data format conversion</li>
@@ -887,62 +903,84 @@ install.packages(packageurl,repos=NULL)
 </code></pre>
 <h4 id="feature-1-genomic-data-format-conversion-see-more-detailshttpsqsmeinetlifyapppostblupadc">Feature 1. Genomic data format conversion (<a href="https://qsmei.netlify.app/post/blupadc/" target="_blank" rel="noopener">see more details</a>)</h4>
 <pre><code class="language-R">library(blupADC)
-sum_data=genotype_data_format_conversion(
-         input_data_hmp=data_hmp,  #provided hapmap data object 
-         output_data_type=c(&quot;Plink&quot;,&quot;BLUPF90&quot;,&quot;Numeric&quot;),# output data format
-         return_result = TRUE,      # return result 
-         cpu_cores=1                # number of cpu 
+format_result=geno_format(
+    	input_data_hmp=example_data_hmp,  # provided data variable
+        output_data_type=c(&quot;Plink&quot;,&quot;BLUPF90&quot;,&quot;Numeric&quot;),# output data format
+    	output_data_path=getwd(),   #output data path      
+    	output_data_name=&quot;blupADC&quot;, #output data name    
+        return_result = TRUE,       #save result in R environment
+        cpu_cores=1                 # number of cpu 
+                  )
+
+#convert phased VCF data to haplotype format and  haplotype-based numeric format
+library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of example files 
+phased=geno_format(
+         input_data_path=data_path,      # input data path 
+         input_data_name=&quot;example.vcf&quot;,  # input data name,for vcf data
+         input_data_type=&quot;VCF&quot;,          # input data type
+         phased_genotype=TRUE,           # whether the vcf data has been phased
+         haplotype_window_nSNP=5,        # according to nSNP define haplotype-block,
+    	 bigmemory_cal=TRUE,             # format conversion via bigmemory object
+    	 bigmemory_data_path=getwd(),    # path of bigmemory data 
+    	 bigmemory_data_name=&quot;test_blupADC&quot;, #name of bigmemory data 
+         output_data_type=c(&quot;Haplotype&quot;,&quot;Numeric&quot;),# output data format
+         return_result=TRUE,             #save result in R environment
+         cpu_cores=1                     # number of cpu 
                   )
 </code></pre>
 <h4 id="feature-2-genomic-data-quality-control-and-genotype-imputation-see-more-detailshttpsqsmeinetlifyapppostfeature-2-qc_imputationqc_imputation">Feature 2. Genomic data quality control and genotype imputation (<a href="https://qsmei.netlify.app/post/feature-2-qc_imputation/qc_imputation/" target="_blank" rel="noopener">see more details</a>)</h4>
 <pre><code class="language-R">library(blupADC)
-genotype_data_QC_Imputation(
-            input_data_hmp=data_hmp,    #provided hapmap data object
+geno_qc_impute(
+            input_data_hmp=example_data_hmp,        #provided data variable
             data_analysis_method=&quot;QC_Imputation&quot;,   #analysis method type,QC + imputatoin
-            output_data_path=&quot;/root/result&quot;,        #output data path
+            output_data_path=getwd(),               #output data path
             output_data_name=&quot;YY_data&quot;,             #output data name
-            output_data_type=&quot;VCF&quot;                #output data format 
+            output_data_type=&quot;VCF&quot;                  #output data format 
             )                       
 </code></pre>
 <h4 id="feature-3-breed-composition-analysis-and-duplication-detection-of-genomic-data-see-more-detailshttpsqsmeinetlifyapppostfeature-3-overlap_pcablupadc">Feature 3. Breed composition analysis and duplication detection of genomic data (<a href="https://qsmei.netlify.app/post/feature-3-overlap_pca/blupadc/" target="_blank" rel="noopener">see more details</a>)</h4>
 <pre><code class="language-R">library(blupADC)
-check_result=genotype_data_check(
-                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+check_result=geno_check(
+                  input_data_hmp=example_PCA_data_hmp,   #provided hapmap data object
                   duplication_check=FALSE,       #whether check the duplication of genotype
-                  breed_check=TRUE,              # whether check the record of breed
-                  breed_record=PCA_Breed,           # provided breed record
-                  output_data_path=&quot;/root&quot;,      #output path
-                  return_result=TRUE             #return result 
+                  breed_check=TRUE,               # whether check the record of breed
+                  breed_record=example_PCA_Breed, # provided breed record
+                  output_data_path=getwd(),       #output path
+                  return_result=TRUE              #save result as a R environment variable
                   )
 </code></pre>
 <h4 id="feature-4-pedigree-tracing-analysis-see-more-detailshttpsqsmeinetlifyapppostfeature-4-trace_pedigreepedigree">Feature 4. Pedigree tracing, analysis (<a href="https://qsmei.netlify.app/post/feature-4-trace_pedigree/pedigree/" target="_blank" rel="noopener">see more details</a>)</h4>
 <pre><code class="language-R">library(blupADC)
 pedigree_result=trace_pedigree(
-                input_pedigree=origin_pedigree,   #provided pedigree data object
-                trace_generation=3,       # trace generation
-                output_pedigree_tree=TRUE  # output pedigree tree
+                input_pedigree=example_ped1,   #provided pedigree data variable
+                trace_generation=3,            # trace generation
+                output_pedigree_tree=T         # output pedigree tree
                 )  
 </code></pre>
 <h4 id="feature-5-pedigree-visualization-see-more-detailshttpsqsmeinetlifyapppostfeature-5-visualize_pedigreepedigree">Feature 5. Pedigree visualization (<a href="https://qsmei.netlify.app/post/feature-5-visualize_pedigree/pedigree/" target="_blank" rel="noopener">see more details</a>)</h4>
 <pre><code class="language-R">library(blupADC)
 plot=ggped(
-       input_pedigree=plot_pedigree,
+       input_pedigree=example_ped2,
        trace_id=c(&quot;121&quot;),
        trace_sibs=TRUE   #whether plot the sibs of subset-id  
         ) 
 </code></pre>
 <h4 id="feature-6-relationship-matrix-constructionag-and-h--see-more-detailshttpsqsmeinetlifyapppostfeature-6-kinship_matrixrelationship_matrix">Feature 6. Relationship matrix construction(A,G, and H)  (<a href="https://qsmei.netlify.app/post/feature-6-kinship_matrix/relationship_matrix/" target="_blank" rel="noopener">see more details</a>)</h4>
 <pre><code class="language-R">library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of example files 
 kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,          #provided hapmap data object
-                kinship_type=c(&quot;G_A&quot;,&quot;G_D&quot;),      #type of  kinship matrix
-                dominance_type=c(&quot;genotypic&quot;),    #type of dominance effect
-                inbred_type=c(&quot;Homozygous&quot;),      #type of inbreeding coefficients
-                return_result=TRUE)               #return result              
+        		input_data_path=data_path,      # input data path 
+        		input_data_name=&quot;example.vcf&quot;,  # input data name,for vcf data
+         		input_data_type=&quot;VCF&quot;,          # input data type
+    			kinship_type=c(&quot;G_A&quot;,&quot;G_D&quot;),      #type of  kinship matrix
+    			dominance_type=c(&quot;genotypic&quot;),    #type of dominance effect
+    			inbred_type=c(&quot;Homozygous&quot;),      #type of inbreeding coefficients
+    			return_result=TRUE)               #save result as a R environment variable         
 </code></pre>
 <h4 id="feature-7-genetic-evaluation-with-dmu-see-more-detailshttpsqsmeinetlifyapppostfeature-7-run_dmurun_dmu">Feature 7. Genetic evaluation with DMU (<a href="https://qsmei.netlify.app/post/feature-7-run_dmu/run_dmu/" target="_blank" rel="noopener">see more details</a>)</h4>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of example files 
   
 run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
@@ -957,12 +995,12 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
-        output_result_path=&quot;/root&quot;                   # output path 
+        output_result_path=getwd()                   # output path 
         )
 </code></pre>
 <h4 id="feature-8-genetic-evaluation-with-blupf90-see-more-detailshttpsqsmeinetlifyapppostfeature-8-run_blupf90blupf90">Feature 8. Genetic evaluation with BLUPF90 (<a href="https://qsmei.netlify.app/post/feature-8-run_blupf90/blupf90/" target="_blank" rel="noopener">see more details</a>)</h4>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of example files 
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
@@ -975,7 +1013,7 @@ run_BLUPF90(
         analysis_model=&quot;PBLUP_A&quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
-        output_result_path=&quot;/root&quot;                   # output path 
+        output_result_path=getwd()                   # output path 
         )   
 </code></pre>
 <p>1</p>

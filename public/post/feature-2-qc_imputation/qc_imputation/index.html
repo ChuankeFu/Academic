@@ -831,15 +831,15 @@
 <p><strong>👉 Note:  For convenience,  <code>blupADC</code> has encapsulated software Plink(for quality control)  <code>version-1.9</code> and software Beagle(for imputation) <code>version-5.2</code>. If you want change this version, you should set the related parameters in the part of Advanced parameter.</strong></p>
 <h2 id="example">Example</h2>
 <pre><code class="language-{.R}">library(blupADC)
-genotype_data_QC_Imputation(
-            input_data_hmp=data_hmp,    #provided hapmap data object
+geno_qc_impute(
+            input_data_hmp=example_data_hmp,    #provided hapmap data object
             data_analysis_method=&quot;QC_Imputation&quot;,   #analysis method type,QC + imputatoin
-            output_data_path=&quot;/root/result&quot;,        #output data path
+            output_data_path=getwd(),               #output data path
             output_data_name=&quot;YY_data&quot;,             #output data name
-            output_data_type=&quot;VCF&quot;                #output data format 
+            output_data_type=&quot;VCF&quot;                  #output data format 
             )                       
 </code></pre>
-<p>In the process of quality control and imputation，we should provide genotype data，these parameters are the as in <code>genotype_data_format_conversion</code> function(<a href="https://qsmei.netlify.app/post/blupadc/" target="_blank" rel="noopener">see more details</a>).</p>
+<p>In the process of quality control and imputation，we should provide genotype data，these parameters are the as in <code>geno_format</code> function(<a href="https://qsmei.netlify.app/post/blupadc/" target="_blank" rel="noopener">see more details</a>).</p>
 <h2 id="parameter">Parameter</h2>
 <h3 id="basic">💙Basic</h3>
 <ul>

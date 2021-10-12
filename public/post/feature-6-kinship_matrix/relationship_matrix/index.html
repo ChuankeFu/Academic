@@ -823,6 +823,7 @@
         <li><a href="#-pedigree-based-kinship-matrix">😾 Pedigree-based kinship matrix</a></li>
         <li><a href="#-genomic-based-kinship-matrix">🤡 Genomic-based kinship matrix</a></li>
         <li><a href="#single-step-based-kinship-matrix">💨Single-step based kinship matrix</a></li>
+        <li><a href="#single-step-based-kinship-matrixvia-bigmemory-method">💨Single-step based kinship matrix(via bigmemory method)</a></li>
       </ul>
     </li>
     <li><a href="#parameter">Parameter</a>
@@ -837,18 +838,17 @@
 
 <h2 id="overview">Overview</h2>
 <p>🙉 In the application of animal and plant breeding, the key step is the construction of kinship matrix.  Package: <code>blupADC</code> provides <code>cal_kinship </code>function which can construct various type of relationship matrix directly,  including  <strong>additive relationship matrix</strong>(pedigree, genomic and single-step), and <strong>dominance relationship matrix</strong>(pedigree, genomic and single-step), and <strong>the inverse matrix</strong> of these kinship matrix.</p>
-<p>In the construction of single-step relationship matrix, users can select metafounder algorithm or APY algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, <code>cal_kinship </code> can calculate several types of inbreeding coefficients  (pedigree, genomic, and single-step) .</p>
-<p>In the construction of single-step relationship matrix, users can select metafounder algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, <code>cal_kinship </code> can calculate several types of <strong>inbreeding coefficients</strong>  (pedigree, genomic, and single-step) .</p>
+<p>In the construction of single-step relationship matrix, users can select <strong>Metafounder</strong> algorithm or <strong>APY</strong> algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, <code>cal_kinship </code> can calculate several types of inbreeding coefficients  (pedigree, genomic, and single-step) .</p>
+<p><strong>Note</strong>: In the construction of genomic and single-step relationship matrix, people need to provide genotype data. These parameters are the same as in <code>geno_format</code> function((<a href="https://qsmei.netlify.app/post/blupadc/" target="_blank" rel="noopener">see more details</a>).</p>
 <h2 id="example">Example</h2>
 <h3 id="-pedigree-based-kinship-matrix">😾 Pedigree-based kinship matrix</h3>
 <pre><code class="language-{.R}">library(blupADC)
 kinship_result=cal_kinship(
-                input_pedigree=origin_pedigree,          #provided hapmap data object
+                input_pedigree=example_ped3,          #provided hapmap data object
                 kinship_type=c(&quot;P_A&quot;),      #type of  kinship matrix
                 inbred_type=c(&quot;Pedigree&quot;),      #type of inbreeding coefficients
                 return_result=TRUE)               #return result              
 </code></pre>
-<p><strong>Note</strong>: In the construction of pedigree and single-step relationship matrix, people need to provide genotype data.</p>
 <h3 id="-genomic-based-kinship-matrix">🤡 Genomic-based kinship matrix</h3>
 <pre><code class="language-{.R}">library(blupADC)
 kinship_result=cal_kinship(
@@ -858,15 +858,26 @@ kinship_result=cal_kinship(
                 inbred_type=c(&quot;Homozygous&quot;),      #type of inbreeding coefficients
                 return_result=TRUE)               #return result              
 </code></pre>
-<p><strong>Note</strong>: In the construction of genomic and single-step relationship matrix, people need to provide genotype data. These parameters are the same as in <code>genotype_data_format_conversion</code> function((<a href="https://qsmei.netlify.app/post/blupadc/" target="_blank" rel="noopener">see more details</a>).</p>
 <h3 id="single-step-based-kinship-matrix">💨Single-step based kinship matrix</h3>
 <pre><code class="language-{.R}">library(blupADC)
 kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,          #provided hapmap data object
-                input_pedigree=origin_pedigree,
+                input_data_hmp=example_data_hmp,          #provided hapmap data object
+                input_pedigree=example_ped3,
                 kinship_type=c(&quot;H_A&quot;),      #type of  kinship matrix
                 inbred_type=c(&quot;H_diag&quot;),      #type of inbreeding coefficients
                 return_result=TRUE)               #return result              
+</code></pre>
+<h3 id="single-step-based-kinship-matrixvia-bigmemory-method">💨Single-step based kinship matrix(via bigmemory method)</h3>
+<pre><code class="language-{.R}">library(blupADC)
+phased_kinship_result=cal_kinship(
+                input_data_hmp=example_data_hmp,          #provided hapmap data object
+                input_pedigree=example_ped3,
+                bigmemory_cal=TRUE,
+                bigmemory_data_path=getwd(),
+                bigmemory_data_name=&quot;blupADC&quot;,
+                kinship_type=c(&quot;H_A&quot;),      #type of  kinship matrix
+                inbred_type=c(&quot;H_diag&quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result                
 </code></pre>
 <h2 id="parameter">Parameter</h2>
 <h3 id="basic">💪Basic</h3>
@@ -885,8 +896,6 @@ kinship_result=cal_kinship(
 <li>&ldquo;P_Dinv&rdquo; :inverse of pedigree dominance kinship matrix</li>
 <li>&ldquo;H_A&rdquo; :single-step additive kinship matrix</li>
 <li>&ldquo;H_Ainv&rdquo; :inverse of single-step additive kinship matrix</li>
-<li>&ldquo;H_D&rdquo; :single-step dominance kinship matrix</li>
-<li>&ldquo;H_Dinv&rdquo; :inverse of single-step dominance kinship matrix</li>
 </ul>
 </li>
 </ul>
@@ -929,20 +938,24 @@ kinship_result=cal_kinship(
 </ul>
 <p>User-provided pedigree data ，<code>data.frame</code> or <code>matrix</code> class. (<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/" target="_blank" rel="noopener">see more details</a> about the format of pedigree data)</p>
 <ul>
-<li><strong>5：pedigree_rename</strong></li>
-</ul>
-<p>Whether  pedigree need to be renamed,  <code>logical</code> class. Default is TRUE.</p>
-<ul>
-<li><strong>6：IND_geno_rename</strong></li>
+<li><strong>5：IND_rename</strong></li>
 </ul>
 <p>Whether genotype individuals need to be renamed according to the  renamed pedigree,  <code>logical</code> class. Default is FALSE.</p>
 <ul>
-<li><strong>7：rename_to_origin</strong></li>
+<li><strong>6:bigmemory_cal</strong></li>
 </ul>
-<p>Whether renamed individuals should keep original name,  <code>logical</code> class. Default is FALSE.</p>
+<p>Whether using bigmemory method to calculate. <code>logical</code> class. Default is FALSE.</p>
+<ul>
+<li><strong>7:bigmemory_data_path</strong></li>
+</ul>
+<p>The file path bigmemory data . <code>character</code> class.</p>
+<ul>
+<li><strong>8:bigmemory_data_name</strong></li>
+</ul>
+<p>The file name bigmemory data . <code>character</code> class.</p>
 <ul>
 <li>
-<p><strong>8：output_matrix_type</strong></p>
+<p><strong>9：output_matrix_type</strong></p>
 <p>Type of output kinship matrix type,   <code>character</code> class. Default is &ldquo;col_three&rdquo;.</p>
 <ul>
 <li>&ldquo;<code>col_all</code>&rdquo; : n*n format</li>
@@ -953,17 +966,12 @@ kinship_result=cal_kinship(
 <table>
 <thead>
 <tr>
-<th style="text-align:right"></th>
-<th></th>
-<th></th>
+<th style="text-align:right">1001</th>
+<th>1001</th>
+<th>0.989</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:right">1001</td>
-<td>1001</td>
-<td>0.989</td>
-</tr>
 <tr>
 <td style="text-align:right">1001</td>
 <td>1002</td>
@@ -977,58 +985,54 @@ kinship_result=cal_kinship(
 </tbody>
 </table>
 <ul>
-<li><strong>9：output_matrix_path</strong></li>
+<li><strong>10：output_matrix_path</strong></li>
 </ul>
 <p>File path of output relationship matrix,   <code>character</code> class.</p>
 <ul>
-<li><strong>10：output_matrix_name</strong></li>
+<li><strong>11：output_matrix_name</strong></li>
 </ul>
 <p>File name of output relationship matrix,   <code>character</code> class.</p>
 <h3 id="advanced">🦶Advanced</h3>
 <ul>
-<li><strong>11：cpu_cores</strong></li>
+<li><strong>12：cpu_cores</strong></li>
 </ul>
 <p>Number of cpu in calculating,  <code>numeric</code> class. Default is 1.</p>
 <ul>
-<li><strong>12：kinship_base</strong></li>
+<li><strong>13：kinship_base</strong></li>
 </ul>
 <p>Whether take $p=q=0.5$  in the construction of relationship matrix,  <code>logical</code> class. Default is FALSE.</p>
 <ul>
-<li><strong>13：kinship_trace</strong></li>
+<li><strong>14：kinship_trace</strong></li>
 </ul>
 <p>Whether take the trace of kinship matrix to scale relationship matrix,  <code>logical</code> class. Default is FALSE.</p>
 <ul>
-<li><strong>14：Metafounder_algorithm</strong></li>
+<li><strong>15：Metafounder_algorithm</strong></li>
 </ul>
 <p>Whether take the metafounder algorithm to construct single-step relationship matrix,  <code>logical</code> class. Default is FALSE.</p>
 <ul>
-<li><strong>15：APY_algorithm</strong></li>
+<li><strong>16：APY_algorithm</strong></li>
 </ul>
 <p>Whether take the APY algorithm to construct inverse relationship matrix,  <code>logical</code> class. Default is FALSE.</p>
 <ul>
-<li><strong>16：APY_eigen_threshold</strong></li>
+<li><strong>17：APY_eigen_threshold</strong></li>
 </ul>
 <p>Threshold of variation explained by eigenvalues ,  <code>numeric</code> class. Default is 0.95.</p>
 <ul>
-<li><strong>17：APY_n_core</strong></li>
+<li><strong>18：APY_n_core</strong></li>
 </ul>
 <p>Number of  core animals ,  <code>numeric</code> class. Default is NULL.</p>
 <ul>
-<li><strong>18：SSBLUP_omega</strong></li>
+<li><strong>19：SSBLUP_omega</strong></li>
 </ul>
 <p>The value of omega in the construction of single-step additive relationship matrix,  <code>numeric</code> class. Default is 0.05.</p>
 <ul>
-<li><strong>19：gene_dropping</strong></li>
+<li><strong>20：gene_dropping</strong></li>
 </ul>
 <p>Whether take the gene dropping algorithm to construct pedigree dominance relationship matrix,  <code>logical</code> class. Default is FALSE.</p>
 <ul>
-<li><strong>20：gene_dropping_iteration</strong></li>
+<li><strong>21：gene_dropping_iteration</strong></li>
 </ul>
 <p>The number of iteration for gene dropping algorithm ,  <code>numeric</code> class. Default is 1000.</p>
-<ul>
-<li><strong>21：memory_save</strong></li>
-</ul>
-<p>Whether take memory efficient way to construct  kinship matrix,  <code>logical</code> class. Default is FALSE. (This way need more storage space)</p>
 
     </div>
 

@@ -47,7 +47,7 @@
 &lt;h3 id=&#34;plot-whole-pedigree&#34;&gt;Plot whole pedigree&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree
+                input_pedigree=example_ped2
                 )                 
 
 &lt;/code&gt;&lt;/pre&gt;
@@ -55,7 +55,7 @@ pedigree_result=ggped(
 &lt;h3 id=&#34;plot-subset-of-whole-pedigree&#34;&gt;Plot subset of whole pedigree&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree,
+                input_pedigree=example_ped2,
     			trace_id=c(&amp;quot;121&amp;quot;)             #provided subset-id
                 )                   
 
@@ -64,7 +64,7 @@ pedigree_result=ggped(
 &lt;h3 id=&#34;plot-subset-of-whole-pedigree-with-sibs&#34;&gt;Plot subset of whole pedigree (with sibs)&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree,
+                input_pedigree=example_ped2,
     			trace_id=c(&amp;quot;121&amp;quot;),
     			trace_sibs=TRUE   #whether plot the sibs of subset-id  
                 )                   
@@ -220,7 +220,7 @@ pedigree_result=ggped(
 &lt;h3 id=&#34;trace-pedigree&#34;&gt;💖Trace pedigree&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
 pedigree_result=trace_pedigree(
-                input_pedigree=origin_pedigree,   #provided pedigree data object
+                input_pedigree=example_ped1,   #provided pedigree data object
                 output_pedigree_tree=TRUE  # output pedigree tree
                 )                 
 

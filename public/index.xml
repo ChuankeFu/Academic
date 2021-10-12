@@ -303,12 +303,13 @@ run_BLUPF90(
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&amp;quot;id&amp;quot;,                    #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
         analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=getwd()                   # output path 
         )   
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait-model---gblup&#34;&gt;&lt;strong&gt;Single trait model - GBLUP&lt;/strong&gt;&lt;/h3&gt;
@@ -321,12 +322,13 @@ run_BLUPF90(
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&amp;quot;id&amp;quot;,                    #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
         analysis_model=&amp;quot;GBLUP_A&amp;quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;blupf90_genumeric&amp;quot;,            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path  
+        output_result_path=getwd()                   # output path  
         )   
 
 &lt;/code&gt;&lt;/pre&gt;
@@ -340,12 +342,13 @@ run_BLUPF90(
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&amp;quot;id&amp;quot;,                    #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
         analysis_model=&amp;quot;SSBLUP_A&amp;quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=c(&amp;quot;pedigree.txt&amp;quot;,&amp;quot;blupf90_genumeric&amp;quot;),            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                  # output path 
+        output_result_path=getwd()                  # output path 
         )   
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Similar to &lt;code&gt;run_DMU&lt;/code&gt; function, through modifying the two parameters: &lt;code&gt;analysis_model&lt;/code&gt; and &lt;code&gt;relationship_name&lt;/code&gt; , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis(PS: blupf90_genumeric is generated through &lt;code&gt;cal_kinship&lt;/code&gt; function，&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt; about &lt;code&gt;cal_kinship&lt;/code&gt; function).&lt;/p&gt;
@@ -360,12 +363,13 @@ run_BLUPF90(
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;)),               #random effect name
         covariate_effect_name=list(NULL,&amp;quot;Age&amp;quot;),                          #covariate effect name
+        genetic_effect_name=&amp;quot;id&amp;quot;,                    #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
         analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=c(&amp;quot;pedigree.txt&amp;quot;),            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=getwd()                   # output path 
         )   
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
@@ -449,6 +453,7 @@ run_DMU(
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&amp;quot;Id&amp;quot;,	                 #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -456,7 +461,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----gblup--model&#34;&gt;Single trait  - GBLUP  model&lt;/h3&gt;
@@ -468,6 +473,7 @@ run_DMU(
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&amp;quot;Id&amp;quot;,	                 #genetic effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -475,7 +481,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;G_Ainv_col_three.txt&amp;quot;,            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----single-step-blup-model&#34;&gt;Single trait  - single-step BLUP model&lt;/h3&gt;
@@ -487,6 +493,7 @@ run_DMU(
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&amp;quot;Id&amp;quot;,	                 #genetic effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -494,7 +501,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=c(&amp;quot;pedigree.txt&amp;quot;,&amp;quot;G_A_col_three.txt&amp;quot;),            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Through modifying the two parameters: &lt;code&gt;analysis_model&lt;/code&gt; and &lt;code&gt;relationship_name&lt;/code&gt; , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis (PS: we can get G_Ainv_col_three.txt  and G_A_col_three.txt   by &lt;code&gt;cal_kinship&lt;/code&gt; function，&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;  about &lt;code&gt;cal_kinship&lt;/code&gt; function).&lt;/p&gt;
@@ -509,6 +516,7 @@ run_DMU(
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;),c(&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;),c(&amp;quot;Id&amp;quot;)),               #random effect name
         covariate_effect_name=list(NULL,&amp;quot;Age&amp;quot;),                              #covariate effect name
+        genetic_effect_name=&amp;quot;Id&amp;quot;,	                 #genetic effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -516,7 +524,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----pedigree-blup-modelwith-user-provided-prior&#34;&gt;Single trait  - pedigree BLUP model(with user-provided prior)&lt;/h3&gt;
@@ -529,6 +537,7 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quo
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&amp;quot;Id&amp;quot;,	                 #genetic effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
         provided_prior_file_path=data_path,          #path of user-provided prior file
@@ -538,7 +547,7 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quo
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----pedigree-blup-model-with-maternal-effect&#34;&gt;Single trait  - pedigree BLUP model( with maternal effect)&lt;/h3&gt;
@@ -552,7 +561,7 @@ run_DMU(
         fixed_effect_name=list(c(&amp;quot;B_month&amp;quot;,&amp;quot;D_age&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;HY&amp;quot;)),     #fixed effect name
         random_effect_name=list(c(&amp;quot;ID&amp;quot;,&amp;quot;L_Dam&amp;quot;)),    #random effect name
         maternal_effect_name=list(c(&amp;quot;DAM&amp;quot;)),
-        genetic_effect_name=&amp;quot;ID&amp;quot;,
+        genetic_effect_name=&amp;quot;ID&amp;quot;,                    #genetic effect name 
         covariate_effect_name=NULL,                  #covariate effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;maternal_data&amp;quot;,                    #name of phenotype file
@@ -561,7 +570,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;maternal_pedigree&amp;quot;,       #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----pedigree-blup-model-with-permanent-effect&#34;&gt;Single trait  - pedigree BLUP model( with permanent effect)&lt;/h3&gt;
@@ -575,7 +584,7 @@ run_DMU(
         fixed_effect_name=list(c(&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;)), #fixed effect name
         random_effect_name=list(c(&amp;quot;id&amp;quot;,&amp;quot;t_dato&amp;quot;)),            #random effect name
         covariate_effect_name=list(c(&amp;quot;age&amp;quot;)),                 #covariate effect name	
-        genetic_effect_name=&amp;quot;id&amp;quot;,
+        genetic_effect_name=&amp;quot;id&amp;quot;,                    #genetic effect name
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;rr_data&amp;quot;,                          #name of phenotype file
@@ -584,7 +593,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;rr_pedigree&amp;quot;,             #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----pedigree-blup-model-with-random-regression-effect&#34;&gt;Single trait  - pedigree BLUP model( with random regression effect)&lt;/h3&gt;
@@ -598,7 +607,7 @@ run_DMU(
         fixed_effect_name=list(c(&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;)), #fixed effect name
         random_effect_name=list(c(&amp;quot;id&amp;quot;,&amp;quot;t_dato&amp;quot;)),            #random effect name
         covariate_effect_name=list(c(&amp;quot;age&amp;quot;)),                 #covariate effect name	
-        genetic_effect_name=&amp;quot;id&amp;quot;,
+        genetic_effect_name=&amp;quot;id&amp;quot;,                    #genetic effect name 
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
         random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;quot;,&amp;quot;L1&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;quot;,&amp;quot;L2&amp;amp;pe_effect&amp;quot;)), #random regression effect name
         phe_path=data_path,                          #path of phenotype file
@@ -608,7 +617,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;rr_pedigree&amp;quot;,             #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----pedigree-blup-model-with-social-genetic-effect&#34;&gt;Single trait  - pedigree BLUP model( with social genetic effect)&lt;/h3&gt;
@@ -622,7 +631,7 @@ run_DMU(
         fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;)),          #fixed effect name
         random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;)),  #random effect name
         covariate_effect_name=NULL,                #covariate effect name		
-        genetic_effect_name=&amp;quot;Id&amp;quot;,
+        genetic_effect_name=&amp;quot;Id&amp;quot;,                  #genetic effect name
         include_social_effect=list(c(TRUE)),   
         group_effect_name=&amp;quot;Group&amp;quot;,
         phe_path=data_path,                          #path of phenotype file
@@ -632,7 +641,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;socail_pedigree&amp;quot;,         #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;  # output path 
+        output_result_path=gewd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----pedigree-blup-model-with-social-genetic-effect-1&#34;&gt;Single trait  - pedigree BLUP model( with social genetic effect)&lt;/h3&gt;
@@ -646,7 +655,7 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;qu
 	fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;)),           #fixed effect name
 	random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;)),   #random effect name
 	covariate_effect_name=NULL,
-	genetic_effect_name=&amp;quot;Id&amp;quot;,		
+	genetic_effect_name=&amp;quot;Id&amp;quot;,		           #genetic effect name
 	include_social_effect=list(c(TRUE)),       #whether include social genetic effect 
 	integer_group_names=c(&amp;quot;Gr_id1&amp;quot;,&amp;quot;Gr_id2&amp;quot;,&amp;quot;Gr_id3&amp;quot;,&amp;quot;Gr_id4&amp;quot;,&amp;quot;Gr_id5&amp;quot;),  #integer variable name of max group size    
         real_group_names= c(&amp;quot;Status_Gr_id1&amp;quot;,&amp;quot;Status_Gr_id2&amp;quot;,&amp;quot;Status_Gr_id3&amp;quot;,&amp;quot;Status_Gr_id4&amp;quot;,&amp;quot;Status_Gr_id5&amp;quot;), #real variable name of max group size
@@ -657,7 +666,7 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;qu
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;socail_pedigree&amp;quot;,         #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;  # output path 
+        output_result_path=gewd()                    # output path 
 		)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;basic&#34;&gt;🤡Basic&lt;/h3&gt;
@@ -939,6 +948,7 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;qu
         &lt;li&gt;&lt;a href=&#34;#-pedigree-based-kinship-matrix&#34;&gt;😾 Pedigree-based kinship matrix&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#-genomic-based-kinship-matrix&#34;&gt;🤡 Genomic-based kinship matrix&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#single-step-based-kinship-matrix&#34;&gt;💨Single-step based kinship matrix&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#single-step-based-kinship-matrixvia-bigmemory-method&#34;&gt;💨Single-step based kinship matrix(via bigmemory method)&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/li&gt;
     &lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;
@@ -953,18 +963,17 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;qu
 
 &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;🙉 In the application of animal and plant breeding, the key step is the construction of kinship matrix.  Package: &lt;code&gt;blupADC&lt;/code&gt; provides &lt;code&gt;cal_kinship &lt;/code&gt;function which can construct various type of relationship matrix directly,  including  &lt;strong&gt;additive relationship matrix&lt;/strong&gt;(pedigree, genomic and single-step), and &lt;strong&gt;dominance relationship matrix&lt;/strong&gt;(pedigree, genomic and single-step), and &lt;strong&gt;the inverse matrix&lt;/strong&gt; of these kinship matrix.&lt;/p&gt;
-&lt;p&gt;In the construction of single-step relationship matrix, users can select metafounder algorithm or APY algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, &lt;code&gt;cal_kinship &lt;/code&gt; can calculate several types of inbreeding coefficients  (pedigree, genomic, and single-step) .&lt;/p&gt;
-&lt;p&gt;In the construction of single-step relationship matrix, users can select metafounder algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, &lt;code&gt;cal_kinship &lt;/code&gt; can calculate several types of &lt;strong&gt;inbreeding coefficients&lt;/strong&gt;  (pedigree, genomic, and single-step) .&lt;/p&gt;
+&lt;p&gt;In the construction of single-step relationship matrix, users can select &lt;strong&gt;Metafounder&lt;/strong&gt; algorithm or &lt;strong&gt;APY&lt;/strong&gt; algorithm. In terms of the construction of dominance relationship matrix, users can select different coding manners for genomic dominance relationship matrix, gene dropping algorithm for pedigree dominance relationship matrix.  In addition, &lt;code&gt;cal_kinship &lt;/code&gt; can calculate several types of inbreeding coefficients  (pedigree, genomic, and single-step) .&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: In the construction of genomic and single-step relationship matrix, people need to provide genotype data. These parameters are the same as in &lt;code&gt;geno_format&lt;/code&gt; function((&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
 &lt;h3 id=&#34;-pedigree-based-kinship-matrix&#34;&gt;😾 Pedigree-based kinship matrix&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
 kinship_result=cal_kinship(
-                input_pedigree=origin_pedigree,          #provided hapmap data object
+                input_pedigree=example_ped3,          #provided hapmap data object
                 kinship_type=c(&amp;quot;P_A&amp;quot;),      #type of  kinship matrix
                 inbred_type=c(&amp;quot;Pedigree&amp;quot;),      #type of inbreeding coefficients
                 return_result=TRUE)               #return result              
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: In the construction of pedigree and single-step relationship matrix, people need to provide genotype data.&lt;/p&gt;
 &lt;h3 id=&#34;-genomic-based-kinship-matrix&#34;&gt;🤡 Genomic-based kinship matrix&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
 kinship_result=cal_kinship(
@@ -974,15 +983,26 @@ kinship_result=cal_kinship(
                 inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #type of inbreeding coefficients
                 return_result=TRUE)               #return result              
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: In the construction of genomic and single-step relationship matrix, people need to provide genotype data. These parameters are the same as in &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function((&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
 &lt;h3 id=&#34;single-step-based-kinship-matrix&#34;&gt;💨Single-step based kinship matrix&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
 kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,          #provided hapmap data object
-                input_pedigree=origin_pedigree,
+                input_data_hmp=example_data_hmp,          #provided hapmap data object
+                input_pedigree=example_ped3,
                 kinship_type=c(&amp;quot;H_A&amp;quot;),      #type of  kinship matrix
                 inbred_type=c(&amp;quot;H_diag&amp;quot;),      #type of inbreeding coefficients
                 return_result=TRUE)               #return result              
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;single-step-based-kinship-matrixvia-bigmemory-method&#34;&gt;💨Single-step based kinship matrix(via bigmemory method)&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+phased_kinship_result=cal_kinship(
+                input_data_hmp=example_data_hmp,          #provided hapmap data object
+                input_pedigree=example_ped3,
+                bigmemory_cal=TRUE,
+                bigmemory_data_path=getwd(),
+                bigmemory_data_name=&amp;quot;blupADC&amp;quot;,
+                kinship_type=c(&amp;quot;H_A&amp;quot;),      #type of  kinship matrix
+                inbred_type=c(&amp;quot;H_diag&amp;quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result                
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
 &lt;h3 id=&#34;basic&#34;&gt;💪Basic&lt;/h3&gt;
@@ -1001,8 +1021,6 @@ kinship_result=cal_kinship(
 &lt;li&gt;&amp;ldquo;P_Dinv&amp;rdquo; :inverse of pedigree dominance kinship matrix&lt;/li&gt;
 &lt;li&gt;&amp;ldquo;H_A&amp;rdquo; :single-step additive kinship matrix&lt;/li&gt;
 &lt;li&gt;&amp;ldquo;H_Ainv&amp;rdquo; :inverse of single-step additive kinship matrix&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;H_D&amp;rdquo; :single-step dominance kinship matrix&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;H_Dinv&amp;rdquo; :inverse of single-step dominance kinship matrix&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -1045,20 +1063,24 @@ kinship_result=cal_kinship(
 &lt;/ul&gt;
 &lt;p&gt;User-provided pedigree data ，&lt;code&gt;data.frame&lt;/code&gt; or &lt;code&gt;matrix&lt;/code&gt; class. (&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt; about the format of pedigree data)&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;5：pedigree_rename&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Whether  pedigree need to be renamed,  &lt;code&gt;logical&lt;/code&gt; class. Default is TRUE.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;6：IND_geno_rename&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;5：IND_rename&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Whether genotype individuals need to be renamed according to the  renamed pedigree,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;7：rename_to_origin&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;6:bigmemory_cal&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Whether renamed individuals should keep original name,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
+&lt;p&gt;Whether using bigmemory method to calculate. &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;7:bigmemory_data_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The file path bigmemory data . &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;8:bigmemory_data_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The file name bigmemory data . &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;8：output_matrix_type&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;9：output_matrix_type&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Type of output kinship matrix type,   &lt;code&gt;character&lt;/code&gt; class. Default is &amp;ldquo;col_three&amp;rdquo;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&amp;ldquo;&lt;code&gt;col_all&lt;/code&gt;&amp;rdquo; : n*n format&lt;/li&gt;
@@ -1069,17 +1091,12 @@ kinship_result=cal_kinship(
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th style=&#34;text-align:right&#34;&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;1001&lt;/th&gt;
+&lt;th&gt;1001&lt;/th&gt;
+&lt;th&gt;0.989&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&#34;text-align:right&#34;&gt;1001&lt;/td&gt;
-&lt;td&gt;1001&lt;/td&gt;
-&lt;td&gt;0.989&lt;/td&gt;
-&lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:right&#34;&gt;1001&lt;/td&gt;
 &lt;td&gt;1002&lt;/td&gt;
@@ -1093,58 +1110,54 @@ kinship_result=cal_kinship(
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;9：output_matrix_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;10：output_matrix_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;File path of output relationship matrix,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;10：output_matrix_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;11：output_matrix_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;File name of output relationship matrix,   &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;h3 id=&#34;advanced&#34;&gt;🦶Advanced&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;11：cpu_cores&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;12：cpu_cores&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Number of cpu in calculating,  &lt;code&gt;numeric&lt;/code&gt; class. Default is 1.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;12：kinship_base&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;13：kinship_base&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Whether take $p=q=0.5$  in the construction of relationship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;13：kinship_trace&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;14：kinship_trace&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Whether take the trace of kinship matrix to scale relationship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;14：Metafounder_algorithm&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;15：Metafounder_algorithm&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Whether take the metafounder algorithm to construct single-step relationship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;15：APY_algorithm&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;16：APY_algorithm&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Whether take the APY algorithm to construct inverse relationship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;16：APY_eigen_threshold&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;17：APY_eigen_threshold&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Threshold of variation explained by eigenvalues ,  &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.95.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;17：APY_n_core&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;18：APY_n_core&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Number of  core animals ,  &lt;code&gt;numeric&lt;/code&gt; class. Default is NULL.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;18：SSBLUP_omega&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;19：SSBLUP_omega&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The value of omega in the construction of single-step additive relationship matrix,  &lt;code&gt;numeric&lt;/code&gt; class. Default is 0.05.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;19：gene_dropping&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;20：gene_dropping&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Whether take the gene dropping algorithm to construct pedigree dominance relationship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;20：gene_dropping_iteration&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;21：gene_dropping_iteration&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The number of iteration for gene dropping algorithm ,  &lt;code&gt;numeric&lt;/code&gt; class. Default is 1000.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;21：memory_save&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Whether take memory efficient way to construct  kinship matrix,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE. (This way need more storage space)&lt;/p&gt;
 </description>
     </item>
     
@@ -1183,7 +1196,7 @@ kinship_result=cal_kinship(
 &lt;h3 id=&#34;plot-whole-pedigree&#34;&gt;Plot whole pedigree&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree
+                input_pedigree=example_ped2
                 )                 
 
 &lt;/code&gt;&lt;/pre&gt;
@@ -1191,7 +1204,7 @@ pedigree_result=ggped(
 &lt;h3 id=&#34;plot-subset-of-whole-pedigree&#34;&gt;Plot subset of whole pedigree&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree,
+                input_pedigree=example_ped2,
     			trace_id=c(&amp;quot;121&amp;quot;)             #provided subset-id
                 )                   
 
@@ -1200,7 +1213,7 @@ pedigree_result=ggped(
 &lt;h3 id=&#34;plot-subset-of-whole-pedigree-with-sibs&#34;&gt;Plot subset of whole pedigree (with sibs)&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree,
+                input_pedigree=example_ped2,
     			trace_id=c(&amp;quot;121&amp;quot;),
     			trace_sibs=TRUE   #whether plot the sibs of subset-id  
                 )                   
@@ -1356,7 +1369,7 @@ pedigree_result=ggped(
 &lt;h3 id=&#34;trace-pedigree&#34;&gt;💖Trace pedigree&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
 pedigree_result=trace_pedigree(
-                input_pedigree=origin_pedigree,   #provided pedigree data object
+                input_pedigree=example_ped1,   #provided pedigree data object
                 output_pedigree_tree=TRUE  # output pedigree tree
                 )                 
 
@@ -1846,15 +1859,15 @@ check_result=genotype_data_check(
 &lt;p&gt;&lt;strong&gt;👉 Note:  For convenience,  &lt;code&gt;blupADC&lt;/code&gt; has encapsulated software Plink(for quality control)  &lt;code&gt;version-1.9&lt;/code&gt; and software Beagle(for imputation) &lt;code&gt;version-5.2&lt;/code&gt;. If you want change this version, you should set the related parameters in the part of Advanced parameter.&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
-genotype_data_QC_Imputation(
-            input_data_hmp=data_hmp,    #provided hapmap data object
+geno_qc_impute(
+            input_data_hmp=example_data_hmp,    #provided hapmap data object
             data_analysis_method=&amp;quot;QC_Imputation&amp;quot;,   #analysis method type,QC + imputatoin
-            output_data_path=&amp;quot;/root/result&amp;quot;,        #output data path
+            output_data_path=getwd(),               #output data path
             output_data_name=&amp;quot;YY_data&amp;quot;,             #output data name
-            output_data_type=&amp;quot;VCF&amp;quot;                #output data format 
+            output_data_type=&amp;quot;VCF&amp;quot;                  #output data format 
             )                       
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In the process of quality control and imputation，we should provide genotype data，these parameters are the as in &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function(&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;In the process of quality control and imputation，we should provide genotype data，these parameters are the as in &lt;code&gt;geno_format&lt;/code&gt; function(&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
 &lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
 &lt;h3 id=&#34;basic&#34;&gt;💙Basic&lt;/h3&gt;
 &lt;ul&gt;
@@ -1945,146 +1958,62 @@ genotype_data_QC_Imputation(
 
 &lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Overview&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;genotype_data_format_conversion&lt;/code&gt; is the basic function of package:&lt;code&gt;blupADC&lt;/code&gt;. By applying &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; , we can convert multiple genotype data formats in an easy way, including Hapmap, Plink, BLUPF90, Numeric and VCF.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;👉 Note: For analyzing VCF format data, &lt;code&gt;blupADC&lt;/code&gt; has encapsulated software Plink &lt;code&gt;version-1.9&lt;/code&gt; and VCFtools &lt;code&gt;version-0.1.17&lt;/code&gt;. If you want change this version, you could set the related parameters in the part of Advanced parameter.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;geno_format&lt;/code&gt; is the basic function of package:&lt;code&gt;blupADC&lt;/code&gt;. By applying &lt;code&gt;geno_format&lt;/code&gt; , we can convert multiple genotype data formats in an easy way, including Hapmap, Plink, BLUPF90, Numeric, Haplotype and VCF.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;example&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Example&lt;/h2&gt;
+&lt;div id=&#34;format-conversion-based-on-provided-r-variable&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Format conversion based on provided R variable&lt;/h4&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(blupADC)
-sum_data=genotype_data_format_conversion(
-         input_data_hmp=data_hmp,  #provided hapmap data object 
-         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;BLUPF90&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
+format_result=geno_format(
+         input_data_hmp=example_data_hmp,  #provided hapmap data object 
+         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;BLUPF90&amp;quot;,&amp;quot;Numeric&amp;quot;,&amp;quot;VCF&amp;quot;),# output data format
          return_result = TRUE,      # return result 
          cpu_cores=1                # number of cpu 
          )&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Start numeric(0,1,2) format conversion...... 
-## Complete BLUPF90  format conversion 
-## Complete Plink Data Format Conversion&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;format-conversion-based-on-provided-data-path-and-data-name&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Format conversion based on provided data path and data name&lt;/h4&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#convert phased VCF data to haplotype format and  haplotype-based numeric format
+library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
+phased_result=geno_format(
+         input_data_path=data_path,      # input data path 
+         input_data_name=&amp;quot;example.vcf&amp;quot;,  # input data name,for vcf data 
+         input_data_type=&amp;quot;VCF&amp;quot;,          # input data type
+         phased_genotype=TRUE,           # whether the vcf data has been phased
+         haplotype_window_nSNP=5,        # according to nSNP define block,
+         output_data_type=c(&amp;quot;Haplotype&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
+         return_result=TRUE,             #save result as a R environment variable
+         cpu_cores=1                     # number of cpu 
+                  )&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;format-conversion-via-bigmemory-method&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Format conversion via bigmemory method&lt;/h4&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
+phased=geno_format(
+         input_data_path=data_path,      # input data path 
+         input_data_name=&amp;quot;example.vcf&amp;quot;,  # input data name,for vcf data
+         input_data_type=&amp;quot;VCF&amp;quot;,          # input data type
+         phased_genotype=TRUE,           # whether the vcf data has been phased
+         haplotype_window_nSNP=5,        # according to nSNP define haplotype-block,
+         bigmemory_cal=TRUE,             # format conversion via bigmemory object
+         bigmemory_data_path=getwd(),    # path of bigmemory data 
+         bigmemory_data_name=&amp;quot;test_blupADC&amp;quot;, #name of bigmemory data 
+         output_data_type=c(&amp;quot;Haplotype&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
+         return_result=TRUE,             #save result in R environment
+         cpu_cores=1                     # number of cpu 
+                  )&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;output&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Output&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;str(sum_data) 
-## List of 5
-##  $ hmp    :&amp;#39;data.frame&amp;#39;: 6 obs. of  311 variables:
-##   ..$ rs#      : chr [1:6] &amp;quot;SNP1&amp;quot; &amp;quot;SNP2&amp;quot; &amp;quot;SNP3&amp;quot; &amp;quot;SNP4&amp;quot; ...
-##   ..$ alleles  : logi [1:6] NA NA NA NA NA NA
-##   ..$ chrom    : int [1:6] 1 1 1 1 1 1
-##   ..$ pos      : int [1:6] 224488 293696 333333 464830 722623 838596
-##   ..$ strand   : logi [1:6] NA NA NA NA NA NA
-##   ..$ assembly : logi [1:6] NA NA NA NA NA NA
-##   ..$ center   : logi [1:6] NA NA NA NA NA NA
-##   ..$ protLSID : logi [1:6] NA NA NA NA NA NA
-##   ..$ assayLSID: logi [1:6] NA NA NA NA NA NA
-##   ..$ panelLSID: logi [1:6] NA NA NA NA NA NA
-##   ..$ QCcode   : logi [1:6] NA NA NA NA NA NA
-##   ..$ 3098     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3498     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3297     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2452     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4255     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2946     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3926     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3426     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4213     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2895     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4172     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3620     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4797     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4660     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4010     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4095     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3029     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3930     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4404     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2020     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2455     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3747     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 1590     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2707     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2320     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3397     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3876     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3658     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2310     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 1996     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3000     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2485     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4412     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3395     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4449     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3302     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3895     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4328     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3892     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3764     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3922     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4459     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4236     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3535     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2957     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2927     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3499     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4537     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4288     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4048     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3371     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3901     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3344     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4745     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3118     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3093     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3410     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4024     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3053     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3571     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3740     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4374     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4550     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3060     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3460     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3791     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3116     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3078     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 1974     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 1990     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3433     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4349     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3340     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2681     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2628     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 4813     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2221     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2384     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2721     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3463     : chr [1:6] &amp;quot;AA&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2748     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 2973     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 1999     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3474     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 3689     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;TT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 1924     : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 1948     : chr [1:6] &amp;quot;AC&amp;quot; &amp;quot;GG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   ..$ 110      : chr [1:6] &amp;quot;CC&amp;quot; &amp;quot;TG&amp;quot; &amp;quot;GT&amp;quot; &amp;quot;CC&amp;quot; ...
-##   .. [list output truncated]
-##  $ ped    : chr [1:300, 1:18] &amp;quot;3098&amp;quot; &amp;quot;3498&amp;quot; &amp;quot;3297&amp;quot; &amp;quot;2452&amp;quot; ...
-##  $ map    :&amp;#39;data.frame&amp;#39;: 6 obs. of  4 variables:
-##   ..$ chrom : int [1:6] 1 1 1 1 1 1
-##   ..$ rs#   : chr [1:6] &amp;quot;SNP1&amp;quot; &amp;quot;SNP2&amp;quot; &amp;quot;SNP3&amp;quot; &amp;quot;SNP4&amp;quot; ...
-##   ..$ strand: num [1:6] 0.224 0.294 0.333 0.465 0.723 ...
-##   ..$ pos   : int [1:6] 224488 293696 333333 464830 722623 838596
-##  $ blupf90: chr [1:300, 1:2] &amp;quot;3098                &amp;quot; &amp;quot;3498                &amp;quot; &amp;quot;3297                &amp;quot; &amp;quot;2452                &amp;quot; ...
-##   ..- attr(*, &amp;quot;dimnames&amp;quot;)=List of 2
-##   .. ..$ : NULL
-##   .. ..$ : chr [1:2] &amp;quot;IND_name&amp;quot; &amp;quot;&amp;quot;
-##  $ numeric: num [1:300, 1:6] 2 1 1 2 1 2 1 1 2 2 ...
-##   ..- attr(*, &amp;quot;dimnames&amp;quot;)=List of 2
-##   .. ..$ : chr [1:300] &amp;quot;3098&amp;quot; &amp;quot;3498&amp;quot; &amp;quot;3297&amp;quot; &amp;quot;2452&amp;quot; ...
-##   .. ..$ : chr [1:6] &amp;quot;SNP1&amp;quot; &amp;quot;SNP2&amp;quot; &amp;quot;SNP3&amp;quot; &amp;quot;SNP4&amp;quot; ...&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;According to the result of output, we find that the output contains 5 parts, including:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;hmp &lt;/strong&gt; : &lt;code&gt;Hapmap&lt;/code&gt; format genotype data&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;The first column stands for the name of SNP, the thrid column stands for chromosome, the fourth column stands for the physical postion, and the twelth column and the after columns stand for the genotype data&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The first column stands for the name of SNP, the thrid column stands for chromosome, the fourth column stands for the physical postion, and the twelth column and the after columns stand for the genotype data&lt;/p&gt;
 &lt;table style=&#34;width:100%;&#34;&gt;
 &lt;colgroup&gt;
 &lt;col width=&#34;4%&#34; /&gt;
@@ -2095,8 +2024,8 @@ sum_data=genotype_data_format_conversion(
 &lt;col width=&#34;8%&#34; /&gt;
 &lt;col width=&#34;6%&#34; /&gt;
 &lt;col width=&#34;8%&#34; /&gt;
-&lt;col width=&#34;9%&#34; /&gt;
-&lt;col width=&#34;9%&#34; /&gt;
+&lt;col width=&#34;10%&#34; /&gt;
+&lt;col width=&#34;10%&#34; /&gt;
 &lt;col width=&#34;6%&#34; /&gt;
 &lt;col width=&#34;4%&#34; /&gt;
 &lt;col width=&#34;4%&#34; /&gt;
@@ -2105,354 +2034,590 @@ sum_data=genotype_data_format_conversion(
 &lt;/colgroup&gt;
 &lt;thead&gt;
 &lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;rs#&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;alleles&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;chrom&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;pos&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;strand&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;assembly&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;center&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;protLSID&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;assayLSID&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;panelLSID&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;QCcode&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;3098&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;3498&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;3297&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;2452&lt;/th&gt;
+&lt;th&gt;rs#&lt;/th&gt;
+&lt;th&gt;alleles&lt;/th&gt;
+&lt;th&gt;chrom&lt;/th&gt;
+&lt;th&gt;pos&lt;/th&gt;
+&lt;th&gt;strand&lt;/th&gt;
+&lt;th&gt;assembly&lt;/th&gt;
+&lt;th&gt;center&lt;/th&gt;
+&lt;th&gt;protLSID&lt;/th&gt;
+&lt;th&gt;assayLSID&lt;/th&gt;
+&lt;th&gt;panelLSID&lt;/th&gt;
+&lt;th&gt;QCcode&lt;/th&gt;
+&lt;th&gt;3098&lt;/th&gt;
+&lt;th&gt;3498&lt;/th&gt;
+&lt;th&gt;3297&lt;/th&gt;
+&lt;th&gt;2452&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;SNP1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;224488&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;AC&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;AC&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
+&lt;td&gt;SNP1&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;224488&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;CC&lt;/td&gt;
+&lt;td&gt;AC&lt;/td&gt;
+&lt;td&gt;AC&lt;/td&gt;
+&lt;td&gt;CC&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;SNP2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;293696&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;GG&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;TG&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;TG&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;GG&lt;/td&gt;
+&lt;td&gt;SNP2&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;293696&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;GG&lt;/td&gt;
+&lt;td&gt;TG&lt;/td&gt;
+&lt;td&gt;TG&lt;/td&gt;
+&lt;td&gt;GG&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;SNP3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;333333&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;GG&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;TT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;TT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;GG&lt;/td&gt;
+&lt;td&gt;SNP3&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;333333&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;GG&lt;/td&gt;
+&lt;td&gt;TT&lt;/td&gt;
+&lt;td&gt;TT&lt;/td&gt;
+&lt;td&gt;GG&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;SNP4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;464830&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
+&lt;td&gt;SNP4&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;464830&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;CC&lt;/td&gt;
+&lt;td&gt;CC&lt;/td&gt;
+&lt;td&gt;CC&lt;/td&gt;
+&lt;td&gt;CC&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;SNP5&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;722623&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;AA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;GG&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;GG&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;AA&lt;/td&gt;
+&lt;td&gt;SNP5&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;722623&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;AA&lt;/td&gt;
+&lt;td&gt;GG&lt;/td&gt;
+&lt;td&gt;GG&lt;/td&gt;
+&lt;td&gt;AA&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;SNP6&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;838596&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;NA&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;TC&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;TT&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;CC&lt;/td&gt;
+&lt;td&gt;SNP6&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;838596&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;td&gt;CC&lt;/td&gt;
+&lt;td&gt;TC&lt;/td&gt;
+&lt;td&gt;TT&lt;/td&gt;
+&lt;td&gt;CC&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;ped&lt;/strong&gt; : &lt;code&gt;Plink&lt;/code&gt; 格式的ped数据&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ped&lt;/strong&gt; : &lt;code&gt;Plink&lt;/code&gt; format ped data&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;The first column stands for family name,the second column stands for the individual name,the seventh column and the after columns stand for the genotype data&lt;/code&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;A&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;C&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;T&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;G&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;map &lt;/strong&gt;: &lt;code&gt;Plink&lt;/code&gt;格式的map数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;The first column stands for chromosome, the second column stands for the name of SNP, the thrid column stands for the genetic positon(CM), and the fourth column stands for the physical position&lt;/code&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.224488&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;224488&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.293696&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;293696&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP3&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.333333&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;333333&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP4&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.464830&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;464830&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP5&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.722623&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;722623&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;SNP6&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.838596&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;838596&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;blupf90 &lt;/strong&gt;: &lt;code&gt;BLUPF90&lt;/code&gt;格式的基因型数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;The first column stands for individual name, the second column stands for the genotype data(numeric)&lt;/code&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;200000&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;112021&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;112022&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;200000&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;102011&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;212000&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;numeric &lt;/strong&gt;: &lt;code&gt;Numeric&lt;/code&gt; 格式的基因型数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;rownames stands for the individual name, colnames stands for the name of SNP, 0,1,2 stand for the numeric genotype&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The first column stands for family name,the second column stands for the individual name,the seventh column and the after columns stand for the genotype data&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SNP1&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SNP2&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SNP3&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SNP4&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SNP5&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SNP6&lt;/th&gt;
+&lt;th&gt;3098&lt;/th&gt;
+&lt;th&gt;3098&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;th&gt;G&lt;/th&gt;
+&lt;th&gt;G&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3098&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td&gt;3498&lt;/td&gt;
+&lt;td&gt;3498&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;G&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3498&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td&gt;3297&lt;/td&gt;
+&lt;td&gt;3297&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;G&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;3297&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;td&gt;2452&lt;/td&gt;
+&lt;td&gt;2452&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;G&lt;/td&gt;
+&lt;td&gt;G&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2452&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td&gt;4255&lt;/td&gt;
+&lt;td&gt;4255&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;G&lt;/td&gt;
+&lt;td&gt;G&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;4255&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td&gt;2946&lt;/td&gt;
+&lt;td&gt;2946&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;map &lt;/strong&gt;: &lt;code&gt;Plink&lt;/code&gt;format map data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The first column stands for chromosome, the second column stands for the name of SNP, the thrid column stands for the genetic positon(CM), and the fourth column stands for the physical position&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;th&gt;SNP1&lt;/th&gt;
+&lt;th&gt;0.224488&lt;/th&gt;
+&lt;th&gt;224488&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;SNP2&lt;/td&gt;
+&lt;td&gt;0.293696&lt;/td&gt;
+&lt;td&gt;293696&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2946&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;SNP3&lt;/td&gt;
+&lt;td&gt;0.333333&lt;/td&gt;
+&lt;td&gt;333333&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;SNP4&lt;/td&gt;
+&lt;td&gt;0.464830&lt;/td&gt;
+&lt;td&gt;464830&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;SNP5&lt;/td&gt;
+&lt;td&gt;0.722623&lt;/td&gt;
+&lt;td&gt;722623&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;SNP6&lt;/td&gt;
+&lt;td&gt;0.838596&lt;/td&gt;
+&lt;td&gt;838596&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;blupf90 &lt;/strong&gt;: &lt;code&gt;BLUPF90&lt;/code&gt; format genotype data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The first column stands for individual name, the second column stands for the genotype data(numeric)&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;3098&lt;/th&gt;
+&lt;th&gt;200000&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;3498&lt;/td&gt;
+&lt;td&gt;112021&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;3297&lt;/td&gt;
+&lt;td&gt;112022&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;2452&lt;/td&gt;
+&lt;td&gt;200000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;4255&lt;/td&gt;
+&lt;td&gt;102011&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;2946&lt;/td&gt;
+&lt;td&gt;212000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;numeric &lt;/strong&gt;: &lt;code&gt;Numeric&lt;/code&gt; format genotype data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;rownames of numeric data stands for the individual name, colnames of numeric data stands for the name of SNP, 0,1,2 stand for the numeric genotype&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;haplotype_hap&lt;/strong&gt;: &lt;code&gt;Haplotype&lt;/code&gt; format genotype data.&lt;/p&gt;
+&lt;p&gt;Row stands for marker, column stands for individual, each individual has two columns;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;haplotype_sample&lt;/strong&gt;: &lt;code&gt;Haplotype&lt;/code&gt; format genotype data&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;3098&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;3498&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;3297&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;2452&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;4255&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;2946&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;haplotype_map&lt;/strong&gt;: &lt;code&gt;Haplotype&lt;/code&gt; format genotype data&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;th&gt;SNP1&lt;/th&gt;
+&lt;th&gt;224488&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;SNP2&lt;/td&gt;
+&lt;td&gt;293696&lt;/td&gt;
+&lt;td&gt;G&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;SNP3&lt;/td&gt;
+&lt;td&gt;333333&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;SNP4&lt;/td&gt;
+&lt;td&gt;464830&lt;/td&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;td&gt;G&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;SNP5&lt;/td&gt;
+&lt;td&gt;722623&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;SNP6&lt;/td&gt;
+&lt;td&gt;838596&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;vcf &lt;/strong&gt;: &lt;code&gt;VCF&lt;/code&gt; format genotype data&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;##fileformat=VCFv4.2&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;##source=“beagle.29May21.d6d.jar”&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;##INFO&amp;lt;ID=AF,Number=A,Type=Float&amp;gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;##INFO&amp;lt;ID=IMP,Number=0,Type=Flag&#34;&amp;gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;##FORMAT&amp;lt;ID=GT,Number=1,Type=String&amp;gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;#CHROM&lt;/td&gt;
+&lt;td&gt;POS&lt;/td&gt;
+&lt;td&gt;ID&lt;/td&gt;
+&lt;td&gt;REF&lt;/td&gt;
+&lt;td&gt;ALT&lt;/td&gt;
+&lt;td&gt;QUAL&lt;/td&gt;
+&lt;td&gt;FILTER&lt;/td&gt;
+&lt;td&gt;INFO&lt;/td&gt;
+&lt;td&gt;FORMAT&lt;/td&gt;
+&lt;td&gt;3498&lt;/td&gt;
+&lt;td&gt;3297&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;6260&lt;/td&gt;
+&lt;td&gt;M2&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;td&gt;.&lt;/td&gt;
+&lt;td&gt;PASS&lt;/td&gt;
+&lt;td&gt;.&lt;/td&gt;
+&lt;td&gt;GT&lt;/td&gt;
+&lt;td&gt;1|0&lt;/td&gt;
+&lt;td&gt;0|1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;15289&lt;/td&gt;
+&lt;td&gt;M17&lt;/td&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;.&lt;/td&gt;
+&lt;td&gt;PASS&lt;/td&gt;
+&lt;td&gt;.&lt;/td&gt;
+&lt;td&gt;GT&lt;/td&gt;
+&lt;td&gt;0|0&lt;/td&gt;
+&lt;td&gt;0|0&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -2464,100 +2629,161 @@ sum_data=genotype_data_format_conversion(
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;1: input_data_plink_ped&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;User-provided &lt;code&gt;Plink&lt;/code&gt;-ped format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;User-provided &lt;code&gt;Plink&lt;/code&gt;-ped format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; or &lt;code&gt;matrix&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;2:input_data_plink_map&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;User-provided &lt;code&gt;Plink&lt;/code&gt;-map format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;User-provided &lt;code&gt;Plink&lt;/code&gt;-map format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; or &lt;code&gt;matrix&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;3:input_data_hmp&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;User-provided &lt;code&gt;Hapmap&lt;/code&gt; format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;User-provided &lt;code&gt;Hapmap&lt;/code&gt; format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; or &lt;code&gt;matrix&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;4:input_data_BLUPF90&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;User-provided &lt;code&gt;BLUPF90&lt;/code&gt; format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;User-provided &lt;code&gt;BLUPF90&lt;/code&gt; format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; or &lt;code&gt;matrix&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;5:input_data_numeric&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;User-provided &lt;code&gt;Numeric&lt;/code&gt; format genotype data ，&lt;code&gt;matrix(numeric)&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;User-provided &lt;code&gt;Numeric&lt;/code&gt; format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; or &lt;code&gt;matrix&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;6:input_data_haplotype_hap&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;User-provided &lt;code&gt;Haplotype&lt;/code&gt; format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; or &lt;code&gt;matrix&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;7:input_data_haplotype_sample&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;User-provided &lt;code&gt;Haplotype&lt;/code&gt; format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; or &lt;code&gt;matrix&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;8:input_data_haplotype_map&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;User-provided &lt;code&gt;Haplotype&lt;/code&gt; format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; or &lt;code&gt;matrix&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;9:input_data_vcf&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;User-provided &lt;code&gt;VCF&lt;/code&gt; format genotype data ，&lt;code&gt;data.frame&lt;/code&gt; or &lt;code&gt;matrix&lt;/code&gt; class.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;code&gt;input_data_numeric&lt;/code&gt; should contain both rownames and colnames.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;In addition, for convenience, users can provide the file name, file path, and file type of genotype data directly without reading them in R environment.&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;6:input_data_type&lt;/strong&gt;&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;10:input_data_type&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;File type of provided genotype data ，&lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Hapmap&lt;/li&gt;
 &lt;li&gt;Plink&lt;/li&gt;
 &lt;li&gt;BLUPF90&lt;/li&gt;
 &lt;li&gt;Numeric&lt;/li&gt;
+&lt;li&gt;Haplotype&lt;/li&gt;
 &lt;li&gt;VCF&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;7:input_data_path&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;11:input_data_path&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;File path of provided genotype data ，&lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;8:input_data_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;12:input_data_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;File name of provided genotype data ，&lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; if input_data_type is Plink or VCF, user don’t need to include suffix in the file name of genotype data.&lt;/p&gt;
 &lt;p&gt;eg. for Plink type data, files name are test1.map and test1.ped，we should set&lt;code&gt;input_data_name=&#34;test1&#34;&lt;/code&gt;.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;9:return_result&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Whether return result, &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
-&lt;p&gt;Additionally, for convenience, users can save output genotype data into local computer .&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;10:output_data_path&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;File path of output genotype data, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;11:output_data_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;13:output_data_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;File name of output genotype data, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;12:output_data_type&lt;/strong&gt;&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;14:output_data_type&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;File type of output genotype data, &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Hapmap&lt;/li&gt;
 &lt;li&gt;Plink&lt;/li&gt;
 &lt;li&gt;BLUPF90&lt;/li&gt;
 &lt;li&gt;Numeric&lt;/li&gt;
+&lt;li&gt;Haplotype&lt;/li&gt;
 &lt;li&gt;VCF&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: users can output multiple formats of genotype data simultaneously. e.g.&lt;code&gt;output_data_type=c(&#34;Hapmap&#34;,&#34;Plink&#34;,&#34;BLUPF90&#34;,&#34;Numeric&#34;)&lt;/code&gt;, outout 4 types of genotype data simultaneously .&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;15:return_result&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Whether return result, &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
+&lt;p&gt;Additionally, for convenience, users can save output genotype data into local computer .&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;16:bigmemory_cal&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Whether using bigmemory method to calculate. &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;17:bigmemory_data_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The file path bigmemory data . &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;18:bigmemory_data_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The file name bigmemory data . &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;19:phased_genotype&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Whether genotype data has been phased. &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;20:haplotype_window_nSNP&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;According to the number of consecutive SNPs define haplotype block. &lt;code&gt;numeric&lt;/code&gt; class. Default is NULL.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;21:haplotype_window_kb&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;According to the physical location define haplotype block. &lt;code&gt;numeric&lt;/code&gt; class. Default is NULL.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;22:haplotype_window_block&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;According to user-provided block to define haplotype block . &lt;code&gt;numeric&lt;/code&gt; class. Default is NULL.&lt;/p&gt;
+&lt;p&gt;The first column is the position of window start, the second column is the position of window end.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;th&gt;5&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;11&lt;/td&gt;
+&lt;td&gt;15&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;16&lt;/td&gt;
+&lt;td&gt;20&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;21&lt;/td&gt;
+&lt;td&gt;25&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;26&lt;/td&gt;
+&lt;td&gt;30&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;/div&gt;
 &lt;div id=&#34;advanced&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;💨Advanced&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;13:cpu_cores&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;23:cpu_cores&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Number of cpu in calculating, &lt;code&gt;numeric&lt;/code&gt; class. Default is 1.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;14:miss_base&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;24:miss_base&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Missing genotype character, &lt;code&gt;character&lt;/code&gt; class. Default is “NN”.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;15:miss_base_num&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;25:miss_base_num&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Missing genotype number after numeric conversion, &lt;code&gt;numeric&lt;/code&gt; class. Default is 5.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;16:plink_software_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;26:miss_base_num&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Path of plink software in user computer. &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;17:plink_software_name&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Name of plink software in user computer. &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;18:vcftools_software_path&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Path of vcftools software in user computer. &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;19:vcftools_software_name&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Name of vcftools software in user computer. &lt;code&gt;character&lt;/code&gt; class.&lt;/p&gt;
+&lt;p&gt;Missing genotype number after numeric conversion, &lt;code&gt;numeric&lt;/code&gt; class. Default is 5.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
@@ -2580,6 +2806,7 @@ sum_data=genotype_data_format_conversion(
     &lt;li&gt;&lt;a href=&#34;#new-features&#34;&gt;New features&lt;/a&gt;
       &lt;ul&gt;
         &lt;li&gt;&lt;a href=&#34;#103&#34;&gt;1.0.3&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#104&#34;&gt;1.0.4&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/li&gt;
     &lt;li&gt;&lt;a href=&#34;#getting-started&#34;&gt;GETTING STARTED&lt;/a&gt;
@@ -2599,8 +2826,8 @@ sum_data=genotype_data_format_conversion(
 &lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210617165506.png&#34; alt=&#34;logo-blupADC&#34;  height=&#34;250&#34; align=&#34;right&#34; style=&#34;zoom:25%;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Documents support two-language(&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-21-r-package-rblupadc-overview/overview/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;English&lt;/a&gt; and &lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-21-r-package-rblupadc-overview/overview/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chinese&lt;/a&gt;).&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id=&#34;overview&#34;&gt;OVERVIEW&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding(&lt;strong&gt;traditional blup and genomic selection&lt;/strong&gt;).  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (&lt;code&gt;Rcpp&lt;/code&gt; and &lt;code&gt;RcppArmadillo &lt;/code&gt;) , and it also supports  parallel calculation by applying &lt;code&gt;openMP&lt;/code&gt; programming.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(&lt;strong&gt;trace pedigree, rename pedigree, and correct pedigree errors&lt;/strong&gt;), genotype data format conversion(supports &lt;strong&gt;Hapmap, Plink, Blupf90, Numeric, and VCF&lt;/strong&gt; format), genotype data quality control and imputation, construction of kinship matrix(&lt;strong&gt;pedigree, genomic  and single-step&lt;/strong&gt;),and genetic evaluation( by interfacing with two famous breeding softwares, &lt;strong&gt;DMU&lt;/strong&gt; and &lt;strong&gt;BLUPF90&lt;/strong&gt;  in an easy way).&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding(&lt;strong&gt;traditional blup and genomic selection&lt;/strong&gt;).  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (&lt;code&gt;Rcpp&lt;/code&gt; and &lt;code&gt;RcppArmadillo &lt;/code&gt;) , and it also supports  parallel calculation (by applying &lt;code&gt;openMP&lt;/code&gt; programming) and big data calculation(by importing &lt;code&gt;bigmemory &lt;/code&gt; package).&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(&lt;strong&gt;trace pedigree, rename pedigree, and correct pedigree errors&lt;/strong&gt;), genotype data format conversion(supports &lt;strong&gt;Hapmap, Plink, Blupf90, Numeric,  VCF and Haplotype&lt;/strong&gt; format), genotype data quality control and imputation, construction of kinship matrix(&lt;strong&gt;pedigree, genomic  and single-step&lt;/strong&gt;),and genetic evaluation( by interfacing with two famous breeding softwares, &lt;strong&gt;DMU&lt;/strong&gt; and &lt;strong&gt;BLUPF90&lt;/strong&gt;  in an easy way).&lt;/p&gt;
 &lt;p&gt;Finally, we kindly provides an easier way of applying &lt;code&gt;blupADC&lt;/code&gt;, which is a free  website(&lt;a href=&#34;http://47.95.251.15:443/blupADC/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shinyapp&lt;/a&gt;).  Several functions are still under development.  But the pitfall of this website is that it can&amp;rsquo;t handle big data.&lt;/p&gt;
 &lt;p&gt;😊 Good Luck Charlie !&lt;/p&gt;
 &lt;h2 id=&#34;new-features&#34;&gt;New features&lt;/h2&gt;
@@ -2608,24 +2835,39 @@ sum_data=genotype_data_format_conversion(
 &lt;ul&gt;
 &lt;li&gt;Incorporate  maternal effect, permanent effect, random regression effect, and social genetic  effect models in  the genetic evaluation by DMU (2021.8.24)&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;104&#34;&gt;1.0.4&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Incorporate  haplotype format conversion ,haplotype-based numeric matrix construction and haplotype-based additive relationship matrix construction (2021.10.8)&lt;/li&gt;
+&lt;li&gt;Import  bigmemory object in matrix save and calculation  for handling big data(2021.10.8)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;getting-started&#34;&gt;GETTING STARTED&lt;/h2&gt;
 &lt;h3 id=&#34;installation&#34;&gt;🙊Installation&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; links to R packages &lt;code&gt;Rcpp&lt;/code&gt;, &lt;code&gt;RcppArmadillo&lt;/code&gt; and &lt;code&gt;data.table&lt;/code&gt;. These dependencies should be installed before installing &lt;code&gt;blupADC&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;install.packages(c(&amp;quot;Rcpp&amp;quot;, &amp;quot;RcppArmadillo&amp;quot;,&amp;quot;data.table&amp;quot;))
+&lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; links to R packages &lt;code&gt;Rcpp&lt;/code&gt;, &lt;code&gt;RcppArmadillo&lt;/code&gt; , &lt;code&gt;data.table&lt;/code&gt; and  &lt;code&gt;bigmemory&lt;/code&gt; .  These dependencies should be installed before installing &lt;code&gt;blupADC&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;install.packages(c(&amp;quot;Rcpp&amp;quot;, &amp;quot;RcppArmadillo&amp;quot;,&amp;quot;data.table&amp;quot;,&amp;quot;bigmemory&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;👉 Note: In the analysis of DMU  and BLUPF90 , we need to download software DMU  (&lt;a href=&#34;https://dmu.ghpc.au.dk/dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU download website&lt;/a&gt;)  and BLUPF90 previously (&lt;a href=&#34;http://nce.ads.uga.edu/html/projects/programs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BLUPF90 download website&lt;/a&gt;). For convenience, we have encapsulated  the basic module of DMU and BLUPF90 in package &lt;code&gt;blupADC&lt;/code&gt;.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;For commercial use of DMU and BLUPF90,  user must contact the author of DMU and BLUPF90 !!!&lt;/strong&gt;&lt;/p&gt;
 &lt;h4 id=&#34;install-blupadc-on-linux&#34;&gt;Install blupADC on Linux&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3_R_x86_64-pc-linux-gnu.tar.gz&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz&amp;quot;
 install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;install-blupadc-on-windows&#34;&gt;Install blupADC on Windows&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3.zip&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4.zip&amp;quot;
+install.packages(packageurl,repos=NULL)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;👉 &lt;strong&gt;Note:If the connection with github is not good(such as in China), user can download as below:&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;install-blupadc-on-linux-1&#34;&gt;Install blupADC on Linux&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blupADC/attach_files/851170/download/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz&amp;quot;
+install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;install-blupadc-on-windows-1&#34;&gt;Install blupADC on Windows&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl&amp;lt;-&amp;quot;https://gitee.com/qsmei/blupADC/attach_files/851169/download/blupADC_1.0.4.zip&amp;quot;
 install.packages(packageurl,repos=NULL)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;After installed successfully, the &lt;code&gt;blupADC&lt;/code&gt; package can be loaded by typing&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: In terms of the relationship matrix construction, we highly recommend Microsoft R Open(faster than traditional R many times)&lt;/p&gt;
 &lt;h3 id=&#34;features&#34;&gt;🙊Features&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Feature 1. Genomic data format conversion&lt;/li&gt;
@@ -2645,62 +2887,84 @@ install.packages(packageurl,repos=NULL)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-1-genomic-data-format-conversion-see-more-detailshttpsqsmeinetlifyapppostblupadc&#34;&gt;Feature 1. Genomic data format conversion (&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-sum_data=genotype_data_format_conversion(
-         input_data_hmp=data_hmp,  #provided hapmap data object 
-         output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;BLUPF90&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
-         return_result = TRUE,      # return result 
-         cpu_cores=1                # number of cpu 
+format_result=geno_format(
+    	input_data_hmp=example_data_hmp,  # provided data variable
+        output_data_type=c(&amp;quot;Plink&amp;quot;,&amp;quot;BLUPF90&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
+    	output_data_path=getwd(),   #output data path      
+    	output_data_name=&amp;quot;blupADC&amp;quot;, #output data name    
+        return_result = TRUE,       #save result in R environment
+        cpu_cores=1                 # number of cpu 
+                  )
+
+#convert phased VCF data to haplotype format and  haplotype-based numeric format
+library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
+phased=geno_format(
+         input_data_path=data_path,      # input data path 
+         input_data_name=&amp;quot;example.vcf&amp;quot;,  # input data name,for vcf data
+         input_data_type=&amp;quot;VCF&amp;quot;,          # input data type
+         phased_genotype=TRUE,           # whether the vcf data has been phased
+         haplotype_window_nSNP=5,        # according to nSNP define haplotype-block,
+    	 bigmemory_cal=TRUE,             # format conversion via bigmemory object
+    	 bigmemory_data_path=getwd(),    # path of bigmemory data 
+    	 bigmemory_data_name=&amp;quot;test_blupADC&amp;quot;, #name of bigmemory data 
+         output_data_type=c(&amp;quot;Haplotype&amp;quot;,&amp;quot;Numeric&amp;quot;),# output data format
+         return_result=TRUE,             #save result in R environment
+         cpu_cores=1                     # number of cpu 
                   )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-2-genomic-data-quality-control-and-genotype-imputation-see-more-detailshttpsqsmeinetlifyapppostfeature-2-qc_imputationqc_imputation&#34;&gt;Feature 2. Genomic data quality control and genotype imputation (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-2-qc_imputation/qc_imputation/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-genotype_data_QC_Imputation(
-            input_data_hmp=data_hmp,    #provided hapmap data object
+geno_qc_impute(
+            input_data_hmp=example_data_hmp,        #provided data variable
             data_analysis_method=&amp;quot;QC_Imputation&amp;quot;,   #analysis method type,QC + imputatoin
-            output_data_path=&amp;quot;/root/result&amp;quot;,        #output data path
+            output_data_path=getwd(),               #output data path
             output_data_name=&amp;quot;YY_data&amp;quot;,             #output data name
-            output_data_type=&amp;quot;VCF&amp;quot;                #output data format 
+            output_data_type=&amp;quot;VCF&amp;quot;                  #output data format 
             )                       
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-3-breed-composition-analysis-and-duplication-detection-of-genomic-data-see-more-detailshttpsqsmeinetlifyapppostfeature-3-overlap_pcablupadc&#34;&gt;Feature 3. Breed composition analysis and duplication detection of genomic data (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-3-overlap_pca/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-check_result=genotype_data_check(
-                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+check_result=geno_check(
+                  input_data_hmp=example_PCA_data_hmp,   #provided hapmap data object
                   duplication_check=FALSE,       #whether check the duplication of genotype
-                  breed_check=TRUE,              # whether check the record of breed
-                  breed_record=PCA_Breed,           # provided breed record
-                  output_data_path=&amp;quot;/root&amp;quot;,      #output path
-                  return_result=TRUE             #return result 
+                  breed_check=TRUE,               # whether check the record of breed
+                  breed_record=example_PCA_Breed, # provided breed record
+                  output_data_path=getwd(),       #output path
+                  return_result=TRUE              #save result as a R environment variable
                   )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-4-pedigree-tracing-analysis-see-more-detailshttpsqsmeinetlifyapppostfeature-4-trace_pedigreepedigree&#34;&gt;Feature 4. Pedigree tracing, analysis (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-4-trace_pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 pedigree_result=trace_pedigree(
-                input_pedigree=origin_pedigree,   #provided pedigree data object
-                trace_generation=3,       # trace generation
-                output_pedigree_tree=TRUE  # output pedigree tree
+                input_pedigree=example_ped1,   #provided pedigree data variable
+                trace_generation=3,            # trace generation
+                output_pedigree_tree=T         # output pedigree tree
                 )  
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-5-pedigree-visualization-see-more-detailshttpsqsmeinetlifyapppostfeature-5-visualize_pedigreepedigree&#34;&gt;Feature 5. Pedigree visualization (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-5-visualize_pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
 plot=ggped(
-       input_pedigree=plot_pedigree,
+       input_pedigree=example_ped2,
        trace_id=c(&amp;quot;121&amp;quot;),
        trace_sibs=TRUE   #whether plot the sibs of subset-id  
         ) 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-6-relationship-matrix-constructionag-and-h--see-more-detailshttpsqsmeinetlifyapppostfeature-6-kinship_matrixrelationship_matrix&#34;&gt;Feature 6. Relationship matrix construction(A,G, and H)  (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-6-kinship_matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
 kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,          #provided hapmap data object
-                kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_D&amp;quot;),      #type of  kinship matrix
-                dominance_type=c(&amp;quot;genotypic&amp;quot;),    #type of dominance effect
-                inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #type of inbreeding coefficients
-                return_result=TRUE)               #return result              
+        		input_data_path=data_path,      # input data path 
+        		input_data_name=&amp;quot;example.vcf&amp;quot;,  # input data name,for vcf data
+         		input_data_type=&amp;quot;VCF&amp;quot;,          # input data type
+    			kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_D&amp;quot;),      #type of  kinship matrix
+    			dominance_type=c(&amp;quot;genotypic&amp;quot;),    #type of dominance effect
+    			inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #type of inbreeding coefficients
+    			return_result=TRUE)               #save result as a R environment variable         
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-7-genetic-evaluation-with-dmu-see-more-detailshttpsqsmeinetlifyapppostfeature-7-run_dmurun_dmu&#34;&gt;Feature 7. Genetic evaluation with DMU (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-7-run_dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
   
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
@@ -2715,12 +2979,12 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=getwd()                   # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-8-genetic-evaluation-with-blupf90-see-more-detailshttpsqsmeinetlifyapppostfeature-8-run_blupf90blupf90&#34;&gt;Feature 8. Genetic evaluation with BLUPF90 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-8-run_blupf90/blupf90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
   
 run_BLUPF90(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
@@ -2733,7 +2997,7 @@ run_BLUPF90(
         analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=getwd()                   # output path 
         )   
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;1&lt;/p&gt;

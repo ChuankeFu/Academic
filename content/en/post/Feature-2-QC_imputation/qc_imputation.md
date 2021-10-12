@@ -32,16 +32,16 @@ toc: true
 
 ``` {.R}
 library(blupADC)
-genotype_data_QC_Imputation(
-            input_data_hmp=data_hmp,    #provided hapmap data object
+geno_qc_impute(
+            input_data_hmp=example_data_hmp,    #provided hapmap data object
             data_analysis_method="QC_Imputation",   #analysis method type,QC + imputatoin
-            output_data_path="/root/result",        #output data path
+            output_data_path=getwd(),               #output data path
             output_data_name="YY_data",             #output data name
-            output_data_type="VCF"                #output data format 
+            output_data_type="VCF"                  #output data format 
             )                       
 ```
 
-In the process of quality control and imputation，we should provide genotype data，these parameters are the as in `genotype_data_format_conversion` function([see more details](https://qsmei.netlify.app/post/blupadc/)).
+In the process of quality control and imputation，we should provide genotype data，these parameters are the as in `geno_format` function([see more details](https://qsmei.netlify.app/post/blupadc/)).
 
 ## Parameter
 

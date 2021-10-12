@@ -37,6 +37,11 @@ toc: true
 
 - 目前能够通过DMU自动分析 母性效应，永久环境效应，随机回归效应 及 社会遗传效应的模型 (2021.8.24)
 
+### 1.0.4
+
+- 支持单倍型格式转换，单倍型-数字矩阵及单倍型加性亲缘关系矩阵的构建(2021.10.8)
+- 引入bigmemory对象支持大数据分析(2021.10.8)
+
 ## 开始
 
 ### 🙊安装
@@ -44,7 +49,7 @@ toc: true
  安装`blupADC` 之前，用户首先需要安装如下3个包：`Rcpp`, `RcppArmadillo` and `data.table`.
 
 ```R
-install.packages(c("Rcpp", "RcppArmadillo","data.table"))
+install.packages(c("Rcpp", "RcppArmadillo","data.table","bigmemory"))
 ```
 
 **👉 Note:  在 DMU 和 BLUPF90的分析中，我们通常需要提前下载好 DMU 软件 ([DMU下载网站](https://dmu.ghpc.au.dk/dmu/))  和 BLUPF90软件 ([BLUPF90下载网站](http://nce.ads.uga.edu/html/projects/programs/))。为了方便用户使用，我们已经将两款软件中基础模块封装进了 `blupADC`，请大家合理使用。**
@@ -62,6 +67,22 @@ install.packages(packageurl,repos=NULL,method="libcurl")
 
 ```R
 packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3.zip"
+install.packages(packageurl,repos=NULL)
+```
+
+👉 **Note:**针对github连接比较慢的地区，用户可以通过如下代码进行下载(国内用户推荐如下方式下载)：
+
+#### 在 Linux 上 安装 blupADC
+
+```R
+packageurl <-"https://gitee.com/qsmei/blupADC/attach_files/828771/download/blupADC_1.0.3_R_x86_64-pc-linux-gnu.tar.gz"
+install.packages(packageurl,repos=NULL,method="libcurl")
+```
+
+#### 在 Windows 上 安装 blupADC
+
+```R
+packageurl <- "https://gitee.com/qsmei/blupADC/attach_files/828770/download/blupADC_1.0.3.zip"
 install.packages(packageurl,repos=NULL)
 ```
 
@@ -98,11 +119,30 @@ system.file("extdata", package = "blupADC") # path of provided files
 
 ``` R
 library(blupADC)
-sum_data=genotype_data_format_conversion(
-         input_data_hmp=data_hmp,  #provided hapmap data object 
-         output_data_type=c("Plink","BLUPF90","Numeric"),# output data format
-         return_result = TRUE,      # return result 
-         cpu_cores=1                # number of cpu 
+format_result=geno_format(
+		input_data_hmp=example_data_hmp,  # provided data variable
+        output_data_type=c("Plink","BLUPF90","Numeric"),# output data format
+    	output_data_path=getwd(),   #output data path      
+    	output_data_name="blupADC", #output data name    
+        return_result = TRUE,       #save result in R environment
+        cpu_cores=1                 # number of cpu 
+                  )
+
+#convert phased VCF data to haplotype format and  haplotype-based numeric format
+library(blupADC)
+data_path=system.file("extdata", package = "blupADC")  #  path of example files 
+phased=geno_format(
+         input_data_path=data_path,      # input data path 
+		 input_data_name="example.vcf",  # input data name
+		 input_data_type="VCF",          # input data type
+		 phased_genotype=TRUE,           # whether the vcf data has been phased
+	     haplotype_window_nSNP=5,        # according to nSNP define haplotype-block,
+    	 bigmemory_cal=TRUE,             # format conversion via bigmemory object
+    	 bigmemory_data_path=getwd(),    # path of bigmemory data 
+    	 bigmemory_data_name="test_blupADC", #name of bigmemory data 
+		 output_data_type=c("Haplotype","Numeric"),# output data format
+         return_result=TRUE,             #save result in R environment
+         cpu_cores=1                     # number of cpu 
                   )
 ```
 
@@ -110,26 +150,26 @@ sum_data=genotype_data_format_conversion(
 
 ``` R
 library(blupADC)
-genotype_data_QC_Imputation(
-            input_data_hmp=data_hmp,    #provided hapmap data object
+geno_qc_impute(
+            input_data_hmp=example_data_hmp,        #provided data variable
             data_analysis_method="QC_Imputation",   #analysis method type,QC + imputatoin
-            output_data_path="/root/result",        #output data path
+            output_data_path=getwd(),               #output data path
             output_data_name="YY_data",             #output data name
-            output_data_type="VCF"                #output data format 
-            )                       
+            output_data_type="VCF"                  #output data format 
+            )                      
 ```
 
 #### 功能 3. 品种分析及基因型数据重复性检测 ([see more details](https://qsmei.netlify.app/zh/post/feature-3-overlap_pca/blupadc/))
 
 ``` R
 library(blupADC)
-check_result=genotype_data_check(
-                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+check_result=geno_check(
+                  input_data_hmp=example_PCA_data_hmp,   #provided hapmap data object
                   duplication_check=FALSE,       #whether check the duplication of genotype
-                  breed_check=TRUE,              # whether check the record of breed
-                  breed_record=PCA_Breed,           # provided breed record
-                  output_data_path="/root",      #output path
-                  return_result=TRUE             #return result 
+                  breed_check=TRUE,               # whether check the record of breed
+                  breed_record=example_PCA_Breed, # provided breed record
+                  output_data_path=getwd(),       #output path
+                  return_result=TRUE              #save result as a R environment variable
                   )
 ```
 
@@ -138,9 +178,9 @@ check_result=genotype_data_check(
 ``` R
 library(blupADC)
 pedigree_result=trace_pedigree(
-                input_pedigree=origin_pedigree,   #provided pedigree data object
-                trace_generation=3,       # trace generation
-                output_pedigree_tree=TRUE  # output pedigree tree
+                input_pedigree=example_ped1,   #provided pedigree data variable
+                trace_generation=3,            # trace generation
+                output_pedigree_tree=T         # output pedigree tree
                 )  
 ```
 
@@ -149,7 +189,7 @@ pedigree_result=trace_pedigree(
 ``` R
 library(blupADC)
 plot=ggped(
-       input_pedigree=plot_pedigree,
+       input_pedigree=example_ped2,
        trace_id=c("121"),
        trace_sibs=TRUE   #whether plot the sibs of subset-id  
         ) 
@@ -159,19 +199,22 @@ plot=ggped(
 
 ``` R
 library(blupADC)
+data_path=system.file("extdata", package = "blupADC")  #  path of example files 
 kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,          #provided hapmap data object
+                input_data_path=data_path,  	  #provided hapmap data object
+    			input_data_name="example",
+    			input_data_type="Plink",
                 kinship_type=c("G_A","G_D"),      #type of  kinship matrix
                 dominance_type=c("genotypic"),    #type of dominance effect
                 inbred_type=c("Homozygous"),      #type of inbreeding coefficients
-                return_result=TRUE)               #return result              
+                return_result=TRUE)               #save result as a R environment variable                 #return result              
 ```
 
 #### 功能 7. 利用DMU软件进行遗传评估 ([see more details](https://qsmei.netlify.app/zh/post/feature-7-run_dmu/run_dmu/))
 
 ``` R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupADC")  #  path of example files 
   
 run_DMU(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
@@ -186,7 +229,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="pedigree.txt",            #name of relationship file 
-        output_result_path="/root"                   # output path 
+        output_result_path=getwd()                   # output path 
         )
 ```
 
@@ -194,7 +237,7 @@ run_DMU(
 
 ``` R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupADC")  #  path of example files 
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
@@ -207,6 +250,6 @@ run_BLUPF90(
         analysis_model="PBLUP_A",                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="pedigree.txt",            #name of relationship file 
-        output_result_path="/root"                   # output path 
-        )    
+        output_result_path=getwd()                   # output path 
+        ) 
 ```

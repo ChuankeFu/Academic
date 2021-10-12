@@ -47,6 +47,7 @@ run_DMU(
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name="Id",	                 #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name="phenotype.txt",                    #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -54,7 +55,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="pedigree.txt",            #name of relationship file 
-        output_result_path="/root"                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 ```
 
@@ -69,6 +70,7 @@ run_DMU(
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name="Id",	                 #genetic effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name="phenotype.txt",                    #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -76,7 +78,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="G_Ainv_col_three.txt",            #name of relationship file 
-        output_result_path="/root"                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 ```
 
@@ -91,6 +93,7 @@ run_DMU(
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name="Id",	                 #genetic effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name="phenotype.txt",                    #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -98,7 +101,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=c("pedigree.txt","G_A_col_three.txt"),            #name of relationship file 
-        output_result_path="/root"                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 ```
 
@@ -118,6 +121,7 @@ run_DMU(
         fixed_effect_name=list(c("Sex","Herd_Year_Season"),c("Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter"),c("Id")),               #random effect name
         covariate_effect_name=list(NULL,"Age"),                              #covariate effect name
+        genetic_effect_name="Id",	                 #genetic effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name="phenotype.txt",                    #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -125,7 +129,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="pedigree.txt",            #name of relationship file 
-        output_result_path="/root"                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 ```
 
@@ -141,6 +145,7 @@ run_DMU(phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter",
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name="Id",	                 #genetic effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name="phenotype.txt",                    #name of phenotype file
         provided_prior_file_path=data_path,          #path of user-provided prior file
@@ -150,7 +155,7 @@ run_DMU(phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter",
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="pedigree.txt",            #name of relationship file 
-        output_result_path="/root"                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 ```
 
@@ -167,7 +172,7 @@ run_DMU(
         fixed_effect_name=list(c("B_month","D_age","Litter","Sex","HY")),     #fixed effect name
         random_effect_name=list(c("ID","L_Dam")),    #random effect name
         maternal_effect_name=list(c("DAM")),
-        genetic_effect_name="ID",
+        genetic_effect_name="ID",                    #genetic effect name 
         covariate_effect_name=NULL,                  #covariate effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name="maternal_data",                    #name of phenotype file
@@ -176,7 +181,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="maternal_pedigree",       #name of relationship file 
-        output_result_path="/root"                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 ```
 
@@ -193,7 +198,7 @@ run_DMU(
         fixed_effect_name=list(c("year_grp","breed","time")), #fixed effect name
         random_effect_name=list(c("id","t_dato")),            #random effect name
         covariate_effect_name=list(c("age")),                 #covariate effect name	
-        genetic_effect_name="id",
+        genetic_effect_name="id",                    #genetic effect name
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
         phe_path=data_path,                          #path of phenotype file
         phe_name="rr_data",                          #name of phenotype file
@@ -202,7 +207,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="rr_pedigree",             #name of relationship file 
-        output_result_path="/root"                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 ```
 
@@ -219,7 +224,7 @@ run_DMU(
         fixed_effect_name=list(c("year_grp","breed","time")), #fixed effect name
         random_effect_name=list(c("id","t_dato")),            #random effect name
         covariate_effect_name=list(c("age")),                 #covariate effect name	
-        genetic_effect_name="id",
+        genetic_effect_name="id",                    #genetic effect name 
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
         random_regression_effect_name=list(c("L1&id","L1&pe_effect","L2&id","L2&pe_effect")), #random regression effect name
         phe_path=data_path,                          #path of phenotype file
@@ -229,7 +234,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="rr_pedigree",             #name of relationship file 
-        output_result_path="/root"                   # output path 
+        output_result_path=gewd()                    # output path 
         )
 ```
 
@@ -247,7 +252,7 @@ run_DMU(
         fixed_effect_name=list(c("Sex")),          #fixed effect name
         random_effect_name=list(c("Id","Group")),  #random effect name
         covariate_effect_name=NULL,                #covariate effect name		
-        genetic_effect_name="Id",
+        genetic_effect_name="Id",                  #genetic effect name
         include_social_effect=list(c(TRUE)),   
         group_effect_name="Group",
         phe_path=data_path,                          #path of phenotype file
@@ -257,7 +262,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="socail_pedigree",         #name of relationship file 
-        output_result_path="/root"  # output path 
+        output_result_path=gewd()                    # output path 
         )
 ```
 
@@ -275,7 +280,7 @@ run_DMU(phe_col_names=c("Id","Group","Sex","Gr_id1","Gr_id2","Gr_id3","Gr_id4","
 	fixed_effect_name=list(c("Sex")),           #fixed effect name
 	random_effect_name=list(c("Id","Group")),   #random effect name
 	covariate_effect_name=NULL,
-	genetic_effect_name="Id",		
+	genetic_effect_name="Id",		           #genetic effect name
 	include_social_effect=list(c(TRUE)),       #whether include social genetic effect 
 	integer_group_names=c("Gr_id1","Gr_id2","Gr_id3","Gr_id4","Gr_id5"),  #integer variable name of max group size    
         real_group_names= c("Status_Gr_id1","Status_Gr_id2","Status_Gr_id3","Status_Gr_id4","Status_Gr_id5"), #real variable name of max group size
@@ -286,7 +291,7 @@ run_DMU(phe_col_names=c("Id","Group","Sex","Gr_id1","Gr_id2","Gr_id3","Gr_id4","
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="socail_pedigree",         #name of relationship file 
-        output_result_path="/root"  # output path 
+        output_result_path=gewd()                    # output path 
 		)
 ```
 

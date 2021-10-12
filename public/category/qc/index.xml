@@ -38,15 +38,15 @@
 &lt;p&gt;&lt;strong&gt;👉 Note:  For convenience,  &lt;code&gt;blupADC&lt;/code&gt; has encapsulated software Plink(for quality control)  &lt;code&gt;version-1.9&lt;/code&gt; and software Beagle(for imputation) &lt;code&gt;version-5.2&lt;/code&gt;. If you want change this version, you should set the related parameters in the part of Advanced parameter.&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
-genotype_data_QC_Imputation(
-            input_data_hmp=data_hmp,    #provided hapmap data object
+geno_qc_impute(
+            input_data_hmp=example_data_hmp,    #provided hapmap data object
             data_analysis_method=&amp;quot;QC_Imputation&amp;quot;,   #analysis method type,QC + imputatoin
-            output_data_path=&amp;quot;/root/result&amp;quot;,        #output data path
+            output_data_path=getwd(),               #output data path
             output_data_name=&amp;quot;YY_data&amp;quot;,             #output data name
-            output_data_type=&amp;quot;VCF&amp;quot;                #output data format 
+            output_data_type=&amp;quot;VCF&amp;quot;                  #output data format 
             )                       
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In the process of quality control and imputation，we should provide genotype data，these parameters are the as in &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function(&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;In the process of quality control and imputation，we should provide genotype data，these parameters are the as in &lt;code&gt;geno_format&lt;/code&gt; function(&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
 &lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
 &lt;h3 id=&#34;basic&#34;&gt;💙Basic&lt;/h3&gt;
 &lt;ul&gt;
