@@ -837,8 +837,8 @@
 </details>
 <img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210617165506.png" alt="logo-blupADC"  height="250" align="right" style="zoom:25%;" /></p>
 <h2 id="简介">简介</h2>
-<p><code>blupADC</code> 是一个专注于分析动植物育种中的系谱数据、基因型数据及遗传评估的工具。在设计该工具时，我们对数据处理时可能遇到的各种问题均进行了详细的考量(<strong>ps.如果您有好的建议，请积极联系作者!</strong>)。此外，为了提高分析效率， <code>blupADC</code> 可支持并行计算(通过<code>openMP</code> )，并且<code>blupADC</code> 中的核心函数均通过c++(<code>Rcpp</code> and <code>RcppArmadillo </code>) 进行编写。</p>
-<p><code>blupADC</code>提供了许多有用的功能在整个动植物育种的流程中，包括 系谱分析(系谱追溯、重命名及纠错)，基因型数据格式转换(支持<strong>Hapmap, Plink, BLUPF90, Numeric 及VCF</strong> 格式)，基因型数据的质控填充，亲缘关系矩阵的构建(<strong>系谱，基因组及一步法亲缘关系矩阵</strong>)以及遗传评估（仅需几行代码即可通过DMU和BLUPF90完成遗传评估）。</p>
+<p><code>blupADC</code> 是一个专注于分析动植物育种中的系谱数据、基因型数据及遗传评估的工具。在设计该工具时，我们对数据处理时可能遇到的各种问题均进行了详细的考量(<strong>ps.如果您有好的建议，请积极联系作者!</strong>)。此外，为了提高分析效率， <code>blupADC</code> 可支持并行计算(通过<code>openMP</code> ) 及大数据处理(通过<code>bigmemory</code>)，并且<code>blupADC</code> 中的核心函数均通过c++(<code>Rcpp</code> and <code>RcppArmadillo </code>) 进行编写。</p>
+<p><code>blupADC</code>提供了许多有用的功能在整个动植物育种的流程中，包括 系谱分析(系谱追溯、重命名及纠错)，基因型数据格式转换(支持<strong>Hapmap, Plink, BLUPF90, Numeric, Haplotype 及VCF</strong> 格式)，基因型数据的质控填充，亲缘关系矩阵的构建(<strong>系谱，基因组及一步法亲缘关系矩阵</strong>)以及遗传评估（仅需几行代码即可通过DMU和BLUPF90完成遗传评估）。</p>
 <p>最后，为了方进一步方便用户的使用(尤其是编程基础弱的用户)，我们创建了一个免费的在线网站(<a href="http://47.95.251.15:443/blupADC/" target="_blank" rel="noopener">shinyapp</a>)。相关的功能仍在开发中。但是，网站的一个缺点就是，不能处理大数据，请大家合理选择！</p>
 <p>😊 祝好运 !</p>
 <h2 id="新添加的功能">新添加的功能</h2>
@@ -859,20 +859,20 @@
 <p><strong>👉 Note:  在 DMU 和 BLUPF90的分析中，我们通常需要提前下载好 DMU 软件 (<a href="https://dmu.ghpc.au.dk/dmu/" target="_blank" rel="noopener">DMU下载网站</a>)  和 BLUPF90软件 (<a href="http://nce.ads.uga.edu/html/projects/programs/" target="_blank" rel="noopener">BLUPF90下载网站</a>)。为了方便用户使用，我们已经将两款软件中基础模块封装进了 <code>blupADC</code>，请大家合理使用。</strong></p>
 <p><strong>如果您想将DMU和BLUPF90用作商业用途，请务必联系 DMU 和 BLUPF90的作者！！！</strong></p>
 <h4 id="在-linux-上-安装-blupadc">在 Linux 上 安装 blupADC</h4>
-<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3_R_x86_64-pc-linux-gnu.tar.gz&quot;
+<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz&quot;
 install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
 </code></pre>
 <h4 id="在-windows-上-安装-blupadc">在 Windows 上 安装 blupADC</h4>
-<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3.zip&quot;
+<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4.zip&quot;
 install.packages(packageurl,repos=NULL)
 </code></pre>
 <p>👉 **Note:**针对github连接比较慢的地区，用户可以通过如下代码进行下载(国内用户推荐如下方式下载)：</p>
 <h4 id="在-linux-上-安装-blupadc-1">在 Linux 上 安装 blupADC</h4>
-<pre><code class="language-R">packageurl &lt;-&quot;https://gitee.com/qsmei/blupADC/attach_files/828771/download/blupADC_1.0.3_R_x86_64-pc-linux-gnu.tar.gz&quot;
+<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blupADC/attach_files/851170/download/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz&quot;
 install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
 </code></pre>
 <h4 id="在-windows-上-安装-blupadc-1">在 Windows 上 安装 blupADC</h4>
-<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blupADC/attach_files/828770/download/blupADC_1.0.3.zip&quot;
+<pre><code class="language-R">packageurl&lt;-&quot;https://gitee.com/qsmei/blupADC/attach_files/851169/download/blupADC_1.0.4.zip&quot;
 install.packages(packageurl,repos=NULL)
 </code></pre>
 <p>安装成功后，我们输入如下代码即可加载R包:</p>
@@ -898,7 +898,7 @@ install.packages(packageurl,repos=NULL)
 <h4 id="功能-1-基因型数据间的格式转换-see-more-detailshttpsqsmeinetlifyappzhpostblupadc">功能 1. 基因型数据间的格式转换 (<a href="https://qsmei.netlify.app/zh/post/blupadc/" target="_blank" rel="noopener">see more details</a>)</h4>
 <pre><code class="language-R">library(blupADC)
 format_result=geno_format(
-		input_data_hmp=example_data_hmp,  # provided data variable
+    	input_data_hmp=example_data_hmp,  # provided data variable
         output_data_type=c(&quot;Plink&quot;,&quot;BLUPF90&quot;,&quot;Numeric&quot;),# output data format
     	output_data_path=getwd(),   #output data path      
     	output_data_name=&quot;blupADC&quot;, #output data name    
@@ -911,14 +911,14 @@ library(blupADC)
 data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of example files 
 phased=geno_format(
          input_data_path=data_path,      # input data path 
-		 input_data_name=&quot;example.vcf&quot;,  # input data name
-		 input_data_type=&quot;VCF&quot;,          # input data type
-		 phased_genotype=TRUE,           # whether the vcf data has been phased
-	     haplotype_window_nSNP=5,        # according to nSNP define haplotype-block,
+         input_data_name=&quot;example.vcf&quot;,  # input data name,for vcf data
+         input_data_type=&quot;VCF&quot;,          # input data type
+         phased_genotype=TRUE,           # whether the vcf data has been phased
+         haplotype_window_nSNP=5,        # according to nSNP define haplotype-block,
     	 bigmemory_cal=TRUE,             # format conversion via bigmemory object
     	 bigmemory_data_path=getwd(),    # path of bigmemory data 
     	 bigmemory_data_name=&quot;test_blupADC&quot;, #name of bigmemory data 
-		 output_data_type=c(&quot;Haplotype&quot;,&quot;Numeric&quot;),# output data format
+         output_data_type=c(&quot;Haplotype&quot;,&quot;Numeric&quot;),# output data format
          return_result=TRUE,             #save result in R environment
          cpu_cores=1                     # number of cpu 
                   )
@@ -931,7 +931,7 @@ geno_qc_impute(
             output_data_path=getwd(),               #output data path
             output_data_name=&quot;YY_data&quot;,             #output data name
             output_data_type=&quot;VCF&quot;                  #output data format 
-            )                      
+            )                       
 </code></pre>
 <h4 id="功能-3-品种分析及基因型数据重复性检测-see-more-detailshttpsqsmeinetlifyappzhpostfeature-3-overlap_pcablupadc">功能 3. 品种分析及基因型数据重复性检测 (<a href="https://qsmei.netlify.app/zh/post/feature-3-overlap_pca/blupadc/" target="_blank" rel="noopener">see more details</a>)</h4>
 <pre><code class="language-R">library(blupADC)
@@ -964,13 +964,13 @@ plot=ggped(
 <pre><code class="language-R">library(blupADC)
 data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of example files 
 kinship_result=cal_kinship(
-                input_data_path=data_path,  	  #provided hapmap data object
-    			input_data_name=&quot;example&quot;,
-    			input_data_type=&quot;Plink&quot;,
-                kinship_type=c(&quot;G_A&quot;,&quot;G_D&quot;),      #type of  kinship matrix
-                dominance_type=c(&quot;genotypic&quot;),    #type of dominance effect
-                inbred_type=c(&quot;Homozygous&quot;),      #type of inbreeding coefficients
-                return_result=TRUE)               #save result as a R environment variable                 #return result              
+        		input_data_path=data_path,      # input data path 
+        		input_data_name=&quot;example.vcf&quot;,  # input data name,for vcf data
+         		input_data_type=&quot;VCF&quot;,          # input data type
+    			kinship_type=c(&quot;G_A&quot;,&quot;G_D&quot;),      #type of  kinship matrix
+    			dominance_type=c(&quot;genotypic&quot;),    #type of dominance effect
+    			inbred_type=c(&quot;Homozygous&quot;),      #type of inbreeding coefficients
+    			return_result=TRUE)               #save result as a R environment variable                
 </code></pre>
 <h4 id="功能-7-利用dmu软件进行遗传评估-see-more-detailshttpsqsmeinetlifyappzhpostfeature-7-run_dmurun_dmu">功能 7. 利用DMU软件进行遗传评估 (<a href="https://qsmei.netlify.app/zh/post/feature-7-run_dmu/run_dmu/" target="_blank" rel="noopener">see more details</a>)</h4>
 <pre><code class="language-R">library(blupADC)
@@ -1008,7 +1008,7 @@ run_BLUPF90(
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
         output_result_path=getwd()                   # output path 
-        ) 
+        )
 </code></pre>
 
     </div>

@@ -22,7 +22,14 @@
   &lt;nav id=&#34;TableOfContents&#34;&gt;
   &lt;ul&gt;
     &lt;li&gt;&lt;a href=&#34;#简述&#34;&gt;简述&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&#34;#示例&#34;&gt;示例&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#示例&#34;&gt;示例&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#-构建系谱亲缘关系矩阵&#34;&gt;😾 构建系谱亲缘关系矩阵&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#-构建基因组亲缘关系矩阵&#34;&gt;🤡 构建基因组亲缘关系矩阵&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#构建一步法亲缘关系矩阵&#34;&gt;💨构建一步法亲缘关系矩阵&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#构建一步法亲缘关系矩阵via-bigmemory-method&#34;&gt;💨构建一步法亲缘关系矩阵(via bigmemory method)&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
     &lt;li&gt;&lt;a href=&#34;#参数详解&#34;&gt;参数详解&lt;/a&gt;
       &lt;ul&gt;
         &lt;li&gt;&lt;a href=&#34;#基础参数&#34;&gt;💪基础参数&lt;/a&gt;&lt;/li&gt;
@@ -35,8 +42,17 @@
 
 &lt;h2 id=&#34;简述&#34;&gt;简述&lt;/h2&gt;
 &lt;p&gt;🙉在动植物育种中，亲缘关系矩阵的构建是其中的关键步骤。在本章，我们将主要介绍如何利用&lt;code&gt;blupADC&lt;/code&gt;中的&lt;code&gt;cal_kinship&lt;/code&gt;函数完成各种亲缘关系矩阵的构建，包括：&lt;strong&gt;加性亲缘关系矩阵&lt;/strong&gt;(系谱，基因组，一步法)及&lt;strong&gt;显性亲缘关系矩阵&lt;/strong&gt;(系谱，基因组，一步法)等。此外，cal_kinship函数还能方便的计算各种类型的&lt;strong&gt;近交系数&lt;/strong&gt;，包括：系谱近交系数，基因组近交系数(Homozygous,Digonal)及一步法近交系数(Digonal)。&lt;/p&gt;
+&lt;p&gt;在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与&lt;code&gt;geno_format&lt;/code&gt;函数中的参数用法一致。具体大家可参阅之前的介绍:&lt;a href=&#34;https://qsmei.netlify.app/zh/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;基因型数据间的格式转换&lt;/a&gt;。&lt;/p&gt;
 &lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
-&lt;p&gt;😾首先，我们还是通过一个小例子来看该函数的用法:&lt;/p&gt;
+&lt;h3 id=&#34;-构建系谱亲缘关系矩阵&#34;&gt;😾 构建系谱亲缘关系矩阵&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+kinship_result=cal_kinship(
+                input_pedigree=example_ped3,          #provided hapmap data object
+                kinship_type=c(&amp;quot;P_A&amp;quot;),      #type of  kinship matrix
+                inbred_type=c(&amp;quot;Pedigree&amp;quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;-构建基因组亲缘关系矩阵&#34;&gt;🤡 构建基因组亲缘关系矩阵&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
 kinship_result=cal_kinship(
                 input_data_hmp=data_hmp,          #provided hapmap data object
@@ -45,8 +61,27 @@ kinship_result=cal_kinship(
                 inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #type of inbreeding coefficients
                 return_result=TRUE)               #return result              
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与&lt;code&gt;genotype_data_format_conversion&lt;/code&gt;函数中的参数用法一致。具体大家可参阅之前的介绍:&lt;a href=&#34;https://qsmei.netlify.app/zh/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;基因型数据间的格式转换&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型。&lt;/p&gt;
+&lt;h3 id=&#34;构建一步法亲缘关系矩阵&#34;&gt;💨构建一步法亲缘关系矩阵&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=example_data_hmp,          #provided hapmap data object
+                input_pedigree=example_ped3,
+                kinship_type=c(&amp;quot;H_A&amp;quot;),      #type of  kinship matrix
+                inbred_type=c(&amp;quot;H_diag&amp;quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;构建一步法亲缘关系矩阵via-bigmemory-method&#34;&gt;💨构建一步法亲缘关系矩阵(via bigmemory method)&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+phased_kinship_result=cal_kinship(
+                input_data_hmp=example_data_hmp,          #provided hapmap data object
+                input_pedigree=example_ped3,
+                bigmemory_cal=TRUE,
+                bigmemory_data_path=getwd(),
+                bigmemory_data_name=&amp;quot;blupADC&amp;quot;,
+                kinship_type=c(&amp;quot;H_A&amp;quot;),      #type of  kinship matrix
+                inbred_type=c(&amp;quot;H_diag&amp;quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result                
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id=&#34;参数详解&#34;&gt;参数详解&lt;/h2&gt;
 &lt;h3 id=&#34;基础参数&#34;&gt;💪基础参数&lt;/h3&gt;
 &lt;ul&gt;
@@ -108,19 +143,23 @@ kinship_result=cal_kinship(
 &lt;/ul&gt;
 &lt;p&gt;用户提供的系谱数据，&lt;code&gt;data.frame&lt;/code&gt;或 &lt;code&gt;matrix&lt;/code&gt;类型。具体的系谱数据格式可以参阅之前的介绍：&lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;系谱追溯、重命名及纠错 &lt;/a&gt;。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数5：pedigree_rename&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;是否对系谱数据进行重命名,&lt;code&gt;logical&lt;/code&gt;类型，默认为TRUE(对系谱进行重命名)。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数6：IND_geno_rename&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数5：IND_rename&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;是否根据系谱的重命名结果对基因型数据中的个体进行重命名，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE(不进行重命名)。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数7：rename_to_origin&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数6:bigmemory_cal&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;将亲缘关系矩阵中重命名的个体号转换回原始的个体号，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE(不进行转换)。&lt;/p&gt;
+&lt;p&gt;是否使用bigmemory方式进行计算. &lt;code&gt;logical&lt;/code&gt; 类型. 默认为 FALSE.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数8：output_matrix_type&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数7:bigmemory_data_path&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;bigmemory数据保存的路径 . &lt;code&gt;character&lt;/code&gt; 类型.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数8:bigmemory_data_name&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;bigmemory数据保存的文件名称 . &lt;code&gt;character&lt;/code&gt; 类型.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;参数9：output_matrix_type&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;输出亲缘关系矩阵的格式，&lt;code&gt;character&lt;/code&gt;类型。可选参数包括：&lt;/p&gt;
 &lt;ol&gt;
@@ -132,17 +171,12 @@ kinship_result=cal_kinship(
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;1001&lt;/th&gt;
+&lt;th&gt;1001&lt;/th&gt;
+&lt;th&gt;0.989&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;1001&lt;/td&gt;
-&lt;td&gt;1001&lt;/td&gt;
-&lt;td&gt;0.989&lt;/td&gt;
-&lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;1001&lt;/td&gt;
 &lt;td&gt;1002&lt;/td&gt;
@@ -157,60 +191,56 @@ kinship_result=cal_kinship(
 &lt;/table&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;默认参数为 &amp;ldquo;col_three&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;默认参数为 &amp;ldquo;col_all&amp;rdquo;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数9：output_matrix_path&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数10：output_matrix_path&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;亲缘关系矩阵保存到本地的路径, &lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数10：output_matrix_name&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数11：output_matrix_name&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;亲缘关系矩阵保存到本地的名称，&lt;code&gt;character&lt;/code&gt;类型。&lt;/p&gt;
 &lt;h3 id=&#34;进阶参数&#34;&gt;🦶进阶参数&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数11：cpu_cores&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数12：cpu_cores&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;调用的cpu个数，&lt;code&gt;numeric&lt;/code&gt;类型，默认为1。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数12：kinship_base&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数13：kinship_base&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;是否按照基础群的方式构建基因组亲缘关系矩阵(p=q=0.5)，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数13：kinship_trace&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数14：kinship_trace&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;是否按照矩阵迹和的方式对基因组亲缘关系矩阵进行标准化，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数14：Metafounder_algorithm&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数15：Metafounder_algorithm&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;是否按照metafounder的方法计算一步法亲缘关系矩阵，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数15：APY_algorithm&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数16：APY_algorithm&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;是否按照APY的方法计算亲缘关系矩阵的逆矩阵，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数16：APY_eigen_threshold&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数17：APY_eigen_threshold&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;特征值所能解释的遗传变异的比例的阈值 ,  &lt;code&gt;numeric&lt;/code&gt; 类型. 默认为 0.95.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数17：APY_n_core&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数18：APY_n_core&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;核心个体数,  &lt;code&gt;numeric&lt;/code&gt; 类型. 默认为 NULL.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数18：SSBLUP_omega&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数19：SSBLUP_omega&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;构建一步法亲缘关系矩阵时G矩阵和A矩阵的比例，&lt;code&gt;numeric&lt;/code&gt;类型，默认为0.05。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数19：gene_dropping&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数20：gene_dropping&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;是否使用 gene dropping 的方法构建系谱显性亲缘关系矩阵，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数20：gene_dropping_iteration&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数21：gene_dropping_iteration&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;gene dropping方法的迭代次数，&lt;code&gt;numeric&lt;/code&gt;类型，默认为1000。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;参数21：memory_save&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;是否使用省内存的方式进行上述所有的计算，&lt;code&gt;logical&lt;/code&gt;类型，默认为FALSE。该方法非常节省内存，但是会极大的占据本地存储空间。&lt;/p&gt;
 </description>
     </item>
     

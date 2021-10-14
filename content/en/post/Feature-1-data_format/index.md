@@ -82,7 +82,7 @@ phased_result=geno_format(
 
 ## Output
 
-According to the result of output, we find that the output contains 5 parts, including:
+According to the result of output, we find that the output contains 6 parts, including:
 
 -   **hmp ** : `Hapmap` format genotype data
 
@@ -253,15 +253,19 @@ File path of provided genotype data ，`character` class.
 
 File name of provided genotype data ，`character` class.
 
-**Note:**  if input_data_type is Plink or VCF, user don't need to include suffix in the file name of genotype data. 
+**Note:**  if input_data_type is Plink or Haplotype, user don't need to include suffix in the file name of genotype data. 
 
 eg. for Plink type data, files name are test1.map and test1.ped，we should set`input_data_name="test1"`.
 
--   **13:output_data_name**
+-   **13:output_data_path**
+
+File path of output genotype data, `character` class.
+
+-   **14:output_data_name**
 
 File name of output genotype data, `character` class.
 
-- **14:output_data_type**
+- **15:output_data_type**
 
   File type of output genotype data, `character` class.
 
@@ -274,39 +278,39 @@ File name of output genotype data, `character` class.
 
 **Note**: users can  output multiple formats of genotype data simultaneously. e.g.`output_data_type=c("Hapmap","Plink","BLUPF90","Numeric")`, outout 4 types of genotype data simultaneously .
 
--   **15:return_result**
+-   **16:return_result**
 
 Whether return result, `logical` class. Default is FALSE.
 
 Additionally,  for convenience, users can  save output genotype data  into local computer .
 
--   **16:bigmemory_cal**
+-   **17:bigmemory_cal**
 
 Whether using bigmemory method to calculate. `logical` class. Default is FALSE.
 
--   **17:bigmemory_data_path**
+-   **18:bigmemory_data_path**
 
 The file path bigmemory data . `character` class. 
 
--   **18:bigmemory_data_name**
+-   **19:bigmemory_data_name**
 
 The file name bigmemory data . `character` class. 
 
--   **19:phased_genotype**
+-   **20:phased_genotype**
 
 Whether genotype data has been phased. `logical` class. Default is FALSE.
 
--   **20:haplotype_window_nSNP**
+-   **21:haplotype_window_nSNP**
 
 According to the number of consecutive SNPs define haplotype block. `numeric` class. Default is NULL.
 
--   **21:haplotype_window_kb**
+-   **22:haplotype_window_kb**
 
 According to the physical location define haplotype block. `numeric` class. Default is NULL.
 
--   **22:haplotype_window_block**
+-   **23:haplotype_window_block**
 
-According to user-provided block to define haplotype block . `numeric` class. Default is NULL.
+According to user-provided block to define haplotype block . `data.frame` or `matrix`  class. Default is NULL.
 
 The first column is the position of window start, the second column is the position of window end.
 
@@ -320,17 +324,13 @@ The first column is the position of window start, the second column is the posit
 
 ### 💨Advanced
 
--   **23:cpu_cores**
+-   **24:cpu_cores**
 
 Number of cpu in calculating,  `numeric ` class. Default is 1.
 
--   **24:miss_base**
+-   **25:miss_base**
 
 Missing genotype character,  `character` class. Default is "NN".
-
--   **25:miss_base_num** 
-
-Missing genotype number after numeric conversion,  `numeric` class. Default is 5.
 
 -   **26:miss_base_num** 
 

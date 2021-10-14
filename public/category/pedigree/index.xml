@@ -48,8 +48,7 @@
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
 pedigree_result=ggped(
                 input_pedigree=example_ped2
-                )                 
-
+                ) 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153843.png&#34; alt=&#34;image-20210708153839657&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;plot-subset-of-whole-pedigree&#34;&gt;Plot subset of whole pedigree&lt;/h3&gt;
@@ -58,7 +57,6 @@ pedigree_result=ggped(
                 input_pedigree=example_ped2,
     			trace_id=c(&amp;quot;121&amp;quot;)             #provided subset-id
                 )                   
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153708.png&#34; alt=&#34;image-20210708153706707&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;plot-subset-of-whole-pedigree-with-sibs&#34;&gt;Plot subset of whole pedigree (with sibs)&lt;/h3&gt;
@@ -68,7 +66,6 @@ pedigree_result=ggped(
     			trace_id=c(&amp;quot;121&amp;quot;),
     			trace_sibs=TRUE   #whether plot the sibs of subset-id  
                 )                   
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708161212.png&#34; alt=&#34;image-20210708161211022&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;change-the-style-of-picture&#34;&gt;Change the style of picture&lt;/h3&gt;

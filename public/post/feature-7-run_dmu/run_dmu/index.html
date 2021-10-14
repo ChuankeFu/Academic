@@ -860,7 +860,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----gblup--model">Single trait  - GBLUP  model</h3>
@@ -880,7 +880,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;G_Ainv_col_three.txt&quot;,            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----single-step-blup-model">Single trait  - single-step BLUP model</h3>
@@ -900,7 +900,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=c(&quot;pedigree.txt&quot;,&quot;G_A_col_three.txt&quot;),            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 </code></pre>
 <p>Through modifying the two parameters: <code>analysis_model</code> and <code>relationship_name</code> , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis (PS: we can get G_Ainv_col_three.txt  and G_A_col_three.txt   by <code>cal_kinship</code> function，<a href="https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/" target="_blank" rel="noopener">see more details</a>  about <code>cal_kinship</code> function).</p>
@@ -923,7 +923,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-modelwith-user-provided-prior">Single trait  - pedigree BLUP model(with user-provided prior)</h3>
@@ -946,7 +946,7 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;He
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;pedigree.txt&quot;,            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-maternal-effect">Single trait  - pedigree BLUP model( with maternal effect)</h3>
@@ -969,7 +969,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;maternal_pedigree&quot;,       #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-permanent-effect">Single trait  - pedigree BLUP model( with permanent effect)</h3>
@@ -992,7 +992,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;rr_pedigree&quot;,             #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-random-regression-effect">Single trait  - pedigree BLUP model( with random regression effect)</h3>
@@ -1016,7 +1016,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;rr_pedigree&quot;,             #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-social-genetic-effect">Single trait  - pedigree BLUP model( with social genetic effect)</h3>
@@ -1040,7 +1040,7 @@ run_DMU(
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;socail_pedigree&quot;,         #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-social-genetic-effect-1">Single trait  - pedigree BLUP model( with social genetic effect)</h3>
@@ -1065,7 +1065,7 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;G
         dmu_module=&quot;dmuai&quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&quot;socail_pedigree&quot;,         #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
 		)
 </code></pre>
 <h3 id="basic">🤡Basic</h3>

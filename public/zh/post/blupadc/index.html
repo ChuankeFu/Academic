@@ -367,7 +367,7 @@
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="b107928fdee05958ff3b5aa1f0ccc19d" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="847b3ff60d7638e731189336594ece37" >
 
   
   
@@ -776,7 +776,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    8 分钟阅读时长
+    4 分钟阅读时长
   </span>
   
 
@@ -810,638 +810,818 @@
   <div class="article-container">
 
     <div class="article-style">
-      
-<script src="/zh/post/blupadc/index_files/header-attrs/header-attrs.js"></script>
-
-<div id="TOC">
-<ul>
-<li><a href="#简介">简介</a></li>
-<li><a href="#示例">示例</a></li>
-<li><a href="#输出">输出</a></li>
-<li><a href="#参数">参数</a>
-<ul>
-<li><a href="#基础参数">🤡基础参数</a></li>
-<li><a href="#进阶参数">💨进阶参数</a></li>
-</ul></li>
-</ul>
-</div>
-
-<div id="简介" class="section level2">
-<h2>简介</h2>
-<p>🙀大家好,通过前一章节的学习，相信大家已经对<code>blupADC</code> 有了一个初步的了解了。从本节开始，我们将对<code>blupADC</code>中的几个重要的函数一一进行讲解。这一节主要给大家讲述的是如何使用<code>blupADC</code>中<code>genotype_data_format_conversion</code>函数来进行多种基因型格式数据的转换。</p>
-</div>
-<div id="示例" class="section level2">
-<h2>示例</h2>
-<p>首先,我们以一个简单的小例子来看看函数的用法</p>
-<pre class="r"><code>library(blupADC)
-sum_data=genotype_data_format_conversion(
-         input_data_hmp=data_hmp,  #provided hapmap data object 
-         output_data_type=c(&quot;Plink&quot;,&quot;BLUPF90&quot;,&quot;Numeric&quot;),# output data format
+      <pre><code class="language-{r">knitr::opts_chunk$set(collapse = TRUE)
+</code></pre>
+<h2 id="简介">简介</h2>
+<p>🙀大家好,通过前一章节的学习，相信大家已经对<code>blupADC</code> 有了一个初步的了解了。从本节开始，我们将对<code>blupADC</code>中的几个重要的函数一一进行讲解。这一节主要给大家讲述的是如何使用<code>blupADC</code>中<code>geno_format</code>函数来进行多种基因型格式数据的转换。</p>
+<h2 id="示例">示例</h2>
+<h4 id="格式转换-提供r中的变量名称">格式转换-提供R中的变量名称</h4>
+<pre><code class="language-R">library(blupADC)
+format_result=geno_format(
+         input_data_hmp=example_data_hmp,  #provided hapmap data object 
+         output_data_type=c(&quot;Plink&quot;,&quot;BLUPF90&quot;,&quot;Numeric&quot;,&quot;VCF&quot;),# output data format
          return_result = TRUE,      # return result 
          cpu_cores=1                # number of cpu 
-         )</code></pre>
-<pre><code>## Start numeric(0,1,2) format conversion...... 
-## Complete BLUPF90  format conversion 
-## Complete Plink Data Format Conversion</code></pre>
-<p>下面，我们将对<code>genotype_data_format_conversion</code> 中的参数一一进行讲解</p>
-</div>
-<div id="输出" class="section level2">
-<h2>输出</h2>
-<pre class="r"><code>str(sum_data) 
-## List of 5
-##  $ hmp    :&#39;data.frame&#39;: 6 obs. of  311 variables:
-##   ..$ rs#      : chr [1:6] &quot;SNP1&quot; &quot;SNP2&quot; &quot;SNP3&quot; &quot;SNP4&quot; ...
-##   ..$ alleles  : logi [1:6] NA NA NA NA NA NA
-##   ..$ chrom    : int [1:6] 1 1 1 1 1 1
-##   ..$ pos      : int [1:6] 224488 293696 333333 464830 722623 838596
-##   ..$ strand   : logi [1:6] NA NA NA NA NA NA
-##   ..$ assembly : logi [1:6] NA NA NA NA NA NA
-##   ..$ center   : logi [1:6] NA NA NA NA NA NA
-##   ..$ protLSID : logi [1:6] NA NA NA NA NA NA
-##   ..$ assayLSID: logi [1:6] NA NA NA NA NA NA
-##   ..$ panelLSID: logi [1:6] NA NA NA NA NA NA
-##   ..$ QCcode   : logi [1:6] NA NA NA NA NA NA
-##   ..$ 3098     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
-##   ..$ 3498     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3297     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 2452     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
-##   ..$ 4255     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 2946     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3926     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3426     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 4213     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 2895     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 4172     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3620     : chr [1:6] &quot;AA&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 4797     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 4660     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 4010     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 4095     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3029     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3930     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 4404     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 2020     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 2455     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3747     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 1590     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 2707     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 2320     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
-##   ..$ 3397     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
-##   ..$ 3876     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3658     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 2310     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 1996     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3000     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
-##   ..$ 2485     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 4412     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3395     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 4449     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3302     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3895     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 4328     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3892     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3764     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3922     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 4459     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 4236     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3535     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
-##   ..$ 2957     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 2927     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3499     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 4537     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 4288     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 4048     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3371     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3901     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3344     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 4745     : chr [1:6] &quot;AA&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3118     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3093     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3410     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
-##   ..$ 4024     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3053     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3571     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3740     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 4374     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 4550     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
-##   ..$ 3060     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
-##   ..$ 3460     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GG&quot; &quot;CC&quot; ...
-##   ..$ 3791     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3116     : chr [1:6] &quot;AA&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3078     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 1974     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 1990     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3433     : chr [1:6] &quot;AA&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 4349     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3340     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 2681     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 2628     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 4813     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
-##   ..$ 2221     : chr [1:6] &quot;CC&quot; &quot;TT&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 2384     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 2721     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3463     : chr [1:6] &quot;AA&quot; &quot;GG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 2748     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 2973     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 1999     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 3474     : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 3689     : chr [1:6] &quot;AC&quot; &quot;TG&quot; &quot;TT&quot; &quot;CC&quot; ...
-##   ..$ 1924     : chr [1:6] &quot;CC&quot; &quot;GG&quot; &quot;GG&quot; &quot;CC&quot; ...
-##   ..$ 1948     : chr [1:6] &quot;AC&quot; &quot;GG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   ..$ 110      : chr [1:6] &quot;CC&quot; &quot;TG&quot; &quot;GT&quot; &quot;CC&quot; ...
-##   .. [list output truncated]
-##  $ ped    : chr [1:300, 1:18] &quot;3098&quot; &quot;3498&quot; &quot;3297&quot; &quot;2452&quot; ...
-##  $ map    :&#39;data.frame&#39;: 6 obs. of  4 variables:
-##   ..$ chrom : int [1:6] 1 1 1 1 1 1
-##   ..$ rs#   : chr [1:6] &quot;SNP1&quot; &quot;SNP2&quot; &quot;SNP3&quot; &quot;SNP4&quot; ...
-##   ..$ strand: num [1:6] 0.224 0.294 0.333 0.465 0.723 ...
-##   ..$ pos   : int [1:6] 224488 293696 333333 464830 722623 838596
-##  $ blupf90: chr [1:300, 1:2] &quot;3098                &quot; &quot;3498                &quot; &quot;3297                &quot; &quot;2452                &quot; ...
-##   ..- attr(*, &quot;dimnames&quot;)=List of 2
-##   .. ..$ : NULL
-##   .. ..$ : chr [1:2] &quot;IND_name&quot; &quot;&quot;
-##  $ numeric: num [1:300, 1:6] 2 1 1 2 1 2 1 1 2 2 ...
-##   ..- attr(*, &quot;dimnames&quot;)=List of 2
-##   .. ..$ : chr [1:300] &quot;3098&quot; &quot;3498&quot; &quot;3297&quot; &quot;2452&quot; ...
-##   .. ..$ : chr [1:6] &quot;SNP1&quot; &quot;SNP2&quot; &quot;SNP3&quot; &quot;SNP4&quot; ...</code></pre>
-<p>我们可以清楚的看到输出结果分为5个部分(长度为5的列表)，分别为：</p>
+         )
+</code></pre>
+<h4 id="格式转换-提供本地文件的路径和名称">格式转换-提供本地文件的路径和名称</h4>
+<pre><code class="language-R">#convert phased VCF data to haplotype format and  haplotype-based numeric format
+library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of example files 
+phased_result=geno_format(
+         input_data_path=data_path,      # input data path 
+    	 input_data_name=&quot;example.vcf&quot;,  # input data name,for vcf data 
+         input_data_type=&quot;VCF&quot;,          # input data type
+    	 phased_genotype=TRUE,           # whether the vcf data has been phased
+         haplotype_window_nSNP=5,        # according to nSNP define block,
+    	 output_data_type=c(&quot;Haplotype&quot;,&quot;Numeric&quot;),# output data format
+         return_result=TRUE,             #save result as a R environment variable
+         cpu_cores=1                     # number of cpu 
+                  )
+</code></pre>
+<h4 id="格式转换-通过bigmemory方法">格式转换-通过bigmemory方法</h4>
+<pre><code class="language-R">library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of example files 
+phased_result=geno_format(
+         input_data_path=data_path,      # input data path 
+    	 input_data_name=&quot;example.vcf&quot;,  # input data name,for vcf data 
+         input_data_type=&quot;VCF&quot;,          # input data type
+    	 phased_genotype=TRUE,           # whether the vcf data has been phased
+         haplotype_window_nSNP=5,        # according to nSNP define block,
+    	 bigmemory_cal=TRUE,             # format conversion via bigmemory object
+    	 bigmemory_data_path=getwd(),    # path of bigmemory data 
+    	 bigmemory_data_name=&quot;test_blupADC&quot;, #name of bigmemory data 
+         output_data_type=c(&quot;Haplotype&quot;,&quot;Numeric&quot;),# output data format
+         return_result=TRUE,             #save result in R environment
+         cpu_cores=1                     # number of cpu 
+                  )
+</code></pre>
+<h2 id="输出">输出</h2>
+<p>输出结果主要分为6个部分(长度为6的列表)，分别为：</p>
 <ul>
-<li><strong>hmp </strong> : <code>Hapmap</code> 格式的基因型数据</li>
+<li><strong>hmp</strong> : <code>Hapmap</code> 格式的基因型数据</li>
 </ul>
 <p><code>第1列为SNP，第3列为染色体，第4列为物理位置，第12列开始为基因型数据</code></p>
-<table style="width:100%;">
-<colgroup>
-<col width="4%" />
-<col width="7%" />
-<col width="5%" />
-<col width="6%" />
-<col width="6%" />
-<col width="8%" />
-<col width="6%" />
-<col width="8%" />
-<col width="9%" />
-<col width="9%" />
-<col width="6%" />
-<col width="4%" />
-<col width="4%" />
-<col width="4%" />
-<col width="4%" />
-</colgroup>
+<table>
 <thead>
-<tr class="header">
-<th align="left">rs#</th>
-<th align="left">alleles</th>
-<th align="right">chrom</th>
-<th align="right">pos</th>
-<th align="left">strand</th>
-<th align="left">assembly</th>
-<th align="left">center</th>
-<th align="left">protLSID</th>
-<th align="left">assayLSID</th>
-<th align="left">panelLSID</th>
-<th align="left">QCcode</th>
-<th align="left">3098</th>
-<th align="left">3498</th>
-<th align="left">3297</th>
-<th align="left">2452</th>
+<tr>
+<th>rs#</th>
+<th>alleles</th>
+<th>chrom</th>
+<th>pos</th>
+<th>strand</th>
+<th>assembly</th>
+<th>center</th>
+<th>protLSID</th>
+<th>assayLSID</th>
+<th>panelLSID</th>
+<th>QCcode</th>
+<th>3098</th>
+<th>3498</th>
+<th>3297</th>
+<th>2452</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">SNP1</td>
-<td align="left">NA</td>
-<td align="right">1</td>
-<td align="right">224488</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">CC</td>
-<td align="left">AC</td>
-<td align="left">AC</td>
-<td align="left">CC</td>
+<tr>
+<td>SNP1</td>
+<td>NA</td>
+<td>1</td>
+<td>224488</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>CC</td>
+<td>AC</td>
+<td>AC</td>
+<td>CC</td>
 </tr>
-<tr class="even">
-<td align="left">SNP2</td>
-<td align="left">NA</td>
-<td align="right">1</td>
-<td align="right">293696</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">GG</td>
-<td align="left">TG</td>
-<td align="left">TG</td>
-<td align="left">GG</td>
+<tr>
+<td>SNP2</td>
+<td>NA</td>
+<td>1</td>
+<td>293696</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>GG</td>
+<td>TG</td>
+<td>TG</td>
+<td>GG</td>
 </tr>
-<tr class="odd">
-<td align="left">SNP3</td>
-<td align="left">NA</td>
-<td align="right">1</td>
-<td align="right">333333</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">GG</td>
-<td align="left">TT</td>
-<td align="left">TT</td>
-<td align="left">GG</td>
+<tr>
+<td>SNP3</td>
+<td>NA</td>
+<td>1</td>
+<td>333333</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>GG</td>
+<td>TT</td>
+<td>TT</td>
+<td>GG</td>
 </tr>
-<tr class="even">
-<td align="left">SNP4</td>
-<td align="left">NA</td>
-<td align="right">1</td>
-<td align="right">464830</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">CC</td>
-<td align="left">CC</td>
-<td align="left">CC</td>
-<td align="left">CC</td>
+<tr>
+<td>SNP4</td>
+<td>NA</td>
+<td>1</td>
+<td>464830</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>CC</td>
+<td>CC</td>
+<td>CC</td>
+<td>CC</td>
 </tr>
-<tr class="odd">
-<td align="left">SNP5</td>
-<td align="left">NA</td>
-<td align="right">1</td>
-<td align="right">722623</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">AA</td>
-<td align="left">GG</td>
-<td align="left">GG</td>
-<td align="left">AA</td>
+<tr>
+<td>SNP5</td>
+<td>NA</td>
+<td>1</td>
+<td>722623</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>AA</td>
+<td>GG</td>
+<td>GG</td>
+<td>AA</td>
 </tr>
-<tr class="even">
-<td align="left">SNP6</td>
-<td align="left">NA</td>
-<td align="right">1</td>
-<td align="right">838596</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">CC</td>
-<td align="left">TC</td>
-<td align="left">TT</td>
-<td align="left">CC</td>
+<tr>
+<td>SNP6</td>
+<td>NA</td>
+<td>1</td>
+<td>838596</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>CC</td>
+<td>TC</td>
+<td>TT</td>
+<td>CC</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li><strong>ped</strong> : <code>Plink</code> 格式的ped数据</li>
+<li><strong>ped</strong>  : <code>Plink</code> 格式的基因型数据</li>
 </ul>
 <p><code>第1列为家系，第2列为个体号，第7列开始为基因型数据。</code></p>
 <table>
+<thead>
+<tr>
+<th>3098</th>
+<th>3098</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>C</th>
+<th>C</th>
+<th>G</th>
+<th>G</th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
-<td align="left">3098</td>
-<td align="left">3098</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">C</td>
-<td align="left">C</td>
-<td align="left">G</td>
-<td align="left">G</td>
+<tr>
+<td>3498</td>
+<td>3498</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>A</td>
+<td>C</td>
+<td>T</td>
+<td>G</td>
 </tr>
-<tr class="even">
-<td align="left">3498</td>
-<td align="left">3498</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">A</td>
-<td align="left">C</td>
-<td align="left">T</td>
-<td align="left">G</td>
+<tr>
+<td>3297</td>
+<td>3297</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>A</td>
+<td>C</td>
+<td>T</td>
+<td>G</td>
 </tr>
-<tr class="odd">
-<td align="left">3297</td>
-<td align="left">3297</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">A</td>
-<td align="left">C</td>
-<td align="left">T</td>
-<td align="left">G</td>
+<tr>
+<td>2452</td>
+<td>2452</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>C</td>
+<td>C</td>
+<td>G</td>
+<td>G</td>
 </tr>
-<tr class="even">
-<td align="left">2452</td>
-<td align="left">2452</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">C</td>
-<td align="left">C</td>
-<td align="left">G</td>
-<td align="left">G</td>
+<tr>
+<td>4255</td>
+<td>4255</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>A</td>
+<td>C</td>
+<td>G</td>
+<td>G</td>
 </tr>
-<tr class="odd">
-<td align="left">4255</td>
-<td align="left">4255</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">A</td>
-<td align="left">C</td>
-<td align="left">G</td>
-<td align="left">G</td>
-</tr>
-<tr class="even">
-<td align="left">2946</td>
-<td align="left">2946</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">0</td>
-<td align="left">C</td>
-<td align="left">C</td>
-<td align="left">T</td>
-<td align="left">G</td>
+<tr>
+<td>2946</td>
+<td>2946</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>C</td>
+<td>C</td>
+<td>T</td>
+<td>G</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li><strong>map </strong>: <code>Plink</code>格式的map数据</li>
+<li><strong>map</strong>:  <code>Plink</code>格式的基因型数据</li>
 </ul>
 <p><code>第1列为染色体，第2列为SNP，第3列为遗传距离(cM), 第4列为物理位置。</code></p>
 <table>
+<thead>
+<tr>
+<th>1</th>
+<th>SNP1</th>
+<th>0.224488</th>
+<th>224488</th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">SNP1</td>
-<td align="right">0.224488</td>
-<td align="right">224488</td>
+<tr>
+<td>1</td>
+<td>SNP2</td>
+<td>0.293696</td>
+<td>293696</td>
 </tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="left">SNP2</td>
-<td align="right">0.293696</td>
-<td align="right">293696</td>
+<tr>
+<td>1</td>
+<td>SNP3</td>
+<td>0.333333</td>
+<td>333333</td>
 </tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">SNP3</td>
-<td align="right">0.333333</td>
-<td align="right">333333</td>
+<tr>
+<td>1</td>
+<td>SNP4</td>
+<td>0.464830</td>
+<td>464830</td>
 </tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="left">SNP4</td>
-<td align="right">0.464830</td>
-<td align="right">464830</td>
+<tr>
+<td>1</td>
+<td>SNP5</td>
+<td>0.722623</td>
+<td>722623</td>
 </tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">SNP5</td>
-<td align="right">0.722623</td>
-<td align="right">722623</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="left">SNP6</td>
-<td align="right">0.838596</td>
-<td align="right">838596</td>
+<tr>
+<td>1</td>
+<td>SNP6</td>
+<td>0.838596</td>
+<td>838596</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li><strong>blupf90 </strong>: <code>BLUPF90</code>格式的基因型数据</li>
+<li><strong>blupf90</strong>: <code>BLUPF90</code> 格式的基因型数据</li>
 </ul>
 <p><code>第1列为个体号，第2列为基因型。</code></p>
 <table>
+<thead>
+<tr>
+<th>3098</th>
+<th>200000</th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
-<td align="left">3098</td>
-<td align="left">200000</td>
+<tr>
+<td>3498</td>
+<td>112021</td>
 </tr>
-<tr class="even">
-<td align="left">3498</td>
-<td align="left">112021</td>
+<tr>
+<td>3297</td>
+<td>112022</td>
 </tr>
-<tr class="odd">
-<td align="left">3297</td>
-<td align="left">112022</td>
+<tr>
+<td>2452</td>
+<td>200000</td>
 </tr>
-<tr class="even">
-<td align="left">2452</td>
-<td align="left">200000</td>
+<tr>
+<td>4255</td>
+<td>102011</td>
 </tr>
-<tr class="odd">
-<td align="left">4255</td>
-<td align="left">102011</td>
-</tr>
-<tr class="even">
-<td align="left">2946</td>
-<td align="left">212000</td>
+<tr>
+<td>2946</td>
+<td>212000</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li><strong>numeric </strong>: <code>Numeric</code> 格式的基因型数据</li>
+<li><strong>numeric</strong>: <code>Numeric</code> 格式的基因型数据</li>
 </ul>
 <p><code>行名为个体，列名为SNP，0,1,2表示的是个体在某个SNP位点的基因型数据</code></p>
 <table>
 <thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">SNP1</th>
-<th align="right">SNP2</th>
-<th align="right">SNP3</th>
-<th align="right">SNP4</th>
-<th align="right">SNP5</th>
-<th align="right">SNP6</th>
+<tr>
+<th>2</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">3098</td>
-<td align="right">2</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
 </tr>
-<tr class="even">
-<td align="left">3498</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">0</td>
-<td align="right">2</td>
-<td align="right">1</td>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
 </tr>
-<tr class="odd">
-<td align="left">3297</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">0</td>
-<td align="right">2</td>
-<td align="right">2</td>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 </tr>
-<tr class="even">
-<td align="left">2452</td>
-<td align="right">2</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
 </tr>
-<tr class="odd">
-<td align="left">4255</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">2</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">2946</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="参数" class="section level2">
-<h2>参数</h2>
-<div id="基础参数" class="section level3">
-<h3>🤡基础参数</h3>
+<ul>
+<li>
+<p><strong>haplotype_hap</strong>: <code>Haplotype</code> 格式的基因型数据</p>
+<p>行表示的为SNP,列表式的是个体，每个个体占两列。</p>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>haplotype_sample</strong>: <code>Haplotype</code> 格式的基因型数据</p>
+<p>基因型数据的个体名称。</p>
+<table>
+<thead>
+<tr>
+<th>3098</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3498</td>
+</tr>
+<tr>
+<td>3297</td>
+</tr>
+<tr>
+<td>2452</td>
+</tr>
+<tr>
+<td>4255</td>
+</tr>
+<tr>
+<td>2946</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>haplotype_map</strong>: <code>Haplotype</code> 格式的基因型数据</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>SNP1</th>
+<th>224488</th>
+<th>C</th>
+<th>A</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>SNP2</td>
+<td>293696</td>
+<td>G</td>
+<td>T</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SNP3</td>
+<td>333333</td>
+<td>T</td>
+<td>G</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SNP4</td>
+<td>464830</td>
+<td>A</td>
+<td>G</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SNP5</td>
+<td>722623</td>
+<td>C</td>
+<td>T</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SNP6</td>
+<td>838596</td>
+<td>C</td>
+<td>A</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>vcf</strong>: <code>VCF</code> 格式的基因型数据</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>##fileformat=VCFv4.2</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>##source=&ldquo;beagle.29May21.d6d.jar&rdquo;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>##INFO&lt;ID=AF,Number=A,Type=Float&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>##INFO&lt;ID=IMP,Number=0,Type=Flag&quot;&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>##FORMAT&lt;ID=GT,Number=1,Type=String&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>#CHROM</td>
+<td>POS</td>
+<td>ID</td>
+<td>REF</td>
+<td>ALT</td>
+<td>QUAL</td>
+<td>FILTER</td>
+<td>INFO</td>
+<td>FORMAT</td>
+<td>3498</td>
+<td>3297</td>
+</tr>
+<tr>
+<td>1</td>
+<td>6260</td>
+<td>M2</td>
+<td>T</td>
+<td>A</td>
+<td>.</td>
+<td>PASS</td>
+<td>.</td>
+<td>GT</td>
+<td>1|0</td>
+<td>0|1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>15289</td>
+<td>M17</td>
+<td>A</td>
+<td>T</td>
+<td>.</td>
+<td>PASS</td>
+<td>.</td>
+<td>GT</td>
+<td>0|0</td>
+<td>0|0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="参数">参数</h2>
+<h3 id="basic">🤡Basic</h3>
 <ul>
 <li><strong>参数1:input_data_plink_ped</strong></li>
 </ul>
-<p>用户提供的 Plink-ped格式的数据，<code>data.frame</code>类型。具体格式见结果部分</p>
+<p>用户提供的 Plink-ped格式的数据，<code>data.frame </code> or <code>matrix</code> 类型。具体格式见结果部分</p>
 <ul>
 <li><strong>参数2:input_data_plink_map</strong></li>
 </ul>
-<p>用户提供的 Plink-map格式的数据，<code>data.frame</code>类型。具体格式见结果部分</p>
+<p>用户提供的 Plink-map格式的数据，<code>data.frame </code> or <code>matrix</code> 类型。具体格式见结果部分</p>
 <ul>
 <li><strong>参数3:input_data_hmp</strong></li>
 </ul>
-<p>用户提供的 Hapmap格式的数据，<code>data.frame</code>类型。具体格式见结果部分</p>
+<p>用户提供的 Hapmap格式的数据，<code>data.frame </code> or <code>matrix</code> 类型。具体格式见结果部分</p>
 <ul>
 <li><strong>参数4:input_data_blupf90</strong></li>
 </ul>
-<p>用户提供的 BLUPF90格式数据，<code>data.frame</code>类型。具体格式见结果部分</p>
+<p>用户提供的 BLUPF90格式数据，<code>data.frame </code> or <code>matrix</code> 类型。具体格式见结果部分</p>
 <ul>
 <li><strong>参数5:input_data_numeric</strong></li>
 </ul>
-<p>用户提供的 Numeric格式的数据，<code>matrix(纯数字)</code>类型。具体格式见结果部分</p>
+<p>用户提供的 Numeric格式的数据，<code>data.frame </code> or <code>matrix</code> 类型。具体格式见结果部分</p>
+<ul>
+<li><strong>参数6:input_data_haplotype_hap</strong></li>
+</ul>
+<p>用户提供的 <code>Haplotype</code>格式的数据 ，<code>data.frame </code> or <code>matrix</code> 类型。具体格式见结果部分</p>
+<ul>
+<li><strong>参数7:input_data_haplotype_sample</strong></li>
+</ul>
+<p>用户提供的 <code>Haplotype</code>格式的数据 ，<code>data.frame </code> or <code>matrix</code> 类型。具体格式见结果部分</p>
+<ul>
+<li><strong>参数8:input_data_haplotype_map</strong></li>
+</ul>
+<p>用户提供的 <code>Haplotype</code>格式的数据 ，<code>data.frame </code> or <code>matrix</code> 类型。具体格式见结果部分</p>
+<ul>
+<li><strong>参数9:input_data_vcf</strong></li>
+</ul>
+<p>用户提供的 <code>VCF</code>格式的数据 ，<code>data.frame </code> or <code>matrix</code> 类型。具体格式见结果部分</p>
+<p><strong>Note:</strong>  <code>input_data_numeric</code>  数据应该包含行名和列名。</p>
 <p><strong>此外，为了方便用户使用，用户还可以直接通过提供本地数据的路径、名称与数据类型即可完成数据提供这一步骤,而无需将数据读入到R里面。</strong></p>
 <ul>
-<li><strong>参数6:input_data_path</strong></li>
+<li>
+<p><strong>参数10:input_data_type</strong></p>
+<p>用户提供的本地数据的格式，<code>character </code>类型。数据格式包括：</p>
+<ul>
+<li>Hapmap</li>
+<li>Plink</li>
+<li>BLUPF90</li>
+<li>Numeric</li>
+<li>Haplotype</li>
+<li>VCF</li>
 </ul>
-<p>用户提供的本地数据的文件路径，<code>character</code>类型。</p>
-<ul>
-<li><strong>参数7:input_data_name</strong></li>
+</li>
+<li>
+<p><strong>参数11:input_data_path</strong></p>
+</li>
 </ul>
-<p>用户提供的本地数据的文件名称，<code>character</code>类型。</p>
-<p><strong>Note:</strong> 如果提供的数据类型为Plink ,那么本地文件名称不需要带后缀，eg. 本地文件名为test1.map test1.ped，我们提供文件名称为： <code>input_data_name="test1"</code>。除了Plink格式的数据外，其他数据格式必须提供完整的名称(带后缀)。</p>
+<p>用户提供的本地数据的文件路径，<code>character </code>类型。</p>
 <ul>
-<li><p><strong>参数8:input_data_type</strong></p>
-<p>用户提供的本地数据的格式，<code>character</code>类型。数据格式包括：</p>
+<li><strong>参数12:input_data_name</strong></li>
+</ul>
+<p>用户提供的本地数据的文件名称，<code>character </code>类型。</p>
+<p><strong>Note:</strong> 如果提供的数据类型为Plink ,那么本地文件名称不需要带后缀，eg. 本地文件名为test1.map test1.ped，我们提供文件名称为： <code>input_data_name=&quot;test1&quot;</code>。除了Plink格式的数据外，其他数据格式必须提供完整的名称(带后缀)。</p>
 <ul>
-<li><code>Hapmap</code></li>
-<li><code>Plink</code></li>
-<li><code>BLUPF90</code></li>
-<li><code>Numeric</code></li>
-<li><code>VCF</code></li>
-</ul></li>
-<li><p><strong>参数9:return_result</strong></p></li>
+<li><strong>参数13:output_data_path</strong></li>
+</ul>
+<p>输出的基因型数据保存到本地的路径，<code>character </code>类型。</p>
+<ul>
+<li><strong>参数14:output_data_name</strong></li>
+</ul>
+<p>输出的基因型数据保存到本地的文件名称，<code>character </code>类型。</p>
+<ul>
+<li>
+<p><strong>参数15:output_data_type</strong></p>
+<p>用户提供的本地数据的格式，<code>character </code>类型。数据格式包括：</p>
+<ul>
+<li>Hapmap</li>
+<li>Plink</li>
+<li>BLUPF90</li>
+<li>Numeric</li>
+<li>Haplotype</li>
+<li>VCF</li>
+</ul>
+</li>
+<li>
+<p><strong>参数16:return_result</strong></p>
+</li>
 </ul>
 <p>是否在R中返回输出的结果，<code>logical</code>类型。默认为FLASE。</p>
-<p>此外，为了便于输出数据的保存，用户可以将数据保存到本地</p>
 <ul>
-<li><strong>参数10:output_data_path</strong></li>
+<li><strong>参数17:bigmemory_cal</strong></li>
 </ul>
-<p>输出的基因型数据保存到本地的路径，<code>character</code>类型。</p>
+<p>是否使用bigmemory方式进行计算. <code>logical</code> 类型. 默认为 FALSE.</p>
 <ul>
-<li><strong>参数11:output_data_name</strong></li>
+<li><strong>参数18:bigmemory_data_path</strong></li>
 </ul>
-<p>输出的基因型数据保存到本地的文件名称，<code>character</code>类型。</p>
+<p>bigmemory数据保存的路径 . <code>character</code> 类型.</p>
 <ul>
-<li><p><strong>参数12:output_data_type</strong></p>
-<p>用户提供的本地数据的格式，<code>character</code>类型。数据格式包括：</p>
-<ul>
-<li><code>Hapmap</code></li>
-<li><code>Plink</code></li>
-<li><code>BLUPF90</code></li>
-<li><code>Numeric</code></li>
-<li><code>VCF</code></li>
-</ul></li>
+<li><strong>参数19:bigmemory_data_name</strong></li>
 </ul>
-<p>可选择同时输出多种数据格式。e.g.<code>output_data_type=c("Hapmap","Plink","BLUPF90","Numeric")</code> 可同时输出以上4种数据类型。</p>
-</div>
-<div id="进阶参数" class="section level3">
-<h3>💨进阶参数</h3>
+<p>bigmemory数据保存的文件名称 . <code>character</code> 类型.</p>
 <ul>
-<li><strong>参数13:cpu_cores</strong></li>
+<li><strong>参数20:phased_genotype</strong></li>
 </ul>
-<p>函数调用的cpu个数，<code>numeric</code>类型。默认调用1个</p>
+<p>是否基因型数据已经经过定向. <code>logical</code> 类型.默认为 FALSE.</p>
 <ul>
-<li><strong>参数14:miss_base</strong></li>
+<li><strong>参数21:haplotype_window_nSNP</strong></li>
 </ul>
-<p>缺失值在原基因型数据中所表示的的字符，<code>character</code>类型。默认为“NN”。</p>
+<p>根据连续的SNP数目来定义单倍型block. <code>numeric</code> 类型.</p>
 <ul>
-<li><strong>参数15:miss_base_num</strong></li>
+<li><strong>参数22:haplotype_window_kb</strong></li>
 </ul>
-<p>数字化格式转换中缺失值转换成的数字，<code>numeric</code>类型。默认为 5。</p>
+<p>根据物理位置信息来定义单倍型block. <code>numeric</code> 类型.</p>
 <ul>
-<li><strong>参数16:plink_software_path</strong></li>
+<li><strong>参数23:haplotype_window_block</strong></li>
 </ul>
-<p><strong>Plink</strong>软件的路径，<code>character</code>类型。涉及到VCF格式转换时，需要使用 <strong>Plink</strong>软件。当<strong>Plink</strong>软件的路径已加入到环境变量后，此项参数不需要再设置。</p>
+<p>根据用户自定义的信息来定义单倍型block. . <code>data.frame</code> or <code>matrix</code>类型.</p>
+<p>第一列是window起始位置，第二列是window结束位置</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6</td>
+<td>10</td>
+</tr>
+<tr>
+<td>11</td>
+<td>15</td>
+</tr>
+<tr>
+<td>16</td>
+<td>20</td>
+</tr>
+<tr>
+<td>21</td>
+<td>25</td>
+</tr>
+<tr>
+<td>26</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+<h3 id="advanced">💨Advanced</h3>
 <ul>
-<li><strong>参数17:plink_software_name</strong></li>
+<li><strong>参数24:cpu_cores</strong></li>
 </ul>
-<p><strong>Plink</strong>软件的名称，<code>character</code>类型。涉及到VCF格式转换时，需要使用 <strong>Plink</strong>软件。软件默认名称为：plink。</p>
+<p>函数调用的cpu个数，<code>numeric </code>类型。默认调用1个</p>
 <ul>
-<li><strong>参数18:vcftools_software_path</strong></li>
+<li><strong>参数25:miss_base</strong></li>
 </ul>
-<p><strong>vcftools</strong>软件的路径，<code>character</code>类型。涉及到VCF格式转换时，需要使用<strong>vcftools</strong>软件。当<strong>vcftools</strong>软件的路径已加入到环境变量后，此项参数不需要再设置。</p>
+<p>缺失值在原基因型数据中所表示的的字符，<code>character </code>类型。默认为&quot;NN&quot;。</p>
 <ul>
-<li><strong>参数19:vcftools_software_name</strong></li>
+<li><strong>参数26:miss_base_num</strong></li>
 </ul>
-<p><strong>vcftools</strong>软件的名称，<code>character</code>类型。涉及到VCF格式转换时，需要使用 <strong>vcftools</strong>软件。软件默认名称为：vcftools。</p>
-</div>
-</div>
+<p>数字化格式转换中缺失值转换成的数字，<code>numeric </code>类型。默认为 5。</p>
 
     </div>
 

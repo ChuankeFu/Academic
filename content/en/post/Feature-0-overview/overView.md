@@ -33,6 +33,12 @@ Finally, we kindly provides an easier way of applying `blupADC`, which is a free
 
 😊 Good Luck Charlie ! 
 
+### 👨‍💻 Citation 
+
+Quanshun Mei, Chuanke Fu, Jieling Li, Shuhong Zhao, and Tao Xiang. "blupADC: An R package and shiny toolkit for comprehensive genetic data analysis in animal and plant breeding." *bioRxiv* (2021), **doi:** https://doi.org/10.1101/2021.09.09.459557
+
+
+
 ## New features 
 
 ### 1.0.3
@@ -256,5 +262,3 @@ run_BLUPF90(
         output_result_path=getwd()                   # output path 
         )   
 ```
-
-1

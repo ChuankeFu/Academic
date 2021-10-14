@@ -55,7 +55,7 @@ run_DMU(
         dmu_module="dmuai",                          #方差组分估计使用的DMU模块
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name="pedigree.txt",            #亲缘关系文件名
-        output_result_path="/root"                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         )
 ```
 
@@ -79,7 +79,7 @@ run_DMU(
         dmu_module="dmuai",                          #方差组分估计使用的DMU模块
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name="G_Ainv_col_three.txt",    #亲缘关系文件名
-        output_result_path="/root"                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         )
 ```
 
@@ -103,7 +103,7 @@ run_DMU(
         dmu_module="dmuai",                          #方差组分估计使用的DMU模块
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name=c("pedigree.txt","G_A_col_three.txt"),    #亲缘关系文件名
-        output_result_path="/root"                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         )
 ```
 
@@ -131,7 +131,7 @@ run_DMU(
         dmu_module="dmuai",                          #方差组分估计使用的DMU模块
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name="pedigree.txt",            #亲缘关系文件名
-        output_result_path="/root"                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         )
 ```
 
@@ -157,7 +157,7 @@ run_DMU(phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter",
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="pedigree.txt",            #name of relationship file 
-        output_result_path="/root"                   # output path 
+        output_result_path=getwd()                   # output path 
         )
 ```
 
@@ -183,7 +183,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="maternal_pedigree",       #name of relationship file 
-        output_result_path="/root"                   # output path 
+        output_result_path=getwd()                   # output path 
         )
 ```
 
@@ -209,7 +209,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="rr_pedigree",             #name of relationship file 
-        output_result_path="/root"                   # output path 
+        output_result_path=getwd()                   # output path 
         )
 ```
 
@@ -236,7 +236,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="rr_pedigree",             #name of relationship file 
-        output_result_path="/root"                   # output path 
+        output_result_path=getwd()                   # output path 
         )
 ```
 
@@ -264,7 +264,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="socail_pedigree",         #name of relationship file 
-        output_result_path="/root"  # output path 
+        output_result_path=getwd()  # output path 
         )
 ```
 
@@ -293,7 +293,7 @@ run_DMU(phe_col_names=c("Id","Group","Sex","Gr_id1","Gr_id2","Gr_id3","Gr_id4","
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="socail_pedigree",         #name of relationship file 
-        output_result_path="/root"  # output path 
+        output_result_path=getwd()  # output path 
 		)
 ```
 

@@ -71,7 +71,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #方差组分估计使用的DMU模块
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #亲缘关系文件名
-        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-gblup&#34;&gt;&lt;strong&gt;单性状模型-GBLUP&lt;/strong&gt;&lt;/h3&gt;
@@ -92,7 +92,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #方差组分估计使用的DMU模块
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name=&amp;quot;G_Ainv_col_three.txt&amp;quot;,    #亲缘关系文件名
-        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-single-step一步法&#34;&gt;&lt;strong&gt;单性状模型-Single-step(一步法)&lt;/strong&gt;&lt;/h3&gt;
@@ -113,7 +113,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #方差组分估计使用的DMU模块
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name=c(&amp;quot;pedigree.txt&amp;quot;,&amp;quot;G_A_col_three.txt&amp;quot;),    #亲缘关系文件名
-        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;细心的同学应该能发现，我们仅需改变 &lt;code&gt;analysis_model&lt;/code&gt; 及 &lt;code&gt;relationship_name&lt;/code&gt; 这两个参数即可完成 系谱、GBLUP及SSBLUP的分析，极大的简化了我们的分析步骤(PS: G_Ainv_col_three.txt 和 G_A_col_three.txt 文件 均可通过 &lt;code&gt;cal_kinship&lt;/code&gt;函数得到 &lt;a href=&#34;https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;了解更多&lt;/a&gt;)。&lt;/p&gt;
@@ -136,7 +136,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #方差组分估计使用的DMU模块
         relationship_path=data_path,                 #亲缘关系文件路径
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #亲缘关系文件名
-        output_result_path=&amp;quot;/root&amp;quot;                   #结果输出路径
+        output_result_path=getwd()                   #结果输出路径
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱-用户提供方差组分先验文件&#34;&gt;单性状模型-系谱 (用户提供方差组分先验文件)&lt;/h3&gt;
@@ -159,7 +159,7 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quo
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=getwd()                   # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱-包含母性效应&#34;&gt;单性状模型-系谱 (包含母性效应)&lt;/h3&gt;
@@ -182,7 +182,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;maternal_pedigree&amp;quot;,       #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=getwd()                   # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱-包含永久环境效应&#34;&gt;单性状模型-系谱 (包含永久环境效应)&lt;/h3&gt;
@@ -205,7 +205,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;rr_pedigree&amp;quot;,             #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=getwd()                   # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱--包含随机回归效应&#34;&gt;单性状模型-系谱 ( 包含随机回归效应)&lt;/h3&gt;
@@ -229,7 +229,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;rr_pedigree&amp;quot;,             #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;                   # output path 
+        output_result_path=getwd()                   # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱-包含-社会遗传效应&#34;&gt;单性状模型-系谱( 包含 社会遗传效应)&lt;/h3&gt;
@@ -253,7 +253,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;socail_pedigree&amp;quot;,         #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;  # output path 
+        output_result_path=getwd()  # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱-包含-社会遗传效应-1&#34;&gt;单性状模型-系谱( 包含 社会遗传效应)&lt;/h3&gt;
@@ -278,7 +278,7 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;qu
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;socail_pedigree&amp;quot;,         #name of relationship file 
-        output_result_path=&amp;quot;/root&amp;quot;  # output path 
+        output_result_path=getwd()  # output path 
 		)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;我们将对&lt;code&gt;run_DMU&lt;/code&gt;函数中的参数一一进行讲解。&lt;/p&gt;

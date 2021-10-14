@@ -839,28 +839,25 @@
 <h3 id="绘制系谱中所有个体">绘制系谱中所有个体</h3>
 <pre><code class="language-r">library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree
-                )                 
-
+                input_pedigree=example_ped2
+                ) 
 </code></pre>
 <p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153843.png" alt="image-20210708153839657"></p>
 <h3 id="绘制系谱中的子集">绘制系谱中的子集</h3>
 <pre><code class="language-r">library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree,
+                input_pedigree=example_ped2,
     			trace_id=c(&quot;121&quot;)             #provided subset-id
-                )                   
-
+                )
 </code></pre>
 <p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153708.png" alt="image-20210708153706707"></p>
 <h3 id="绘制系谱中的子集-考虑子集的同胞">绘制系谱中的子集 (考虑子集的同胞)</h3>
 <pre><code class="language-r">library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree,
+                input_pedigree=example_ped2,
     			trace_id=c(&quot;121&quot;),
     			trace_sibs=TRUE   #whether plot the sibs of subset-id  
-                )                   
-
+                ) 
 </code></pre>
 <p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708161212.png" alt="image-20210708161211022"></p>
 <h3 id="系谱图的样式">系谱图的样式</h3>

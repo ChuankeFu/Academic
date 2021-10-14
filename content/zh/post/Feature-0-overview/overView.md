@@ -23,9 +23,9 @@ toc: true
 
 ## 简介
 
-`blupADC` 是一个专注于分析动植物育种中的系谱数据、基因型数据及遗传评估的工具。在设计该工具时，我们对数据处理时可能遇到的各种问题均进行了详细的考量(**ps.如果您有好的建议，请积极联系作者!**)。此外，为了提高分析效率， `blupADC` 可支持并行计算(通过`openMP` )，并且`blupADC` 中的核心函数均通过c++(`Rcpp` and `RcppArmadillo `) 进行编写。
+`blupADC` 是一个专注于分析动植物育种中的系谱数据、基因型数据及遗传评估的工具。在设计该工具时，我们对数据处理时可能遇到的各种问题均进行了详细的考量(**ps.如果您有好的建议，请积极联系作者!**)。此外，为了提高分析效率， `blupADC` 可支持并行计算(通过`openMP` ) 及大数据处理(通过`bigmemory`)，并且`blupADC` 中的核心函数均通过c++(`Rcpp` and `RcppArmadillo `) 进行编写。
 
-`blupADC`提供了许多有用的功能在整个动植物育种的流程中，包括 系谱分析(系谱追溯、重命名及纠错)，基因型数据格式转换(支持**Hapmap, Plink, BLUPF90, Numeric 及VCF** 格式)，基因型数据的质控填充，亲缘关系矩阵的构建(**系谱，基因组及一步法亲缘关系矩阵**)以及遗传评估（仅需几行代码即可通过DMU和BLUPF90完成遗传评估）。
+`blupADC`提供了许多有用的功能在整个动植物育种的流程中，包括 系谱分析(系谱追溯、重命名及纠错)，基因型数据格式转换(支持**Hapmap, Plink, BLUPF90, Numeric, Haplotype 及VCF** 格式)，基因型数据的质控填充，亲缘关系矩阵的构建(**系谱，基因组及一步法亲缘关系矩阵**)以及遗传评估（仅需几行代码即可通过DMU和BLUPF90完成遗传评估）。
 
 最后，为了方进一步方便用户的使用(尤其是编程基础弱的用户)，我们创建了一个免费的在线网站([shinyapp](http://47.95.251.15:443/blupADC/))。相关的功能仍在开发中。但是，网站的一个缺点就是，不能处理大数据，请大家合理选择！
 
@@ -59,14 +59,14 @@ install.packages(c("Rcpp", "RcppArmadillo","data.table","bigmemory"))
 #### 在 Linux 上 安装 blupADC
 
 ```R
-packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3_R_x86_64-pc-linux-gnu.tar.gz"
+packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz"
 install.packages(packageurl,repos=NULL,method="libcurl")
 ```
 
 #### 在 Windows 上 安装 blupADC
 
 ```R
-packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.3/blupADC_1.0.3.zip"
+packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4.zip"
 install.packages(packageurl,repos=NULL)
 ```
 
@@ -75,14 +75,14 @@ install.packages(packageurl,repos=NULL)
 #### 在 Linux 上 安装 blupADC
 
 ```R
-packageurl <-"https://gitee.com/qsmei/blupADC/attach_files/828771/download/blupADC_1.0.3_R_x86_64-pc-linux-gnu.tar.gz"
+packageurl <- "https://gitee.com/qsmei/blupADC/attach_files/851170/download/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz"
 install.packages(packageurl,repos=NULL,method="libcurl")
 ```
 
 #### 在 Windows 上 安装 blupADC
 
 ```R
-packageurl <- "https://gitee.com/qsmei/blupADC/attach_files/828770/download/blupADC_1.0.3.zip"
+packageurl<-"https://gitee.com/qsmei/blupADC/attach_files/851169/download/blupADC_1.0.4.zip"
 install.packages(packageurl,repos=NULL)
 ```
 
@@ -120,7 +120,7 @@ system.file("extdata", package = "blupADC") # path of provided files
 ``` R
 library(blupADC)
 format_result=geno_format(
-		input_data_hmp=example_data_hmp,  # provided data variable
+    	input_data_hmp=example_data_hmp,  # provided data variable
         output_data_type=c("Plink","BLUPF90","Numeric"),# output data format
     	output_data_path=getwd(),   #output data path      
     	output_data_name="blupADC", #output data name    
@@ -133,14 +133,14 @@ library(blupADC)
 data_path=system.file("extdata", package = "blupADC")  #  path of example files 
 phased=geno_format(
          input_data_path=data_path,      # input data path 
-		 input_data_name="example.vcf",  # input data name
-		 input_data_type="VCF",          # input data type
-		 phased_genotype=TRUE,           # whether the vcf data has been phased
-	     haplotype_window_nSNP=5,        # according to nSNP define haplotype-block,
+         input_data_name="example.vcf",  # input data name,for vcf data
+         input_data_type="VCF",          # input data type
+         phased_genotype=TRUE,           # whether the vcf data has been phased
+         haplotype_window_nSNP=5,        # according to nSNP define haplotype-block,
     	 bigmemory_cal=TRUE,             # format conversion via bigmemory object
     	 bigmemory_data_path=getwd(),    # path of bigmemory data 
     	 bigmemory_data_name="test_blupADC", #name of bigmemory data 
-		 output_data_type=c("Haplotype","Numeric"),# output data format
+         output_data_type=c("Haplotype","Numeric"),# output data format
          return_result=TRUE,             #save result in R environment
          cpu_cores=1                     # number of cpu 
                   )
@@ -156,7 +156,7 @@ geno_qc_impute(
             output_data_path=getwd(),               #output data path
             output_data_name="YY_data",             #output data name
             output_data_type="VCF"                  #output data format 
-            )                      
+            )                       
 ```
 
 #### 功能 3. 品种分析及基因型数据重复性检测 ([see more details](https://qsmei.netlify.app/zh/post/feature-3-overlap_pca/blupadc/))
@@ -201,13 +201,13 @@ plot=ggped(
 library(blupADC)
 data_path=system.file("extdata", package = "blupADC")  #  path of example files 
 kinship_result=cal_kinship(
-                input_data_path=data_path,  	  #provided hapmap data object
-    			input_data_name="example",
-    			input_data_type="Plink",
-                kinship_type=c("G_A","G_D"),      #type of  kinship matrix
-                dominance_type=c("genotypic"),    #type of dominance effect
-                inbred_type=c("Homozygous"),      #type of inbreeding coefficients
-                return_result=TRUE)               #save result as a R environment variable                 #return result              
+        		input_data_path=data_path,      # input data path 
+        		input_data_name="example.vcf",  # input data name,for vcf data
+         		input_data_type="VCF",          # input data type
+    			kinship_type=c("G_A","G_D"),      #type of  kinship matrix
+    			dominance_type=c("genotypic"),    #type of dominance effect
+    			inbred_type=c("Homozygous"),      #type of inbreeding coefficients
+    			return_result=TRUE)               #save result as a R environment variable                
 ```
 
 #### 功能 7. 利用DMU软件进行遗传评估 ([see more details](https://qsmei.netlify.app/zh/post/feature-7-run_dmu/run_dmu/))
@@ -251,5 +251,5 @@ run_BLUPF90(
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="pedigree.txt",            #name of relationship file 
         output_result_path=getwd()                   # output path 
-        ) 
+        )
 ```

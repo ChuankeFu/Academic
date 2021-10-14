@@ -24,6 +24,7 @@
     &lt;li&gt;
       &lt;ul&gt;
         &lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;OVERVIEW&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#-citation&#34;&gt;👨‍💻 Citation&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/li&gt;
     &lt;li&gt;&lt;a href=&#34;#new-features&#34;&gt;New features&lt;/a&gt;
@@ -53,6 +54,8 @@
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(&lt;strong&gt;trace pedigree, rename pedigree, and correct pedigree errors&lt;/strong&gt;), genotype data format conversion(supports &lt;strong&gt;Hapmap, Plink, Blupf90, Numeric,  VCF and Haplotype&lt;/strong&gt; format), genotype data quality control and imputation, construction of kinship matrix(&lt;strong&gt;pedigree, genomic  and single-step&lt;/strong&gt;),and genetic evaluation( by interfacing with two famous breeding softwares, &lt;strong&gt;DMU&lt;/strong&gt; and &lt;strong&gt;BLUPF90&lt;/strong&gt;  in an easy way).&lt;/p&gt;
 &lt;p&gt;Finally, we kindly provides an easier way of applying &lt;code&gt;blupADC&lt;/code&gt;, which is a free  website(&lt;a href=&#34;http://47.95.251.15:443/blupADC/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shinyapp&lt;/a&gt;).  Several functions are still under development.  But the pitfall of this website is that it can&amp;rsquo;t handle big data.&lt;/p&gt;
 &lt;p&gt;😊 Good Luck Charlie !&lt;/p&gt;
+&lt;h3 id=&#34;-citation&#34;&gt;👨‍💻 Citation&lt;/h3&gt;
+&lt;p&gt;Quanshun Mei, Chuanke Fu, Jieling Li, Shuhong Zhao, and Tao Xiang. &amp;ldquo;blupADC: An R package and shiny toolkit for comprehensive genetic data analysis in animal and plant breeding.&amp;rdquo; &lt;em&gt;bioRxiv&lt;/em&gt; (2021), &lt;strong&gt;doi:&lt;/strong&gt; &lt;a href=&#34;https://doi.org/10.1101/2021.09.09.459557&#34;&gt;https://doi.org/10.1101/2021.09.09.459557&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;new-features&#34;&gt;New features&lt;/h2&gt;
 &lt;h3 id=&#34;103&#34;&gt;1.0.3&lt;/h3&gt;
 &lt;ul&gt;
@@ -223,7 +226,6 @@ run_BLUPF90(
         output_result_path=getwd()                   # output path 
         )   
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;1&lt;/p&gt;
 </description>
     </item>
     

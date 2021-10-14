@@ -22,7 +22,7 @@ toc: true
 
 ## Overview   
 
-👦   Breed composition analysis is usually a problem in data analysis. In package:`blupADC`, user can solve this problem by applying `genotype_data_check` function. In addition, user can  detect the duplication of genomic data easily by applying `genotype_data_check` function.
+👦   Breed composition analysis is usually a problem in data analysis. In package:`blupADC`, user can solve this problem by applying `geno_check` function. In addition, user can  detect the duplication of genomic data easily by applying `geno_check` function.
 
 ## Example 
 
@@ -30,11 +30,11 @@ toc: true
 
 ``` {.R}
 library(blupADC)
-check_result=genotype_data_check(
-                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+check_result=geno_check(
+                  input_data_hmp=example_PCA_data_hmp,   #provided hapmap data object
                   duplication_check=FALSE,       #whether check the duplication of genotype
                   breed_check=TRUE,              # whether check the record of breed
-                  breed_record=PCA_Breed,        # provided breed record
+                  breed_record=example_PCA_Breed,        # provided breed record
                   return_result=TRUE             #return result 
                   )
 ```
@@ -43,8 +43,8 @@ check_result=genotype_data_check(
 
 ``` {.R}
 library(blupADC)
-check_result=genotype_data_check(
-                  input_data_hmp=data_hmp,   #provided hapmap data object
+check_result=geno_check(
+                  input_data_hmp=example_data_hmp,   #provided hapmap data object
                  duplication_threshold=0.95, #threshold of duplication
                   duplication_check=TRUE,    #whether check the duplication of genotype
                   breed_check=FALSE,         # whether check the record of breed
@@ -54,43 +54,28 @@ check_result=genotype_data_check(
 
 ## Output
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-library(blupADC)
-library(ggplot2)
-check_result=genotype_data_check(
-                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
-                  duplication_check=FALSE,        #whether check the duplication of genotype
-                  breed_check=TRUE,              # whether check the record of breed
-                  breed_record=PCA_Breed,        # provided breed record
-                  return_result=TRUE             #return result 
-                  )
-pca_outlier=check_result$breed$outlier
-rownames(pca_outlier)=NULL
-check_result=genotype_data_check(
-                  input_data_hmp=cbind(PCA_data_hmp,PCA_data_hmp[,12:15]),   #provided hapmap data object
-                  duplication_check=TRUE,        #whether check the duplication of genotype
-                  breed_check=FALSE,              # whether check the record of breed
-                  breed_record=PCA_Breed,         # provided breed record
-                  return_result=TRUE              #return result 
-                  )
-duplicated_genotype=check_result$duplicate_genotype
-```
-
 The result of output mainly contains two parts, including:
 
 - **duplicated_genotype**    
 
-```{r input_data_hmp3,echo=FALSE}
-knitr::kable(head(duplicated_genotype))
-```
+| IND1 | IND1 | 1    |
+| ---- | ---- | ---- |
+| IND2 | IND2 | 1    |
+| IND3 | IND3 | 1    |
+| IND4 | IND4 | 1    |
 
 The first and the second column is the name of individual, the third column is the percentage of overlap.
 
 - **pca_outlier** 
 
-```{r input_data_hmp2,echo=FALSE}
-knitr::kable(head(pca_outlier))
-```
+| Id     | Breed | Expeced_Breed |
+| ------ | ----- | ------------- |
+| IND100 | LL    | YY            |
+| IND233 | DD    | YY            |
+| IND91  | LL    | YY            |
+| IND92  | LL    | YY            |
+| IND93  | LL    | YY            |
+| IND94  | LL    | YY            |
 
 Figure A is the  PCA result before correcting breed record  , Figure B is the PCA result after correcting breed correcting record
 
@@ -124,9 +109,14 @@ Breed record of individuals, `data.frame` class.
 
 The format of `ind_breed` is showing as follow:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-knitr::kable(head(blupADC::PCA_Breed))
-```
+| Id   | Breed |
+| ---- | ----- |
+| IND1 | YY    |
+| IND2 | YY    |
+| IND3 | YY    |
+| IND4 | YY    |
+| IND5 | YY    |
+| IND6 | YY    |
 
 When the proportion of genotype data between two individuals is larger than this threshold, these two individuals will be regarded as the same individual.
 

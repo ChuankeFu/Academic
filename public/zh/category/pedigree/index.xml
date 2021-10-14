@@ -46,28 +46,25 @@
 &lt;h3 id=&#34;绘制系谱中所有个体&#34;&gt;绘制系谱中所有个体&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree
-                )                 
-
+                input_pedigree=example_ped2
+                ) 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153843.png&#34; alt=&#34;image-20210708153839657&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;绘制系谱中的子集&#34;&gt;绘制系谱中的子集&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree,
+                input_pedigree=example_ped2,
     			trace_id=c(&amp;quot;121&amp;quot;)             #provided subset-id
-                )                   
-
+                )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153708.png&#34; alt=&#34;image-20210708153706707&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;绘制系谱中的子集-考虑子集的同胞&#34;&gt;绘制系谱中的子集 (考虑子集的同胞)&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree,
+                input_pedigree=example_ped2,
     			trace_id=c(&amp;quot;121&amp;quot;),
     			trace_sibs=TRUE   #whether plot the sibs of subset-id  
-                )                   
-
+                ) 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708161212.png&#34; alt=&#34;image-20210708161211022&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;系谱图的样式&#34;&gt;系谱图的样式&lt;/h3&gt;

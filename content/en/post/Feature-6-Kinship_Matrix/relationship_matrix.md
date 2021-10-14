@@ -129,7 +129,7 @@ User-provided pedigree data ，`data.frame` or `matrix` class. ([see more detail
 
 -   **5：IND_rename** 
 
-Whether genotype individuals need to be renamed according to the  renamed pedigree,  `logical` class. Default is FALSE.
+Whether genotype individuals need to be renamed according to the  provided pedigree,  `logical` class. Default is FALSE.
 
 -   **6:bigmemory_cal**
 
@@ -145,7 +145,7 @@ The file name bigmemory data . `character` class.
 
 - **9：output_matrix_type**  
 
-  Type of output kinship matrix type,   `character` class. Default is "col_three".
+  Type of output kinship matrix type,   `character` class. Default is "col_all".
 
   -    "`col_all`" : n*n format  
   -   "`col_three`" : 3 columns format. The first and the second column are the name of individuals, the third column is the relationship coefficients 。

@@ -779,7 +779,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 分钟阅读时长
+    2 分钟阅读时长
   </span>
   
 
@@ -818,7 +818,14 @@
   <nav id="TableOfContents">
   <ul>
     <li><a href="#简述">简述</a></li>
-    <li><a href="#示例">示例</a></li>
+    <li><a href="#示例">示例</a>
+      <ul>
+        <li><a href="#-构建系谱亲缘关系矩阵">😾 构建系谱亲缘关系矩阵</a></li>
+        <li><a href="#-构建基因组亲缘关系矩阵">🤡 构建基因组亲缘关系矩阵</a></li>
+        <li><a href="#构建一步法亲缘关系矩阵">💨构建一步法亲缘关系矩阵</a></li>
+        <li><a href="#构建一步法亲缘关系矩阵via-bigmemory-method">💨构建一步法亲缘关系矩阵(via bigmemory method)</a></li>
+      </ul>
+    </li>
     <li><a href="#参数详解">参数详解</a>
       <ul>
         <li><a href="#基础参数">💪基础参数</a></li>
@@ -831,8 +838,17 @@
 
 <h2 id="简述">简述</h2>
 <p>🙉在动植物育种中，亲缘关系矩阵的构建是其中的关键步骤。在本章，我们将主要介绍如何利用<code>blupADC</code>中的<code>cal_kinship</code>函数完成各种亲缘关系矩阵的构建，包括：<strong>加性亲缘关系矩阵</strong>(系谱，基因组，一步法)及<strong>显性亲缘关系矩阵</strong>(系谱，基因组，一步法)等。此外，cal_kinship函数还能方便的计算各种类型的<strong>近交系数</strong>，包括：系谱近交系数，基因组近交系数(Homozygous,Digonal)及一步法近交系数(Digonal)。</p>
+<p>在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与<code>geno_format</code>函数中的参数用法一致。具体大家可参阅之前的介绍:<a href="https://qsmei.netlify.app/zh/post/blupadc/" target="_blank" rel="noopener">基因型数据间的格式转换</a>。</p>
 <h2 id="示例">示例</h2>
-<p>😾首先，我们还是通过一个小例子来看该函数的用法:</p>
+<h3 id="-构建系谱亲缘关系矩阵">😾 构建系谱亲缘关系矩阵</h3>
+<pre><code class="language-{.R}">library(blupADC)
+kinship_result=cal_kinship(
+                input_pedigree=example_ped3,          #provided hapmap data object
+                kinship_type=c(&quot;P_A&quot;),      #type of  kinship matrix
+                inbred_type=c(&quot;Pedigree&quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
+</code></pre>
+<h3 id="-构建基因组亲缘关系矩阵">🤡 构建基因组亲缘关系矩阵</h3>
 <pre><code class="language-{.R}">library(blupADC)
 kinship_result=cal_kinship(
                 input_data_hmp=data_hmp,          #provided hapmap data object
@@ -841,8 +857,27 @@ kinship_result=cal_kinship(
                 inbred_type=c(&quot;Homozygous&quot;),      #type of inbreeding coefficients
                 return_result=TRUE)               #return result              
 </code></pre>
-<p>在构建基因组亲缘关系矩阵及一步法亲缘关系矩阵的时候，我们必须要事先提供基因型数据，这部分的参数与<code>genotype_data_format_conversion</code>函数中的参数用法一致。具体大家可参阅之前的介绍:<a href="https://qsmei.netlify.app/zh/post/blupadc/" target="_blank" rel="noopener">基因型数据间的格式转换</a>。</p>
-<p>完成了基因型数据的提供后，我们可以通过以下几个参数来指定构建亲缘关系矩阵类型及近交系数的类型。</p>
+<h3 id="构建一步法亲缘关系矩阵">💨构建一步法亲缘关系矩阵</h3>
+<pre><code class="language-{.R}">library(blupADC)
+kinship_result=cal_kinship(
+                input_data_hmp=example_data_hmp,          #provided hapmap data object
+                input_pedigree=example_ped3,
+                kinship_type=c(&quot;H_A&quot;),      #type of  kinship matrix
+                inbred_type=c(&quot;H_diag&quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result              
+</code></pre>
+<h3 id="构建一步法亲缘关系矩阵via-bigmemory-method">💨构建一步法亲缘关系矩阵(via bigmemory method)</h3>
+<pre><code class="language-{.R}">library(blupADC)
+phased_kinship_result=cal_kinship(
+                input_data_hmp=example_data_hmp,          #provided hapmap data object
+                input_pedigree=example_ped3,
+                bigmemory_cal=TRUE,
+                bigmemory_data_path=getwd(),
+                bigmemory_data_name=&quot;blupADC&quot;,
+                kinship_type=c(&quot;H_A&quot;),      #type of  kinship matrix
+                inbred_type=c(&quot;H_diag&quot;),      #type of inbreeding coefficients
+                return_result=TRUE)               #return result                
+</code></pre>
 <h2 id="参数详解">参数详解</h2>
 <h3 id="基础参数">💪基础参数</h3>
 <ul>
@@ -904,19 +939,23 @@ kinship_result=cal_kinship(
 </ul>
 <p>用户提供的系谱数据，<code>data.frame</code>或 <code>matrix</code>类型。具体的系谱数据格式可以参阅之前的介绍：<a href="https://qsmei.netlify.app/zh/post/2021-04-17-r-package-blup-adc-pedigree/pedigree/" target="_blank" rel="noopener">系谱追溯、重命名及纠错 </a>。</p>
 <ul>
-<li><strong>参数5：pedigree_rename</strong></li>
-</ul>
-<p>是否对系谱数据进行重命名,<code>logical</code>类型，默认为TRUE(对系谱进行重命名)。</p>
-<ul>
-<li><strong>参数6：IND_geno_rename</strong></li>
+<li><strong>参数5：IND_rename</strong></li>
 </ul>
 <p>是否根据系谱的重命名结果对基因型数据中的个体进行重命名，<code>logical</code>类型，默认为FALSE(不进行重命名)。</p>
 <ul>
-<li><strong>参数7：rename_to_origin</strong></li>
+<li><strong>参数6:bigmemory_cal</strong></li>
 </ul>
-<p>将亲缘关系矩阵中重命名的个体号转换回原始的个体号，<code>logical</code>类型，默认为FALSE(不进行转换)。</p>
+<p>是否使用bigmemory方式进行计算. <code>logical</code> 类型. 默认为 FALSE.</p>
 <ul>
-<li><strong>参数8：output_matrix_type</strong></li>
+<li><strong>参数7:bigmemory_data_path</strong></li>
+</ul>
+<p>bigmemory数据保存的路径 . <code>character</code> 类型.</p>
+<ul>
+<li><strong>参数8:bigmemory_data_name</strong></li>
+</ul>
+<p>bigmemory数据保存的文件名称 . <code>character</code> 类型.</p>
+<ul>
+<li><strong>参数9：output_matrix_type</strong></li>
 </ul>
 <p>输出亲缘关系矩阵的格式，<code>character</code>类型。可选参数包括：</p>
 <ol>
@@ -928,17 +967,12 @@ kinship_result=cal_kinship(
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
-<th></th>
+<th>1001</th>
+<th>1001</th>
+<th>0.989</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>1001</td>
-<td>1001</td>
-<td>0.989</td>
-</tr>
 <tr>
 <td>1001</td>
 <td>1002</td>
@@ -953,60 +987,56 @@ kinship_result=cal_kinship(
 </table>
 </li>
 </ol>
-<p>默认参数为 &ldquo;col_three&rdquo;</p>
+<p>默认参数为 &ldquo;col_all&rdquo;</p>
 <ul>
-<li><strong>参数9：output_matrix_path</strong></li>
+<li><strong>参数10：output_matrix_path</strong></li>
 </ul>
 <p>亲缘关系矩阵保存到本地的路径, <code>character</code>类型。</p>
 <ul>
-<li><strong>参数10：output_matrix_name</strong></li>
+<li><strong>参数11：output_matrix_name</strong></li>
 </ul>
 <p>亲缘关系矩阵保存到本地的名称，<code>character</code>类型。</p>
 <h3 id="进阶参数">🦶进阶参数</h3>
 <ul>
-<li><strong>参数11：cpu_cores</strong></li>
+<li><strong>参数12：cpu_cores</strong></li>
 </ul>
 <p>调用的cpu个数，<code>numeric</code>类型，默认为1。</p>
 <ul>
-<li><strong>参数12：kinship_base</strong></li>
+<li><strong>参数13：kinship_base</strong></li>
 </ul>
 <p>是否按照基础群的方式构建基因组亲缘关系矩阵(p=q=0.5)，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
-<li><strong>参数13：kinship_trace</strong></li>
+<li><strong>参数14：kinship_trace</strong></li>
 </ul>
 <p>是否按照矩阵迹和的方式对基因组亲缘关系矩阵进行标准化，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
-<li><strong>参数14：Metafounder_algorithm</strong></li>
+<li><strong>参数15：Metafounder_algorithm</strong></li>
 </ul>
 <p>是否按照metafounder的方法计算一步法亲缘关系矩阵，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
-<li><strong>参数15：APY_algorithm</strong></li>
+<li><strong>参数16：APY_algorithm</strong></li>
 </ul>
 <p>是否按照APY的方法计算亲缘关系矩阵的逆矩阵，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
-<li><strong>参数16：APY_eigen_threshold</strong></li>
+<li><strong>参数17：APY_eigen_threshold</strong></li>
 </ul>
 <p>特征值所能解释的遗传变异的比例的阈值 ,  <code>numeric</code> 类型. 默认为 0.95.</p>
 <ul>
-<li><strong>参数17：APY_n_core</strong></li>
+<li><strong>参数18：APY_n_core</strong></li>
 </ul>
 <p>核心个体数,  <code>numeric</code> 类型. 默认为 NULL.</p>
 <ul>
-<li><strong>参数18：SSBLUP_omega</strong></li>
+<li><strong>参数19：SSBLUP_omega</strong></li>
 </ul>
 <p>构建一步法亲缘关系矩阵时G矩阵和A矩阵的比例，<code>numeric</code>类型，默认为0.05。</p>
 <ul>
-<li><strong>参数19：gene_dropping</strong></li>
+<li><strong>参数20：gene_dropping</strong></li>
 </ul>
 <p>是否使用 gene dropping 的方法构建系谱显性亲缘关系矩阵，<code>logical</code>类型，默认为FALSE。</p>
 <ul>
-<li><strong>参数20：gene_dropping_iteration</strong></li>
+<li><strong>参数21：gene_dropping_iteration</strong></li>
 </ul>
 <p>gene dropping方法的迭代次数，<code>numeric</code>类型，默认为1000。</p>
-<ul>
-<li><strong>参数21：memory_save</strong></li>
-</ul>
-<p>是否使用省内存的方式进行上述所有的计算，<code>logical</code>类型，默认为FALSE。该方法非常节省内存，但是会极大的占据本地存储空间。</p>
 
     </div>
 

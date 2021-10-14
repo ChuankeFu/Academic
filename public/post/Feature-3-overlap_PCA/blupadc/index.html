@@ -367,7 +367,7 @@
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="2dc0f741f90676f30fc6ee7bab6de4ca" >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="75aff2c2a58c226e359f94fc6b3b87d3" >
 
   
   
@@ -810,78 +810,74 @@
   <div class="article-container">
 
     <div class="article-style">
-      
-<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
-
-<div id="TOC">
-
-</div>
-
-<details class="toc-inpage d-print-none  " open>
+      <details class="toc-inpage d-print-none  " open>
   <summary class="font-weight-bold">Table of Contents</summary>
-  
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#example">Example</a>
+      <ul>
+        <li><a href="#breed-composition-analysis">Breed composition analysis</a></li>
+        <li><a href="#check-duplication">Check duplication</a></li>
+      </ul>
+    </li>
+    <li><a href="#output">Output</a></li>
+    <li><a href="#parameter">Parameter</a></li>
+  </ul>
+</nav>
 </details>
 
-<div id="overview" class="section level2">
-<h2>Overview</h2>
-<p>👦 Breed composition analysis is usually a problem in data analysis. In package:<code>blupADC</code>, user can solve this problem by applying <code>genotype_data_check</code> function. In addition, user can detect the duplication of genomic data easily by applying <code>genotype_data_check</code> function.</p>
-</div>
-<div id="example" class="section level2">
-<h2>Example</h2>
-<div id="breed-composition-analysis" class="section level3">
-<h3>Breed composition analysis</h3>
-<pre class="R"><code>library(blupADC)
-check_result=genotype_data_check(
-                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+<h2 id="overview">Overview</h2>
+<p>👦   Breed composition analysis is usually a problem in data analysis. In package:<code>blupADC</code>, user can solve this problem by applying <code>geno_check</code> function. In addition, user can  detect the duplication of genomic data easily by applying <code>geno_check</code> function.</p>
+<h2 id="example">Example</h2>
+<h3 id="breed-composition-analysis">Breed composition analysis</h3>
+<pre><code class="language-{.R}">library(blupADC)
+check_result=geno_check(
+                  input_data_hmp=example_PCA_data_hmp,   #provided hapmap data object
                   duplication_check=FALSE,       #whether check the duplication of genotype
                   breed_check=TRUE,              # whether check the record of breed
-                  breed_record=PCA_Breed,        # provided breed record
+                  breed_record=example_PCA_Breed,        # provided breed record
                   return_result=TRUE             #return result 
-                  )</code></pre>
-</div>
-<div id="check-duplication" class="section level3">
-<h3>Check duplication</h3>
-<pre class="R"><code>library(blupADC)
-check_result=genotype_data_check(
-                  input_data_hmp=data_hmp,   #provided hapmap data object
+                  )
+</code></pre>
+<h3 id="check-duplication">Check duplication</h3>
+<pre><code class="language-{.R}">library(blupADC)
+check_result=geno_check(
+                  input_data_hmp=example_data_hmp,   #provided hapmap data object
                  duplication_threshold=0.95, #threshold of duplication
                   duplication_check=TRUE,    #whether check the duplication of genotype
                   breed_check=FALSE,         # whether check the record of breed
                   return_result=TRUE         #return result 
-                  )</code></pre>
-</div>
-</div>
-<div id="output" class="section level2">
-<h2>Output</h2>
-<pre><code>## Start numeric(0,1,2) format conversion......</code></pre>
-<pre><code>## Start numeric(0,1,2) format conversion...... 
-## Before filter, there are 304 individuals, after filter, there are 296 individuals 
-## Finally, there are total 296 individuals in your data!</code></pre>
+                  )
+</code></pre>
+<h2 id="output">Output</h2>
 <p>The result of output mainly contains two parts, including:</p>
 <ul>
 <li><strong>duplicated_genotype</strong></li>
 </ul>
 <table>
+<thead>
+<tr>
+<th>IND1</th>
+<th>IND1</th>
+<th>1</th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
-<td align="left">IND1</td>
-<td align="left">IND1</td>
-<td align="left">1</td>
+<tr>
+<td>IND2</td>
+<td>IND2</td>
+<td>1</td>
 </tr>
-<tr class="even">
-<td align="left">IND2</td>
-<td align="left">IND2</td>
-<td align="left">1</td>
+<tr>
+<td>IND3</td>
+<td>IND3</td>
+<td>1</td>
 </tr>
-<tr class="odd">
-<td align="left">IND3</td>
-<td align="left">IND3</td>
-<td align="left">1</td>
-</tr>
-<tr class="even">
-<td align="left">IND4</td>
-<td align="left">IND4</td>
-<td align="left">1</td>
+<tr>
+<td>IND4</td>
+<td>IND4</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -891,55 +887,50 @@ check_result=genotype_data_check(
 </ul>
 <table>
 <thead>
-<tr class="header">
-<th align="left">Id</th>
-<th align="left">Breed</th>
-<th align="left">Expeced_Breed</th>
+<tr>
+<th>Id</th>
+<th>Breed</th>
+<th>Expeced_Breed</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">IND1</td>
-<td align="left">YY</td>
-<td align="left">DD</td>
+<tr>
+<td>IND100</td>
+<td>LL</td>
+<td>YY</td>
 </tr>
-<tr class="even">
-<td align="left">IND100</td>
-<td align="left">LL</td>
-<td align="left">DD</td>
+<tr>
+<td>IND233</td>
+<td>DD</td>
+<td>YY</td>
 </tr>
-<tr class="odd">
-<td align="left">IND12</td>
-<td align="left">YY</td>
-<td align="left">DD</td>
+<tr>
+<td>IND91</td>
+<td>LL</td>
+<td>YY</td>
 </tr>
-<tr class="even">
-<td align="left">IND14</td>
-<td align="left">YY</td>
-<td align="left">DD</td>
+<tr>
+<td>IND92</td>
+<td>LL</td>
+<td>YY</td>
 </tr>
-<tr class="odd">
-<td align="left">IND16</td>
-<td align="left">YY</td>
-<td align="left">DD</td>
+<tr>
+<td>IND93</td>
+<td>LL</td>
+<td>YY</td>
 </tr>
-<tr class="even">
-<td align="left">IND18</td>
-<td align="left">YY</td>
-<td align="left">DD</td>
+<tr>
+<td>IND94</td>
+<td>LL</td>
+<td>YY</td>
 </tr>
 </tbody>
 </table>
-<p>Figure A is the PCA result before correcting breed record , Figure B is the PCA result after correcting breed correcting record</p>
-<div class="figure">
-<img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210805034645.png" alt="" />
-<p class="caption">PCA_blupADC</p>
-</div>
-</div>
-<div id="parameter" class="section level2">
-<h2>Parameter</h2>
-<p>Many parameters in <code>genotype_data_overlap</code> are the same as in <code>genotype_data_format_conversion</code> function (<a href="https://qsmei.netlify.app/post/blupadc/">see more details</a>).</p>
-<p>Thus, we will introduce specific parameters in <code>genotype_data_overlap</code> function.</p>
+<p>Figure A is the  PCA result before correcting breed record  , Figure B is the PCA result after correcting breed correcting record</p>
+<p><img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210805034645.png" alt="PCA_blupADC"></p>
+<h2 id="parameter">Parameter</h2>
+<p>Many parameters in  <code>genotype_data_overlap</code> are the same as in <code>genotype_data_format_conversion</code> function (<a href="https://qsmei.netlify.app/post/blupadc/" target="_blank" rel="noopener">see more details</a>).</p>
+<p>Thus, we will introduce  specific parameters in  <code>genotype_data_overlap</code>  function.</p>
 <ul>
 <li><strong>1：selected_snps</strong></li>
 </ul>
@@ -963,40 +954,39 @@ check_result=genotype_data_check(
 <p>The format of <code>ind_breed</code> is showing as follow:</p>
 <table>
 <thead>
-<tr class="header">
-<th align="left">Id</th>
-<th align="left">Breed</th>
+<tr>
+<th>Id</th>
+<th>Breed</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">IND1</td>
-<td align="left">YY</td>
+<tr>
+<td>IND1</td>
+<td>YY</td>
 </tr>
-<tr class="even">
-<td align="left">IND2</td>
-<td align="left">YY</td>
+<tr>
+<td>IND2</td>
+<td>YY</td>
 </tr>
-<tr class="odd">
-<td align="left">IND3</td>
-<td align="left">YY</td>
+<tr>
+<td>IND3</td>
+<td>YY</td>
 </tr>
-<tr class="even">
-<td align="left">IND4</td>
-<td align="left">YY</td>
+<tr>
+<td>IND4</td>
+<td>YY</td>
 </tr>
-<tr class="odd">
-<td align="left">IND5</td>
-<td align="left">YY</td>
+<tr>
+<td>IND5</td>
+<td>YY</td>
 </tr>
-<tr class="even">
-<td align="left">IND6</td>
-<td align="left">YY</td>
+<tr>
+<td>IND6</td>
+<td>YY</td>
 </tr>
 </tbody>
 </table>
 <p>When the proportion of genotype data between two individuals is larger than this threshold, these two individuals will be regarded as the same individual.</p>
-</div>
 
     </div>
 

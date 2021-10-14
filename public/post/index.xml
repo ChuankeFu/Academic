@@ -346,7 +346,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----gblup--model&#34;&gt;Single trait  - GBLUP  model&lt;/h3&gt;
@@ -366,7 +366,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;G_Ainv_col_three.txt&amp;quot;,            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----single-step-blup-model&#34;&gt;Single trait  - single-step BLUP model&lt;/h3&gt;
@@ -386,7 +386,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=c(&amp;quot;pedigree.txt&amp;quot;,&amp;quot;G_A_col_three.txt&amp;quot;),            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Through modifying the two parameters: &lt;code&gt;analysis_model&lt;/code&gt; and &lt;code&gt;relationship_name&lt;/code&gt; , we can perform Pedigree-BLUP, GBLUP, and SSBLUP analysis (PS: we can get G_Ainv_col_three.txt  and G_A_col_three.txt   by &lt;code&gt;cal_kinship&lt;/code&gt; function，&lt;a href=&#34;https://qsmei.netlify.app/post/2021-04-17-r-package-blup-adc-calculate-relationship-matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;  about &lt;code&gt;cal_kinship&lt;/code&gt; function).&lt;/p&gt;
@@ -409,7 +409,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----pedigree-blup-modelwith-user-provided-prior&#34;&gt;Single trait  - pedigree BLUP model(with user-provided prior)&lt;/h3&gt;
@@ -432,7 +432,7 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quo
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----pedigree-blup-model-with-maternal-effect&#34;&gt;Single trait  - pedigree BLUP model( with maternal effect)&lt;/h3&gt;
@@ -455,7 +455,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;maternal_pedigree&amp;quot;,       #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----pedigree-blup-model-with-permanent-effect&#34;&gt;Single trait  - pedigree BLUP model( with permanent effect)&lt;/h3&gt;
@@ -478,7 +478,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;rr_pedigree&amp;quot;,             #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----pedigree-blup-model-with-random-regression-effect&#34;&gt;Single trait  - pedigree BLUP model( with random regression effect)&lt;/h3&gt;
@@ -502,7 +502,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;rr_pedigree&amp;quot;,             #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----pedigree-blup-model-with-social-genetic-effect&#34;&gt;Single trait  - pedigree BLUP model( with social genetic effect)&lt;/h3&gt;
@@ -526,7 +526,7 @@ run_DMU(
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;socail_pedigree&amp;quot;,         #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;single-trait----pedigree-blup-model-with-social-genetic-effect-1&#34;&gt;Single trait  - pedigree BLUP model( with social genetic effect)&lt;/h3&gt;
@@ -551,7 +551,7 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;qu
         dmu_module=&amp;quot;dmuai&amp;quot;,                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=&amp;quot;socail_pedigree&amp;quot;,         #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
 		)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;basic&#34;&gt;🤡Basic&lt;/h3&gt;
@@ -950,7 +950,7 @@ phased_kinship_result=cal_kinship(
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;5：IND_rename&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Whether genotype individuals need to be renamed according to the  renamed pedigree,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
+&lt;p&gt;Whether genotype individuals need to be renamed according to the  provided pedigree,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;6:bigmemory_cal&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -966,7 +966,7 @@ phased_kinship_result=cal_kinship(
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;9：output_matrix_type&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Type of output kinship matrix type,   &lt;code&gt;character&lt;/code&gt; class. Default is &amp;ldquo;col_three&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Type of output kinship matrix type,   &lt;code&gt;character&lt;/code&gt; class. Default is &amp;ldquo;col_all&amp;rdquo;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&amp;ldquo;&lt;code&gt;col_all&lt;/code&gt;&amp;rdquo; : n*n format&lt;/li&gt;
 &lt;li&gt;&amp;ldquo;&lt;code&gt;col_three&lt;/code&gt;&amp;rdquo; : 3 columns format. The first and the second column are the name of individuals, the third column is the relationship coefficients 。&lt;/li&gt;
@@ -1082,8 +1082,7 @@ phased_kinship_result=cal_kinship(
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(blupADC)
 pedigree_result=ggped(
                 input_pedigree=example_ped2
-                )                 
-
+                ) 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153843.png&#34; alt=&#34;image-20210708153839657&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;plot-subset-of-whole-pedigree&#34;&gt;Plot subset of whole pedigree&lt;/h3&gt;
@@ -1092,7 +1091,6 @@ pedigree_result=ggped(
                 input_pedigree=example_ped2,
     			trace_id=c(&amp;quot;121&amp;quot;)             #provided subset-id
                 )                   
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153708.png&#34; alt=&#34;image-20210708153706707&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;plot-subset-of-whole-pedigree-with-sibs&#34;&gt;Plot subset of whole pedigree (with sibs)&lt;/h3&gt;
@@ -1102,7 +1100,6 @@ pedigree_result=ggped(
     			trace_id=c(&amp;quot;121&amp;quot;),
     			trace_sibs=TRUE   #whether plot the sibs of subset-id  
                 )                   
-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708161212.png&#34; alt=&#34;image-20210708161211022&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;change-the-style-of-picture&#34;&gt;Change the style of picture&lt;/h3&gt;
@@ -1528,78 +1525,74 @@ pedigree_result=trace_pedigree(
       <link>/post/feature-3-overlap_pca/blupadc/</link>
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
       <guid>/post/feature-3-overlap_pca/blupadc/</guid>
-      <description>
-&lt;script src=&#34;/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
-
-&lt;div id=&#34;TOC&#34;&gt;
-
-&lt;/div&gt;
-
-&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
   &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
-  
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#example&#34;&gt;Example&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#breed-composition-analysis&#34;&gt;Breed composition analysis&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#check-duplication&#34;&gt;Check duplication&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#output&#34;&gt;Output&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
 &lt;/details&gt;
 
-&lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Overview&lt;/h2&gt;
-&lt;p&gt;👦 Breed composition analysis is usually a problem in data analysis. In package:&lt;code&gt;blupADC&lt;/code&gt;, user can solve this problem by applying &lt;code&gt;genotype_data_check&lt;/code&gt; function. In addition, user can detect the duplication of genomic data easily by applying &lt;code&gt;genotype_data_check&lt;/code&gt; function.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;example&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Example&lt;/h2&gt;
-&lt;div id=&#34;breed-composition-analysis&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Breed composition analysis&lt;/h3&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-check_result=genotype_data_check(
-                  input_data_hmp=PCA_data_hmp,   #provided hapmap data object
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;👦   Breed composition analysis is usually a problem in data analysis. In package:&lt;code&gt;blupADC&lt;/code&gt;, user can solve this problem by applying &lt;code&gt;geno_check&lt;/code&gt; function. In addition, user can  detect the duplication of genomic data easily by applying &lt;code&gt;geno_check&lt;/code&gt; function.&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;h3 id=&#34;breed-composition-analysis&#34;&gt;Breed composition analysis&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+check_result=geno_check(
+                  input_data_hmp=example_PCA_data_hmp,   #provided hapmap data object
                   duplication_check=FALSE,       #whether check the duplication of genotype
                   breed_check=TRUE,              # whether check the record of breed
-                  breed_record=PCA_Breed,        # provided breed record
+                  breed_record=example_PCA_Breed,        # provided breed record
                   return_result=TRUE             #return result 
-                  )&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;check-duplication&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Check duplication&lt;/h3&gt;
-&lt;pre class=&#34;R&#34;&gt;&lt;code&gt;library(blupADC)
-check_result=genotype_data_check(
-                  input_data_hmp=data_hmp,   #provided hapmap data object
+                  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;check-duplication&#34;&gt;Check duplication&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
+check_result=geno_check(
+                  input_data_hmp=example_data_hmp,   #provided hapmap data object
                  duplication_threshold=0.95, #threshold of duplication
                   duplication_check=TRUE,    #whether check the duplication of genotype
                   breed_check=FALSE,         # whether check the record of breed
                   return_result=TRUE         #return result 
-                  )&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;output&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Output&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;## Start numeric(0,1,2) format conversion......&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Start numeric(0,1,2) format conversion...... 
-## Before filter, there are 304 individuals, after filter, there are 296 individuals 
-## Finally, there are total 296 individuals in your data!&lt;/code&gt;&lt;/pre&gt;
+                  )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;output&#34;&gt;Output&lt;/h2&gt;
 &lt;p&gt;The result of output mainly contains two parts, including:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;duplicated_genotype&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;IND1&lt;/th&gt;
+&lt;th&gt;IND1&lt;/th&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;IND1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND2&lt;/td&gt;
+&lt;td&gt;IND2&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;IND2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND3&lt;/td&gt;
+&lt;td&gt;IND3&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;IND3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;IND4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;1&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND4&lt;/td&gt;
+&lt;td&gt;IND4&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1609,55 +1602,50 @@ check_result=genotype_data_check(
 &lt;/ul&gt;
 &lt;table&gt;
 &lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;Id&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Breed&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Expeced_Breed&lt;/th&gt;
+&lt;tr&gt;
+&lt;th&gt;Id&lt;/th&gt;
+&lt;th&gt;Breed&lt;/th&gt;
+&lt;th&gt;Expeced_Breed&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND100&lt;/td&gt;
+&lt;td&gt;LL&lt;/td&gt;
+&lt;td&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND100&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;LL&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND233&lt;/td&gt;
+&lt;td&gt;DD&lt;/td&gt;
+&lt;td&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND12&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND91&lt;/td&gt;
+&lt;td&gt;LL&lt;/td&gt;
+&lt;td&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND14&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND92&lt;/td&gt;
+&lt;td&gt;LL&lt;/td&gt;
+&lt;td&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND16&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND93&lt;/td&gt;
+&lt;td&gt;LL&lt;/td&gt;
+&lt;td&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND18&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;DD&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND94&lt;/td&gt;
+&lt;td&gt;LL&lt;/td&gt;
+&lt;td&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Figure A is the PCA result before correcting breed record , Figure B is the PCA result after correcting breed correcting record&lt;/p&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210805034645.png&#34; alt=&#34;&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;PCA_blupADC&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;parameter&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Parameter&lt;/h2&gt;
-&lt;p&gt;Many parameters in &lt;code&gt;genotype_data_overlap&lt;/code&gt; are the same as in &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function (&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;Thus, we will introduce specific parameters in &lt;code&gt;genotype_data_overlap&lt;/code&gt; function.&lt;/p&gt;
+&lt;p&gt;Figure A is the  PCA result before correcting breed record  , Figure B is the PCA result after correcting breed correcting record&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210805034645.png&#34; alt=&#34;PCA_blupADC&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;parameter&#34;&gt;Parameter&lt;/h2&gt;
+&lt;p&gt;Many parameters in  &lt;code&gt;genotype_data_overlap&lt;/code&gt; are the same as in &lt;code&gt;genotype_data_format_conversion&lt;/code&gt; function (&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Thus, we will introduce  specific parameters in  &lt;code&gt;genotype_data_overlap&lt;/code&gt;  function.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;1：selected_snps&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -1681,40 +1669,39 @@ check_result=genotype_data_check(
 &lt;p&gt;The format of &lt;code&gt;ind_breed&lt;/code&gt; is showing as follow:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;Id&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Breed&lt;/th&gt;
+&lt;tr&gt;
+&lt;th&gt;Id&lt;/th&gt;
+&lt;th&gt;Breed&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND1&lt;/td&gt;
+&lt;td&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND2&lt;/td&gt;
+&lt;td&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND3&lt;/td&gt;
+&lt;td&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND4&lt;/td&gt;
+&lt;td&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND5&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND5&lt;/td&gt;
+&lt;td&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;IND6&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;YY&lt;/td&gt;
+&lt;tr&gt;
+&lt;td&gt;IND6&lt;/td&gt;
+&lt;td&gt;YY&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;When the proportion of genotype data between two individuals is larger than this threshold, these two individuals will be regarded as the same individual.&lt;/p&gt;
-&lt;/div&gt;
 </description>
     </item>
     
@@ -2686,6 +2673,7 @@ phased=geno_format(
     &lt;li&gt;
       &lt;ul&gt;
         &lt;li&gt;&lt;a href=&#34;#overview&#34;&gt;OVERVIEW&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#-citation&#34;&gt;👨‍💻 Citation&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/li&gt;
     &lt;li&gt;&lt;a href=&#34;#new-features&#34;&gt;New features&lt;/a&gt;
@@ -2715,6 +2703,8 @@ phased=geno_format(
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(&lt;strong&gt;trace pedigree, rename pedigree, and correct pedigree errors&lt;/strong&gt;), genotype data format conversion(supports &lt;strong&gt;Hapmap, Plink, Blupf90, Numeric,  VCF and Haplotype&lt;/strong&gt; format), genotype data quality control and imputation, construction of kinship matrix(&lt;strong&gt;pedigree, genomic  and single-step&lt;/strong&gt;),and genetic evaluation( by interfacing with two famous breeding softwares, &lt;strong&gt;DMU&lt;/strong&gt; and &lt;strong&gt;BLUPF90&lt;/strong&gt;  in an easy way).&lt;/p&gt;
 &lt;p&gt;Finally, we kindly provides an easier way of applying &lt;code&gt;blupADC&lt;/code&gt;, which is a free  website(&lt;a href=&#34;http://47.95.251.15:443/blupADC/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shinyapp&lt;/a&gt;).  Several functions are still under development.  But the pitfall of this website is that it can&amp;rsquo;t handle big data.&lt;/p&gt;
 &lt;p&gt;😊 Good Luck Charlie !&lt;/p&gt;
+&lt;h3 id=&#34;-citation&#34;&gt;👨‍💻 Citation&lt;/h3&gt;
+&lt;p&gt;Quanshun Mei, Chuanke Fu, Jieling Li, Shuhong Zhao, and Tao Xiang. &amp;ldquo;blupADC: An R package and shiny toolkit for comprehensive genetic data analysis in animal and plant breeding.&amp;rdquo; &lt;em&gt;bioRxiv&lt;/em&gt; (2021), &lt;strong&gt;doi:&lt;/strong&gt; &lt;a href=&#34;https://doi.org/10.1101/2021.09.09.459557&#34;&gt;https://doi.org/10.1101/2021.09.09.459557&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;new-features&#34;&gt;New features&lt;/h2&gt;
 &lt;h3 id=&#34;103&#34;&gt;1.0.3&lt;/h3&gt;
 &lt;ul&gt;
@@ -2885,7 +2875,6 @@ run_BLUPF90(
         output_result_path=getwd()                   # output path 
         )   
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;1&lt;/p&gt;
 </description>
     </item>
     

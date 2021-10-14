@@ -55,7 +55,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="pedigree.txt",            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 ```
 
@@ -78,7 +78,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="G_Ainv_col_three.txt",            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 ```
 
@@ -101,7 +101,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=c("pedigree.txt","G_A_col_three.txt"),            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 ```
 
@@ -129,7 +129,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="pedigree.txt",            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 ```
 
@@ -155,7 +155,7 @@ run_DMU(phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter",
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="pedigree.txt",            #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 ```
 
@@ -181,7 +181,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="maternal_pedigree",       #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 ```
 
@@ -207,7 +207,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="rr_pedigree",             #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 ```
 
@@ -234,7 +234,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="rr_pedigree",             #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 ```
 
@@ -262,7 +262,7 @@ run_DMU(
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="socail_pedigree",         #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
         )
 ```
 
@@ -291,7 +291,7 @@ run_DMU(phe_col_names=c("Id","Group","Sex","Gr_id1","Gr_id2","Gr_id3","Gr_id4","
         dmu_module="dmuai",                          #modeule of estimating variance components 
         relationship_path=data_path,                 #path of relationship file 
         relationship_name="socail_pedigree",         #name of relationship file 
-        output_result_path=gewd()                    # output path 
+        output_result_path=getwd()                    # output path 
 		)
 ```
 

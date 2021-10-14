@@ -144,7 +144,7 @@ phased_kinship_result=cal_kinship(
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;5：IND_rename&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Whether genotype individuals need to be renamed according to the  renamed pedigree,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
+&lt;p&gt;Whether genotype individuals need to be renamed according to the  provided pedigree,  &lt;code&gt;logical&lt;/code&gt; class. Default is FALSE.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;6:bigmemory_cal&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -160,7 +160,7 @@ phased_kinship_result=cal_kinship(
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;9：output_matrix_type&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Type of output kinship matrix type,   &lt;code&gt;character&lt;/code&gt; class. Default is &amp;ldquo;col_three&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Type of output kinship matrix type,   &lt;code&gt;character&lt;/code&gt; class. Default is &amp;ldquo;col_all&amp;rdquo;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&amp;ldquo;&lt;code&gt;col_all&lt;/code&gt;&amp;rdquo; : n*n format&lt;/li&gt;
 &lt;li&gt;&amp;ldquo;&lt;code&gt;col_three&lt;/code&gt;&amp;rdquo; : 3 columns format. The first and the second column are the name of individuals, the third column is the relationship coefficients 。&lt;/li&gt;

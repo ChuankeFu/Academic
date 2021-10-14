@@ -35,9 +35,8 @@ show_related:
 ```r
 library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree
-                )                 
-
+                input_pedigree=example_ped2
+                ) 
 ```
 
 ![image-20210708153839657](https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153843.png)
@@ -48,10 +47,9 @@ pedigree_result=ggped(
 ```r
 library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree,
+                input_pedigree=example_ped2,
     			trace_id=c("121")             #provided subset-id
-                )                   
-
+                )
 ```
 
 ![image-20210708153706707](https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708153708.png)
@@ -62,11 +60,10 @@ pedigree_result=ggped(
 ```r
 library(blupADC)
 pedigree_result=ggped(
-                input_pedigree=plot_pedigree,
+                input_pedigree=example_ped2,
     			trace_id=c("121"),
     			trace_sibs=TRUE   #whether plot the sibs of subset-id  
-                )                   
-
+                ) 
 ```
 
 ![image-20210708161211022](https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210708161212.png)
