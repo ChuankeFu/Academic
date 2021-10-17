@@ -228,7 +228,7 @@ run_DMU(
         covariate_effect_name=list(c("age")),                 #covariate effect name	
         genetic_effect_name="id",                             #遗传效应名称 
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
-        random_regression_effect_name=list(c("L1&id","L1&pe_effect","L2&id","L2&pe_effect")), #random regression effect name
+        random_regression_effect_name=list(c("L1&id&pe_effect","L2&id&pe_effect")), #random regression effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name="rr_data",                          #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -377,9 +377,9 @@ eg.  `target_trait_name=list(c("Trait1"),c("Trait2"))`
 
 eg.  `target_trait_name=list(c("Trait1"),c("Trait2"))` 
 
-`random_regression_effect_name=list(c("L1&id","L1&pe_effect","L2&id","L2&pe_effect"),c("L1&id","L1&pe_effect","L2&id","L2&pe_effect"))`    
+`random_regression_effect_name=list(c("L1&id&pe_effect","L2&id&pe_effect"),c("L1&id&pe_effect","L2&id&pe_effect"))`    
 
-在每个列表中,    `&`  左边 代表的是多项式系数名称,   `&`  右边 代表的是嵌套在多项式里的相应的随机效应名称。 如果用户想将 永久环境效应也嵌套在多项式里，`&`  右边 代表的随机效应名称应设置为 "pe_effect"，并且需要设置  included_permanent_effect 参数为 TRUE。
+在每个列表中,    `&`  左边 代表的是多项式系数名称,   `&`  右边 代表的是嵌套在多项式里的相应的随机效应名称或固定效应名称。 如果用户想将 永久环境效应也嵌套在多项式里，`&`  右边 代表的随机效应名称应设置为 "pe_effect"，并且需要设置  included_permanent_effect 参数为 TRUE。
 
 -   **参数12: included_permanent_effect**
 

@@ -226,7 +226,7 @@ run_DMU(
         covariate_effect_name=list(c("age")),                 #covariate effect name	
         genetic_effect_name="id",                    #genetic effect name 
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
-        random_regression_effect_name=list(c("L1&id","L1&pe_effect","L2&id","L2&pe_effect")), #random regression effect name
+        random_regression_effect_name=list(c("L1&id&pe_effect","L2&id&pe_effect")), #random regression effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name="rr_data",                          #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -379,9 +379,9 @@ For multiple traits model,  the order of  random regression effects name should 
 
 eg.  `target_trait_name=list(c("Trait1"),c("Trait2"))` 
 
-`random_regression_effect_name=list(c("L1&id","L1&pe_effect","L2&id","L2&pe_effect"),c("L1&id","L1&pe_effect","L2&id","L2&pe_effect"))`    
+`random_regression_effect_name=list(c("L1&id&pe_effect","L2&id&pe_effect"),c("L1&id&pe_effect","L2&id&pe_effect"))`    
 
-Within each list,  the left side of  `&`  stands for  polynomial coefficient name,  the right side of  `&`  stands for  random effect name. If user want to include permanent effect in random regression model,  the random effect name in the right side of `&`   should be "pe_effect", and user must set  included_permanent_effect as TRUE
+Within each list,  the left side of  `&`  stands for  polynomial coefficient name,  the right side of  `&`  stands for  random effect name or fixed  effect name. If user want to include permanent effect in random regression model,  the random effect name in the right side of `&`   should be "pe_effect", and user must set  included_permanent_effect as TRUE
 
 -   **12：included_permanent_effect**  
 

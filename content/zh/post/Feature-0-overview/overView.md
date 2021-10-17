@@ -21,6 +21,8 @@ toc: true
 
 {{<toc>}}<img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210617165506.png" alt="logo-blupADC"  height="250" align="right" style="zoom:25%;" />
 
+**Documents support two-language([English](https://qsmei.netlify.app/post/feature-0-overview/overview/) and [Chinese](https://qsmei.netlify.app/zh/post/feature-0-overview/overview/)).** 
+
 ## 简介
 
 `blupADC` 是一个专注于分析动植物育种中的系谱数据、基因型数据及遗传评估的工具。在设计该工具时，我们对数据处理时可能遇到的各种问题均进行了详细的考量(**ps.如果您有好的建议，请积极联系作者!**)。此外，为了提高分析效率， `blupADC` 可支持并行计算(通过`openMP` ) 及大数据处理(通过`bigmemory`)，并且`blupADC` 中的核心函数均通过c++(`Rcpp` and `RcppArmadillo `) 进行编写。
@@ -104,8 +106,6 @@ library(blupADC)
 -   功能 8. 利用BLUPF90软件进行遗传评估
 
 ## 使用
-
-**为了方便用户使用，所有的文档均支持双语模式(中英文说明书)。**
 
 `blupADC` 内置了几个数据集对象, 包括 `data_hmp` 及`origin_pedigree`.
 

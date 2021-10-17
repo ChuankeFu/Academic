@@ -21,7 +21,7 @@ toc: true
 
 {{<toc>}}<img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210617165506.png" alt="logo-blupADC"  height="250" align="right" style="zoom:25%;" />
 
-**Documents support two-language([English](https://qsmei.netlify.app/post/2021-04-21-r-package-rblupadc-overview/overview/) and [Chinese](https://qsmei.netlify.app/zh/post/2021-04-21-r-package-rblupadc-overview/overview/)).** 
+**Documents support two-language([English](https://qsmei.netlify.app/post/feature-0-overview/overview/) and [Chinese](https://qsmei.netlify.app/zh/post/feature-0-overview/overview/)).** 
 
 ### OVERVIEW
 
@@ -117,8 +117,6 @@ library(blupADC)
 -   Feature 7. Genetic evaluation with DMU
 -   Feature 8. Genetic  evaluation with BLUPF90
 ## Usage
-
-**For convenience, all documents support two-language([English](https://qsmei.netlify.app/post/2021-04-21-r-package-rblupadc-overview/overview/) and [Chinese](https://qsmei.netlify.app/zh/post/2021-04-21-r-package-rblupadc-overview/overview/)).** 
 
 `blupADC` provides several datasets objects, including `data_hmp`, `origin_pedigree`.
 
