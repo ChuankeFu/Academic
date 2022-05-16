@@ -504,7 +504,7 @@ run_DMU(
         covariate_effect_name=list(c(&amp;quot;age&amp;quot;)),                 #covariate effect name	
         genetic_effect_name=&amp;quot;id&amp;quot;,                             #遗传效应名称 
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
-        random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;quot;,&amp;quot;L1&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;quot;,&amp;quot;L2&amp;amp;pe_effect&amp;quot;)), #random regression effect name
+        random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;amp;pe_effect&amp;quot;)), #random regression effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;rr_data&amp;quot;,                          #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -626,8 +626,8 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;qu
 &lt;p&gt;随机回归效应名称, &lt;code&gt;list&lt;/code&gt; 类型.&lt;/p&gt;
 &lt;p&gt;在多性状模型中，&lt;code&gt;random_regression_effect_name&lt;/code&gt;为每个性状的随机回归效应名称向量组成的列表结构，性状的顺序需与&lt;code&gt;target_trait_name&lt;/code&gt;一一对应。&lt;/p&gt;
 &lt;p&gt;eg.  &lt;code&gt;target_trait_name=list(c(&amp;quot;Trait1&amp;quot;),c(&amp;quot;Trait2&amp;quot;))&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;quot;,&amp;quot;L1&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;quot;,&amp;quot;L2&amp;amp;pe_effect&amp;quot;),c(&amp;quot;L1&amp;amp;id&amp;quot;,&amp;quot;L1&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;quot;,&amp;quot;L2&amp;amp;pe_effect&amp;quot;))&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;在每个列表中,    &lt;code&gt;&amp;amp;&lt;/code&gt;  左边 代表的是多项式系数名称,   &lt;code&gt;&amp;amp;&lt;/code&gt;  右边 代表的是嵌套在多项式里的相应的随机效应名称。 如果用户想将 永久环境效应也嵌套在多项式里，&lt;code&gt;&amp;amp;&lt;/code&gt;  右边 代表的随机效应名称应设置为 &amp;ldquo;pe_effect&amp;rdquo;，并且需要设置  included_permanent_effect 参数为 TRUE。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;amp;pe_effect&amp;quot;),c(&amp;quot;L1&amp;amp;id&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;amp;pe_effect&amp;quot;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在每个列表中,    &lt;code&gt;&amp;amp;&lt;/code&gt;  左边 代表的是多项式系数名称,   &lt;code&gt;&amp;amp;&lt;/code&gt;  右边 代表的是嵌套在多项式里的相应的随机效应名称或固定效应名称。 如果用户想将 永久环境效应也嵌套在多项式里，&lt;code&gt;&amp;amp;&lt;/code&gt;  右边 代表的随机效应名称应设置为 &amp;ldquo;pe_effect&amp;rdquo;，并且需要设置  included_permanent_effect 参数为 TRUE。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;参数12: included_permanent_effect&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -864,7 +864,7 @@ kinship_result=cal_kinship(
 &lt;h3 id=&#34;-构建基因组亲缘关系矩阵&#34;&gt;🤡 构建基因组亲缘关系矩阵&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
 kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,          #provided hapmap data object
+                input_data_hmp=example_data_hmp,          #provided hapmap data object
                 kinship_type=c(&amp;quot;G_A&amp;quot;,&amp;quot;G_D&amp;quot;),      #type of  kinship matrix
                 dominance_type=c(&amp;quot;genotypic&amp;quot;),    #type of dominance effect
                 inbred_type=c(&amp;quot;Homozygous&amp;quot;),      #type of inbreeding coefficients
@@ -2662,6 +2662,7 @@ phased_result=geno_format(
 &lt;/nav&gt;
 &lt;/details&gt;
 &lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210617165506.png&#34; alt=&#34;logo-blupADC&#34;  height=&#34;250&#34; align=&#34;right&#34; style=&#34;zoom:25%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Documents support two-language(&lt;a href=&#34;https://qsmei.netlify.app/post/feature-0-overview/overview/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;English&lt;/a&gt; and &lt;a href=&#34;https://qsmei.netlify.app/zh/post/feature-0-overview/overview/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chinese&lt;/a&gt;).&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; 是一个专注于分析动植物育种中的系谱数据、基因型数据及遗传评估的工具。在设计该工具时，我们对数据处理时可能遇到的各种问题均进行了详细的考量(&lt;strong&gt;ps.如果您有好的建议，请积极联系作者!&lt;/strong&gt;)。此外，为了提高分析效率， &lt;code&gt;blupADC&lt;/code&gt; 可支持并行计算(通过&lt;code&gt;openMP&lt;/code&gt; ) 及大数据处理(通过&lt;code&gt;bigmemory&lt;/code&gt;)，并且&lt;code&gt;blupADC&lt;/code&gt; 中的核心函数均通过c++(&lt;code&gt;Rcpp&lt;/code&gt; and &lt;code&gt;RcppArmadillo &lt;/code&gt;) 进行编写。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt;提供了许多有用的功能在整个动植物育种的流程中，包括 系谱分析(系谱追溯、重命名及纠错)，基因型数据格式转换(支持&lt;strong&gt;Hapmap, Plink, BLUPF90, Numeric, Haplotype 及VCF&lt;/strong&gt; 格式)，基因型数据的质控填充，亲缘关系矩阵的构建(&lt;strong&gt;系谱，基因组及一步法亲缘关系矩阵&lt;/strong&gt;)以及遗传评估（仅需几行代码即可通过DMU和BLUPF90完成遗传评估）。&lt;/p&gt;
@@ -2679,27 +2680,22 @@ phased_result=geno_format(
 &lt;/ul&gt;
 &lt;h2 id=&#34;开始&#34;&gt;开始&lt;/h2&gt;
 &lt;h3 id=&#34;安装&#34;&gt;🙊安装&lt;/h3&gt;
-&lt;p&gt;安装&lt;code&gt;blupADC&lt;/code&gt; 之前，用户首先需要安装如下3个包：&lt;code&gt;Rcpp&lt;/code&gt;, &lt;code&gt;RcppArmadillo&lt;/code&gt; and &lt;code&gt;data.table&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;install.packages(c(&amp;quot;Rcpp&amp;quot;, &amp;quot;RcppArmadillo&amp;quot;,&amp;quot;data.table&amp;quot;,&amp;quot;bigmemory&amp;quot;))
+&lt;p&gt;安装&lt;code&gt;blupADC&lt;/code&gt; 之前，用户首先需要安装如下5个包：&lt;code&gt;Rcpp&lt;/code&gt;, &lt;code&gt;RcppArmadillo&lt;/code&gt; and &lt;code&gt;data.table&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;install.packages(c(&amp;quot;Rcpp&amp;quot;, &amp;quot;RcppArmadillo&amp;quot;,&amp;quot;RcppProgress&amp;quot;,&amp;quot;data.table&amp;quot;,&amp;quot;bigmemory&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;👉 Note:  在 DMU 和 BLUPF90的分析中，我们通常需要提前下载好 DMU 软件 (&lt;a href=&#34;https://dmu.ghpc.au.dk/dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU下载网站&lt;/a&gt;)  和 BLUPF90软件 (&lt;a href=&#34;http://nce.ads.uga.edu/html/projects/programs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BLUPF90下载网站&lt;/a&gt;)。为了方便用户使用，我们已经将两款软件中基础模块封装进了 &lt;code&gt;blupADC&lt;/code&gt;，请大家合理使用。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;如果您想将DMU和BLUPF90用作商业用途，请务必联系 DMU 和 BLUPF90的作者！！！&lt;/strong&gt;&lt;/p&gt;
-&lt;h4 id=&#34;在-linux-上-安装-blupadc&#34;&gt;在 Linux 上 安装 blupADC&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz&amp;quot;
+&lt;h4 id=&#34;install-blupadc-via-devtools-way1&#34;&gt;Install blupADC via devtools (way1)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;devtools::install_github(&amp;quot;TXiang-lab/blupADC&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;install-blupadc--way2&#34;&gt;Install blupADC  (way2)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.6/blupADC_1.0.6.tar.gz&amp;quot;
 install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;在-windows-上-安装-blupadc&#34;&gt;在 Windows 上 安装 blupADC&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4.zip&amp;quot;
-install.packages(packageurl,repos=NULL)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;👉 **Note:**针对github连接比较慢的地区，用户可以通过如下代码进行下载(国内用户推荐如下方式下载)：&lt;/p&gt;
-&lt;h4 id=&#34;在-linux-上-安装-blupadc-1&#34;&gt;在 Linux 上 安装 blupADC&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blupADC/attach_files/851170/download/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz&amp;quot;
+&lt;p&gt;👉 &lt;strong&gt;Note:If the connection with github is not good(such as in China), user can download as below:&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;install-blupadc--way3&#34;&gt;Install blupADC  (way3)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blupADC/attach_files/1062637/download/blupADC_1.0.6.tar.gz&amp;quot;
 install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;在-windows-上-安装-blupadc-1&#34;&gt;在 Windows 上 安装 blupADC&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl&amp;lt;-&amp;quot;https://gitee.com/qsmei/blupADC/attach_files/851169/download/blupADC_1.0.4.zip&amp;quot;
-install.packages(packageurl,repos=NULL)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;安装成功后，我们输入如下代码即可加载R包:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
@@ -2716,7 +2712,6 @@ install.packages(packageurl,repos=NULL)
 &lt;li&gt;功能 8. 利用BLUPF90软件进行遗传评估&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;使用&#34;&gt;使用&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;为了方便用户使用，所有的文档均支持双语模式(中英文说明书)。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; 内置了几个数据集对象, 包括 &lt;code&gt;data_hmp&lt;/code&gt; 及&lt;code&gt;origin_pedigree&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;此外，&lt;code&gt;blupADC&lt;/code&gt;  提供一些示例文件， 这些文件存储在&lt;code&gt;~/blupADC/extdata&lt;/code&gt; 路径下。通过输出下面的代码，我们就能得到 这些文件的绝对路径了：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;) # path of provided files

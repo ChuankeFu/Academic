@@ -48,7 +48,7 @@ kinship_result=cal_kinship(
 ``` {.R}
 library(blupADC)
 kinship_result=cal_kinship(
-                input_data_hmp=data_hmp,          #provided hapmap data object
+                input_data_hmp=example_data_hmp,          #provided hapmap data object
                 kinship_type=c("G_A","G_D"),      #type of  kinship matrix
                 dominance_type=c("genotypic"),    #type of dominance effect
                 inbred_type=c("Homozygous"),      #type of inbreeding coefficients

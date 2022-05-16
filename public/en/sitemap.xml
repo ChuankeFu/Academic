@@ -434,19 +434,6 @@
                 href="/authors/"
                 />
   </url><url>
-    <loc>/author/mei-quanshun/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/zh/author/%E6%A2%85%E5%85%A8%E9%A1%BA/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/author/mei-quanshun/"
-                />
-  </url><url>
     <loc>/publication_types/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -471,6 +458,19 @@
                 rel="alternate"
                 hreflang="en"
                 href="/publication/"
+                />
+  </url><url>
+    <loc>/author/quanshun-mei/</loc>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/%E6%A2%85%E5%85%A8%E9%A1%BA/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/quanshun-mei/"
                 />
   </url><url>
     <loc>/tag/source-themes/</loc>

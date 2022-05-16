@@ -45,7 +45,7 @@ run_BLUPF90(
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
-        genetic_effect_name="id",                    #genetic effect name 
+        genetic_effect_name="Id",                    #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name="phenotype.txt",                    #name of phenotype file
         analysis_model="PBLUP_A",                    #model of genetic evaluation
@@ -67,7 +67,7 @@ run_BLUPF90(
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
-        genetic_effect_name="id",                    #genetic effect name 
+        genetic_effect_name="Id",                    #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name="phenotype.txt",                    #name of phenotype file
         analysis_model="GBLUP_A",                    #model of genetic evaluation
@@ -90,7 +90,7 @@ run_BLUPF90(
         fixed_effect_name=list(c("Sex","Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter")),               #random effect name
         covariate_effect_name=NULL,                              #covariate effect name
-        genetic_effect_name="id",                    #genetic effect name 
+        genetic_effect_name="Id",                    #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name="phenotype.txt",                    #name of phenotype file
         analysis_model="SSBLUP_A",                    #model of genetic evaluation
@@ -116,7 +116,7 @@ run_BLUPF90(
         fixed_effect_name=list(c("Sex","Herd_Year_Season"),c("Herd_Year_Season")),     #fixed effect name
         random_effect_name=list(c("Id","Litter"),c("Id")),               #random effect name
         covariate_effect_name=list(NULL,"Age"),                          #covariate effect name
-        genetic_effect_name="id",                    #genetic effect name 
+        genetic_effect_name="Id",                    #genetic effect name 
         phe_path=data_path,                          #path of phenotype file
         phe_name="phenotype.txt",                    #name of phenotype file
         analysis_model="PBLUP_A",                    #model of genetic evaluation

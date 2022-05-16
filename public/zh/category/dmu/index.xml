@@ -221,7 +221,7 @@ run_DMU(
         covariate_effect_name=list(c(&amp;quot;age&amp;quot;)),                 #covariate effect name	
         genetic_effect_name=&amp;quot;id&amp;quot;,                             #遗传效应名称 
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
-        random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;quot;,&amp;quot;L1&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;quot;,&amp;quot;L2&amp;amp;pe_effect&amp;quot;)), #random regression effect name
+        random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;amp;pe_effect&amp;quot;)), #random regression effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;rr_data&amp;quot;,                          #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -343,8 +343,8 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;qu
 &lt;p&gt;随机回归效应名称, &lt;code&gt;list&lt;/code&gt; 类型.&lt;/p&gt;
 &lt;p&gt;在多性状模型中，&lt;code&gt;random_regression_effect_name&lt;/code&gt;为每个性状的随机回归效应名称向量组成的列表结构，性状的顺序需与&lt;code&gt;target_trait_name&lt;/code&gt;一一对应。&lt;/p&gt;
 &lt;p&gt;eg.  &lt;code&gt;target_trait_name=list(c(&amp;quot;Trait1&amp;quot;),c(&amp;quot;Trait2&amp;quot;))&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;quot;,&amp;quot;L1&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;quot;,&amp;quot;L2&amp;amp;pe_effect&amp;quot;),c(&amp;quot;L1&amp;amp;id&amp;quot;,&amp;quot;L1&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;quot;,&amp;quot;L2&amp;amp;pe_effect&amp;quot;))&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;在每个列表中,    &lt;code&gt;&amp;amp;&lt;/code&gt;  左边 代表的是多项式系数名称,   &lt;code&gt;&amp;amp;&lt;/code&gt;  右边 代表的是嵌套在多项式里的相应的随机效应名称。 如果用户想将 永久环境效应也嵌套在多项式里，&lt;code&gt;&amp;amp;&lt;/code&gt;  右边 代表的随机效应名称应设置为 &amp;ldquo;pe_effect&amp;rdquo;，并且需要设置  included_permanent_effect 参数为 TRUE。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;amp;pe_effect&amp;quot;),c(&amp;quot;L1&amp;amp;id&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;amp;pe_effect&amp;quot;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在每个列表中,    &lt;code&gt;&amp;amp;&lt;/code&gt;  左边 代表的是多项式系数名称,   &lt;code&gt;&amp;amp;&lt;/code&gt;  右边 代表的是嵌套在多项式里的相应的随机效应名称或固定效应名称。 如果用户想将 永久环境效应也嵌套在多项式里，&lt;code&gt;&amp;amp;&lt;/code&gt;  右边 代表的随机效应名称应设置为 &amp;ldquo;pe_effect&amp;rdquo;，并且需要设置  included_permanent_effect 参数为 TRUE。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;参数12: included_permanent_effect&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;

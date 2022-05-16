@@ -23,7 +23,7 @@
   
   
 
-  <meta name="author" content="Mei Quanshun" />
+  <meta name="author" content="Quanshun Mei" />
 
   
   
@@ -336,7 +336,7 @@
   
   "author": {
     "@type": "Person",
-    "name": "Mei Quanshun"
+    "name": "Quanshun Mei"
   },
   
   "publisher": {
@@ -1008,7 +1008,7 @@ run_DMU(
         covariate_effect_name=list(c(&quot;age&quot;)),                 #covariate effect name	
         genetic_effect_name=&quot;id&quot;,                    #genetic effect name 
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
-        random_regression_effect_name=list(c(&quot;L1&amp;id&quot;,&quot;L1&amp;pe_effect&quot;,&quot;L2&amp;id&quot;,&quot;L2&amp;pe_effect&quot;)), #random regression effect name
+        random_regression_effect_name=list(c(&quot;L1&amp;id&amp;pe_effect&quot;,&quot;L2&amp;id&amp;pe_effect&quot;)), #random regression effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&quot;rr_data&quot;,                          #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -1132,8 +1132,8 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;G
 <p>Random regression effects name, <code>list</code> class.</p>
 <p>For multiple traits model,  the order of  random regression effects name should correspond to the target trait name.</p>
 <p>eg.  <code>target_trait_name=list(c(&quot;Trait1&quot;),c(&quot;Trait2&quot;))</code></p>
-<p><code>random_regression_effect_name=list(c(&quot;L1&amp;id&quot;,&quot;L1&amp;pe_effect&quot;,&quot;L2&amp;id&quot;,&quot;L2&amp;pe_effect&quot;),c(&quot;L1&amp;id&quot;,&quot;L1&amp;pe_effect&quot;,&quot;L2&amp;id&quot;,&quot;L2&amp;pe_effect&quot;))</code></p>
-<p>Within each list,  the left side of  <code>&amp;</code>  stands for  polynomial coefficient name,  the right side of  <code>&amp;</code>  stands for  random effect name. If user want to include permanent effect in random regression model,  the random effect name in the right side of <code>&amp;</code>   should be &ldquo;pe_effect&rdquo;, and user must set  included_permanent_effect as TRUE</p>
+<p><code>random_regression_effect_name=list(c(&quot;L1&amp;id&amp;pe_effect&quot;,&quot;L2&amp;id&amp;pe_effect&quot;),c(&quot;L1&amp;id&amp;pe_effect&quot;,&quot;L2&amp;id&amp;pe_effect&quot;))</code></p>
+<p>Within each list,  the left side of  <code>&amp;</code>  stands for  polynomial coefficient name,  the right side of  <code>&amp;</code>  stands for  random effect name or fixed  effect name. If user want to include permanent effect in random regression model,  the random effect name in the right side of <code>&amp;</code>   should be &ldquo;pe_effect&rdquo;, and user must set  included_permanent_effect as TRUE</p>
 <ul>
 <li><strong>12：included_permanent_effect</strong></li>
 </ul>
@@ -1450,11 +1450,11 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;G
   <div class="media author-card content-widget-hr">
     
       
-      <img class="avatar mr-3 avatar-circle" src="/author/mei-quanshun/avatar_hu5f20744e08524ff7ac6fce3b60ea5d69_3615750_270x270_fill_q75_lanczos_center.JPG" alt="Mei Quanshun">
+      <img class="avatar mr-3 avatar-circle" src="/author/quanshun-mei/avatar_hu5f20744e08524ff7ac6fce3b60ea5d69_3615750_270x270_fill_q75_lanczos_center.JPG" alt="Quanshun Mei">
     
 
     <div class="media-body">
-      <h5 class="card-title">Mei Quanshun</h5>
+      <h5 class="card-title">Quanshun Mei</h5>
       <h6 class="card-subtitle">PhD student in animal breeding</h6>
       <p class="card-text">My research interests include genomic selection and machine learning in animal breeding.</p>
       <ul class="network-icon" aria-hidden="true">

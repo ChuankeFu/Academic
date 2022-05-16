@@ -7,11 +7,14 @@ design:
 education:
   courses:
   - course: PhD in Animal Breeding and Genetics
-    institution: Huazhong Agricultural University
-    year: XXXX
+    institution: Huazhong Agricultural University, China
+    year: 2019-2023
+  - course: Joint PhD in Center for Quantitative Genetics and Genomics
+    institution: Aarhus University, Denmark
+    year: 2021-2022
   - course: BSc in Animal Science
-    institution: Huazhong Agricultural University
-    year: 2016
+    institution: Huazhong Agricultural University, China
+    year: 2012-2016
 email: "hzau_qsmei@163.com"
 highlight_name: true
 interests:
@@ -19,7 +22,6 @@ interests:
 - Programing(Python, R and C++)
 - Quantitative Genetics
 - Population Genetics
-- Bioinformatics
 - ......
 organizations:
 - name: Huazhong Agricultural University
@@ -45,8 +47,8 @@ social:
   icon_pack: fab
   link: https://www.linkedin.com/
 superuser: true
-title: Mei Quanshun
+title: Quanshun Mei 
 
 ---
 
- I am a PhD student in  animal breeding at Huazhong Agricultural University.  My research interests include genomic selection and machine learning in animal breeding.  I'm familiar with several  programing languages:  Python,  R and Rcpp(C++). 
+ I am a PhD student in  animal breeding at Huazhong Agricultural University.  My research interests include genomic selection and machine learning in animal breeding. 

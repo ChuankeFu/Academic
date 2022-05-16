@@ -836,6 +836,7 @@
 </nav>
 </details>
 <img src="https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20210617165506.png" alt="logo-blupADC"  height="250" align="right" style="zoom:25%;" /></p>
+<p><strong>Documents support two-language(<a href="https://qsmei.netlify.app/post/feature-0-overview/overview/" target="_blank" rel="noopener">English</a> and <a href="https://qsmei.netlify.app/zh/post/feature-0-overview/overview/" target="_blank" rel="noopener">Chinese</a>).</strong></p>
 <h2 id="简介">简介</h2>
 <p><code>blupADC</code> 是一个专注于分析动植物育种中的系谱数据、基因型数据及遗传评估的工具。在设计该工具时，我们对数据处理时可能遇到的各种问题均进行了详细的考量(<strong>ps.如果您有好的建议，请积极联系作者!</strong>)。此外，为了提高分析效率， <code>blupADC</code> 可支持并行计算(通过<code>openMP</code> ) 及大数据处理(通过<code>bigmemory</code>)，并且<code>blupADC</code> 中的核心函数均通过c++(<code>Rcpp</code> and <code>RcppArmadillo </code>) 进行编写。</p>
 <p><code>blupADC</code>提供了许多有用的功能在整个动植物育种的流程中，包括 系谱分析(系谱追溯、重命名及纠错)，基因型数据格式转换(支持<strong>Hapmap, Plink, BLUPF90, Numeric, Haplotype 及VCF</strong> 格式)，基因型数据的质控填充，亲缘关系矩阵的构建(<strong>系谱，基因组及一步法亲缘关系矩阵</strong>)以及遗传评估（仅需几行代码即可通过DMU和BLUPF90完成遗传评估）。</p>
@@ -853,27 +854,22 @@
 </ul>
 <h2 id="开始">开始</h2>
 <h3 id="安装">🙊安装</h3>
-<p>安装<code>blupADC</code> 之前，用户首先需要安装如下3个包：<code>Rcpp</code>, <code>RcppArmadillo</code> and <code>data.table</code>.</p>
-<pre><code class="language-R">install.packages(c(&quot;Rcpp&quot;, &quot;RcppArmadillo&quot;,&quot;data.table&quot;,&quot;bigmemory&quot;))
+<p>安装<code>blupADC</code> 之前，用户首先需要安装如下5个包：<code>Rcpp</code>, <code>RcppArmadillo</code> and <code>data.table</code>.</p>
+<pre><code class="language-R">install.packages(c(&quot;Rcpp&quot;, &quot;RcppArmadillo&quot;,&quot;RcppProgress&quot;,&quot;data.table&quot;,&quot;bigmemory&quot;))
 </code></pre>
 <p><strong>👉 Note:  在 DMU 和 BLUPF90的分析中，我们通常需要提前下载好 DMU 软件 (<a href="https://dmu.ghpc.au.dk/dmu/" target="_blank" rel="noopener">DMU下载网站</a>)  和 BLUPF90软件 (<a href="http://nce.ads.uga.edu/html/projects/programs/" target="_blank" rel="noopener">BLUPF90下载网站</a>)。为了方便用户使用，我们已经将两款软件中基础模块封装进了 <code>blupADC</code>，请大家合理使用。</strong></p>
 <p><strong>如果您想将DMU和BLUPF90用作商业用途，请务必联系 DMU 和 BLUPF90的作者！！！</strong></p>
-<h4 id="在-linux-上-安装-blupadc">在 Linux 上 安装 blupADC</h4>
-<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz&quot;
+<h4 id="install-blupadc-via-devtools-way1">Install blupADC via devtools (way1)</h4>
+<pre><code class="language-R">devtools::install_github(&quot;TXiang-lab/blupADC&quot;)
+</code></pre>
+<h4 id="install-blupadc--way2">Install blupADC  (way2)</h4>
+<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.6/blupADC_1.0.6.tar.gz&quot;
 install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
 </code></pre>
-<h4 id="在-windows-上-安装-blupadc">在 Windows 上 安装 blupADC</h4>
-<pre><code class="language-R">packageurl &lt;- &quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4.zip&quot;
-install.packages(packageurl,repos=NULL)
-</code></pre>
-<p>👉 **Note:**针对github连接比较慢的地区，用户可以通过如下代码进行下载(国内用户推荐如下方式下载)：</p>
-<h4 id="在-linux-上-安装-blupadc-1">在 Linux 上 安装 blupADC</h4>
-<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blupADC/attach_files/851170/download/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz&quot;
+<p>👉 <strong>Note:If the connection with github is not good(such as in China), user can download as below:</strong></p>
+<h4 id="install-blupadc--way3">Install blupADC  (way3)</h4>
+<pre><code class="language-R">packageurl &lt;- &quot;https://gitee.com/qsmei/blupADC/attach_files/1062637/download/blupADC_1.0.6.tar.gz&quot;
 install.packages(packageurl,repos=NULL,method=&quot;libcurl&quot;)
-</code></pre>
-<h4 id="在-windows-上-安装-blupadc-1">在 Windows 上 安装 blupADC</h4>
-<pre><code class="language-R">packageurl&lt;-&quot;https://gitee.com/qsmei/blupADC/attach_files/851169/download/blupADC_1.0.4.zip&quot;
-install.packages(packageurl,repos=NULL)
 </code></pre>
 <p>安装成功后，我们输入如下代码即可加载R包:</p>
 <pre><code class="language-{.r}">library(blupADC)
@@ -890,7 +886,6 @@ install.packages(packageurl,repos=NULL)
 <li>功能 8. 利用BLUPF90软件进行遗传评估</li>
 </ul>
 <h2 id="使用">使用</h2>
-<p><strong>为了方便用户使用，所有的文档均支持双语模式(中英文说明书)。</strong></p>
 <p><code>blupADC</code> 内置了几个数据集对象, 包括 <code>data_hmp</code> 及<code>origin_pedigree</code>.</p>
 <p>此外，<code>blupADC</code>  提供一些示例文件， 这些文件存储在<code>~/blupADC/extdata</code> 路径下。通过输出下面的代码，我们就能得到 这些文件的绝对路径了：</p>
 <pre><code class="language-{.r}">system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;) # path of provided files

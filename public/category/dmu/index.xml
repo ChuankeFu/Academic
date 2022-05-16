@@ -215,7 +215,7 @@ run_DMU(
         covariate_effect_name=list(c(&amp;quot;age&amp;quot;)),                 #covariate effect name	
         genetic_effect_name=&amp;quot;id&amp;quot;,                    #genetic effect name 
         included_permanent_effect=list(c(TRUE)),     #whether include permant effect
-        random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;quot;,&amp;quot;L1&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;quot;,&amp;quot;L2&amp;amp;pe_effect&amp;quot;)), #random regression effect name
+        random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;amp;pe_effect&amp;quot;)), #random regression effect name
         phe_path=data_path,                          #path of phenotype file
         phe_name=&amp;quot;rr_data&amp;quot;,                          #name of phenotype file
         integer_n=5,                                 #number of integer variable 
@@ -339,8 +339,8 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;qu
 &lt;p&gt;Random regression effects name, &lt;code&gt;list&lt;/code&gt; class.&lt;/p&gt;
 &lt;p&gt;For multiple traits model,  the order of  random regression effects name should correspond to the target trait name.&lt;/p&gt;
 &lt;p&gt;eg.  &lt;code&gt;target_trait_name=list(c(&amp;quot;Trait1&amp;quot;),c(&amp;quot;Trait2&amp;quot;))&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;quot;,&amp;quot;L1&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;quot;,&amp;quot;L2&amp;amp;pe_effect&amp;quot;),c(&amp;quot;L1&amp;amp;id&amp;quot;,&amp;quot;L1&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;quot;,&amp;quot;L2&amp;amp;pe_effect&amp;quot;))&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Within each list,  the left side of  &lt;code&gt;&amp;amp;&lt;/code&gt;  stands for  polynomial coefficient name,  the right side of  &lt;code&gt;&amp;amp;&lt;/code&gt;  stands for  random effect name. If user want to include permanent effect in random regression model,  the random effect name in the right side of &lt;code&gt;&amp;amp;&lt;/code&gt;   should be &amp;ldquo;pe_effect&amp;rdquo;, and user must set  included_permanent_effect as TRUE&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;amp;pe_effect&amp;quot;),c(&amp;quot;L1&amp;amp;id&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;amp;pe_effect&amp;quot;))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Within each list,  the left side of  &lt;code&gt;&amp;amp;&lt;/code&gt;  stands for  polynomial coefficient name,  the right side of  &lt;code&gt;&amp;amp;&lt;/code&gt;  stands for  random effect name or fixed  effect name. If user want to include permanent effect in random regression model,  the random effect name in the right side of &lt;code&gt;&amp;amp;&lt;/code&gt;   should be &amp;ldquo;pe_effect&amp;rdquo;, and user must set  included_permanent_effect as TRUE&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;12：included_permanent_effect&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;

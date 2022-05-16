@@ -48,44 +48,36 @@ toc: true
 
 ### 🙊安装
 
- 安装`blupADC` 之前，用户首先需要安装如下3个包：`Rcpp`, `RcppArmadillo` and `data.table`.
+ 安装`blupADC` 之前，用户首先需要安装如下5个包：`Rcpp`, `RcppArmadillo` and `data.table`.
 
 ```R
-install.packages(c("Rcpp", "RcppArmadillo","data.table","bigmemory"))
+install.packages(c("Rcpp", "RcppArmadillo","RcppProgress","data.table","bigmemory"))
 ```
 
 **👉 Note:  在 DMU 和 BLUPF90的分析中，我们通常需要提前下载好 DMU 软件 ([DMU下载网站](https://dmu.ghpc.au.dk/dmu/))  和 BLUPF90软件 ([BLUPF90下载网站](http://nce.ads.uga.edu/html/projects/programs/))。为了方便用户使用，我们已经将两款软件中基础模块封装进了 `blupADC`，请大家合理使用。**
 
 **如果您想将DMU和BLUPF90用作商业用途，请务必联系 DMU 和 BLUPF90的作者！！！** 
 
-#### 在 Linux 上 安装 blupADC
+#### Install blupADC via devtools (way1)
 
 ```R
-packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz"
+devtools::install_github("TXiang-lab/blupADC")
+```
+
+#### Install blupADC  (way2)
+
+```R
+packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.6/blupADC_1.0.6.tar.gz"
 install.packages(packageurl,repos=NULL,method="libcurl")
 ```
 
-#### 在 Windows 上 安装 blupADC
+👉 **Note:If the connection with github is not good(such as in China), user can download as below:**  
+
+#### Install blupADC  (way3)
 
 ```R
-packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.4/blupADC_1.0.4.zip"
-install.packages(packageurl,repos=NULL)
-```
-
-👉 **Note:**针对github连接比较慢的地区，用户可以通过如下代码进行下载(国内用户推荐如下方式下载)：
-
-#### 在 Linux 上 安装 blupADC
-
-```R
-packageurl <- "https://gitee.com/qsmei/blupADC/attach_files/851170/download/blupADC_1.0.4_R_x86_64-pc-linux-gnu.tar.gz"
+packageurl <- "https://gitee.com/qsmei/blupADC/attach_files/1062637/download/blupADC_1.0.6.tar.gz"
 install.packages(packageurl,repos=NULL,method="libcurl")
-```
-
-#### 在 Windows 上 安装 blupADC
-
-```R
-packageurl<-"https://gitee.com/qsmei/blupADC/attach_files/851169/download/blupADC_1.0.4.zip"
-install.packages(packageurl,repos=NULL)
 ```
 
 安装成功后，我们输入如下代码即可加载R包:
