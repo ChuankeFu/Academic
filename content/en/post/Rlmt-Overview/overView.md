@@ -1,7 +1,7 @@
 ---
 title: 'R package:Rlmt- Overview'
 author: qsmei
-date: '2022-08-25'
+date: '2022-08-23'
 slug: overView
 categories:
   - Rlmt
@@ -9,7 +9,7 @@ tags: []
 subtitle: ''
 summary: 'Overview of package:Rlmt '
 authors: []
-lastmod: '2022-08-25T22:32:36+08:00'
+lastmod: '2022-08-23T22:32:36+08:00'
 featured: no
 image:
   caption: ''
