@@ -28,6 +28,11 @@
         &lt;li&gt;&lt;a href=&#34;#single-trait-model---gblup&#34;&gt;&lt;strong&gt;Single trait model - GBLUP&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#single-trait-model---single-step-blup&#34;&gt;&lt;strong&gt;Single trait model - Single-step BLUP&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#multiple-traits-model---pedigree-blup&#34;&gt;&lt;strong&gt;Multiple traits model - Pedigree BLUP&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#single-trait----pedigree-blup-modelwith-user-provided-prior&#34;&gt;Single trait  - pedigree BLUP model(with user-provided prior)&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#single-trait----pedigree-blup-model-with-maternal-effect&#34;&gt;Single trait  - pedigree BLUP model( with maternal effect)&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#single-trait----pedigree-blup-model-with-permanent-effect&#34;&gt;Single trait  - pedigree BLUP model( with permanent effect)&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#single-trait----pedigree-blup-model-with-random-regression-effect&#34;&gt;Single trait  - pedigree BLUP model( with random regression effect)&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#single-trait-model---blup-gibbs-sampling&#34;&gt;&lt;strong&gt;Single trait model - BLUP (gibbs sampling)&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/li&gt;
     &lt;li&gt;&lt;a href=&#34;#parameter&#34;&gt;Parameter&lt;/a&gt;&lt;/li&gt;
@@ -43,8 +48,7 @@
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
 &lt;h3 id=&#34;single-trait-model---pedigree-blup&#34;&gt;&lt;strong&gt;Single trait model - Pedigree BLUP&lt;/strong&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
-  
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files      
 run_BLUPF90(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
         target_trait_name=list(c(&amp;quot;Trait1&amp;quot;)),                     #trait name 
@@ -63,7 +67,6 @@ run_BLUPF90(
 &lt;h3 id=&#34;single-trait-model---gblup&#34;&gt;&lt;strong&gt;Single trait model - GBLUP&lt;/strong&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
 data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
-  
 run_BLUPF90(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
         target_trait_name=list(c(&amp;quot;Trait1&amp;quot;)),                     #trait name 
@@ -104,7 +107,6 @@ run_BLUPF90(
 &lt;p&gt;The following code is about the usage of multiple traits model through BLUPF90:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
 data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
-  
 run_BLUPF90(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
         target_trait_name=list(c(&amp;quot;Trait1&amp;quot;),c(&amp;quot;Trait2&amp;quot;)),                 #trait name 
@@ -117,6 +119,107 @@ run_BLUPF90(
         analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
         relationship_path=data_path,                 #path of relationship file 
         relationship_name=c(&amp;quot;pedigree.txt&amp;quot;),            #name of relationship file 
+        output_result_path=getwd()                   # output path 
+        )   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;single-trait----pedigree-blup-modelwith-user-provided-prior&#34;&gt;Single trait  - pedigree BLUP model(with user-provided prior)&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+run_BLUPF90(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,
+                         &amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),               # colnames of phenotype
+        target_trait_name=list(c(&amp;quot;Trait1&amp;quot;)),                     #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&amp;quot;Id&amp;quot;,	                 #genetic effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        provided_BLUPF90_prior_file_path=data_path,          #path of user-provided prior file
+        provided_BLUPF90_prior_file_name=&amp;quot;BLUPF90_Prior&amp;quot;,    #name of user-provided prior file
+        provided_BLUPF90_prior_effect_name=c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Residual&amp;quot;),
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
+        output_result_path=getwd()                    # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;single-trait----pedigree-blup-model-with-maternal-effect&#34;&gt;Single trait  - pedigree BLUP model( with maternal effect)&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;Herd&amp;quot;,&amp;quot;B_month&amp;quot;,&amp;quot;D_age&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;HY&amp;quot;,&amp;quot;ID&amp;quot;,&amp;quot;DAM&amp;quot;,&amp;quot;L_Dam&amp;quot;,
+		         &amp;quot;W_birth&amp;quot;,&amp;quot;W_2mth&amp;quot;,&amp;quot;W_4mth&amp;quot;,&amp;quot;G_0_2&amp;quot;,&amp;quot;G_0_4&amp;quot;,&amp;quot;G_2_4&amp;quot;), # colnames of phenotype
+        target_trait_name=list(c(&amp;quot;W_birth&amp;quot;)),                           #trait name 
+        fixed_effect_name=list(c(&amp;quot;B_month&amp;quot;,&amp;quot;D_age&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;HY&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;ID&amp;quot;,&amp;quot;L_Dam&amp;quot;)),    #random effect name
+        maternal_effect_option=c(&amp;quot;mat&amp;quot;),
+        genetic_effect_name=&amp;quot;ID&amp;quot;,                    #genetic effect name 
+        covariate_effect_name=NULL,                  #covariate effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;maternal_data&amp;quot;,                    #name of phenotype file
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;maternal_pedigree&amp;quot;,       #name of relationship file 
+        output_result_path=getwd()                    # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;single-trait----pedigree-blup-model-with-permanent-effect&#34;&gt;Single trait  - pedigree BLUP model( with permanent effect)&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;id&amp;quot;,&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;,&amp;quot;t_dato&amp;quot;,
+                        &amp;quot;age&amp;quot;,&amp;quot;L1&amp;quot;,&amp;quot;L2&amp;quot;,&amp;quot;L3&amp;quot;,&amp;quot;gh&amp;quot;),           # colnames of phenotype
+        target_trait_name=list(c(&amp;quot;gh&amp;quot;)),                      #trait name 
+        fixed_effect_name=list(c(&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;)), #fixed effect name
+        random_effect_name=list(c(&amp;quot;id&amp;quot;,&amp;quot;t_dato&amp;quot;)),            #random effect name
+        covariate_effect_name=list(c(&amp;quot;age&amp;quot;)),                 #covariate effect name	
+        genetic_effect_name=&amp;quot;id&amp;quot;,                    #genetic effect name
+        included_permanent_effect=list(c(TRUE)),     #whether include permant effect
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;rr_data&amp;quot;,                          #name of phenotype file
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;rr_pedigree&amp;quot;,             #name of relationship file 
+        output_result_path=getwd()                    # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;single-trait----pedigree-blup-model-with-random-regression-effect&#34;&gt;Single trait  - pedigree BLUP model( with random regression effect)&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files  
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;id&amp;quot;,&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;,&amp;quot;t_dato&amp;quot;,
+                        &amp;quot;age&amp;quot;,&amp;quot;L1&amp;quot;,&amp;quot;L2&amp;quot;,&amp;quot;L3&amp;quot;,&amp;quot;gh&amp;quot;),           # colnames of phenotype
+        target_trait_name=list(c(&amp;quot;gh&amp;quot;)),                      #trait name 
+        fixed_effect_name=list(c(&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;)), #fixed effect name
+        random_effect_name=list(c(&amp;quot;id&amp;quot;,&amp;quot;t_dato&amp;quot;)),            #random effect name
+        covariate_effect_name=list(c(&amp;quot;age&amp;quot;)),                 #covariate effect name	
+        genetic_effect_name=&amp;quot;id&amp;quot;,                    #genetic effect name 
+        random_regression_effect_name=list(c(&amp;quot;L1&amp;amp;id&amp;amp;pe_effect&amp;quot;,&amp;quot;L2&amp;amp;id&amp;amp;pe_effect&amp;quot;)), #random regression effect name
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;rr_data&amp;quot;,                          #name of phenotype file
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;rr_pedigree&amp;quot;,             #name of relationship file 
+        output_result_path=getwd()                    # output path 
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;single-trait-model---blup-gibbs-sampling&#34;&gt;&lt;strong&gt;Single trait model - BLUP (gibbs sampling)&lt;/strong&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files      
+run_BLUPF90(
+        phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
+        target_trait_name=list(c(&amp;quot;Trait1&amp;quot;)),                     #trait name 
+        fixed_effect_name=list(c(&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;)),     #fixed effect name
+        random_effect_name=list(c(&amp;quot;Id&amp;quot;,&amp;quot;Litter&amp;quot;)),               #random effect name
+        covariate_effect_name=NULL,                              #covariate effect name
+        genetic_effect_name=&amp;quot;Id&amp;quot;,                    #genetic effect name 
+        phe_path=data_path,                          #path of phenotype file
+        phe_name=&amp;quot;phenotype.txt&amp;quot;,                    #name of phenotype file
+        analysis_model=&amp;quot;PBLUP_A&amp;quot;,                    #model of genetic evaluation
+        relationship_path=data_path,                 #path of relationship file 
+        relationship_name=&amp;quot;pedigree.txt&amp;quot;,            #name of relationship file 
+        BLUPF90_algorithm=&amp;quot;Gibbs&amp;quot;,
         output_result_path=getwd()                   # output path 
         )   
 &lt;/code&gt;&lt;/pre&gt;

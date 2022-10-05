@@ -176,8 +176,8 @@ mymodels$pars$blup_type="SS_TBLUP" #SS_TBLUP
 
 mymodels$pars$blup_type="SS_SNPBLUP" #SS_SNPBLUP
 
-mymodels$pars$blup_type="Defined_BLUP"   #Defined_BLUP
-mylmt$data$grm$file="test_external.bin"   #Defined_BLUP
+mymodels$pars$blup_type="External_BLUP"   #External_BLUP
+mylmt$data$grm$file="test_external.bin"   #External_BLUP
 
 #ssGBLUP with two genomic factors
 mydata=lmt_data$new(phe_file=paste0(example_path,"/data.csv"),                  
