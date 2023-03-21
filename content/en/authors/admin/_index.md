@@ -41,8 +41,8 @@ social:
   icon_pack: fas
   link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
 - icon: github
-  icon_pack: fab
-  link: https://github.com/gcushen
+  icon_pack: fabi am curious to learn and try new thingsfa
+  link: https://github.com/qsmei
 - icon: linkedin
   icon_pack: fab
   link: https://www.linkedin.com/
@@ -51,4 +51,8 @@ title: Quanshun Mei
 
 ---
 
- I am a PhD student in  animal breeding at Huazhong Agricultural University.  My research interests include genomic selection and machine learning in animal breeding. 
+
+
+I am a PhD student in  animal breeding at Huazhong Agricultural University.   My research interests include genomic selection and machine learning in animal breeding.  I am fond of developing new software to facilitate the complicated analysis via different kinds of programming languages, including R(Rcpp), Julia, C++ and etc.  
+
+ I am curious to learn and try new things!

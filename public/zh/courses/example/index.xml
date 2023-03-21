@@ -5,7 +5,7 @@
     <link>/zh/courses/example/</link>
       <atom:link href="/zh/courses/example/index.xml" rel="self" type="application/rss+xml" />
     <description>📊 Learn Data Science</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><lastBuildDate>Sun, 24 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><copyright>© {2021} Qsmei</copyright><lastBuildDate>Sun, 24 Jan 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/zh/courses/example/featured.jpg</url>
       <title>📊 Learn Data Science</title>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Yan Liu | Quanshun Mei</title>
+    <link>/author/yan-liu/</link>
+      <atom:link href="/author/yan-liu/index.xml" rel="self" type="application/rss+xml" />
+    <description>Yan Liu</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2021} Qsmei</copyright><lastBuildDate>Sat, 17 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>Yan Liu</title>
+      <link>/author/yan-liu/</link>
+    </image>
+    
+    <item>
+      <title>Genome-wide association and transcriptome studies identify candidate genes and pathways for feed conversion ratio in pigs</title>
+      <link>/publication/2021.bmc_genomics_co_author/</link>
+      <pubDate>Sat, 17 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/publication/2021.bmc_genomics_co_author/</guid>
+      <description>
+
+
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,40 @@
+---
+abstract: This study aimed to systematically compare the accuracy of genomic selection for important economic traits in pigs by using 8 models including GBLUP, SSGBLUP, BayesA, BayesB, BayesC, BayesLASSO, BSLMM and BayesR. The data of age at 100 kg, backfat thickness at 100 kg and teat numbers were collected from 2 585 Yorkshire sows and all the individuals were genotyped by using PorcineSNP50K Beadchip. The accuracy of genomic selection for the 8 models were compared by a 5-fold cross-validation procedure based on additive model. The results demonstrated that the accuracy of genomic selection were positively correlated with the calculated heritabilities of different traits. The cross-validation analysis indicated that the prediction accuracy of age at 100 kg was the highest among the 3 different traits, but different models performed dissimilarly in different traits. The prediction accuracy of SSGBLUP was the highest for both age at 100 kg and backfat thickness at 100 kg, and the prediction accuracy of BayesA was the highest for teat numbers. In conclusion, SSGBLUP model can be used for the traits with moderate and high heritabilities when conducting genomic prediction for small sample size and BayesA is suitable to the traits with low heritability. How to optimize and select a model that is applicable to all traits may be a research direction in the future.
+author_notes:
+- 
+authors:
+- Xiao Peng
+- LiLin Yin
+- admin
+- HaiYan Wang
+- XiaoLei Liu
+- MengJin Zhu
+- XinYun Li
+- LiangLiang Fu
+- ShuHong Zhao
+date: "2019-03-17T00:00:00Z"
+doi: ""
+featured: false
+image:
+  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/jdD8gXaTZsc)'
+  focal_point: ""
+  preview_only: false
+projects: []
+publication: '*Acta Veterinaria et Zootechnica Sinica, 2*(50)'
+publication_short: ""
+publication_types:
+- "2"
+publishDate: "2019-03-17T00:00:00Z"
+summary:
+tags:
+- Source Themes
+title: A study of genome selection based on the porcine major economic traits
+url_code: ""
+url_dataset: ""
+url_pdf: https://www.cabdirect.org/cabdirect/abstract/20193123833
+url_poster: ""
+url_project: ""
+url_slides: ""
+url_source: ""
+url_video: ""
+---
