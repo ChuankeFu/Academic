@@ -5,12 +5,31 @@
     <link>/tag/deep-learning/</link>
       <atom:link href="/tag/deep-learning/index.xml" rel="self" type="application/rss+xml" />
     <description>Deep Learning</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2021} Qsmei</copyright><lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2021} Qsmei</copyright><lastBuildDate>Wed, 27 Apr 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
       <title>Deep Learning</title>
       <link>/tag/deep-learning/</link>
     </image>
+    
+    <item>
+      <title>blupADC-C&#43;&#43;</title>
+      <link>/project/blupadc_c&#43;&#43;/blupadc_c&#43;&#43;/</link>
+      <pubDate>Wed, 27 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>/project/blupadc_c&#43;&#43;/blupadc_c&#43;&#43;/</guid>
+      <description>&lt;p&gt;Using C++ to re-write R package-blupADC to improve the  speed and memory performance!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Rlmt</title>
+      <link>/project/rlmt/rlmt/</link>
+      <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/project/rlmt/rlmt/</guid>
+      <description>&lt;p&gt;The Linear mixed Models Toolbox (lmt) is a stand-alone single executable software for for large scale linear mixed model analysis. lmt has been used successfully for genetic evaluation data sets with &amp;raquo;200k genotyped animals, &amp;raquo;15m animals, &amp;raquo;500m equations.&lt;/p&gt;
+&lt;p&gt;In order to further assistance the use of lmt, I developed an R package: Rlmt for interfacing with lmt. This R package is developed via R6 package which can provides an implementation of encapsulated object-oriented programming for R. And this makes the grammar of Rlmt looks like easy and elegant (i hope 😄).&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>blupADC</title>

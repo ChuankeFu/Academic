@@ -6,10 +6,10 @@ design:
     padding: ["20000px", "2000px", "20000px", "20000px"]
 education:
   courses:
-  - course: PhD in Animal Breeding and Genetics
+  - course: PhD student in Animal Breeding and Genetics
     institution: Huazhong Agricultural University, China
     year: 2019-2023
-  - course: Joint PhD in Center for Quantitative Genetics and Genomics
+  - course: Joint PhD student in Center for Quantitative Genetics and Genomics
     institution: Aarhus University, Denmark
     year: 2021-2022
   - course: BSc in Animal Science

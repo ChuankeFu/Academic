@@ -111,12 +111,42 @@
   </url><url>
     <loc>/publication/2023.gse/</loc>
     <lastmod>2023-03-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/publication/2023.gse/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/publication/2023.gse/"
+                />
   </url><url>
     <loc>/author/huiming-liu/</loc>
     <lastmod>2023-03-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/huiming-liu/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/huiming-liu/"
+                />
   </url><url>
     <loc>/author/ole-f-christensen/</loc>
     <lastmod>2023-03-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/ole-f-christensen/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/ole-f-christensen/"
+                />
   </url><url>
     <loc>/publication_types/</loc>
     <lastmod>2023-03-17T00:00:00+00:00</lastmod>
@@ -159,6 +189,16 @@
   </url><url>
     <loc>/author/shuhong-zhao/</loc>
     <lastmod>2023-03-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/shuhong-zhao/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/shuhong-zhao/"
+                />
   </url><url>
     <loc>/tag/source-themes/</loc>
     <lastmod>2023-03-17T00:00:00+00:00</lastmod>
@@ -188,18 +228,68 @@
   </url><url>
     <loc>/author/tao-xiang/</loc>
     <lastmod>2023-03-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/tao-xiang/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/tao-xiang/"
+                />
   </url><url>
     <loc>/author/andres-legarra/</loc>
     <lastmod>2022-10-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/andres-legarra/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/andres-legarra/"
+                />
   </url><url>
     <loc>/publication/2022.gse/</loc>
     <lastmod>2022-10-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/publication/2022.gse/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/publication/2022.gse/"
+                />
   </url><url>
     <loc>/author/jielin-li/</loc>
     <lastmod>2022-10-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/jielin-li/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/jielin-li/"
+                />
   </url><url>
     <loc>/author/zulma-g-vitezica/</loc>
     <lastmod>2022-10-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/zulma-g-vitezica/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/zulma-g-vitezica/"
+                />
   </url><url>
     <loc>/categories/</loc>
     <lastmod>2022-08-23T22:32:36+08:00</lastmod>
@@ -235,36 +325,198 @@
   </url><url>
     <loc>/author/fang-fang/</loc>
     <lastmod>2022-07-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/fang-fang/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/fang-fang/"
+                />
   </url><url>
     <loc>/publication/2022.jas_co_author/</loc>
     <lastmod>2022-07-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/publication/2022.jas_co_author/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/publication/2022.jas_co_author/"
+                />
   </url><url>
     <loc>/author/mei-yu/</loc>
     <lastmod>2022-07-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/mei-yu/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/mei-yu/"
+                />
   </url><url>
     <loc>/author/meng-guo/</loc>
     <lastmod>2022-07-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/meng-guo/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/meng-guo/"
+                />
+  </url><url>
+    <loc>/project/blupadc_c&#43;&#43;/blupadc_c&#43;&#43;/</loc>
+    <lastmod>2022-04-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/project/blupadc_c&#43;&#43;/blupadc_c&#43;&#43;/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/project/blupadc_c&#43;&#43;/blupadc_c&#43;&#43;/"
+                />
+  </url><url>
+    <loc>/tag/deep-learning/</loc>
+    <lastmod>2022-04-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/tag/deep-learning/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/tag/deep-learning/"
+                />
+  </url><url>
+    <loc>/project/</loc>
+    <lastmod>2022-04-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/project/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/project/"
+                />
   </url><url>
     <loc>/publication/2022.blupadc/</loc>
     <lastmod>2021-09-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/publication/2022.blupadc/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/publication/2022.blupadc/"
+                />
   </url><url>
     <loc>/author/chuanke-fu/</loc>
     <lastmod>2021-09-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/chuanke-fu/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/chuanke-fu/"
+                />
   </url><url>
     <loc>/author/goutam-sahana/</loc>
     <lastmod>2021-07-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/goutam-sahana/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/goutam-sahana/"
+                />
   </url><url>
     <loc>/publication/2021.jas/</loc>
     <lastmod>2021-07-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/publication/2021.jas/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/publication/2021.jas/"
+                />
   </url><url>
     <loc>/author/lilin-yin/</loc>
     <lastmod>2021-07-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/lilin-yin/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/lilin-yin/"
+                />
   </url><url>
     <loc>/author/yilong-chen/</loc>
     <lastmod>2021-07-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/yilong-chen/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/yilong-chen/"
+                />
   </url><url>
     <loc>/author/yuanxin-miao/</loc>
     <lastmod>2021-07-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/yuanxin-miao/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/yuanxin-miao/"
+                />
+  </url><url>
+    <loc>/project/rlmt/rlmt/</loc>
+    <lastmod>2021-04-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/project/rlmt/rlmt/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/project/rlmt/rlmt/"
+                />
   </url><url>
     <loc>/category/online/</loc>
     <lastmod>2021-04-22T23:11:41+08:00</lastmod>
@@ -411,9 +663,29 @@
   </url><url>
     <loc>/publication/2021.bmc_genomics_co_author/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/publication/2021.bmc_genomics_co_author/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/publication/2021.bmc_genomics_co_author/"
+                />
   </url><url>
     <loc>/author/mingxing-liao/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/mingxing-liao/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/mingxing-liao/"
+                />
   </url><url>
     <loc>/post/feature-4-trace_pedigree/pedigree/</loc>
     <lastmod>2021-04-16T08:32:43+06:00</lastmod>
@@ -430,12 +702,42 @@
   </url><url>
     <loc>/author/xinyun-li/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/xinyun-li/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/xinyun-li/"
+                />
   </url><url>
     <loc>/author/xuewen-xu/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/xuewen-xu/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/xuewen-xu/"
+                />
   </url><url>
     <loc>/author/yan-liu/</loc>
     <lastmod>2021-04-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/yan-liu/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/yan-liu/"
+                />
   </url><url>
     <loc>/category/check-genotype/</loc>
     <lastmod>2021-04-15T15:11:30+08:00</lastmod>
@@ -572,21 +874,81 @@
   </url><url>
     <loc>/publication/2019.cn_co_author/</loc>
     <lastmod>2019-03-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/publication/2019.cn_co_author/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/publication/2019.cn_co_author/"
+                />
   </url><url>
     <loc>/author/haiyan-wang/</loc>
     <lastmod>2019-03-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/haiyan-wang/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/haiyan-wang/"
+                />
   </url><url>
     <loc>/author/liangliang-fu/</loc>
     <lastmod>2019-03-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/liangliang-fu/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/liangliang-fu/"
+                />
   </url><url>
     <loc>/author/mengjin-zhu/</loc>
     <lastmod>2019-03-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/mengjin-zhu/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/mengjin-zhu/"
+                />
   </url><url>
     <loc>/author/xiao-peng/</loc>
     <lastmod>2019-03-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/xiao-peng/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/xiao-peng/"
+                />
   </url><url>
     <loc>/author/xiaolei-liu/</loc>
     <lastmod>2019-03-17T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/author/xiaolei-liu/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/author/xiaolei-liu/"
+                />
   </url><url>
     <loc>/slides/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
@@ -616,34 +978,28 @@
   </url><url>
     <loc>/project/blupadc/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/project/blupadc/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/project/blupadc/"
+                />
   </url><url>
     <loc>/project/cbar2/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tag/deep-learning/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/zh/tag/deep-learning/"
+                href="/zh/project/cbar2/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/tag/deep-learning/"
-                />
-  </url><url>
-    <loc>/project/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/zh/project/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/project/"
+                href="/project/cbar2/"
                 />
   </url><url>
     <loc>/admin/</loc>

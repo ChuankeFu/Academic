@@ -8,11 +8,14 @@ education:
   courses:
   - course: 动物遗传育种-博士
     institution: 华中农业大学
-    year: XXXX
+    year: 2019-2023
+  - course: 联合培养博士
+    institution: 奥胡斯大学
+    year: 2021-2022
   - course: 动物科学-学士
     institution: 华中农业大学
-    year: 2016
-email: "hzau_qsmei@163.com"
+    year: 2012-2016
+email: "quanshun1994@gmail.com"
 highlight_name: true
 interests:
 - 人工智能
@@ -48,4 +51,4 @@ superuser: true
 title: 梅全顺
 ---
 
-本人目前是华中农业大学-动物科学动物医学院的一名在读博士生，研究方向包括基因组选择及机器学习在动物育种中的应用。本人熟练掌握多种编程语言，包括 Python,  R 及 Rcpp(C++)等。
+本人目前是华中农业大学-动物科学动物医学院的一名在读博士生，研究方向包括基因组选择及机器学习在动物育种中的应用。本人熟练掌握多种编程语言，包括   R(Rcpp)、Python、Julia及C++等。

@@ -369,6 +369,15 @@ mylmt$do_analysis(&amp;quot;....../test_Result&amp;quot;) #output path
     </item>
     
     <item>
+      <title>blupADC-C&#43;&#43;</title>
+      <link>/project/blupadc_c&#43;&#43;/blupadc_c&#43;&#43;/</link>
+      <pubDate>Wed, 27 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>/project/blupadc_c&#43;&#43;/blupadc_c&#43;&#43;/</guid>
+      <description>&lt;p&gt;Using C++ to re-write R package-blupADC to improve the  speed and memory performance!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>blupADC - An R package and shiny toolkit for comprehensive genetic data analysis in animal and plant breeding</title>
       <link>/publication/2022.blupadc/</link>
       <pubDate>Fri, 17 Sep 2021 00:00:00 +0000</pubDate>
@@ -387,6 +396,16 @@ mylmt$do_analysis(&amp;quot;....../test_Result&amp;quot;) #output path
       <description>
 
 
+</description>
+    </item>
+    
+    <item>
+      <title>Rlmt</title>
+      <link>/project/rlmt/rlmt/</link>
+      <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>/project/rlmt/rlmt/</guid>
+      <description>&lt;p&gt;The Linear mixed Models Toolbox (lmt) is a stand-alone single executable software for for large scale linear mixed model analysis. lmt has been used successfully for genetic evaluation data sets with &amp;raquo;200k genotyped animals, &amp;raquo;15m animals, &amp;raquo;500m equations.&lt;/p&gt;
+&lt;p&gt;In order to further assistance the use of lmt, I developed an R package: Rlmt for interfacing with lmt. This R package is developed via R6 package which can provides an implementation of encapsulated object-oriented programming for R. And this makes the grammar of Rlmt looks like easy and elegant (i hope 😄).&lt;/p&gt;
 </description>
     </item>
     

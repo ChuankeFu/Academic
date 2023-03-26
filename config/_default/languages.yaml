@@ -13,23 +13,20 @@ en:
 zh:
   languageCode: zh
   contentDir: content/zh
-  title: 梅全顺-学术
+  title: 梅全顺-个人网站
 #  params:
 #    description: Site description in Chinese...
   menu:
     main:
       - name: 关于我
         url: '#about'
-        weight: 10       
-      - name: 技术文章
-        url: '#posts'
-        weight: 20
-      - name: 项目
+        weight: 10   
+      - name: 软件
         url: '#projects'
-        weight: 30
-      - name: 汇报
-        url: '#talks'
-        weight: 40
+        weight: 30     
       - name: 学术文章
         url: '#publications'
-        weight: 50
+        weight: 50        
+      - name: 博客
+        url: '#posts'
+        weight: 100
