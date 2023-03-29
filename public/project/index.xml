@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Projects | Quanshun Mei</title>
+    <title>Projects | Quanshun Mei-Personal</title>
     <link>/project/</link>
       <atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
     <description>Projects</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2021} Qsmei</copyright><lastBuildDate>Wed, 27 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>© {2021} Qsmei</copyright><lastBuildDate>Mon, 27 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
       <title>Projects</title>
       <link>/project/</link>
     </image>
+    
+    <item>
+      <title>JUMP</title>
+      <link>/project/jump/jump/</link>
+      <pubDate>Mon, 27 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>/project/jump/jump/</guid>
+      <description>&lt;p&gt;&lt;code&gt;JUMP&lt;/code&gt; is a Julia Package (binary version) for genomic selection(prediction) with BLUP and Bayesian methods! In the current stage, i just use this to achieve my analysis. Some functions are under releasing, speed and memory performance would be the next step target!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>blupADC-C&#43;&#43;</title>

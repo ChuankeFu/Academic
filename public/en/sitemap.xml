@@ -80,6 +80,58 @@
                 href="/event/"
                 />
   </url><url>
+    <loc>/tag/genomic-prediction/</loc>
+    <lastmod>2023-03-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/tag/genomic-prediction/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/tag/genomic-prediction/"
+                />
+  </url><url>
+    <loc>/project/jump/jump/</loc>
+    <lastmod>2023-03-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/project/jump/jump/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/project/jump/jump/"
+                />
+  </url><url>
+    <loc>/project/</loc>
+    <lastmod>2023-03-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/project/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/project/"
+                />
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2023-03-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/tags/"
+                />
+  </url><url>
     <loc>/publication/</loc>
     <lastmod>2023-03-21T16:22:24+08:00</lastmod>
   </url><url>
@@ -211,19 +263,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="/tag/source-themes/"
-                />
-  </url><url>
-    <loc>/tags/</loc>
-    <lastmod>2023-03-17T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/zh/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/tags/"
                 />
   </url><url>
     <loc>/author/tao-xiang/</loc>
@@ -399,19 +438,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="/tag/deep-learning/"
-                />
-  </url><url>
-    <loc>/project/</loc>
-    <lastmod>2022-04-27T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/zh/project/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/project/"
                 />
   </url><url>
     <loc>/publication/2022.blupadc/</loc>
