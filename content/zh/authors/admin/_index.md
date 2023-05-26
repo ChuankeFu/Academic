@@ -9,7 +9,7 @@ education:
   - course: 动物遗传育种-博士
     institution: 华中农业大学
     year: 2016.09-2023.06
-  - course: 联合培养博士
+  - course: 访问博士
     institution: 奥胡斯大学
     year: 2021.08-2022.12
   - course: 动物科学-学士
