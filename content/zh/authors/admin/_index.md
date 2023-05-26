@@ -8,21 +8,20 @@ education:
   courses:
   - course: 动物遗传育种-博士
     institution: 华中农业大学
-    year: 2019-2023
+    year: 2016.09-2023.06
   - course: 联合培养博士
     institution: 奥胡斯大学
-    year: 2021-2022
+    year: 2021.08-2022.12
   - course: 动物科学-学士
     institution: 华中农业大学
-    year: 2012-2016
+    year: 2012.09-2016.06
 email: "quanshun1994@gmail.com"
 highlight_name: true
 interests:
-- 人工智能
+- 机器学习
 - 编程(Python, R and C++)
 - 数量遗传学
 - 群体遗传学
-- 生物信息学
 - ......
 organizations:
 - name: 华中农业大学
@@ -31,24 +30,20 @@ role: 动物遗传育种-博士
 social:
 - icon: envelope
   icon_pack: fas
-  link: /#contact
+  link: mailto:quanshun1994@gmail.com
 - display:
     header: true
-  icon: twitter
-  icon_pack: fab
-  label: Follow me on Twitter
-  link: https://twitter.com/GeorgeCushen
 - icon: graduation-cap
   icon_pack: fas
-  link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
+  link: https://scholar.google.com/citations?user=yMQEkysAAAAJ&hl=en&oi=ao
 - icon: github
-  icon_pack: fab
-  link: https://github.com/gcushen
-- icon: linkedin
-  icon_pack: fab
-  link: https://www.linkedin.com/
+  icon_pack: fabi am curious to learn and try new thingsfa
+  link: https://github.com/qsmei
+#- icon: github
+#  icon_pack: fab
+#  link: https://github.com/gcushen
 superuser: true
 title: 梅全顺
 ---
 
-本人目前是华中农业大学-动物科学动物医学院的一名在读博士生，研究方向包括基因组选择及机器学习在动物育种中的应用。本人熟练掌握多种编程语言，包括   R(Rcpp)、Python、Julia及C++等。
+本人目前是华中农业大学-动物科学动物医学院的一名在读博士生，指导老师为赵书红老师和项韬老师。研究方向包括探究显性效应和近交衰退效应对基因组选择的影响，及开发出新的软件以简化复杂的遗传分析。熟练掌握多种编程语言，包括R(Rcpp)、Python、Julia及C++等。

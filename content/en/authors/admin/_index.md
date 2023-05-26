@@ -30,19 +30,19 @@ role: PhD student in Quantitative Genetics of Animal Breeding
 social:
 - icon: envelope
   icon_pack: fas
-  link: /#contact
+  link: mailto:quanshun1994@gmail.com
 - display:
     header: true
-#  icon: twitter
-#  icon_pack: fab
-#  label: Follow me on Twitter
-#  link: https://twitter.com/GeorgeCushen
 - icon: graduation-cap
   icon_pack: fas
   link: https://scholar.google.com/citations?user=yMQEkysAAAAJ&hl=en&oi=ao
+- display:
+    header: true
 - icon: github
   icon_pack: fabi am curious to learn and try new thingsfa
   link: https://github.com/qsmei
+- display:
+    header: true
 #- icon: linkedin
 #  icon_pack: fab
 #  link: https://www.linkedin.com/
