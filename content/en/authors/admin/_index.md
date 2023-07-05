@@ -9,9 +9,10 @@ education:
   - course: PhD student in Quantitative Genetics of Animal Breeding
     institution: Huazhong Agricultural University, China
     year: 2019-2023
+
   #- course: Visiting PhD student in QGG
   #  institution: Aarhus University, Denmark
-    year: 2021-2022
+  #  year: 2021-2022
   - course: BSc in Animal Science
     institution: Huazhong Agricultural University, China
     year: 2012-2016
