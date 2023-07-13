@@ -8,7 +8,7 @@ education:
   courses:
   - course: PhD student in Quantitative Genetics of Animal Breeding
     institution: Huazhong Agricultural University, China
-    year: 2019-2023
+    year: 2016-2023
 
   #- course: Visiting PhD student in QGG
   #  institution: Aarhus University, Denmark
@@ -54,6 +54,6 @@ title: Quanshun Mei
 
 
 
-I am a PhD student in Quantitative Genetics of Animal Breeding at Huazhong Agricultural University. My research interests include applying genomic selection in animal breeding. I enjoy developing new software to facilitate complicated analysis using different programming languages, such as R(Rcpp), Julia, C++ and etc.   #and machine learning 
+I am a PhD student in Quantitative Genetics of Animal Breeding at Huazhong Agricultural University. My research interests include applying genomic selection in animal breeding. 
 
 I am always eager to learn and try new things!
