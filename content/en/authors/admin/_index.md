@@ -16,11 +16,11 @@ education:
   - course: BSc in Animal Science
     institution: Huazhong Agricultural University, China
     year: 2012-2016
-email: "quanshun1009@gmail.com"
+email: "quanshun1994@gmail.com"
 highlight_name: true
 interests:
-- Artificial Intelligence
-- Programing(Python, R and C++)
+#- Artificial Intelligence
+#- Programing(Python, R and C++)
 - Quantitative Genetics
 - Population Genetics
 - ......
@@ -54,6 +54,6 @@ title: Quanshun Mei
 
 
 
-I am a PhD student in Quantitative Genetics of Animal Breeding at Huazhong Agricultural University. My research interests include applying genomic selection and machine learning in animal breeding. I enjoy developing new software to facilitate complicated analysis using different programming languages, such as R(Rcpp), Julia, C++ and etc.  
+I am a PhD student in Quantitative Genetics of Animal Breeding at Huazhong Agricultural University. My research interests include applying genomic selection in animal breeding. I enjoy developing new software to facilitate complicated analysis using different programming languages, such as R(Rcpp), Julia, C++ and etc.   #and machine learning 
 
 I am always eager to learn and try new things!
