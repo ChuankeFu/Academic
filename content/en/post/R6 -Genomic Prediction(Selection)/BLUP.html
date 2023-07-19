@@ -1,0 +1,170 @@
+---
+title: "blupADC-Genomic prediction(selection)"
+subtitle: ''
+date: '2023-07-16T10:00:48+08:00'
+output: pdf_document
+tags: []
+categories: []
+summary: 'Object-oriented programming in GS of blupADC'
+lastmod: '2023-07-16T10:00:48+08:00'
+featured: no
+draft: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+authors: []
+---
+
+
+
+<div id="blupadc--new-features-in-genomis-selection" class="section level2">
+<h2>blupADC- New features in genomis selection</h2>
+<p>🤠 In the previous version of blupADC, we have given a comprehensive description of perform BLUP analysis in genomic selection. In order to further simplify the usage of blupADC, we have incorporated R6 package, which supports oriented programming. In the below, we will give server examples of how to perform single trait and multiple traits analysis of PBLUP, GBLUP and ssGBLUP. Also, user can perform cross validation in an easy way in the latest version of blupADC.</p>
+<p>👉 <strong>Note:</strong> <strong>For the latest version of blupADC, user has to install package <code>blupSUP</code> at first, in which example data and software (e.g. DMU and BLUPF90) are included in this package </strong>.</p>
+</div>
+<div id="example" class="section level2">
+<h2>Example</h2>
+<div id="single-trait-blup-model" class="section level3">
+<h3>Single-trait BLUP model</h3>
+<pre class="r"><code>library(blupSUP)
+library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)
+#prepare parameters the BLUP analysis
+blup_par=BLUPpar$new(
+phe_file=paste0(data_path,&quot;/phenotype.txt&quot;),                                            
+phe_colnames=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),
+dmu_integer_n=5, #number of integer variable in the phenotype file (required by DMU)
+analysis_model=&quot;PBLUP_A&quot;,
+kinship_file=paste0(data_path,&quot;/pedigree.txt&quot;))
+#define the model effect  of Trait1
+myblup=BLUP$new(fixed=Trait1~Sex+Herd_Year_Season, #fixed effect
+                random=~Id+Litter, #random effect 
+                pars=blup_par) #blup_par has been defined previously
+myblup</code></pre>
+<pre><code>## &lt;BLUP::DMU&gt; 
+## &lt;ADCmodel::1 trait&gt; 
+## ----Trait:Trait1~Sex(fixed)+Herd_Year_Season(fixed)+Id(random)+Litter(random)</code></pre>
+<pre class="r"><code>#BLUP analysis of Trait1
+myblup$run(output_path=&quot;D:/test&quot;,task_type=&quot;DMU&quot;) # default using DMU 
+#myblup$run(output_path=&quot;D:/test&quot;,task_type=&quot;BLUPF90&quot;) #using BLUPF90 for analysis </code></pre>
+<pre class="r"><code>#output of BLUP analysis
+ebv=myblup$ebv         #breeding value
+h2=myblup$h2   #heritability and its SE
+user_defined_h2=myblup$cal_se(~Id1/(Id1+Litter1+Res1)) #user defined expression of calculating h2 based on delta method</code></pre>
+<pre class="r"><code>head(ebv)</code></pre>
+<pre><code>##   Id Trait1_EBV Trait1_Res Trait1_EBV_Plus_Residual Trait1_dEBV
+## 1  1          0      -9999                    -9999       -9999
+## 2  2          0      -9999                    -9999       -9999
+## 3  3          0      -9999                    -9999       -9999
+## 4  4          0      -9999                    -9999       -9999
+## 5  5          0      -9999                    -9999       -9999
+## 6  6          0      -9999                    -9999       -9999</code></pre>
+<pre class="r"><code>h2</code></pre>
+<pre><code>## $Trait1
+##         Heritability        SE
+## Id1        0.1736456 0.1420079
+## Litter1    0.4527744 0.1424953
+## Res1       0.3735801 0.1493211</code></pre>
+<pre class="r"><code>#GBLUP-A analysis 
+myblup$pars$kinship_file=paste0(data_path,&quot;/G_Ainv_col_three.txt&quot;)
+myblup$pars$analysis_model=&quot;GBLUP_A&quot;
+myblup$run(task_type=&quot;DMU&quot;)</code></pre>
+<pre class="r"><code>#ssGBLUP-A analysis 
+myblup$pars$kinship_file=paste0(data_path,&quot;/&quot;,c(&quot;pedigree.txt&quot;,&quot;G_A_col_three.txt&quot;))
+myblup$pars$analysis_model=&quot;SSBLUP_A&quot;
+myblup$run(task_type=&quot;DMU&quot;)</code></pre>
+</div>
+<div id="multiple-traits-blup-model" class="section level3">
+<h3>Multiple traits BLUP model</h3>
+<pre class="r"><code>library(blupSUP)
+library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)
+#prepare parameters the BLUP analysis
+blup_par=BLUPpar$new(
+phe_file=paste0(data_path,&quot;/phenotype.txt&quot;),                                               phe_colnames=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),
+dmu_integer_n=5, #number of integer variable in the phenotype file (required by DMU)
+analysis_model=&quot;PBLUP_A&quot;,
+kinship_file=paste0(data_path,&quot;/pedigree.txt&quot;))
+
+#define the effect of Trait1 for BLUP analysis
+myblup=BLUP$new(fixed=Trait1~Sex+Herd_Year_Season, #fixed effect
+               random=~Id+Litter, #random effect 
+               pars=blup_par) #blup_par has been defined previously
+myblup$run(output_path=&quot;D:/test&quot;,task_type=&quot;DMU&quot;) # default using DMU 
+myblup</code></pre>
+<pre class="r"><code>myblup</code></pre>
+<pre><code>## &lt;BLUP::DMU&gt; 
+## &lt;ADCmodel::1 trait&gt; 
+## ----Trait:Trait1~Sex(fixed)+Herd_Year_Season(fixed)+Id(random)+Litter(random)</code></pre>
+<pre class="r"><code>#Multiple traits analysis
+#add model effect of Trait2 in BLUP analysis
+myblup$add_model(fixed=Trait2~Herd_Year_Season,random=~Id,covariate=~Age)
+myblup</code></pre>
+<pre><code>## &lt;BLUP::DMU&gt; 
+## &lt;ADCmodel::2 traits&gt; 
+## ----Trait:Trait1~Sex(fixed)+Herd_Year_Season(fixed)+Id(random)+Litter(random)
+## ----Trait:Trait2~Herd_Year_Season(fixed)+Id(random)+Age(covariate)</code></pre>
+<pre class="r"><code>myblup$run() #Multiple traits analysis                 
+
+#remove Trait2 in BLUP analysis 
+#myblup$rm_model(&quot;Trait2&quot;) 
+
+#output of BLUP analysis
+ebv=myblup$ebv         #breeding value
+h2=myblup$h2   #heritability and its SE
+genR2=myblup$r2 #genetic correlation and its SE 
+user_defined_h2=myblup$cal_se(~Id1/(Id1+Litter1+Res1)) #user defined expression of calculating h2 based on delta method
+user_defined_genR2=myblup$cal_se(~Id1_2/sqrt(Id1 * Id2)) #user defined expression of calculating genR2 based on delta method
+#random effect names from multiple traits model were defined in: rownames(myblup$vars_se$vars_mat)         </code></pre>
+</div>
+<div id="cross-validation" class="section level3">
+<h3>Cross Validation</h3>
+<pre class="r"><code>library(blupSUP)
+library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)
+
+#prepare parameters the BLUP analysis
+blup_par=BLUPpar$new(
+phe_file=paste0(data_path,&quot;/phenotype.txt&quot;),                                               phe_colnames=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),
+dmu_integer_n=5, #number of integer variable in the phenotype file (required by DMU)
+analysis_model=&quot;PBLUP_A&quot;,
+kinship_file=paste0(data_path,&quot;/pedigree.txt&quot;))
+
+#define the effect of Trait1 for BLUP analysis
+myblup=BLUP$new(fixed=Trait1~Sex+Herd_Year_Season, #fixed effect
+                random=~Id+Litter, #random effect 
+                pars=blup_par) #blup_par has been defined previously
+
+
+#define the training and test datasets by holdout 
+myCV=CVpredi$new(myblup,  #has been defined previously 
+                 partion_type=&quot;holdout&quot;, #the type of data partioning
+                 ratio=0.6) #the ratio of  train_size/(train_size+test_size)
+
+#get the prediction accuracy 
+myCV$predict_sets()
+accu=myCV$accuracy
+bias=myCV$bias
+train_set=myCV$datasets$train_sets[[1]] #train set was used in analysis
+test_set=myCV$datasets$test_sets[[1]]   #train set was used in analysis 
+ebv_set=myCV$datasets$ebv_sets[[1]]   #train set was used in analysis 
+
+#define the training and test datasets by kfold 
+myCV=CVpredi$new(myblup,  #has been defined previously 
+                 partion_type=&quot;kfold&quot;, #the type of data partioning
+                 ratio=0.6,            #the ratio of  train_size/(train_size+test_size)
+                 kfold=5,              #number of fold  
+                 seed=9894)            #random seed number for partioning data,default is 9894     
+
+#get the prediction accuracy 
+myCV$predict_sets() #perform analysis in all folds 
+#myCV$predict_sets(2) # only perform analysis in the first fold 
+accu=myCV$accuracy
+bias=myCV$bias
+train_set2=myCV$datasets$train_sets[[2]] #train set was used in analysis of fold2
+test_set2=myCV$datasets$test_sets[[2]]   #train set was used in analysis  of fold2
+ebv_set2=myCV$datasets$ebv_sets[[2]]   #train set was used in analysis  of fold2</code></pre>
+</div>
+</div>

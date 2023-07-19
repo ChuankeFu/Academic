@@ -39,7 +39,7 @@ In this section, we will give detail description about `run_DMU` function.
 
 ``` R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
   
 run_DMU(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype
@@ -63,7 +63,7 @@ run_DMU(
 
 ``` R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
 run_DMU(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
         target_trait_name=list(c("Trait1")),                           #trait name 
@@ -86,7 +86,7 @@ run_DMU(
 
 ``` R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
 run_DMU(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2"), # colnames of phenotype 
         target_trait_name=list(c("Trait1")),                           #trait name 
@@ -113,7 +113,7 @@ The above example is single-trait model, while in actual breeding, multiple trai
 
 ``` R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
   
 run_DMU(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
@@ -137,7 +137,7 @@ run_DMU(
 
 ``` {.r}
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
   
 run_DMU(phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter",
                          "Trait1","Trait2","Age"),               # colnames of phenotype
@@ -163,7 +163,7 @@ run_DMU(phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter",
 
 ```R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
   
 run_DMU(
         phe_col_names=c("Herd","B_month","D_age","Litter","Sex","HY","ID","DAM","L_Dam",
@@ -189,7 +189,7 @@ run_DMU(
 
 ```R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
   
 run_DMU(
         phe_col_names=c("id","year_grp","breed","time","t_dato",
@@ -215,7 +215,7 @@ run_DMU(
 
 ```R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
   
 run_DMU(
         phe_col_names=c("id","year_grp","breed","time","t_dato",
@@ -244,7 +244,7 @@ run_DMU(
 
 ```R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
   
 run_DMU(
         phe_col_names=c("Id","Group","Sex","Phe"), # colnames of phenotype
@@ -272,7 +272,7 @@ run_DMU(
 
 ```R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
   
 run_DMU(phe_col_names=c("Id","Group","Sex","Gr_id1","Gr_id2","Gr_id3","Gr_id4","Gr_id5",                         
                         "Phe","Status_Gr_id1","Status_Gr_id2","Status_Gr_id3","Status_Gr_id4","Status_Gr_id5"),# colnames of phenotype

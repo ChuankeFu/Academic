@@ -1,0 +1,155 @@
+---
+title: "blupADC-基因组预测（选择)"
+subtitle: ''
+date: '2023-07-16T10:00:48+08:00'
+output: pdf_document
+tags: []
+categories: []
+summary: '利用面向对象的方式运行blupADC'
+lastmod: '2023-07-16T10:00:48+08:00'
+featured: no
+draft: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+authors: []
+---
+
+
+
+<p>🤠 在之前的blupADC版本中，我们已经对基因组选择中BLUP分析进行了全面的描述。为了进一步简化blupADC的使用，我们引入了支持面向对象编程的R6包。在下面，我们将提供如何执行PBLUP、GBLUP和ssGBLUP的单性状和多性状分析的示例。此外，用户可以在最新版本的blupADC中轻松进行交叉验证。</p>
+<div id="note-对于最新版本的blupadc用户需要首先安装blupsup-示例数据和软件均已迁移至该包e.g.-dmu-and-blupf90" class="section level2">
+<h2>👉 <strong>Note:</strong> <strong>对于最新版本的blupADC,用户需要首先安装<code>blupSUP</code> (示例数据和软件均已迁移至该包，e.g. DMU and BLUPF90) </strong></h2>
+</div>
+<div id="示例" class="section level2">
+<h2>示例</h2>
+<div id="单性状blup分析" class="section level3">
+<h3>单性状BLUP分析</h3>
+<pre class="r"><code>library(blupSUP)
+library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)
+#设置BLUP分析的参数
+blup_par=BLUPpar$new(
+phe_file=paste0(data_path,&quot;/phenotype.txt&quot;),                                            
+phe_colnames=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),
+dmu_integer_n=5, #number of integer variable in the phenotype file (required by DMU)
+analysis_model=&quot;PBLUP_A&quot;,
+kinship_file=paste0(data_path,&quot;/pedigree.txt&quot;))
+#定义 Trait1的 效应
+myblup=BLUP$new(fixed=Trait1~Sex+Herd_Year_Season, #fixed effect
+                random=~Id+Litter, #random effect 
+                pars=blup_par) #blup_par has been defined previously
+myblup</code></pre>
+<pre><code>## &lt;BLUP::DMU&gt; 
+## &lt;ADCmodel::1 trait&gt; 
+## ----Trait:Trait1~Sex(fixed)+Herd_Year_Season(fixed)+Id(random)+Litter(random)</code></pre>
+<pre class="r"><code># Trait1的BLUP分析
+myblup$run(output_path=&quot;D:/test&quot;,task_type=&quot;DMU&quot;) # default using DMU 
+#myblup$run(output_path=&quot;D:/test&quot;,task_type=&quot;BLUPF90&quot;) #using BLUPF90 for analysis </code></pre>
+<pre class="r"><code>#Trait1的分析结果
+ebv=myblup$ebv         #breeding value
+h2=myblup$h2   #heritability and its SE
+user_defined_h2=myblup$cal_se(~Id1/(Id1+Litter1+Res1)) #用户可以根据自定义的表达式计算对应的遗传力及其标准误</code></pre>
+<pre class="r"><code>#GBLUP-A 分析
+myblup$pars$kinship_file=paste0(data_path,&quot;/G_Ainv_col_three.txt&quot;)
+myblup$pars$analysis_model=&quot;GBLUP_A&quot;
+myblup$run(task_type=&quot;DMU&quot;)</code></pre>
+<pre class="r"><code>#ssGBLUP-A 分析
+myblup$pars$kinship_file=paste0(data_path,&quot;/&quot;,c(&quot;pedigree.txt&quot;,&quot;G_A_col_three.txt&quot;))
+myblup$pars$analysis_model=&quot;SSBLUP_A&quot;
+myblup$run(task_type=&quot;DMU&quot;)</code></pre>
+</div>
+<div id="多性状blup分析" class="section level3">
+<h3>多性状BLUP分析</h3>
+<pre class="r"><code>library(blupSUP)
+library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)
+#prepare parameters the BLUP analysis
+blup_par=BLUPpar$new(
+phe_file=paste0(data_path,&quot;/phenotype.txt&quot;),                                               phe_colnames=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),
+dmu_integer_n=5, #number of integer variable in the phenotype file (required by DMU)
+analysis_model=&quot;PBLUP_A&quot;,
+kinship_file=paste0(data_path,&quot;/pedigree.txt&quot;))
+
+#定义Trait1模型中的效应
+myblup=BLUP$new(fixed=Trait1~Sex+Herd_Year_Season, #fixed effect
+               random=~Id+Litter, #random effect 
+               pars=blup_par) #blup_par has been defined previously
+myblup$run(output_path=&quot;D:/test&quot;,task_type=&quot;DMU&quot;) # default using DMU 
+myblup</code></pre>
+<pre class="r"><code>myblup</code></pre>
+<pre><code>## &lt;BLUP::DMU&gt; 
+## &lt;ADCmodel::1 trait&gt; 
+## ----Trait:Trait1~Sex(fixed)+Herd_Year_Season(fixed)+Id(random)+Litter(random)</code></pre>
+<pre class="r"><code>#多性状模型分析
+#定义Trait2模型中的效应
+myblup$add_model(fixed=Trait2~Herd_Year_Season,random=~Id,covariate=~Age)
+myblup</code></pre>
+<pre><code>## &lt;BLUP::DMU&gt; 
+## &lt;ADCmodel::2 traits&gt; 
+## ----Trait:Trait1~Sex(fixed)+Herd_Year_Season(fixed)+Id(random)+Litter(random)
+## ----Trait:Trait2~Herd_Year_Season(fixed)+Id(random)+Age(covariate)</code></pre>
+<pre class="r"><code>myblup$run() #分析
+
+#在BLUP分析中，移除 Trait2 
+#myblup$rm_model(&quot;Trait2&quot;) 
+
+#多性状模型分析的结果
+ebv=myblup$ebv         #breeding value
+h2=myblup$h2   #heritability and its SE
+genR2=myblup$r2 #genetic correlation and its SE 
+user_defined_h2=myblup$cal_se(~Id1/(Id1+Litter1+Res1)) #user defined expression of calculating h2 based on delta method
+user_defined_genR2=myblup$cal_se(~Id1_2/sqrt(Id1 * Id2)) #user defined expression of calculating genR2 based on delta method
+#random effect names from multiple traits model were defined in: rownames(myblup$vars_se$vars_mat)         </code></pre>
+</div>
+<div id="交叉验证" class="section level3">
+<h3>交叉验证</h3>
+<pre class="r"><code>library(blupSUP)
+library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)
+
+#prepare parameters the BLUP analysis
+blup_par=BLUPpar$new(
+phe_file=paste0(data_path,&quot;/phenotype.txt&quot;),                                               phe_colnames=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),
+dmu_integer_n=5, #number of integer variable in the phenotype file (required by DMU)
+analysis_model=&quot;PBLUP_A&quot;,
+kinship_file=paste0(data_path,&quot;/pedigree.txt&quot;))
+
+#define the effect of Trait1 for BLUP analysis
+myblup=BLUP$new(fixed=Trait1~Sex+Herd_Year_Season, #fixed effect
+                random=~Id+Litter, #random effect 
+                pars=blup_par) #blup_par has been defined previously
+
+
+#利用 holdout方式划分训练群和验证群
+myCV=CVpredi$new(myblup,  #has been defined previously 
+                 partion_type=&quot;holdout&quot;, #the type of data partioning
+                 ratio=0.6) #the ratio of  train_size/(train_size+test_size)
+
+#计算预测准确性
+myCV$predict_sets()
+accu=myCV$accuracy
+bias=myCV$bias
+train_set=myCV$datasets$train_sets[[1]] #train set was used in analysis
+test_set=myCV$datasets$test_sets[[1]]   #train set was used in analysis 
+ebv_set=myCV$datasets$ebv_sets[[1]]   #train set was used in analysis 
+
+#利用 kfold 划分训练群和验证群 
+myCV=CVpredi$new(myblup,  #has been defined previously 
+                 partion_type=&quot;kfold&quot;, #the type of data partioning
+                 ratio=0.6,            #the ratio of  train_size/(train_size+test_size)
+                 kfold=5,              #number of fold  
+                 seed=9894)            #random seed number for partioning data,default is 9894     
+
+#get the prediction accuracy 
+myCV$predict_sets() #计算所有训练群和验证群下的模型预测准确性
+#myCV$predict_sets(2) # 仅计算第2个训练群和验证群下的模型预测准确性
+accu=myCV$accuracy
+bias=myCV$bias
+train_set2=myCV$datasets$train_sets[[2]] #train set was used in analysis of fold2
+test_set2=myCV$datasets$test_sets[[2]]   #train set was used in analysis  of fold2
+ebv_set2=myCV$datasets$ebv_sets[[2]]   #train set was used in analysis  of fold2</code></pre>
+</div>
+</div>

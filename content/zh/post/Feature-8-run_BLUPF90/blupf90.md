@@ -37,7 +37,7 @@ toc: true
 
 ``` {.r}
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")   #  示例文件的路径
+data_path=system.file("extdata", package = "blupSUP")   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # 表型数据的列名(ps.表型文件无列名)
@@ -59,7 +59,7 @@ run_BLUPF90(
 
 ``` {.r}
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")   #  示例文件的路径
+data_path=system.file("extdata", package = "blupSUP")   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # 表型数据的列名(ps.表型文件无列名)
@@ -81,7 +81,7 @@ run_BLUPF90(
 
 ``` {.r}
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")   #  示例文件的路径
+data_path=system.file("extdata", package = "blupSUP")   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # 表型数据的列名(ps.表型文件无列名)
@@ -107,7 +107,7 @@ run_BLUPF90(
 
 ``` {.R}
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")   #  示例文件的路径
+data_path=system.file("extdata", package = "blupSUP")   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # 表型数据的列名(ps.表型文件无列名)

@@ -37,7 +37,7 @@ Note: the usage of  `run_BLUPF90`  and  `run_DMU`  is similar. Thus, we recommen
 
 ``` {.r}
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files      
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files      
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
         target_trait_name=list(c("Trait1")),                     #trait name 
@@ -58,7 +58,7 @@ run_BLUPF90(
 
 ``` {.r}
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
         target_trait_name=list(c("Trait1")),                     #trait name 
@@ -80,7 +80,7 @@ run_BLUPF90(
 
 ``` {.r}
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
@@ -106,7 +106,7 @@ The following code is about the usage of multiple traits model through BLUPF90:
 
 ``` {.R}
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
         target_trait_name=list(c("Trait1"),c("Trait2")),                 #trait name 
@@ -129,7 +129,7 @@ run_BLUPF90(
 
 ``` {.r}
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
 run_BLUPF90(phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter",
                          "Trait1","Trait2","Age"),               # colnames of phenotype
         target_trait_name=list(c("Trait1")),                     #trait name 
@@ -153,7 +153,7 @@ run_BLUPF90(phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter",
 
 ```R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
 run_BLUPF90(
         phe_col_names=c("Herd","B_month","D_age","Litter","Sex","HY","ID","DAM","L_Dam",
 		         "W_birth","W_2mth","W_4mth","G_0_2","G_0_4","G_2_4"), # colnames of phenotype
@@ -176,7 +176,7 @@ run_BLUPF90(
 
 ```R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files 
 run_BLUPF90(
         phe_col_names=c("id","year_grp","breed","time","t_dato",
                         "age","L1","L2","L3","gh"),           # colnames of phenotype
@@ -199,7 +199,7 @@ run_BLUPF90(
 
 ```R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files  
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files  
 run_BLUPF90(
         phe_col_names=c("id","year_grp","breed","time","t_dato",
                         "age","L1","L2","L3","gh"),           # colnames of phenotype
@@ -224,8 +224,7 @@ run_BLUPF90(
 
 ``` {.r}
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files 
-data_path=system.file("extdata", package = "blupADC")  #  path of provided files      
+data_path=system.file("extdata", package = "blupSUP")  #  path of provided files    
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
         target_trait_name=list(c("Trait1")),                     #trait name 

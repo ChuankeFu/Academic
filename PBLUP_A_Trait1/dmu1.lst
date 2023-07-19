@@ -1,0 +1,75 @@
+ DMU1                        Multivariate Mixed Model Package                  19-07-2023 - 10:54:14
+
+  
+  
+                                 DDDD    MM   MM  U     U 
+                                 D   D   M M M M  U     U 
+                                 D    D  M  M  M  U     U 
+                                 D    D  M     M  U     U 
+                                 D   D   M     M   U   U  
+                                 DDDD    M     M    UUU   
+  
+                                 Version: 6, Release: 5.2
+  
+                ___________________________________________________________________
+                |                                                                 |
+                | Package for Analyzing Multivariate Mixed Model developed by:    |
+                |                                                                 |
+                |                  Per Madsen & Just Jensen                       |
+                |                      Aarhus University                          |
+                |           Center for Quantitative Genetics and Genomics         |
+                |                   Research Centre Foulum                        |
+                |                        P.O. Box 50                              |
+                |                   DK-8830 Tjele, Denmark                        |
+                |                     Ph:  (45) 87158028                          |
+                |                  Email: Per.Madsen@agrsci.dk                    |
+                |                                                                 |
+                | The Center for Quantitative Genetics and Genomics (QGG) owns    |
+                | the source code of the dmu-package                              |
+                |                                                                 |
+                | The dmu-package is free of charge for research use. However,    |
+                | technical support can not be provided                           |
+                |                                                                 |
+                | Use of the package should be acknowledged in publications by    |
+                | reference to the the user guide                                 |
+                |                                                                 |
+                | You are not allowed to distribute modified versions of the      |
+                | dmu-package neither under the same nor under a different name   |
+                | without the approval from the authors                           |
+                |                                                                 |
+                | For commercial use of the dmu-package please contact QGG.       |
+                |_________________________________________________________________|
+  
+  
+
+         Execution host:      DESKTOP-M2QQ141
+
+         Working directory:   D:\myProject\myblog1\PBLUP_A_Trait1
+  
+         User comments
+  
+         ____________________________________________________________________________________
+         |                                                                                  |
+         |                                                                                  |
+         |__________________________________________________________________________________|
+  
+  
+         Type of analyse              :   1 (AI-REML)
+         Method for computation       :   1 (AI-REML with EM crash recovery)
+          
+  
+  
+         User specified files
+          
+         DATA                          : C:/Users/26564/Documents/R/win-library/4.1/blupSUP/extdata/phenotype.txt
+         VAR. STRUC. random factor   1 : C:/Users/26564/Documents/R/win-library/4.1/blupSUP/extdata/pedigree.txt
+1DMU1                        Multivariate Mixed Model Package                  19-07-2023 - 10:54:14
+
+          
+          
+         Variable names (user specified)
+          
+         INTEGERS :   Id       Mean     Sex      Herd_Yea Litter   
+          
+         REALS    :   Trait1   Trait2   Age      
+          
