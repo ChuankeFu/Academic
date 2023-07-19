@@ -533,43 +533,6 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#projects"><span>Software</span></a>
-        </li>
-
-        
-        
-
-        
-
-        
-        
-        
-          
-        
-
-        
-
-        
-        
-        
-        
-
-        
-          
-            
-            
-          
-          
-            
-            
-            
-              
-            
-            
-          
-        
-
-        <li class="nav-item">
           <a class="nav-link " href="/#publications"><span>Publications</span></a>
         </li>
 
@@ -815,10 +778,11 @@
 <p>Note: the usage of  <code>run_BLUPF90</code>  and  <code>run_DMU</code>  is similar. Thus, we recommend to have a look at the  usage of <code>run_DMU</code> function.</p>
 <p>👉 <strong>Note:</strong>  <strong>Package <code>blupADC</code> has encapsulated  the basic module of BLUPF90 (<code>renumf90</code>, <code>remlf90</code>, <code>airemlf90</code>, and <code>blupf90</code>), if you want to use more modules, please download from websit</strong> (<a href="http://nce.ads.uga.edu/html/projects/programs/" target="_blank" rel="noopener">BLUPF90 download website</a>).</p>
 <p><strong>For commercial use of BLUPF90,  user must contact the author of BLUPF90 !!!</strong></p>
+<p>👉 <strong>Note:</strong> <strong>Package <code>blupADC</code> now supports object-oriented programming in running BLUPF90,  which should be more easier in analysis, see more <a href="https://qsmei.netlify.app/post/r6-genomic-predictionselection/blup/" target="_blank" rel="noopener">details!</a></strong></p>
 <h2 id="example">Example</h2>
 <h3 id="single-trait-model---pedigree-blup"><strong>Single trait model - Pedigree BLUP</strong></h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files      
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files      
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
         target_trait_name=list(c(&quot;Trait1&quot;)),                     #trait name 
@@ -836,7 +800,7 @@ run_BLUPF90(
 </code></pre>
 <h3 id="single-trait-model---gblup"><strong>Single trait model - GBLUP</strong></h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
         target_trait_name=list(c(&quot;Trait1&quot;)),                     #trait name 
@@ -855,7 +819,7 @@ run_BLUPF90(
 </code></pre>
 <h3 id="single-trait-model---single-step-blup"><strong>Single trait model - Single-step BLUP</strong></h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
@@ -876,7 +840,7 @@ run_BLUPF90(
 <h3 id="multiple-traits-model---pedigree-blup"><strong>Multiple traits model - Pedigree BLUP</strong></h3>
 <p>The following code is about the usage of multiple traits model through BLUPF90:</p>
 <pre><code class="language-{.R}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
         target_trait_name=list(c(&quot;Trait1&quot;),c(&quot;Trait2&quot;)),                 #trait name 
@@ -894,7 +858,7 @@ run_BLUPF90(
 </code></pre>
 <h3 id="single-trait----pedigree-blup-modelwith-user-provided-prior">Single trait  - pedigree BLUP model(with user-provided prior)</h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
 run_BLUPF90(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,
                          &quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),               # colnames of phenotype
         target_trait_name=list(c(&quot;Trait1&quot;)),                     #trait name 
@@ -915,7 +879,7 @@ run_BLUPF90(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quo
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-maternal-effect">Single trait  - pedigree BLUP model( with maternal effect)</h3>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
 run_BLUPF90(
         phe_col_names=c(&quot;Herd&quot;,&quot;B_month&quot;,&quot;D_age&quot;,&quot;Litter&quot;,&quot;Sex&quot;,&quot;HY&quot;,&quot;ID&quot;,&quot;DAM&quot;,&quot;L_Dam&quot;,
 		         &quot;W_birth&quot;,&quot;W_2mth&quot;,&quot;W_4mth&quot;,&quot;G_0_2&quot;,&quot;G_0_4&quot;,&quot;G_2_4&quot;), # colnames of phenotype
@@ -935,7 +899,7 @@ run_BLUPF90(
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-permanent-effect">Single trait  - pedigree BLUP model( with permanent effect)</h3>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
 run_BLUPF90(
         phe_col_names=c(&quot;id&quot;,&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;,&quot;t_dato&quot;,
                         &quot;age&quot;,&quot;L1&quot;,&quot;L2&quot;,&quot;L3&quot;,&quot;gh&quot;),           # colnames of phenotype
@@ -955,7 +919,7 @@ run_BLUPF90(
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-random-regression-effect">Single trait  - pedigree BLUP model( with random regression effect)</h3>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files  
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files  
 run_BLUPF90(
         phe_col_names=c(&quot;id&quot;,&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;,&quot;t_dato&quot;,
                         &quot;age&quot;,&quot;L1&quot;,&quot;L2&quot;,&quot;L3&quot;,&quot;gh&quot;),           # colnames of phenotype
@@ -975,8 +939,7 @@ run_BLUPF90(
 </code></pre>
 <h3 id="single-trait-model---blup-gibbs-sampling"><strong>Single trait model - BLUP (gibbs sampling)</strong></h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files      
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files    
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
         target_trait_name=list(c(&quot;Trait1&quot;)),                     #trait name 

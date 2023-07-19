@@ -533,43 +533,6 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/zh/#projects"><span>软件</span></a>
-        </li>
-
-        
-        
-
-        
-
-        
-        
-        
-          
-        
-
-        
-
-        
-        
-        
-        
-
-        
-          
-            
-            
-          
-          
-            
-            
-            
-              
-            
-            
-          
-        
-
-        <li class="nav-item">
           <a class="nav-link " href="/zh/#publications"><span>学术文章</span></a>
         </li>
 
@@ -808,10 +771,11 @@
 <p>为此，我们在R中编写了相应的函数，使得用户可以轻松的完成两款软件参数文件的配置及对应的数据分析。本章我们主要讲述如何通过<code>BLUP_ADC</code>中的<code>run_DMU</code>函数，在R中调用<strong>DMU</strong>软件并完成数据分析。在下一章，我们将会讲述如何在R中调用<strong>BLUPf90</strong>软件，并完成数相应的据分析。</p>
 <p><strong>👉 Note:  为了方便用户使用， <code>blupADC</code> 已经封装了DMU中的几个基本模块(<code>dmu1</code>,<code>dmuai</code>, and <code>dmu5</code>), 更多的模块可以从DMU官网进行下载(<a href="https://dmu.ghpc.au.dk/dmu/" target="_blank" rel="noopener">DMU下载网站</a>).</strong></p>
 <p><strong>如果您想将DMU用作商业用途，请务必联系 DMU的作者！！！</strong></p>
+<p>👉 <strong>Note:</strong> <strong>Package <code>blupADC</code> 现支持使用面向对象的方式，运行DMU以进一步简化分析,  具体操作 <a href="https://qsmei.netlify.app/zh/post/r6-genomic-predictionselection/blup/" target="_blank" rel="noopener">可见!</a></strong></p>
 <h2 id="示例">示例</h2>
 <h3 id="单性状模型-系谱"><strong>单性状模型-系谱</strong></h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
@@ -832,7 +796,7 @@ run_DMU(
 </code></pre>
 <h3 id="单性状模型-gblup"><strong>单性状模型-GBLUP</strong></h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
@@ -853,7 +817,7 @@ run_DMU(
 </code></pre>
 <h3 id="单性状模型-single-step一步法"><strong>单性状模型-Single-step(一步法)</strong></h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
@@ -876,7 +840,7 @@ run_DMU(
 <p>上面我们介绍的都是单性状模型(<strong>只包括了一个目标性状</strong>)，而在实际育种分析中，多性状模型也是非常常见。在上面代码的基础上稍作修改，我们就能够非常方便的完成多性状模型的运算，如下：</p>
 <h3 id="多性状模型-系谱"><strong>多性状模型-系谱</strong></h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
@@ -897,7 +861,7 @@ run_DMU(
 </code></pre>
 <h3 id="单性状模型-系谱-用户提供方差组分先验文件">单性状模型-系谱 (用户提供方差组分先验文件)</h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
   
 run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,
                          &quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),               # colnames of phenotype
@@ -920,7 +884,7 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;He
 </code></pre>
 <h3 id="单性状模型-系谱-包含母性效应">单性状模型-系谱 (包含母性效应)</h3>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&quot;Herd&quot;,&quot;B_month&quot;,&quot;D_age&quot;,&quot;Litter&quot;,&quot;Sex&quot;,&quot;HY&quot;,&quot;ID&quot;,&quot;DAM&quot;,&quot;L_Dam&quot;,
@@ -943,7 +907,7 @@ run_DMU(
 </code></pre>
 <h3 id="单性状模型-系谱-包含永久环境效应">单性状模型-系谱 (包含永久环境效应)</h3>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&quot;id&quot;,&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;,&quot;t_dato&quot;,
@@ -966,7 +930,7 @@ run_DMU(
 </code></pre>
 <h3 id="单性状模型-系谱--包含随机回归效应">单性状模型-系谱 ( 包含随机回归效应)</h3>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&quot;id&quot;,&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;,&quot;t_dato&quot;,
@@ -991,7 +955,7 @@ run_DMU(
 <h3 id="单性状模型-系谱-包含-社会遗传效应">单性状模型-系谱( 包含 社会遗传效应)</h3>
 <p>用户提供的表型文件不需要包含 最大群体大小相关的列</p>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;Phe&quot;), # colnames of phenotype
@@ -1015,7 +979,7 @@ run_DMU(
 <h3 id="单性状模型-系谱-包含-社会遗传效应-1">单性状模型-系谱( 包含 社会遗传效应)</h3>
 <p>用户提供的表型文件需要包含 最大群体大小相关的列</p>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  示例文件的路径
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  示例文件的路径
   
 run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;Gr_id1&quot;,&quot;Gr_id2&quot;,&quot;Gr_id3&quot;,&quot;Gr_id4&quot;,&quot;Gr_id5&quot;,                         
                         &quot;Phe&quot;,&quot;Status_Gr_id1&quot;,&quot;Status_Gr_id2&quot;,&quot;Status_Gr_id3&quot;,&quot;Status_Gr_id4&quot;,&quot;Status_Gr_id5&quot;),# colnames of phenotype

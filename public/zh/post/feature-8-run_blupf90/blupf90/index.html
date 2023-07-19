@@ -533,43 +533,6 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/zh/#projects"><span>软件</span></a>
-        </li>
-
-        
-        
-
-        
-
-        
-        
-        
-          
-        
-
-        
-
-        
-        
-        
-        
-
-        
-          
-            
-            
-          
-          
-            
-            
-            
-              
-            
-            
-          
-        
-
-        <li class="nav-item">
           <a class="nav-link " href="/zh/#publications"><span>学术文章</span></a>
         </li>
 
@@ -799,11 +762,12 @@
 <p>👻在前面的章节，我们已经讲述了如何在<strong>R</strong>中调用<strong>DMU</strong>软件并完成相应的分析。本章，我们将讲述如何通过<code>BLUP_ADC</code>中的<code>run_BLUPF90</code>函数，在<strong>R</strong>中调用<strong>BLUPF90</strong>软件并完成数据分析。为了方便用户的使用，我们已经尽可能地将 <code>run_BLUPF90</code>函数中的参数 和 <code>run_DMU</code>函数中的参数进行了统一。</p>
 <p><strong>👉 Note:  为了方便用户使用， <code>blupADC</code> 已经封装了BLUPF90中的几个基本模块(<code>renumf90</code>, <code>remlf90</code>, <code>airemlf90</code>, 和 <code>blupf90</code>), 更多的模块可以从BLUPF90官网进行下载(<a href="http://nce.ads.uga.edu/html/projects/programs/" target="_blank" rel="noopener">BLUPF90下载网站</a>).</strong></p>
 <p><strong>如果您想将BLUPF90用作商业用途，请务必联系 BLUPF90的作者！！！</strong></p>
+<p>👉 <strong>Note:</strong> <strong>Package <code>blupADC</code> 现支持使用面向对象的方向运行BLUPF90以进一步简化分析,  具体操作 <a href="https://qsmei.netlify.app/zh/post/r6-genomic-predictionselection/blup/" target="_blank" rel="noopener">可见!</a></strong></p>
 <p>接下来，我们还是用几个简单的例子看看该函数的用法:</p>
 <h2 id="示例">示例</h2>
 <h3 id="单性状模型-系谱"><strong>单性状模型-系谱</strong></h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)   #  示例文件的路径
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # 表型数据的列名(ps.表型文件无列名)
@@ -822,7 +786,7 @@ run_BLUPF90(
 </code></pre>
 <h3 id="单性状模型-gblup"><strong>单性状模型-GBLUP</strong></h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)   #  示例文件的路径
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # 表型数据的列名(ps.表型文件无列名)
@@ -841,7 +805,7 @@ run_BLUPF90(
 </code></pre>
 <h3 id="单性状模型-single-step一步法"><strong>单性状模型-Single-step(一步法)</strong></h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)   #  示例文件的路径
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # 表型数据的列名(ps.表型文件无列名)
@@ -862,7 +826,7 @@ run_BLUPF90(
 <h3 id="多性状模型-系谱"><strong>多性状模型-系谱</strong></h3>
 <p>上面我们介绍的都是单性状模型(<strong>只包括了一个目标性状</strong>)。与上一节的介绍的<code>run_DMU</code>函数类似，如果我们想完成双性状模型的计算，只需要在上面的脚本的基础上稍作修改就能实现目的，具体代码如下：</p>
 <pre><code class="language-{.R}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)   #  示例文件的路径
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # 表型数据的列名(ps.表型文件无列名)

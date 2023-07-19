@@ -533,43 +533,6 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#projects"><span>Software</span></a>
-        </li>
-
-        
-        
-
-        
-
-        
-        
-        
-          
-        
-
-        
-
-        
-        
-        
-        
-
-        
-          
-            
-            
-          
-          
-            
-            
-            
-              
-            
-            
-          
-        
-
-        <li class="nav-item">
           <a class="nav-link " href="/#publications"><span>Publications</span></a>
         </li>
 
@@ -818,10 +781,11 @@
 <p>In this section, we will give detail description about <code>run_DMU</code> function.</p>
 <p>👉 <strong>Note:</strong>  <strong>Package <code>blupADC</code> has encapsulated  the basic module of DMU(<code>dmu1</code>,<code>dmuai</code>, and <code>dmu5</code>) , more modules could be download from website</strong>(<a href="https://dmu.ghpc.au.dk/dmu/" target="_blank" rel="noopener">DMU download website</a>).</p>
 <p><strong>For commercial use of DMU,  user must contact the author of DMU !!!</strong></p>
+<p>👉 <strong>Note:</strong> <strong>Package <code>blupADC</code> now supports object-oriented programming in running DMU,  which should be more easier in analysis, see more <a href="https://qsmei.netlify.app/post/r6-genomic-predictionselection/blup/" target="_blank" rel="noopener">details!</a></strong></p>
 <h2 id="example">Example</h2>
 <h3 id="single-trait----pedigree-blup-model">Single trait  - pedigree BLUP model</h3>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
   
 run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype
@@ -842,7 +806,7 @@ run_DMU(
 </code></pre>
 <h3 id="single-trait----gblup--model">Single trait  - GBLUP  model</h3>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
 run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
         target_trait_name=list(c(&quot;Trait1&quot;)),                           #trait name 
@@ -862,7 +826,7 @@ run_DMU(
 </code></pre>
 <h3 id="single-trait----single-step-blup-model">Single trait  - single-step BLUP model</h3>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
 run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;), # colnames of phenotype 
         target_trait_name=list(c(&quot;Trait1&quot;)),                           #trait name 
@@ -884,7 +848,7 @@ run_DMU(
 <p>The above example is single-trait model, while in actual breeding, multiple traits model is also common.  Similarly, we only need to modify several parameters to  perform multiple traits model:</p>
 <h3 id="multiple-traits----pedigree-blup-model">Multiple traits  - pedigree BLUP model</h3>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
   
 run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;), # colnames of phenotype 
@@ -905,7 +869,7 @@ run_DMU(
 </code></pre>
 <h3 id="single-trait----pedigree-blup-modelwith-user-provided-prior">Single trait  - pedigree BLUP model(with user-provided prior)</h3>
 <pre><code class="language-{.r}">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
   
 run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,
                          &quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),               # colnames of phenotype
@@ -928,7 +892,7 @@ run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;He
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-maternal-effect">Single trait  - pedigree BLUP model( with maternal effect)</h3>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
   
 run_DMU(
         phe_col_names=c(&quot;Herd&quot;,&quot;B_month&quot;,&quot;D_age&quot;,&quot;Litter&quot;,&quot;Sex&quot;,&quot;HY&quot;,&quot;ID&quot;,&quot;DAM&quot;,&quot;L_Dam&quot;,
@@ -951,7 +915,7 @@ run_DMU(
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-permanent-effect">Single trait  - pedigree BLUP model( with permanent effect)</h3>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
   
 run_DMU(
         phe_col_names=c(&quot;id&quot;,&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;,&quot;t_dato&quot;,
@@ -974,7 +938,7 @@ run_DMU(
 </code></pre>
 <h3 id="single-trait----pedigree-blup-model-with-random-regression-effect">Single trait  - pedigree BLUP model( with random regression effect)</h3>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
   
 run_DMU(
         phe_col_names=c(&quot;id&quot;,&quot;year_grp&quot;,&quot;breed&quot;,&quot;time&quot;,&quot;t_dato&quot;,
@@ -999,7 +963,7 @@ run_DMU(
 <h3 id="single-trait----pedigree-blup-model-with-social-genetic-effect">Single trait  - pedigree BLUP model( with social genetic effect)</h3>
 <h4 id="user-provided-phenotype-doesnt-need-to-have-max-group-size-columns">User-provided phenotype doesn&rsquo;t need to have max group size columns</h4>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
   
 run_DMU(
         phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;Phe&quot;), # colnames of phenotype
@@ -1023,7 +987,7 @@ run_DMU(
 <h3 id="single-trait----pedigree-blup-model-with-social-genetic-effect-1">Single trait  - pedigree BLUP model( with social genetic effect)</h3>
 <h4 id="user-provided-phenotype-need-to-have--max-group-size-columns">User-provided phenotype need to have  max group size columns</h4>
 <pre><code class="language-R">library(blupADC)
-data_path=system.file(&quot;extdata&quot;, package = &quot;blupADC&quot;)  #  path of provided files 
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)  #  path of provided files 
   
 run_DMU(phe_col_names=c(&quot;Id&quot;,&quot;Group&quot;,&quot;Sex&quot;,&quot;Gr_id1&quot;,&quot;Gr_id2&quot;,&quot;Gr_id3&quot;,&quot;Gr_id4&quot;,&quot;Gr_id5&quot;,                         
                         &quot;Phe&quot;,&quot;Status_Gr_id1&quot;,&quot;Status_Gr_id2&quot;,&quot;Status_Gr_id3&quot;,&quot;Status_Gr_id4&quot;,&quot;Status_Gr_id5&quot;),# colnames of phenotype

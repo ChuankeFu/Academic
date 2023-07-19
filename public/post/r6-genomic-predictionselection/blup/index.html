@@ -1,0 +1,1317 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.1.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Quanshun Mei" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Object-oriented programming in GS of blupADC" />
+
+  
+    <link rel="alternate" hreflang="zh" href="/zh/post/r6-genomic-predictionselection/blup/" />
+  
+  <link rel="alternate" hreflang="en-us" href="/post/r6-genomic-predictionselection/blup/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.9a66e344a68eb664b392d406a3f80726.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="/post/r6-genomic-predictionselection/blup/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Quanshun Mei-Personal" />
+  <meta property="og:url" content="/post/r6-genomic-predictionselection/blup/" />
+  <meta property="og:title" content="blupADC-Genomic prediction(selection) | Quanshun Mei-Personal" />
+  <meta property="og:description" content="Object-oriented programming in GS of blupADC" /><meta property="og:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2023-07-16T10:00:48&#43;08:00"
+      />
+    
+    <meta property="article:modified_time" content="2023-07-16T10:00:48&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/r6-genomic-predictionselection/blup/"
+  },
+  "headline": "blupADC-Genomic prediction(selection)",
+  
+  "datePublished": "2023-07-16T10:00:48+08:00",
+  "dateModified": "2023-07-16T10:00:48+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Quanshun Mei"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Quanshun Mei-Personal",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Object-oriented programming in GS of blupADC"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>blupADC-Genomic prediction(selection) | Quanshun Mei-Personal</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="539905e284e415014f2111580cd823f6" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.226a9011996d125bf3fe4a5f22353a49.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Quanshun Mei-Personal</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Quanshun Mei-Personal</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>About Me</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="/"  aria-label="">
+              <i class="fas fa-" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="/"  aria-label="">
+              <i class="fas fa-" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+          
+          <li class="nav-item d-none d-lg-inline-flex">
+            <a class="nav-link" href="/"  aria-label="">
+              <i class="fas fa-" aria-hidden="true"></i>
+            </a>
+          </li>
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown i18n-dropdown">
+        <a href="#" class="nav-link " data-toggle="dropdown"
+           aria-haspopup="true" aria-label="Languages">
+          <i class="fas fa-globe mr-1" aria-hidden="true"></i></a>
+        <div class="dropdown-menu">
+          <div class="dropdown-item dropdown-item-active">
+            <span>English</span>
+          </div>
+          
+          <a class="dropdown-item" href="/zh/post/r6-genomic-predictionselection/blup/">
+            <span>中文 (简体)</span>
+          </a>
+          
+        </div>
+      </li>
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>blupADC-Genomic prediction(selection)</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jul 16, 2023
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<div id="blupadc--new-features-in-genomis-selection" class="section level2">
+<h2>blupADC- New features in genomis selection</h2>
+<p>🤠 In the previous version of blupADC, we have given a comprehensive description of perform BLUP analysis in genomic selection. In order to further simplify the usage of blupADC, we have incorporated R6 package, which supports oriented programming. In the below, we will give server examples of how to perform single trait and multiple traits analysis of PBLUP, GBLUP and ssGBLUP. Also, user can perform cross validation in an easy way in the latest version of blupADC.</p>
+<p>👉 <strong>Note:</strong> <strong>For the latest version of blupADC, user has to install package <code>blupSUP</code> at first, in which example data and software (e.g. DMU and BLUPF90) are included in this package </strong>.</p>
+</div>
+<div id="example" class="section level2">
+<h2>Example</h2>
+<div id="single-trait-blup-model" class="section level3">
+<h3>Single-trait BLUP model</h3>
+<pre class="r"><code>library(blupSUP)
+library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)
+#prepare parameters the BLUP analysis
+blup_par=BLUPpar$new(
+phe_file=paste0(data_path,&quot;/phenotype.txt&quot;),                                            
+phe_colnames=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),
+dmu_integer_n=5, #number of integer variable in the phenotype file (required by DMU)
+analysis_model=&quot;PBLUP_A&quot;,
+kinship_file=paste0(data_path,&quot;/pedigree.txt&quot;))
+#define the model effect  of Trait1
+myblup=BLUP$new(fixed=Trait1~Sex+Herd_Year_Season, #fixed effect
+                random=~Id+Litter, #random effect 
+                pars=blup_par) #blup_par has been defined previously
+myblup</code></pre>
+<pre><code>## &lt;BLUP::DMU&gt; 
+## &lt;ADCmodel::1 trait&gt; 
+## ----Trait:Trait1~Sex(fixed)+Herd_Year_Season(fixed)+Id(random)+Litter(random)</code></pre>
+<pre class="r"><code>#BLUP analysis of Trait1
+myblup$run(output_path=&quot;D:/test&quot;,task_type=&quot;DMU&quot;) # default using DMU 
+#myblup$run(output_path=&quot;D:/test&quot;,task_type=&quot;BLUPF90&quot;) #using BLUPF90 for analysis </code></pre>
+<pre class="r"><code>#output of BLUP analysis
+ebv=myblup$ebv         #breeding value
+h2=myblup$h2   #heritability and its SE
+user_defined_h2=myblup$cal_se(~Id1/(Id1+Litter1+Res1)) #user defined expression of calculating h2 based on delta method</code></pre>
+<pre class="r"><code>#GBLUP-A analysis 
+myblup$pars$kinship_file=paste0(data_path,&quot;/G_Ainv_col_three.txt&quot;)
+myblup$pars$analysis_model=&quot;GBLUP_A&quot;
+myblup$run(task_type=&quot;DMU&quot;)</code></pre>
+<pre class="r"><code>#ssGBLUP-A analysis 
+myblup$pars$kinship_file=paste0(data_path,&quot;/&quot;,c(&quot;pedigree.txt&quot;,&quot;G_A_col_three.txt&quot;))
+myblup$pars$analysis_model=&quot;SSBLUP_A&quot;
+myblup$run(task_type=&quot;DMU&quot;)</code></pre>
+</div>
+<div id="multiple-traits-blup-model" class="section level3">
+<h3>Multiple traits BLUP model</h3>
+<pre class="r"><code>library(blupSUP)
+library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)
+#prepare parameters the BLUP analysis
+blup_par=BLUPpar$new(
+phe_file=paste0(data_path,&quot;/phenotype.txt&quot;),                                               phe_colnames=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),
+dmu_integer_n=5, #number of integer variable in the phenotype file (required by DMU)
+analysis_model=&quot;PBLUP_A&quot;,
+kinship_file=paste0(data_path,&quot;/pedigree.txt&quot;))
+
+#define the effect of Trait1 for BLUP analysis
+myblup=BLUP$new(fixed=Trait1~Sex+Herd_Year_Season, #fixed effect
+               random=~Id+Litter, #random effect 
+               pars=blup_par) #blup_par has been defined previously
+myblup$run(output_path=&quot;D:/test&quot;,task_type=&quot;DMU&quot;) # default using DMU 
+myblup</code></pre>
+<pre class="r"><code>myblup</code></pre>
+<pre><code>## &lt;BLUP::DMU&gt; 
+## &lt;ADCmodel::1 trait&gt; 
+## ----Trait:Trait1~Sex(fixed)+Herd_Year_Season(fixed)+Id(random)+Litter(random)</code></pre>
+<pre class="r"><code>#Multiple traits analysis
+#add model effect of Trait2 in BLUP analysis
+myblup$add_model(fixed=Trait2~Herd_Year_Season,random=~Id,covariate=~Age)
+myblup</code></pre>
+<pre><code>## &lt;BLUP::DMU&gt; 
+## &lt;ADCmodel::2 traits&gt; 
+## ----Trait:Trait1~Sex(fixed)+Herd_Year_Season(fixed)+Id(random)+Litter(random)
+## ----Trait:Trait2~Herd_Year_Season(fixed)+Id(random)+Age(covariate)</code></pre>
+<pre class="r"><code>myblup$run() #Multiple traits analysis                 
+
+#remove Trait2 in BLUP analysis 
+#myblup$rm_model(&quot;Trait2&quot;) 
+
+#output of BLUP analysis
+ebv=myblup$ebv         #breeding value
+h2=myblup$h2   #heritability and its SE
+genR2=myblup$r2 #genetic correlation and its SE 
+user_defined_h2=myblup$cal_se(~Id1/(Id1+Litter1+Res1)) #user defined expression of calculating h2 based on delta method
+user_defined_genR2=myblup$cal_se(~Id1_2/sqrt(Id1 * Id2)) #user defined expression of calculating genR2 based on delta method
+#random effect names from multiple traits model were defined in: rownames(myblup$vars_se$vars_mat)         </code></pre>
+</div>
+<div id="cross-validation" class="section level3">
+<h3>Cross Validation</h3>
+<pre class="r"><code>library(blupSUP)
+library(blupADC)
+data_path=system.file(&quot;extdata&quot;, package = &quot;blupSUP&quot;)
+
+#prepare parameters the BLUP analysis
+blup_par=BLUPpar$new(
+phe_file=paste0(data_path,&quot;/phenotype.txt&quot;),                                               phe_colnames=c(&quot;Id&quot;,&quot;Mean&quot;,&quot;Sex&quot;,&quot;Herd_Year_Season&quot;,&quot;Litter&quot;,&quot;Trait1&quot;,&quot;Trait2&quot;,&quot;Age&quot;),
+dmu_integer_n=5, #number of integer variable in the phenotype file (required by DMU)
+analysis_model=&quot;PBLUP_A&quot;,
+kinship_file=paste0(data_path,&quot;/pedigree.txt&quot;))
+
+#define the effect of Trait1 for BLUP analysis
+myblup=BLUP$new(fixed=Trait1~Sex+Herd_Year_Season, #fixed effect
+                random=~Id+Litter, #random effect 
+                pars=blup_par) #blup_par has been defined previously
+
+
+#define the training and test datasets by holdout 
+myCV=CVpredi$new(myblup,  #has been defined previously 
+                 partion_type=&quot;holdout&quot;, #the type of data partioning
+                 ratio=0.6) #the ratio of  train_size/(train_size+test_size)
+
+#get the prediction accuracy 
+myCV$predict_sets()
+accu=myCV$accuracy
+bias=myCV$bias
+train_set=myCV$datasets$train_sets[[1]] #train set was used in analysis
+test_set=myCV$datasets$test_sets[[1]]   #train set was used in analysis 
+ebv_set=myCV$datasets$ebv_sets[[1]]   #train set was used in analysis 
+
+#define the training and test datasets by kfold 
+myCV=CVpredi$new(myblup,  #has been defined previously 
+                 partion_type=&quot;kfold&quot;, #the type of data partioning
+                 ratio=0.6,            #the ratio of  train_size/(train_size+test_size)
+                 kfold=5,              #number of fold  
+                 seed=9894)            #random seed number for partioning data,default is 9894     
+
+#get the prediction accuracy 
+myCV$predict_sets() #perform analysis in all folds 
+#myCV$predict_sets(2) # only perform analysis in the first fold 
+accu=myCV$accuracy
+bias=myCV$bias
+train_set2=myCV$datasets$train_sets[[2]] #train set was used in analysis of fold2
+test_set2=myCV$datasets$test_sets[[2]]   #train set was used in analysis  of fold2
+ebv_set2=myCV$datasets$ebv_sets[[2]]   #train set was used in analysis  of fold2</code></pre>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/r6-genomic-predictionselection/blup/&amp;text=blupADC-Genomic%20prediction%28selection%29" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/r6-genomic-predictionselection/blup/&amp;t=blupADC-Genomic%20prediction%28selection%29" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=blupADC-Genomic%20prediction%28selection%29&amp;body=/post/r6-genomic-predictionselection/blup/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/r6-genomic-predictionselection/blup/&amp;title=blupADC-Genomic%20prediction%28selection%29" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=blupADC-Genomic%20prediction%28selection%29%20/post/r6-genomic-predictionselection/blup/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/r6-genomic-predictionselection/blup/&amp;title=blupADC-Genomic%20prediction%28selection%29" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/author/quanshun-mei/avatar_hua28df167aad214296f4568b85755d250_255914_270x270_fill_q75_lanczos_center.JPG" alt="Quanshun Mei">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Quanshun Mei</h5>
+      <h6 class="card-subtitle">PhD student in Quantitative Genetics of Animal Breeding</h6>
+      <p class="card-text">My research interests include applying genomic selection and machine learning in animal breeding.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:quanshun1994@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/" >
+        <i class="fas fa-"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=yMQEkysAAAAJ&amp;hl=en&amp;oi=ao" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/" >
+        <i class="fas fa-"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/qsmei" target="_blank" rel="noopener">
+        <i class="fabi am curious to learn and try new thingsfa fabi am curious to learn and try new thingsfa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/" >
+        <i class="fas fa-"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+  
+
+  <p class="powered-by">
+    © {2021} Qsmei
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    <script src="/js/bootstrap.bundle.min.6aed84840afc03ab4d5750157f69c120.js"></script>
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.b61a8f62b6e5c0cd322c8158c5b5dfb6.js"></script>
+
+    
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+
+</body>
+</html>

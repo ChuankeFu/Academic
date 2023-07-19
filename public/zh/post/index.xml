@@ -5,12 +5,157 @@
     <link>/zh/post/</link>
       <atom:link href="/zh/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><copyright>© {2021} Qsmei</copyright><lastBuildDate>Thu, 22 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh</language><copyright>© {2021} Qsmei</copyright><lastBuildDate>Sun, 16 Jul 2023 10:00:48 +0800</lastBuildDate>
     <image>
       <url>/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>/zh/post/</link>
     </image>
+    
+    <item>
+      <title>blupADC-基因组预测（选择)</title>
+      <link>/zh/post/r6-genomic-predictionselection/blup/</link>
+      <pubDate>Sun, 16 Jul 2023 10:00:48 +0800</pubDate>
+      <guid>/zh/post/r6-genomic-predictionselection/blup/</guid>
+      <description>
+
+
+&lt;p&gt;🤠 在之前的blupADC版本中，我们已经对基因组选择中BLUP分析进行了全面的描述。为了进一步简化blupADC的使用，我们引入了支持面向对象编程的R6包。在下面，我们将提供如何执行PBLUP、GBLUP和ssGBLUP的单性状和多性状分析的示例。此外，用户可以在最新版本的blupADC中轻松进行交叉验证。&lt;/p&gt;
+&lt;div id=&#34;note-对于最新版本的blupadc用户需要首先安装blupsup-示例数据和软件均已迁移至该包e.g.-dmu-and-blupf90&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;👉 &lt;strong&gt;Note:&lt;/strong&gt; &lt;strong&gt;对于最新版本的blupADC,用户需要首先安装&lt;code&gt;blupSUP&lt;/code&gt; (示例数据和软件均已迁移至该包，e.g. DMU and BLUPF90) &lt;/strong&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;示例&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;示例&lt;/h2&gt;
+&lt;div id=&#34;单性状blup分析&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;单性状BLUP分析&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(blupSUP)
+library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)
+#设置BLUP分析的参数
+blup_par=BLUPpar$new(
+phe_file=paste0(data_path,&amp;quot;/phenotype.txt&amp;quot;),                                            
+phe_colnames=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),
+dmu_integer_n=5, #number of integer variable in the phenotype file (required by DMU)
+analysis_model=&amp;quot;PBLUP_A&amp;quot;,
+kinship_file=paste0(data_path,&amp;quot;/pedigree.txt&amp;quot;))
+#定义 Trait1的 效应
+myblup=BLUP$new(fixed=Trait1~Sex+Herd_Year_Season, #fixed effect
+                random=~Id+Litter, #random effect 
+                pars=blup_par) #blup_par has been defined previously
+myblup&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;BLUP::DMU&amp;gt; 
+## &amp;lt;ADCmodel::1 trait&amp;gt; 
+## ----Trait:Trait1~Sex(fixed)+Herd_Year_Season(fixed)+Id(random)+Litter(random)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Trait1的BLUP分析
+myblup$run(output_path=&amp;quot;D:/test&amp;quot;,task_type=&amp;quot;DMU&amp;quot;) # default using DMU 
+#myblup$run(output_path=&amp;quot;D:/test&amp;quot;,task_type=&amp;quot;BLUPF90&amp;quot;) #using BLUPF90 for analysis &lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Trait1的分析结果
+ebv=myblup$ebv         #breeding value
+h2=myblup$h2   #heritability and its SE
+user_defined_h2=myblup$cal_se(~Id1/(Id1+Litter1+Res1)) #用户可以根据自定义的表达式计算对应的遗传力及其标准误&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#GBLUP-A 分析
+myblup$pars$kinship_file=paste0(data_path,&amp;quot;/G_Ainv_col_three.txt&amp;quot;)
+myblup$pars$analysis_model=&amp;quot;GBLUP_A&amp;quot;
+myblup$run(task_type=&amp;quot;DMU&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#ssGBLUP-A 分析
+myblup$pars$kinship_file=paste0(data_path,&amp;quot;/&amp;quot;,c(&amp;quot;pedigree.txt&amp;quot;,&amp;quot;G_A_col_three.txt&amp;quot;))
+myblup$pars$analysis_model=&amp;quot;SSBLUP_A&amp;quot;
+myblup$run(task_type=&amp;quot;DMU&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;多性状blup分析&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;多性状BLUP分析&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(blupSUP)
+library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)
+#prepare parameters the BLUP analysis
+blup_par=BLUPpar$new(
+phe_file=paste0(data_path,&amp;quot;/phenotype.txt&amp;quot;),                                               phe_colnames=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),
+dmu_integer_n=5, #number of integer variable in the phenotype file (required by DMU)
+analysis_model=&amp;quot;PBLUP_A&amp;quot;,
+kinship_file=paste0(data_path,&amp;quot;/pedigree.txt&amp;quot;))
+
+#定义Trait1模型中的效应
+myblup=BLUP$new(fixed=Trait1~Sex+Herd_Year_Season, #fixed effect
+               random=~Id+Litter, #random effect 
+               pars=blup_par) #blup_par has been defined previously
+myblup$run(output_path=&amp;quot;D:/test&amp;quot;,task_type=&amp;quot;DMU&amp;quot;) # default using DMU 
+myblup&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;myblup&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;BLUP::DMU&amp;gt; 
+## &amp;lt;ADCmodel::1 trait&amp;gt; 
+## ----Trait:Trait1~Sex(fixed)+Herd_Year_Season(fixed)+Id(random)+Litter(random)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#多性状模型分析
+#定义Trait2模型中的效应
+myblup$add_model(fixed=Trait2~Herd_Year_Season,random=~Id,covariate=~Age)
+myblup&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;lt;BLUP::DMU&amp;gt; 
+## &amp;lt;ADCmodel::2 traits&amp;gt; 
+## ----Trait:Trait1~Sex(fixed)+Herd_Year_Season(fixed)+Id(random)+Litter(random)
+## ----Trait:Trait2~Herd_Year_Season(fixed)+Id(random)+Age(covariate)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;myblup$run() #分析
+
+#在BLUP分析中，移除 Trait2 
+#myblup$rm_model(&amp;quot;Trait2&amp;quot;) 
+
+#多性状模型分析的结果
+ebv=myblup$ebv         #breeding value
+h2=myblup$h2   #heritability and its SE
+genR2=myblup$r2 #genetic correlation and its SE 
+user_defined_h2=myblup$cal_se(~Id1/(Id1+Litter1+Res1)) #user defined expression of calculating h2 based on delta method
+user_defined_genR2=myblup$cal_se(~Id1_2/sqrt(Id1 * Id2)) #user defined expression of calculating genR2 based on delta method
+#random effect names from multiple traits model were defined in: rownames(myblup$vars_se$vars_mat)         &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;交叉验证&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;交叉验证&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(blupSUP)
+library(blupADC)
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)
+
+#prepare parameters the BLUP analysis
+blup_par=BLUPpar$new(
+phe_file=paste0(data_path,&amp;quot;/phenotype.txt&amp;quot;),                                               phe_colnames=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),
+dmu_integer_n=5, #number of integer variable in the phenotype file (required by DMU)
+analysis_model=&amp;quot;PBLUP_A&amp;quot;,
+kinship_file=paste0(data_path,&amp;quot;/pedigree.txt&amp;quot;))
+
+#define the effect of Trait1 for BLUP analysis
+myblup=BLUP$new(fixed=Trait1~Sex+Herd_Year_Season, #fixed effect
+                random=~Id+Litter, #random effect 
+                pars=blup_par) #blup_par has been defined previously
+
+
+#利用 holdout方式划分训练群和验证群
+myCV=CVpredi$new(myblup,  #has been defined previously 
+                 partion_type=&amp;quot;holdout&amp;quot;, #the type of data partioning
+                 ratio=0.6) #the ratio of  train_size/(train_size+test_size)
+
+#计算预测准确性
+myCV$predict_sets()
+accu=myCV$accuracy
+bias=myCV$bias
+train_set=myCV$datasets$train_sets[[1]] #train set was used in analysis
+test_set=myCV$datasets$test_sets[[1]]   #train set was used in analysis 
+ebv_set=myCV$datasets$ebv_sets[[1]]   #train set was used in analysis 
+
+#利用 kfold 划分训练群和验证群 
+myCV=CVpredi$new(myblup,  #has been defined previously 
+                 partion_type=&amp;quot;kfold&amp;quot;, #the type of data partioning
+                 ratio=0.6,            #the ratio of  train_size/(train_size+test_size)
+                 kfold=5,              #number of fold  
+                 seed=9894)            #random seed number for partioning data,default is 9894     
+
+#get the prediction accuracy 
+myCV$predict_sets() #计算所有训练群和验证群下的模型预测准确性
+#myCV$predict_sets(2) # 仅计算第2个训练群和验证群下的模型预测准确性
+accu=myCV$accuracy
+bias=myCV$bias
+train_set2=myCV$datasets$train_sets[[2]] #train set was used in analysis of fold2
+test_set2=myCV$datasets$test_sets[[2]]   #train set was used in analysis  of fold2
+ebv_set2=myCV$datasets$ebv_sets[[2]]   #train set was used in analysis  of fold2&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>blupADC 在线版- 使用说明1</title>
@@ -180,11 +325,12 @@
 &lt;p&gt;👻在前面的章节，我们已经讲述了如何在&lt;strong&gt;R&lt;/strong&gt;中调用&lt;strong&gt;DMU&lt;/strong&gt;软件并完成相应的分析。本章，我们将讲述如何通过&lt;code&gt;BLUP_ADC&lt;/code&gt;中的&lt;code&gt;run_BLUPF90&lt;/code&gt;函数，在&lt;strong&gt;R&lt;/strong&gt;中调用&lt;strong&gt;BLUPF90&lt;/strong&gt;软件并完成数据分析。为了方便用户的使用，我们已经尽可能地将 &lt;code&gt;run_BLUPF90&lt;/code&gt;函数中的参数 和 &lt;code&gt;run_DMU&lt;/code&gt;函数中的参数进行了统一。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;👉 Note:  为了方便用户使用， &lt;code&gt;blupADC&lt;/code&gt; 已经封装了BLUPF90中的几个基本模块(&lt;code&gt;renumf90&lt;/code&gt;, &lt;code&gt;remlf90&lt;/code&gt;, &lt;code&gt;airemlf90&lt;/code&gt;, 和 &lt;code&gt;blupf90&lt;/code&gt;), 更多的模块可以从BLUPF90官网进行下载(&lt;a href=&#34;http://nce.ads.uga.edu/html/projects/programs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BLUPF90下载网站&lt;/a&gt;).&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;如果您想将BLUPF90用作商业用途，请务必联系 BLUPF90的作者！！！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;👉 &lt;strong&gt;Note:&lt;/strong&gt; &lt;strong&gt;Package &lt;code&gt;blupADC&lt;/code&gt; 现支持使用面向对象的方向运行BLUPF90以进一步简化分析,  具体操作 &lt;a href=&#34;https://qsmei.netlify.app/zh/post/r6-genomic-predictionselection/blup/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;可见!&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;接下来，我们还是用几个简单的例子看看该函数的用法:&lt;/p&gt;
 &lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
 &lt;h3 id=&#34;单性状模型-系谱&#34;&gt;&lt;strong&gt;单性状模型-系谱&lt;/strong&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)   #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # 表型数据的列名(ps.表型文件无列名)
@@ -203,7 +349,7 @@ run_BLUPF90(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-gblup&#34;&gt;&lt;strong&gt;单性状模型-GBLUP&lt;/strong&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)   #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # 表型数据的列名(ps.表型文件无列名)
@@ -222,7 +368,7 @@ run_BLUPF90(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-single-step一步法&#34;&gt;&lt;strong&gt;单性状模型-Single-step(一步法)&lt;/strong&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)   #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # 表型数据的列名(ps.表型文件无列名)
@@ -243,7 +389,7 @@ run_BLUPF90(
 &lt;h3 id=&#34;多性状模型-系谱&#34;&gt;&lt;strong&gt;多性状模型-系谱&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;上面我们介绍的都是单性状模型(&lt;strong&gt;只包括了一个目标性状&lt;/strong&gt;)。与上一节的介绍的&lt;code&gt;run_DMU&lt;/code&gt;函数类似，如果我们想完成双性状模型的计算，只需要在上面的脚本的基础上稍作修改就能实现目的，具体代码如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.R}&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)   #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)   #  示例文件的路径
   
 run_BLUPF90(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # 表型数据的列名(ps.表型文件无列名)
@@ -335,10 +481,11 @@ run_BLUPF90(
 &lt;p&gt;为此，我们在R中编写了相应的函数，使得用户可以轻松的完成两款软件参数文件的配置及对应的数据分析。本章我们主要讲述如何通过&lt;code&gt;BLUP_ADC&lt;/code&gt;中的&lt;code&gt;run_DMU&lt;/code&gt;函数，在R中调用&lt;strong&gt;DMU&lt;/strong&gt;软件并完成数据分析。在下一章，我们将会讲述如何在R中调用&lt;strong&gt;BLUPf90&lt;/strong&gt;软件，并完成数相应的据分析。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;👉 Note:  为了方便用户使用， &lt;code&gt;blupADC&lt;/code&gt; 已经封装了DMU中的几个基本模块(&lt;code&gt;dmu1&lt;/code&gt;,&lt;code&gt;dmuai&lt;/code&gt;, and &lt;code&gt;dmu5&lt;/code&gt;), 更多的模块可以从DMU官网进行下载(&lt;a href=&#34;https://dmu.ghpc.au.dk/dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU下载网站&lt;/a&gt;).&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;如果您想将DMU用作商业用途，请务必联系 DMU的作者！！！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;👉 &lt;strong&gt;Note:&lt;/strong&gt; &lt;strong&gt;Package &lt;code&gt;blupADC&lt;/code&gt; 现支持使用面向对象的方式，运行DMU以进一步简化分析,  具体操作 &lt;a href=&#34;https://qsmei.netlify.app/zh/post/r6-genomic-predictionselection/blup/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;可见!&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
 &lt;h3 id=&#34;单性状模型-系谱&#34;&gt;&lt;strong&gt;单性状模型-系谱&lt;/strong&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
@@ -359,7 +506,7 @@ run_DMU(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-gblup&#34;&gt;&lt;strong&gt;单性状模型-GBLUP&lt;/strong&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
@@ -380,7 +527,7 @@ run_DMU(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-single-step一步法&#34;&gt;&lt;strong&gt;单性状模型-Single-step(一步法)&lt;/strong&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
@@ -403,7 +550,7 @@ run_DMU(
 &lt;p&gt;上面我们介绍的都是单性状模型(&lt;strong&gt;只包括了一个目标性状&lt;/strong&gt;)，而在实际育种分析中，多性状模型也是非常常见。在上面代码的基础上稍作修改，我们就能够非常方便的完成多性状模型的运算，如下：&lt;/p&gt;
 &lt;h3 id=&#34;多性状模型-系谱&#34;&gt;&lt;strong&gt;多性状模型-系谱&lt;/strong&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
@@ -424,7 +571,7 @@ run_DMU(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱-用户提供方差组分先验文件&#34;&gt;单性状模型-系谱 (用户提供方差组分先验文件)&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of provided files 
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  path of provided files 
   
 run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,
                          &amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;),               # colnames of phenotype
@@ -447,7 +594,7 @@ run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quo
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱-包含母性效应&#34;&gt;单性状模型-系谱 (包含母性效应)&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&amp;quot;Herd&amp;quot;,&amp;quot;B_month&amp;quot;,&amp;quot;D_age&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;HY&amp;quot;,&amp;quot;ID&amp;quot;,&amp;quot;DAM&amp;quot;,&amp;quot;L_Dam&amp;quot;,
@@ -470,7 +617,7 @@ run_DMU(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱-包含永久环境效应&#34;&gt;单性状模型-系谱 (包含永久环境效应)&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&amp;quot;id&amp;quot;,&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;,&amp;quot;t_dato&amp;quot;,
@@ -493,7 +640,7 @@ run_DMU(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;单性状模型-系谱--包含随机回归效应&#34;&gt;单性状模型-系谱 ( 包含随机回归效应)&lt;/h3&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&amp;quot;id&amp;quot;,&amp;quot;year_grp&amp;quot;,&amp;quot;breed&amp;quot;,&amp;quot;time&amp;quot;,&amp;quot;t_dato&amp;quot;,
@@ -518,7 +665,7 @@ run_DMU(
 &lt;h3 id=&#34;单性状模型-系谱-包含-社会遗传效应&#34;&gt;单性状模型-系谱( 包含 社会遗传效应)&lt;/h3&gt;
 &lt;p&gt;用户提供的表型文件不需要包含 最大群体大小相关的列&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  示例文件的路径
   
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Phe&amp;quot;), # colnames of phenotype
@@ -542,7 +689,7 @@ run_DMU(
 &lt;h3 id=&#34;单性状模型-系谱-包含-社会遗传效应-1&#34;&gt;单性状模型-系谱( 包含 社会遗传效应)&lt;/h3&gt;
 &lt;p&gt;用户提供的表型文件需要包含 最大群体大小相关的列&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  示例文件的路径
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  示例文件的路径
   
 run_DMU(phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Group&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Gr_id1&amp;quot;,&amp;quot;Gr_id2&amp;quot;,&amp;quot;Gr_id3&amp;quot;,&amp;quot;Gr_id4&amp;quot;,&amp;quot;Gr_id5&amp;quot;,                         
                         &amp;quot;Phe&amp;quot;,&amp;quot;Status_Gr_id1&amp;quot;,&amp;quot;Status_Gr_id2&amp;quot;,&amp;quot;Status_Gr_id3&amp;quot;,&amp;quot;Status_Gr_id4&amp;quot;,&amp;quot;Status_Gr_id5&amp;quot;),# colnames of phenotype
