@@ -44,6 +44,12 @@ toc: true
 - 支持单倍型格式转换，单倍型-数字矩阵及单倍型加性亲缘关系矩阵的构建(2021.10.8)
 - 引入bigmemory对象支持大数据分析(2021.10.8)
 
+### 1.1.0 
+
+- 引入面向对象的方式进行基因组预测（选择)分析 (2023.07.17) ([see more details](https://qsmei.netlify.app/post/r6-genomic-predictionselection/blup/)) 
+- 将数据和软件均转移至, `blupSUP`, 用户首次运行新版本前需安装`blupSUP`!
+- 用户仍然可使用之前的代码运行blupADC！
+
 ## 开始
 
 ### 🙊安装
@@ -58,26 +64,22 @@ install.packages(c("Rcpp", "RcppArmadillo","RcppProgress","data.table","bigmemor
 
 **如果您想将DMU和BLUPF90用作商业用途，请务必联系 DMU 和 BLUPF90的作者！！！** 
 
-#### Install blupADC via devtools (way1)
+#### 首先运行新版本的`blupADC`,用户需安装`blupSUP`（仅需安装一次)
+
+```R
+devtools::install_github("TXiang-lab/blupSUP")
+```
+
+#### Install blupADC via devtools
 
 ```R
 devtools::install_github("TXiang-lab/blupADC")
 ```
 
-#### Install blupADC  (way2)
-
-```R
-packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.6/blupADC_1.0.6.tar.gz"
-install.packages(packageurl,repos=NULL,method="libcurl")
-```
-
 👉 **Note:If the connection with github is not good(such as in China), user can download as below:**  
 
-#### Install blupADC  (way3)
-
 ```R
-packageurl <- "https://gitee.com/qsmei/blupADC/attach_files/1062637/download/blupADC_1.0.6.tar.gz"
-install.packages(packageurl,repos=NULL,method="libcurl")
+devtools::install_git("https://gitee.com/qsmei/blupADC")
 ```
 
 安装成功后，我们输入如下代码即可加载R包:
@@ -101,10 +103,10 @@ library(blupADC)
 
 `blupADC` 内置了几个数据集对象, 包括 `data_hmp` 及`origin_pedigree`.
 
-此外，`blupADC`  提供一些示例文件， 这些文件存储在`~/blupADC/extdata` 路径下。通过输出下面的代码，我们就能得到 这些文件的绝对路径了：
+此外，`blupSUP`  提供一些示例文件， 这些文件存储在`~/blupSUP/extdata` 路径下。通过输出下面的代码，我们就能得到 这些文件的绝对路径了：
 
 ``` {.r}
-system.file("extdata", package = "blupADC") # path of provided files
+system.file("extdata", package = "blupSUP") # path of provided files
 ```
 
 #### 功能 1. 基因型数据间的格式转换 ([see more details](https://qsmei.netlify.app/zh/post/blupadc/))
@@ -122,7 +124,7 @@ format_result=geno_format(
 
 #convert phased VCF data to haplotype format and  haplotype-based numeric format
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of example files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of example files 
 phased=geno_format(
          input_data_path=data_path,      # input data path 
          input_data_name="example.vcf",  # input data name,for vcf data
@@ -191,7 +193,7 @@ plot=ggped(
 
 ``` R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of example files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of example files 
 kinship_result=cal_kinship(
         		input_data_path=data_path,      # input data path 
         		input_data_name="example.vcf",  # input data name,for vcf data
@@ -206,7 +208,7 @@ kinship_result=cal_kinship(
 
 ``` R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of example files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of example files 
   
 run_DMU(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
@@ -229,7 +231,7 @@ run_DMU(
 
 ``` R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of example files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of example files 
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 

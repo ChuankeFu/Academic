@@ -38,6 +38,9 @@ toc: true
 ------------------------------------------------------------------------
 **Documents support two-language([English](https://qsmei.netlify.app/post/feature-0-overview/overview/) and [Chinese](https://qsmei.netlify.app/zh/post/feature-0-overview/overview/)).** 
 ![overview](https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20220516191833.png)
+
+**Documents support two-language([English](https://qsmei.netlify.app/post/feature-0-overview/overview/) and [Chinese](https://qsmei.netlify.app/zh/post/feature-0-overview/overview/)).** 
+![overview](https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20220516191833.png)
 ### OVERVIEW 
 `blupADC` is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding(**traditional blup and genomic selection**).  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (`Rcpp` and `RcppArmadillo `) , and it also supports  parallel calculation (by applying `openMP` programming) and big data calculation(by importing `bigmemory ` package). 
 
@@ -46,7 +49,7 @@ toc: true
 Finally, we kindly provides an easier way of applying `blupADC`, which is a free  website([shinyapp](http://47.95.251.15:443/blupADC/)).  Several functions are still under development.  But the pitfall of this website is that it can't handle big data. 
 
 😊 Good Luck Charlie ! 
-If you have suggestion or question, please contact: hzau_qsmei@163.com ! 
+If you have suggestion or question, please contact: quanshun1994@gmail.com ! 
 ### 👨‍💻 Citation 
 
 Quanshun Mei, Chuanke Fu, Jieling Li, Shuhong Zhao, and Tao Xiang. "blupADC: An R package and shiny toolkit for comprehensive genetic data analysis in animal and plant breeding." *bioRxiv* (2021), **doi:** https://doi.org/10.1101/2021.09.09.459557
@@ -67,6 +70,15 @@ Quanshun Mei, Chuanke Fu, Jieling Li, Shuhong Zhao, and Tao Xiang. "blupADC: An 
 - Support LR method to evaluate prediction accuracy and Hotelling_test to test significance between predictive abilities(by cross-validation method)
 - Fix dEBV(2021.12.22)
 
+### 1.0.6
+
+- Support running multiple tasks in DMU and BLUPF90 simultaneously! (2022.05.25)  
+
+### 1.1.0 
+- Introduce object-oriented programming in running Genomic Prediction (2023.07.17) ([see more details](https://qsmei.netlify.app/post/r6-genomic-predictionselection/blup/)) 
+- Move the example data and software into  another R package, blupSUP, user has to install this package only for once time!
+- User can still use the R function in the previous version of blupADC !
+
 ## GETTING STARTED
 
 ### 🙊Installation
@@ -74,33 +86,28 @@ Quanshun Mei, Chuanke Fu, Jieling Li, Shuhong Zhao, and Tao Xiang. "blupADC: An 
 `blupADC` links to R packages `Rcpp`, `RcppArmadillo` , `data.table` and  `bigmemory` .  These dependencies should be installed before installing `blupADC`.  
 
 ```R
-install.packages(c("Rcpp", "RcppArmadillo","RcppProgress","data.table","bigmemory"))
+install.packages(c("Rcpp", "RcppArmadillo","RcppProgress","data.table","bigmemory","R6"))
 ```
-
 **👉 Note: In the analysis of DMU  and BLUPF90 , we need to download software DMU  ([DMU download website](https://dmu.ghpc.au.dk/dmu/))  and BLUPF90 previously ([BLUPF90 download website](http://nce.ads.uga.edu/html/projects/programs/)). For convenience, we have encapsulated  the basic module of DMU and BLUPF90 in package `blupADC`.**  
 
  **For commercial use of DMU and BLUPF90,  user must contact the author of DMU and BLUPF90 !!!** 
 
-#### Install blupADC via devtools (way1)
+#### For the latest version of blupADC, user has to install the blupSUP package at first(only for one time), which contains the example data and software(e.g. DMU, BLUPF90, and etc.)!
+```R
+devtools::install_github("TXiang-lab/blupSUP")
+```
+#### Install blupADC via devtools
 ```R
 devtools::install_github("TXiang-lab/blupADC")
 ```
 
-#### Install blupADC  (way2)
-
-```R
-packageurl <- "https://github.com/TXiang-lab/blupADC/releases/download/V1.0.6/blupADC_1.0.6.tar.gz"
-install.packages(packageurl,repos=NULL,method="libcurl")
-```
-
 👉 **Note:If the connection with github is not good(such as in China), user can download as below:**  
 
-#### Install blupADC  (way3)
-
 ```R
-packageurl <- "https://gitee.com/qsmei/blupADC/attach_files/1062637/download/blupADC_1.0.6.tar.gz"
-install.packages(packageurl,repos=NULL,method="libcurl")
+devtools::install_git("https://gitee.com/qsmei/blupADC")
 ```
+
+⚠️During installation, if there are some errors like that: ‘trimatl_ind’ was not declared in this scope, ‘class arma::Mat<double>’ has no member named ‘clean’......Please make sure the version of RcppArmadillo over 0.9.870.2.0."
 
 After installed successfully, the `blupADC` package can be loaded by typing
 
@@ -125,10 +132,10 @@ library(blupADC)
 
 `blupADC` provides several datasets objects, including `data_hmp`, `origin_pedigree`.
 
-In addition, `blupADC` provides several files which are saved in `~/blupADC/extdata`. We can get the path of these files by typing
+In addition, `blupSUP` provides several files which are saved in `~/blupSUP/extdata`. We can get the path of these files by typing
 
 ``` {.r}
-system.file("extdata", package = "blupADC") # path of provided files
+system.file("extdata", package = "blupSUP") # path of provided files
 ```
 
 #### Feature 1. Genomic data format conversion ([see more details](https://qsmei.netlify.app/post/blupadc/))
@@ -146,7 +153,7 @@ format_result=geno_format(
 
 #convert phased VCF data to haplotype format and  haplotype-based numeric format
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of example files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of example files 
 phased=geno_format(
          input_data_path=data_path,      # input data path 
          input_data_name="example.vcf",  # input data name,for vcf data
@@ -215,7 +222,7 @@ plot=ggped(
 
 ``` R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of example files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of example files 
 kinship_result=cal_kinship(
         		input_data_path=data_path,      # input data path 
         		input_data_name="example.vcf",  # input data name,for vcf data
@@ -230,7 +237,7 @@ kinship_result=cal_kinship(
 
 ``` R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of example files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of example files 
   
 run_DMU(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
@@ -249,11 +256,12 @@ run_DMU(
         )
 ```
 
+
 #### Feature 8. Genetic evaluation with BLUPF90 ([see more details](https://qsmei.netlify.app/post/feature-8-run_blupf90/blupf90/))
 
 ``` R
 library(blupADC)
-data_path=system.file("extdata", package = "blupADC")  #  path of example files 
+data_path=system.file("extdata", package = "blupSUP")  #  path of example files 
   
 run_BLUPF90(
         phe_col_names=c("Id","Mean","Sex","Herd_Year_Season","Litter","Trait1","Trait2","Age"), # colnames of phenotype 
