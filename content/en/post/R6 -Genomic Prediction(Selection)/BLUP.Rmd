@@ -66,10 +66,7 @@ ebv=myblup$ebv         #breeding value
 h2=myblup$h2   #heritability and its SE
 user_defined_h2=myblup$cal_se(~Id1/(Id1+Litter1+Res1)) #user defined expression of calculating h2 based on delta method
 ```
-```{r include=TRUE}
-head(ebv)
-h2
-```
+
 ```{r eval=FALSE}
 #GBLUP-A analysis 
 myblup$pars$kinship_file=paste0(data_path,"/G_Ainv_col_three.txt")
