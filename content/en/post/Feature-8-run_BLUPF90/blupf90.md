@@ -31,6 +31,8 @@ Note: the usage of  `run_BLUPF90`  and  `run_DMU`  is similar. Thus, we recommen
 
  **For commercial use of BLUPF90,  user must contact the author of BLUPF90 !!!** 
 
+👉 **Note:** **Package `blupADC` now supports object-oriented programming in running BLUPF90,  which should be more easier in analysis, see more [details!](https://qsmei.netlify.app/post/r6-genomic-predictionselection/blup/)**
+
 ## Example
 
 ### **Single trait model - Pedigree BLUP**

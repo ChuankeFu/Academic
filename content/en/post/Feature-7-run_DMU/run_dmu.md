@@ -33,6 +33,8 @@ In this section, we will give detail description about `run_DMU` function.
 
  **For commercial use of DMU,  user must contact the author of DMU !!!** 
 
+👉 **Note:** **Package `blupADC` now supports object-oriented programming in running DMU,  which should be more easier in analysis, see more [details!](https://qsmei.netlify.app/post/r6-genomic-predictionselection/blup/)**
+
 ## Example
 
 ### Single trait  - pedigree BLUP model

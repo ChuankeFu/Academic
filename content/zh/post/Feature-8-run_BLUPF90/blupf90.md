@@ -29,6 +29,8 @@ toc: true
 
 **如果您想将BLUPF90用作商业用途，请务必联系 BLUPF90的作者！！！**
 
+👉 **Note:** **Package `blupADC` 现支持使用面向对象的方向运行BLUPF90以进一步简化分析,  具体操作 [可见!](https://qsmei.netlify.app/zh/post/r6-genomic-predictionselection/blup/)**
+
 接下来，我们还是用几个简单的例子看看该函数的用法:
 
 ## 示例

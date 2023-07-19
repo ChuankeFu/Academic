@@ -33,6 +33,8 @@ toc: true
 
 **如果您想将DMU用作商业用途，请务必联系 DMU的作者！！！** 
 
+👉 **Note:** **Package `blupADC` 现支持使用面向对象的方式，运行DMU以进一步简化分析,  具体操作 [可见!](https://qsmei.netlify.app/zh/post/r6-genomic-predictionselection/blup/)**
+
 ## 示例
 
 ### **单性状模型-系谱**
