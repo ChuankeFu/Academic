@@ -19,8 +19,8 @@ education:
 email: "quanshun1994@gmail.com"
 highlight_name: true
 interests:
-#- Artificial Intelligence
-#- Programing(Python, R and C++)
+- Artificial Intelligence
+- Programing(Python, R and C++)
 - Quantitative Genetics
 - Population Genetics
 - ......
