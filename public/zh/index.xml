@@ -3013,6 +3013,7 @@ phased_result=geno_format(
       &lt;ul&gt;
         &lt;li&gt;&lt;a href=&#34;#103&#34;&gt;1.0.3&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#104&#34;&gt;1.0.4&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#110&#34;&gt;1.1.0&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/li&gt;
     &lt;li&gt;&lt;a href=&#34;#开始&#34;&gt;开始&lt;/a&gt;
@@ -3046,6 +3047,12 @@ phased_result=geno_format(
 &lt;li&gt;支持单倍型格式转换，单倍型-数字矩阵及单倍型加性亲缘关系矩阵的构建(2021.10.8)&lt;/li&gt;
 &lt;li&gt;引入bigmemory对象支持大数据分析(2021.10.8)&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;110&#34;&gt;1.1.0&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;引入面向对象的方式进行基因组预测（选择)分析 (2023.07.17) (&lt;a href=&#34;https://qsmei.netlify.app/post/r6-genomic-predictionselection/blup/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;将数据和软件均转移至, &lt;code&gt;blupSUP&lt;/code&gt;, 用户首次运行新版本前需安装&lt;code&gt;blupSUP&lt;/code&gt;!&lt;/li&gt;
+&lt;li&gt;用户仍然可使用之前的代码运行blupADC！&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;开始&#34;&gt;开始&lt;/h2&gt;
 &lt;h3 id=&#34;安装&#34;&gt;🙊安装&lt;/h3&gt;
 &lt;p&gt;安装&lt;code&gt;blupADC&lt;/code&gt; 之前，用户首先需要安装如下5个包：&lt;code&gt;Rcpp&lt;/code&gt;, &lt;code&gt;RcppArmadillo&lt;/code&gt; and &lt;code&gt;data.table&lt;/code&gt;.&lt;/p&gt;
@@ -3053,17 +3060,14 @@ phased_result=geno_format(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;👉 Note:  在 DMU 和 BLUPF90的分析中，我们通常需要提前下载好 DMU 软件 (&lt;a href=&#34;https://dmu.ghpc.au.dk/dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU下载网站&lt;/a&gt;)  和 BLUPF90软件 (&lt;a href=&#34;http://nce.ads.uga.edu/html/projects/programs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BLUPF90下载网站&lt;/a&gt;)。为了方便用户使用，我们已经将两款软件中基础模块封装进了 &lt;code&gt;blupADC&lt;/code&gt;，请大家合理使用。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;如果您想将DMU和BLUPF90用作商业用途，请务必联系 DMU 和 BLUPF90的作者！！！&lt;/strong&gt;&lt;/p&gt;
-&lt;h4 id=&#34;install-blupadc-via-devtools-way1&#34;&gt;Install blupADC via devtools (way1)&lt;/h4&gt;
+&lt;h4 id=&#34;首先运行新版本的blupadc用户需安装blupsup仅需安装一次&#34;&gt;首先运行新版本的&lt;code&gt;blupADC&lt;/code&gt;,用户需安装&lt;code&gt;blupSUP&lt;/code&gt;（仅需安装一次)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;devtools::install_github(&amp;quot;TXiang-lab/blupSUP&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;install-blupadc-via-devtools&#34;&gt;Install blupADC via devtools&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;devtools::install_github(&amp;quot;TXiang-lab/blupADC&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;install-blupadc--way2&#34;&gt;Install blupADC  (way2)&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.6/blupADC_1.0.6.tar.gz&amp;quot;
-install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;👉 &lt;strong&gt;Note:If the connection with github is not good(such as in China), user can download as below:&lt;/strong&gt;&lt;/p&gt;
-&lt;h4 id=&#34;install-blupadc--way3&#34;&gt;Install blupADC  (way3)&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blupADC/attach_files/1062637/download/blupADC_1.0.6.tar.gz&amp;quot;
-install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;devtools::install_git(&amp;quot;https://gitee.com/qsmei/blupADC&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;安装成功后，我们输入如下代码即可加载R包:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
@@ -3081,8 +3085,8 @@ install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 &lt;/ul&gt;
 &lt;h2 id=&#34;使用&#34;&gt;使用&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; 内置了几个数据集对象, 包括 &lt;code&gt;data_hmp&lt;/code&gt; 及&lt;code&gt;origin_pedigree&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;此外，&lt;code&gt;blupADC&lt;/code&gt;  提供一些示例文件， 这些文件存储在&lt;code&gt;~/blupADC/extdata&lt;/code&gt; 路径下。通过输出下面的代码，我们就能得到 这些文件的绝对路径了：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;) # path of provided files
+&lt;p&gt;此外，&lt;code&gt;blupSUP&lt;/code&gt;  提供一些示例文件， 这些文件存储在&lt;code&gt;~/blupSUP/extdata&lt;/code&gt; 路径下。通过输出下面的代码，我们就能得到 这些文件的绝对路径了：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;) # path of provided files
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;功能-1-基因型数据间的格式转换-see-more-detailshttpsqsmeinetlifyappzhpostblupadc&#34;&gt;功能 1. 基因型数据间的格式转换 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
@@ -3097,7 +3101,7 @@ format_result=geno_format(
 
 #convert phased VCF data to haplotype format and  haplotype-based numeric format
 library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  path of example files 
 phased=geno_format(
          input_data_path=data_path,      # input data path 
          input_data_name=&amp;quot;example.vcf&amp;quot;,  # input data name,for vcf data
@@ -3151,7 +3155,7 @@ plot=ggped(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;功能-6-亲缘关系矩阵的构建ag-h--see-more-detailshttpsqsmeinetlifyappzhpostfeature-6-kinship_matrixrelationship_matrix&#34;&gt;功能 6. 亲缘关系矩阵的构建(A,G, H)  (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/feature-6-kinship_matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  path of example files 
 kinship_result=cal_kinship(
         		input_data_path=data_path,      # input data path 
         		input_data_name=&amp;quot;example.vcf&amp;quot;,  # input data name,for vcf data
@@ -3163,7 +3167,7 @@ kinship_result=cal_kinship(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;功能-7-利用dmu软件进行遗传评估-see-more-detailshttpsqsmeinetlifyappzhpostfeature-7-run_dmurun_dmu&#34;&gt;功能 7. 利用DMU软件进行遗传评估 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/feature-7-run_dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  path of example files 
   
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
@@ -3183,7 +3187,7 @@ run_DMU(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;功能-8-利用blupf90软件进行遗传评估-see-more-detailshttpsqsmeinetlifyappzhpostfeature-8-run_blupf90blupf90&#34;&gt;功能 8. 利用BLUPF90软件进行遗传评估 (&lt;a href=&#34;https://qsmei.netlify.app/zh/post/feature-8-run_blupf90/blupf90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  path of example files 
   
 run_BLUPF90(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 

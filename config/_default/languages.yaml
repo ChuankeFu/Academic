@@ -21,9 +21,9 @@ zh:
       - name: 关于我
         url: '#about'
         weight: 10   
-      #- name: 软件
-      #  url: '#projects'
-      #  weight: 30     
+      - name: 软件
+        url: '#projects'
+        weight: 30     
       - name: 学术文章
         url: '#publications'
         weight: 50        

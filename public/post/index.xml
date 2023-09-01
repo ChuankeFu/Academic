@@ -3136,6 +3136,8 @@ phased=geno_format(
         &lt;li&gt;&lt;a href=&#34;#103&#34;&gt;1.0.3&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#104&#34;&gt;1.0.4&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#105&#34;&gt;1.0.5&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#106&#34;&gt;1.0.6&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#110&#34;&gt;1.1.0&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/li&gt;
     &lt;li&gt;&lt;a href=&#34;#getting-started&#34;&gt;GETTING STARTED&lt;/a&gt;
@@ -3173,12 +3175,14 @@ phased=geno_format(
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;Documents support two-language(&lt;a href=&#34;https://qsmei.netlify.app/post/feature-0-overview/overview/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;English&lt;/a&gt; and &lt;a href=&#34;https://qsmei.netlify.app/zh/post/feature-0-overview/overview/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chinese&lt;/a&gt;).&lt;/strong&gt; 
 &lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20220516191833.png&#34; alt=&#34;overview&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Documents support two-language(&lt;a href=&#34;https://qsmei.netlify.app/post/feature-0-overview/overview/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;English&lt;/a&gt; and &lt;a href=&#34;https://qsmei.netlify.app/zh/post/feature-0-overview/overview/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Chinese&lt;/a&gt;).&lt;/strong&gt; 
+&lt;img src=&#34;https://qsmei-markdown.oss-cn-shanghai.aliyuncs.com/markdown-img/20220516191833.png&#34; alt=&#34;overview&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;overview&#34;&gt;OVERVIEW&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; is an useful and powerful tool for handling genomic data and pedigree data in animal and plant breeding(&lt;strong&gt;traditional blup and genomic selection&lt;/strong&gt;).  In the design of this package, most of data analysis problems in breeding have been considered, and  the speed of calculation is also the key point. In terms of the speed,  the core functions of this package are coded by c++ (&lt;code&gt;Rcpp&lt;/code&gt; and &lt;code&gt;RcppArmadillo &lt;/code&gt;) , and it also supports  parallel calculation (by applying &lt;code&gt;openMP&lt;/code&gt; programming) and big data calculation(by importing &lt;code&gt;bigmemory &lt;/code&gt; package).&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; provides many useful functions for the whole steps for animal and plant breeding, including pedigree analysis(&lt;strong&gt;trace pedigree, rename pedigree, and correct pedigree errors&lt;/strong&gt;), genotype data format conversion(supports &lt;strong&gt;Hapmap, Plink, Blupf90, Numeric,  VCF and Haplotype&lt;/strong&gt; format), genotype data quality control and imputation, construction of kinship matrix(&lt;strong&gt;pedigree, genomic  and single-step&lt;/strong&gt;),and genetic evaluation( by interfacing with two famous breeding softwares, &lt;strong&gt;DMU&lt;/strong&gt; and &lt;strong&gt;BLUPF90&lt;/strong&gt;  in an easy way).&lt;/p&gt;
 &lt;p&gt;Finally, we kindly provides an easier way of applying &lt;code&gt;blupADC&lt;/code&gt;, which is a free  website(&lt;a href=&#34;http://47.95.251.15:443/blupADC/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shinyapp&lt;/a&gt;).  Several functions are still under development.  But the pitfall of this website is that it can&amp;rsquo;t handle big data.&lt;/p&gt;
 &lt;p&gt;😊 Good Luck Charlie ! 
-If you have suggestion or question, please contact: &lt;a href=&#34;mailto:hzau_qsmei@163.com&#34;&gt;hzau_qsmei@163.com&lt;/a&gt; !&lt;/p&gt;
+If you have suggestion or question, please contact: &lt;a href=&#34;mailto:quanshun1994@gmail.com&#34;&gt;quanshun1994@gmail.com&lt;/a&gt; !&lt;/p&gt;
 &lt;h3 id=&#34;-citation&#34;&gt;👨‍💻 Citation&lt;/h3&gt;
 &lt;p&gt;Quanshun Mei, Chuanke Fu, Jieling Li, Shuhong Zhao, and Tao Xiang. &amp;ldquo;blupADC: An R package and shiny toolkit for comprehensive genetic data analysis in animal and plant breeding.&amp;rdquo; &lt;em&gt;bioRxiv&lt;/em&gt; (2021), &lt;strong&gt;doi:&lt;/strong&gt; &lt;a href=&#34;https://doi.org/10.1101/2021.09.09.459557&#34;&gt;https://doi.org/10.1101/2021.09.09.459557&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;new-features&#34;&gt;New features&lt;/h2&gt;
@@ -3197,25 +3201,33 @@ If you have suggestion or question, please contact: &lt;a href=&#34;mailto:hzau_
 &lt;li&gt;Support LR method to evaluate prediction accuracy and Hotelling_test to test significance between predictive abilities(by cross-validation method)&lt;/li&gt;
 &lt;li&gt;Fix dEBV(2021.12.22)&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;106&#34;&gt;1.0.6&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Support running multiple tasks in DMU and BLUPF90 simultaneously! (2022.05.25)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;110&#34;&gt;1.1.0&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduce object-oriented programming in running Genomic Prediction (2023.07.17) (&lt;a href=&#34;https://qsmei.netlify.app/post/r6-genomic-predictionselection/blup/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Move the example data and software into  another R package, blupSUP, user has to install this package only for once time!&lt;/li&gt;
+&lt;li&gt;User can still use the R function in the previous version of blupADC !&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;getting-started&#34;&gt;GETTING STARTED&lt;/h2&gt;
 &lt;h3 id=&#34;installation&#34;&gt;🙊Installation&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; links to R packages &lt;code&gt;Rcpp&lt;/code&gt;, &lt;code&gt;RcppArmadillo&lt;/code&gt; , &lt;code&gt;data.table&lt;/code&gt; and  &lt;code&gt;bigmemory&lt;/code&gt; .  These dependencies should be installed before installing &lt;code&gt;blupADC&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;install.packages(c(&amp;quot;Rcpp&amp;quot;, &amp;quot;RcppArmadillo&amp;quot;,&amp;quot;RcppProgress&amp;quot;,&amp;quot;data.table&amp;quot;,&amp;quot;bigmemory&amp;quot;))
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;install.packages(c(&amp;quot;Rcpp&amp;quot;, &amp;quot;RcppArmadillo&amp;quot;,&amp;quot;RcppProgress&amp;quot;,&amp;quot;data.table&amp;quot;,&amp;quot;bigmemory&amp;quot;,&amp;quot;R6&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;👉 Note: In the analysis of DMU  and BLUPF90 , we need to download software DMU  (&lt;a href=&#34;https://dmu.ghpc.au.dk/dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DMU download website&lt;/a&gt;)  and BLUPF90 previously (&lt;a href=&#34;http://nce.ads.uga.edu/html/projects/programs/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BLUPF90 download website&lt;/a&gt;). For convenience, we have encapsulated  the basic module of DMU and BLUPF90 in package &lt;code&gt;blupADC&lt;/code&gt;.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;For commercial use of DMU and BLUPF90,  user must contact the author of DMU and BLUPF90 !!!&lt;/strong&gt;&lt;/p&gt;
-&lt;h4 id=&#34;install-blupadc-via-devtools-way1&#34;&gt;Install blupADC via devtools (way1)&lt;/h4&gt;
+&lt;h4 id=&#34;for-the-latest-version-of-blupadc-user-has-to-install-the-blupsup-package-at-firstonly-for-one-time-which-contains-the-example-data-and-softwareeg-dmu-blupf90-and-etc&#34;&gt;For the latest version of blupADC, user has to install the blupSUP package at first(only for one time), which contains the example data and software(e.g. DMU, BLUPF90, and etc.)!&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;devtools::install_github(&amp;quot;TXiang-lab/blupSUP&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;install-blupadc-via-devtools&#34;&gt;Install blupADC via devtools&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;devtools::install_github(&amp;quot;TXiang-lab/blupADC&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;install-blupadc--way2&#34;&gt;Install blupADC  (way2)&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://github.com/TXiang-lab/blupADC/releases/download/V1.0.6/blupADC_1.0.6.tar.gz&amp;quot;
-install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;👉 &lt;strong&gt;Note:If the connection with github is not good(such as in China), user can download as below:&lt;/strong&gt;&lt;/p&gt;
-&lt;h4 id=&#34;install-blupadc--way3&#34;&gt;Install blupADC  (way3)&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;packageurl &amp;lt;- &amp;quot;https://gitee.com/qsmei/blupADC/attach_files/1062637/download/blupADC_1.0.6.tar.gz&amp;quot;
-install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
+&lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;devtools::install_git(&amp;quot;https://gitee.com/qsmei/blupADC&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;⚠️During installation, if there are some errors like that: ‘trimatl_ind’ was not declared in this scope, ‘class arma::Mat&lt;double&gt;’ has no member named ‘clean’&amp;hellip;&amp;hellip;Please make sure the version of RcppArmadillo over 0.9.870.2.0.&amp;quot;&lt;/p&gt;
 &lt;p&gt;After installed successfully, the &lt;code&gt;blupADC&lt;/code&gt; package can be loaded by typing&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;library(blupADC)
 &lt;/code&gt;&lt;/pre&gt;
@@ -3233,8 +3245,8 @@ install.packages(packageurl,repos=NULL,method=&amp;quot;libcurl&amp;quot;)
 &lt;/ul&gt;
 &lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;blupADC&lt;/code&gt; provides several datasets objects, including &lt;code&gt;data_hmp&lt;/code&gt;, &lt;code&gt;origin_pedigree&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;In addition, &lt;code&gt;blupADC&lt;/code&gt; provides several files which are saved in &lt;code&gt;~/blupADC/extdata&lt;/code&gt;. We can get the path of these files by typing&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;) # path of provided files
+&lt;p&gt;In addition, &lt;code&gt;blupSUP&lt;/code&gt; provides several files which are saved in &lt;code&gt;~/blupSUP/extdata&lt;/code&gt;. We can get the path of these files by typing&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{.r}&#34;&gt;system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;) # path of provided files
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-1-genomic-data-format-conversion-see-more-detailshttpsqsmeinetlifyapppostblupadc&#34;&gt;Feature 1. Genomic data format conversion (&lt;a href=&#34;https://qsmei.netlify.app/post/blupadc/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
@@ -3249,7 +3261,7 @@ format_result=geno_format(
 
 #convert phased VCF data to haplotype format and  haplotype-based numeric format
 library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  path of example files 
 phased=geno_format(
          input_data_path=data_path,      # input data path 
          input_data_name=&amp;quot;example.vcf&amp;quot;,  # input data name,for vcf data
@@ -3303,7 +3315,7 @@ plot=ggped(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-6-relationship-matrix-constructionag-and-h--see-more-detailshttpsqsmeinetlifyapppostfeature-6-kinship_matrixrelationship_matrix&#34;&gt;Feature 6. Relationship matrix construction(A,G, and H)  (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-6-kinship_matrix/relationship_matrix/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  path of example files 
 kinship_result=cal_kinship(
         		input_data_path=data_path,      # input data path 
         		input_data_name=&amp;quot;example.vcf&amp;quot;,  # input data name,for vcf data
@@ -3315,7 +3327,7 @@ kinship_result=cal_kinship(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-7-genetic-evaluation-with-dmu-see-more-detailshttpsqsmeinetlifyapppostfeature-7-run_dmurun_dmu&#34;&gt;Feature 7. Genetic evaluation with DMU (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-7-run_dmu/run_dmu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  path of example files 
   
 run_DMU(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
@@ -3335,7 +3347,7 @@ run_DMU(
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&#34;feature-8-genetic-evaluation-with-blupf90-see-more-detailshttpsqsmeinetlifyapppostfeature-8-run_blupf90blupf90&#34;&gt;Feature 8. Genetic evaluation with BLUPF90 (&lt;a href=&#34;https://qsmei.netlify.app/post/feature-8-run_blupf90/blupf90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;see more details&lt;/a&gt;)&lt;/h4&gt;
 &lt;pre&gt;&lt;code class=&#34;language-R&#34;&gt;library(blupADC)
-data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupADC&amp;quot;)  #  path of example files 
+data_path=system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;blupSUP&amp;quot;)  #  path of example files 
   
 run_BLUPF90(
         phe_col_names=c(&amp;quot;Id&amp;quot;,&amp;quot;Mean&amp;quot;,&amp;quot;Sex&amp;quot;,&amp;quot;Herd_Year_Season&amp;quot;,&amp;quot;Litter&amp;quot;,&amp;quot;Trait1&amp;quot;,&amp;quot;Trait2&amp;quot;,&amp;quot;Age&amp;quot;), # colnames of phenotype 
