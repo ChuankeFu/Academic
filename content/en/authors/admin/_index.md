@@ -19,15 +19,15 @@ education:
 email: "quanshun1994@gmail.com"
 highlight_name: true
 interests:
-- Artificial Intelligence
-- Programing(Python, R and C++)
+#- Artificial Intelligence
+- Programing(R , Julia, C++...)
 - Quantitative Genetics
 - Population Genetics
 - ......
 organizations:
-- name: Huazhong Agricultural University
-  url: http://www.hzau.edu.cn/
-role: PhD student in Quantitative Genetics of Animal Breeding
+- name: Boston University
+  url: https://www.bu.edu/sph/
+role: Postdoctoral researcher
 social:
 - icon: envelope
   icon_pack: fas
@@ -40,13 +40,13 @@ social:
 - display:
     header: true
 - icon: github
-  icon_pack: fabi am curious to learn and try new thingsfa
+  icon_pack: fab
   link: https://github.com/qsmei
 - display:
     header: true
-#- icon: linkedin
-#  icon_pack: fab
-#  link: https://www.linkedin.com/
+- icon: linkedin
+  icon_pack: fab
+  link: https://www.linkedin.com/in/quanshun-mei-b132ab264/
 superuser: true
 title: Quanshun Mei 
 
@@ -54,6 +54,6 @@ title: Quanshun Mei
 
 
 
-I am a PhD student in Quantitative Genetics of Animal Breeding at Huazhong Agricultural University. My research interests include applying genomic selection in animal breeding. 
+I am a Postdoctoral researcher in the Department of [Biostatistics](https://www.bu.edu/sph/about/departments/biostatistics/ ) at [Boston University School of Public Health](https://www.bu.edu/sph/about/departments/biostatistics/).  My research interests include applying multi-omics data in genomic prediction and the development of new software. 
 
 I am always eager to learn and try new things!
