@@ -1,0 +1,35 @@
+---
+abstract: Metafounders are a useful concept to characterize relationships within and across populations, and to help genetic evaluations because they help modelling the means and variances of unknown base population animals. Current definitions of metafounder relationships are sensitive to the choice of reference alleles and have not been compared to their counterparts in population genetics—namely, heterozygosities, FST coefficients, and genetic distances. We redefine the relationships across populations with an arbitrary base of a maximum heterozygosity population in Hardy–Weinberg equilibrium. Then, the relationship between or within populations is a cross-product of the form  with being vectors of allele frequencies at markers in populations and . This is simply the genomic relationship of two pseudo-individuals whose genotypes are equal to twice the allele frequencies. We also show that this coding is invariant to the choice of reference alleles. In addition, standard population genetics metrics (inbreeding coefficients of various forms; FST differentiation coefficients; segregation variance; and Nei’s genetic distance) can be obtained from elements of matrix .
+author_notes:
+- 
+authors:
+- Andres Legarra
+- Matias Berman
+- admin
+- Ole F Christensen
+date: "2024-05-02T00:00:00Z"
+doi: ""
+featured: false
+image:
+  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/jdD8gXaTZsc)'
+  focal_point: ""
+  preview_only: false
+projects: []
+publication: '*Genetics Selection Evolution, 56*(34)'
+publication_short: ""
+publication_types:
+- "2"
+publishDate: "2024-05-02T00:00:00Z"
+summary:
+tags:
+- Source Themes
+title: Redefining and interpreting genomic relationships of metafounders
+url_code: ""
+url_dataset: ""
+url_pdf: https://gsejournal.biomedcentral.com/articles/10.1186/s12711-024-00891-w
+url_poster: ""
+url_project: ""
+url_slides: ""
+url_source: ""
+url_video: ""
+---

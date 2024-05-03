@@ -1,0 +1,35 @@
+---
+abstract: We derived ML, pseudo-EM and pseudo-EM+ methods to estimate in many realistic settings. Estimates are accurate in real and simulated data and have a low computational cost.
+author_notes:
+- 
+authors:
+- Andres Legarra
+- Matias Berman
+- admin
+- Ole F Christensen
+date: "2024-05-02T00:00:00Z"
+doi: ""
+featured: false
+image:
+  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/jdD8gXaTZsc)'
+  focal_point: ""
+  preview_only: false
+projects: []
+publication: '*Genetics Selection Evolution, 56*(35)'
+publication_short: ""
+publication_types:
+- "2"
+publishDate: "2024-05-02T00:00:00Z"
+summary:
+tags:
+- Source Themes
+title: Estimating genomic relationships of metafounders across and within breeds using maximum likelihood, pseudo-expectation–maximization maximum likelihood and increase of relationships 
+url_code: ""
+url_dataset: ""
+url_pdf: https://gsejournal.biomedcentral.com/articles/10.1186/s12711-024-00892-9
+url_poster: ""
+url_project: ""
+url_slides: ""
+url_source: ""
+url_video: ""
+---
