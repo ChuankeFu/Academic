@@ -5,7 +5,7 @@ authors:
 - Yuanxin Miao
 - Yunxia Zhao
 - Siqi Wan
-- Quanshun Mei(author)
+- admin
 - Heng Wang
 - Chuanke Fu
 - Xinyun Li

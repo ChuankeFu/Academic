@@ -1,10 +1,11 @@
 ---
 abstract: This study integrated three types of omics data and identified a group of genes that have not previously been reported to be associated with BMI. This strategy could provide new insights for future studies to identify molecular mechanisms contributing to BMI regulation.
 author_notes:
-- 
+- "Equal Contribution"
+- "Equal Contribution"
 authors:
-- Jingxian Tang#
-- Hanfei Xu#
+- Jingxian Tang
+- Hanfei Xu
 - Zihao Xin
 - admin
 - Musong Gao
